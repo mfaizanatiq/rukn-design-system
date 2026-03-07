@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maktaba - Arabic Bookstore Demo | Rukn Design System</title>
+  <meta name="description" content="A bilingual Arabic/English e-commerce bookstore demo built with Rukn Design System, showcasing real-world RTL layout, language switching, and multilingual typography.">
+
+  <!-- Rukn Design System -->
+  <link rel="stylesheet" href="../styles/design-system-variables.css">
+  <link rel="stylesheet" href="../styles/design-system.css">
+  <script src="../components/rukn-ui.js" type="module"></script>
+  <script src="../components/rukn-navbar.js" type="module"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    /* ============================================
+       Maktaba Demo - Built entirely with Rukn DS
+       ============================================ */
+
+    :root {
+      --maktaba-gold: hsl(42, 78%, 55%);
+      --maktaba-gold-muted: hsl(42, 50%, 85%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--r-font-body);
+      background: var(--background);
+      color: var(--foreground);
+      line-height: var(--r-line-height-normal);
+      min-height: 100vh;
+    }
+
+    /* RTL-aware Arabic typography */
+    :lang(ar) body,
+    :lang(ar) .maktaba-text {
+      font-family: var(--r-font-arabic), var(--r-font-body);
+      line-height: var(--r-line-height-relaxed);
+    }
+
+    :lang(ur) body,
+    :lang(ur) .maktaba-text {
+      font-family: var(--r-font-urdu), var(--r-font-body);
+      line-height: 1.75;
+    }
+
+    :lang(en) body {
+      font-family: var(--r-font-heading), var(--r-font-body);
+    }
+
+    /* ---- Banner ---- */
+    .maktaba-banner {
+      background: linear-gradient(135deg, hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%)), hsl(18, 90%, 55%));
+      color: white;
+      text-align: center;
+      padding: var(--r-space-2) var(--r-space-4);
+      font-size: 0.85rem;
+      font-weight: var(--r-font-weight-medium);
+      letter-spacing: var(--r-letter-spacing-wide);
+    }
+
+    .maktaba-banner a {
+      color: white;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ---- Hero Section ---- */
+    .maktaba-hero {
+      background: linear-gradient(180deg, var(--card) 0%, var(--background) 100%);
+      border-bottom: 1px solid var(--border);
+      padding: var(--r-space-16) var(--r-space-6) var(--r-space-12);
+      text-align: center;
+    }
+
+    .maktaba-hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: var(--r-font-weight-bold);
+      margin-bottom: var(--r-space-4);
+      letter-spacing: var(--r-letter-spacing-tight);
+    }
+
+    :lang(ar) .maktaba-hero h1,
+    :lang(ur) .maktaba-hero h1 {
+      letter-spacing: 0;
+    }
+
+    .maktaba-hero p {
+      font-size: 1.15rem;
+      color: var(--muted-foreground);
+      max-width: 600px;
+      margin: 0 auto var(--r-space-8);
+    }
+
+    .maktaba-search-bar {
+      display: flex;
+      max-width: 560px;
+      margin: 0 auto;
+      gap: var(--r-space-2);
+    }
+
+    .maktaba-search-bar input {
+      flex: 1;
+      padding: var(--r-space-3) var(--r-space-4);
+      border: 1.5px solid var(--border);
+      border-radius: var(--r-radius-lg);
+      background: var(--background);
+      color: var(--foreground);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color var(--r-transition-fast) var(--r-ease-ios-standard);
+    }
+
+    .maktaba-search-bar input:focus {
+      outline: none;
+      border-color: hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%));
+      box-shadow: 0 0 0 3px hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%) / 0.15);
+    }
+
+    .maktaba-search-bar button {
+      padding: var(--r-space-3) var(--r-space-6);
+    }
+
+    /* ---- Category Chips ---- */
+    .maktaba-categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--r-space-2);
+      margin-top: var(--r-space-6);
+    }
+
+    .maktaba-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--r-space-1);
+      padding: var(--r-space-1) var(--r-space-3);
+      border-radius: var(--r-radius-full);
+      border: 1px solid var(--border);
+      background: var(--background);
+      color: var(--foreground);
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all var(--r-transition-fast) var(--r-ease-ios-standard);
+      font-family: inherit;
+    }
+
+    .maktaba-chip:hover {
+      background: var(--muted);
+      border-color: var(--muted-foreground);
+    }
+
+    .maktaba-chip.active {
+      background: hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%));
+      color: white;
+      border-color: transparent;
+    }
+
+    /* ---- Main Layout ---- */
+    .maktaba-main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--r-space-8) var(--r-space-6);
+    }
+
+    .maktaba-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--r-space-6);
+    }
+
+    .maktaba-section-header h2 {
+      font-size: 1.5rem;
+      font-weight: var(--r-font-weight-semibold);
+    }
+
+    .maktaba-section-header a {
+      color: hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%));
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: var(--r-font-weight-medium);
+    }
+
+    /* ---- Product Grid ---- */
+    .maktaba-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: var(--r-space-6);
+      margin-bottom: var(--r-space-12);
+    }
+
+    /* ---- Book Card ---- */
+    .book-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-radius-xl);
+      overflow: hidden;
+      transition: all var(--r-transition-normal) var(--r-ease-ios-standard);
+      position: relative;
+    }
+
+    .book-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--r-shadow-lg);
+    }
+
+    .book-cover {
+      aspect-ratio: 3 / 4;
+      background: linear-gradient(135deg, var(--muted), var(--card));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-cover-art {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--r-space-6);
+      text-align: center;
+    }
+
+    .book-cover-art .cover-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: var(--r-space-3);
+      opacity: 0.3;
+    }
+
+    .book-cover-art .cover-title {
+      font-size: 1.1rem;
+      font-weight: var(--r-font-weight-semibold);
+      opacity: 0.5;
+      line-height: 1.3;
+    }
+
+    .book-badge {
+      position: absolute;
+      top: var(--r-space-3);
+      inset-inline-start: var(--r-space-3);
+    }
+
+    .book-info {
+      padding: var(--r-space-4);
+    }
+
+    .book-title {
+      font-size: 1rem;
+      font-weight: var(--r-font-weight-semibold);
+      margin-bottom: var(--r-space-1);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .book-author {
+      font-size: 0.85rem;
+      color: var(--muted-foreground);
+      margin-bottom: var(--r-space-3);
+    }
+
+    .book-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--r-space-2);
+      margin-bottom: var(--r-space-3);
+    }
+
+    .book-rating {
+      display: flex;
+      align-items: center;
+      gap: var(--r-space-1);
+      font-size: 0.8rem;
+      color: var(--maktaba-gold);
+    }
+
+    .book-rating span {
+      color: var(--muted-foreground);
+    }
+
+    .book-price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .book-price {
+      font-size: 1.15rem;
+      font-weight: var(--r-font-weight-bold);
+      color: hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%));
+    }
+
+    .book-price-old {
+      font-size: 0.8rem;
+      color: var(--muted-foreground);
+      text-decoration: line-through;
+      margin-inline-start: var(--r-space-2);
+      font-weight: var(--r-font-weight-normal);
+    }
+
+    .book-cart-btn {
+      padding: var(--r-space-2) var(--r-space-3);
+      font-size: 0.8rem;
+    }
+
+    /* ---- Featured Banner ---- */
+    .maktaba-featured {
+      background: linear-gradient(135deg, hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%) / 0.08), hsl(18, 90%, 55% / 0.05));
+      border: 1px solid hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%) / 0.15);
+      border-radius: var(--r-radius-2xl);
+      padding: var(--r-space-10) var(--r-space-8);
+      display: flex;
+      align-items: center;
+      gap: var(--r-space-10);
+      margin-bottom: var(--r-space-12);
+    }
+
+    .maktaba-featured-text {
+      flex: 1;
+    }
+
+    .maktaba-featured-text h2 {
+      font-size: 1.75rem;
+      font-weight: var(--r-font-weight-bold);
+      margin-bottom: var(--r-space-3);
+    }
+
+    .maktaba-featured-text p {
+      color: var(--muted-foreground);
+      margin-bottom: var(--r-space-5);
+      line-height: var(--r-line-height-relaxed);
+    }
+
+    .maktaba-featured-cover {
+      width: 180px;
+      height: 240px;
+      background: linear-gradient(135deg, var(--muted), var(--card));
+      border-radius: var(--r-radius-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: var(--r-shadow-xl);
+    }
+
+    @media (max-width: 640px) {
+      .maktaba-featured {
+        flex-direction: column;
+        text-align: center;
+      }
+      .maktaba-featured-cover {
+        order: -1;
+      }
+    }
+
+    /* ---- Cart Modal ---- */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: var(--r-z-modal-backdrop);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--r-transition-normal) var(--r-ease-ios-standard);
+    }
+
+    .cart-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      inset-inline-end: 0;
+      width: min(420px, 90vw);
+      height: 100vh;
+      background: var(--card);
+      z-index: var(--r-z-modal);
+      transform: translateX(100%);
+      transition: transform var(--r-transition-normal) var(--r-ease-ios-decelerate);
+      display: flex;
+      flex-direction: column;
+      border-inline-start: 1px solid var(--border);
+    }
+
+    [dir="rtl"] .cart-drawer {
+      transform: translateX(-100%);
+    }
+
+    .cart-overlay.open .cart-drawer {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--r-space-5) var(--r-space-6);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-header h3 {
+      font-size: 1.2rem;
+      font-weight: var(--r-font-weight-semibold);
+      display: flex;
+      align-items: center;
+      gap: var(--r-space-2);
+    }
+
+    .cart-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted-foreground);
+      padding: var(--r-space-2);
+      border-radius: var(--r-radius-md);
+      transition: background var(--r-transition-fast) var(--r-ease-ios-standard);
+    }
+
+    .cart-close:hover {
+      background: var(--muted);
+    }
+
+    .cart-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: var(--r-space-4) var(--r-space-6);
+    }
+
+    .cart-item {
+      display: flex;
+      gap: var(--r-space-4);
+      padding: var(--r-space-4) 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item-cover {
+      width: 60px;
+      height: 80px;
+      background: var(--muted);
+      border-radius: var(--r-radius-md);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-item-details {
+      flex: 1;
+    }
+
+    .cart-item-title {
+      font-weight: var(--r-font-weight-medium);
+      margin-bottom: var(--r-space-1);
+      font-size: 0.9rem;
+    }
+
+    .cart-item-author {
+      font-size: 0.8rem;
+      color: var(--muted-foreground);
+      margin-bottom: var(--r-space-2);
+    }
+
+    .cart-item-price {
+      font-weight: var(--r-font-weight-semibold);
+      color: hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%));
+    }
+
+    .cart-item-remove {
+      background: none;
+      border: none;
+      color: var(--muted-foreground);
+      cursor: pointer;
+      font-size: 0.8rem;
+      padding: var(--r-space-1);
+    }
+
+    .cart-item-remove:hover {
+      color: hsl(var(--destructive-h, 0) var(--destructive-s, 84%) var(--destructive-l, 60%));
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: var(--r-space-12) var(--r-space-6);
+      color: var(--muted-foreground);
+    }
+
+    .cart-empty i {
+      width: 48px;
+      height: 48px;
+      margin-bottom: var(--r-space-4);
+      opacity: 0.4;
+    }
+
+    .cart-footer {
+      border-top: 1px solid var(--border);
+      padding: var(--r-space-5) var(--r-space-6);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--r-space-4);
+      font-size: 1.1rem;
+      font-weight: var(--r-font-weight-semibold);
+    }
+
+    .cart-footer .btn-primary {
+      width: 100%;
+      padding: var(--r-space-3);
+      font-size: 1rem;
+    }
+
+    /* ---- Floating Cart Button ---- */
+    .cart-fab {
+      position: fixed;
+      bottom: var(--r-space-6);
+      inset-inline-end: var(--r-space-6);
+      z-index: var(--r-z-fixed);
+      background: hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%));
+      color: white;
+      border: none;
+      border-radius: var(--r-radius-full);
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: var(--r-shadow-lg);
+      transition: all var(--r-transition-fast) var(--r-ease-ios-standard);
+    }
+
+    .cart-fab:hover {
+      transform: scale(1.1);
+      box-shadow: var(--r-shadow-xl);
+    }
+
+    .cart-fab .cart-count {
+      position: absolute;
+      top: -4px;
+      inset-inline-end: -4px;
+      background: var(--foreground);
+      color: var(--background);
+      font-size: 0.7rem;
+      font-weight: var(--r-font-weight-bold);
+      width: 22px;
+      height: 22px;
+      border-radius: var(--r-radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cart-fab .cart-count:empty {
+      display: none;
+    }
+
+    /* ---- Footer ---- */
+    .maktaba-footer {
+      background: var(--card);
+      border-top: 1px solid var(--border);
+      padding: var(--r-space-10) var(--r-space-6);
+      text-align: center;
+    }
+
+    .maktaba-footer p {
+      color: var(--muted-foreground);
+      font-size: 0.85rem;
+      margin-bottom: var(--r-space-2);
+    }
+
+    .maktaba-footer a {
+      color: hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%));
+      text-decoration: none;
+      font-weight: var(--r-font-weight-medium);
+    }
+
+    .maktaba-footer .powered-by {
+      font-size: 0.75rem;
+      opacity: 0.7;
+      margin-top: var(--r-space-4);
+    }
+
+    /* ---- Demo Notice ---- */
+    .demo-notice {
+      position: fixed;
+      bottom: var(--r-space-6);
+      inset-inline-start: var(--r-space-6);
+      z-index: var(--r-z-fixed);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-radius-xl);
+      padding: var(--r-space-3) var(--r-space-4);
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      box-shadow: var(--r-shadow-lg);
+      max-width: 220px;
+    }
+
+    .demo-notice strong {
+      color: var(--foreground);
+      display: block;
+      margin-bottom: var(--r-space-1);
+    }
+
+    .demo-notice a {
+      color: hsl(var(--primary-h, 352) var(--primary-s, 95%) var(--primary-l, 58%));
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .demo-notice { display: none; }
+    }
+
+    /* ---- Toast ---- */
+    .toast-container {
+      position: fixed;
+      bottom: var(--r-space-20, 80px);
+      inset-inline-end: var(--r-space-6);
+      z-index: var(--r-z-modal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--r-space-2);
+    }
+
+    .toast {
+      background: var(--foreground);
+      color: var(--background);
+      padding: var(--r-space-3) var(--r-space-5);
+      border-radius: var(--r-radius-lg);
+      font-size: 0.9rem;
+      font-weight: var(--r-font-weight-medium);
+      box-shadow: var(--r-shadow-xl);
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all var(--r-transition-normal) var(--r-ease-ios-decelerate);
+      display: flex;
+      align-items: center;
+      gap: var(--r-space-2);
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Banner -->
+  <div class="maktaba-banner" data-i18n="banner">
+    <span data-lang="ar">شحن مجاني للطلبات فوق ١٥٠ ريال | استخدم كود: مكتبة٢٠</span>
+    <span data-lang="en" style="display:none">Free shipping on orders over 150 SAR | Use code: MAKTABA20</span>
+  </div>
+
+  <!-- Navbar -->
+  <rukn-navbar brand-text="Maktaba" brand-href="#" show-brand-text text-only current=""></rukn-navbar>
+
+  <!-- Hero / Search -->
+  <section class="maktaba-hero">
+    <h1 data-i18n="hero.title">
+      <span data-lang="ar">اكتشف عالم الكتب العربية</span>
+      <span data-lang="en" style="display:none">Discover the World of Arabic Books</span>
+    </h1>
+    <p data-i18n="hero.subtitle">
+      <span data-lang="ar">آلاف الكتب العربية والإنجليزية في مكان واحد - من الأدب الكلاسيكي إلى التقنية الحديثة</span>
+      <span data-lang="en" style="display:none">Thousands of Arabic and English books in one place - from classic literature to modern technology</span>
+    </p>
+
+    <div class="maktaba-search-bar">
+      <input type="search" class="ds-input" data-i18n-placeholder="search" placeholder="ابحث عن كتاب، مؤلف، أو موضوع...">
+      <button class="btn-primary" aria-label="Search">
+        <i data-lucide="search" style="width:18px;height:18px;"></i>
+      </button>
+    </div>
+
+    <div class="maktaba-categories">
+      <button class="maktaba-chip active" data-i18n="cat.all">
+        <span data-lang="ar">الكل</span>
+        <span data-lang="en" style="display:none">All</span>
+      </button>
+      <button class="maktaba-chip" data-i18n="cat.literature">
+        <span data-lang="ar">الأدب</span>
+        <span data-lang="en" style="display:none">Literature</span>
+      </button>
+      <button class="maktaba-chip" data-i18n="cat.tech">
+        <span data-lang="ar">التقنية</span>
+        <span data-lang="en" style="display:none">Technology</span>
+      </button>
+      <button class="maktaba-chip" data-i18n="cat.islam">
+        <span data-lang="ar">الدين</span>
+        <span data-lang="en" style="display:none">Religion</span>
+      </button>
+      <button class="maktaba-chip" data-i18n="cat.children">
+        <span data-lang="ar">الأطفال</span>
+        <span data-lang="en" style="display:none">Children</span>
+      </button>
+      <button class="maktaba-chip" data-i18n="cat.business">
+        <span data-lang="ar">الأعمال</span>
+        <span data-lang="en" style="display:none">Business</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="maktaba-main">
+
+    <!-- Featured Book -->
+    <div class="maktaba-featured">
+      <div class="maktaba-featured-text">
+        <div style="margin-bottom: var(--r-space-3);">
+          <span class="ds-badge-primary" style="font-size: 0.75rem;" data-i18n="featured.badge">
+            <span data-lang="ar">كتاب الأسبوع</span>
+            <span data-lang="en" style="display:none">Book of the Week</span>
+          </span>
+        </div>
+        <h2 data-i18n="featured.title">
+          <span data-lang="ar">ألف ليلة وليلة - الطبعة الكاملة</span>
+          <span data-lang="en" style="display:none">One Thousand and One Nights - Complete Edition</span>
+        </h2>
+        <p data-i18n="featured.desc">
+          <span data-lang="ar">مجموعة حكايات شعبية جُمعت عبر قرون من الزمن. تتضمن هذه الطبعة المحققة جميع الحكايات مع تعليقات أكاديمية وتوضيحات فنية.</span>
+          <span data-lang="en" style="display:none">A collection of folk tales compiled over centuries. This scholarly edition includes all tales with academic commentary and artistic illustrations.</span>
+        </p>
+        <div style="display: flex; gap: var(--r-space-3); align-items: center; flex-wrap: wrap;">
+          <button class="btn-primary" onclick="addToCart('featured')">
+            <span data-lang="ar">أضف إلى السلة - ١٢٠ ر.س</span>
+            <span data-lang="en" style="display:none">Add to Cart - 120 SAR</span>
+          </button>
+          <button class="btn-outline">
+            <span data-lang="ar">معاينة</span>
+            <span data-lang="en" style="display:none">Preview</span>
+          </button>
+        </div>
+      </div>
+      <div class="maktaba-featured-cover">
+        <i data-lucide="book-open" style="width:64px;height:64px;opacity:0.25;"></i>
+      </div>
+    </div>
+
+    <!-- New Arrivals -->
+    <div class="maktaba-section-header">
+      <h2 data-i18n="section.new">
+        <span data-lang="ar">وصل حديثاً</span>
+        <span data-lang="en" style="display:none">New Arrivals</span>
+      </h2>
+      <a href="#" data-i18n="viewall">
+        <span data-lang="ar">عرض الكل &larr;</span>
+        <span data-lang="en" style="display:none">View All &rarr;</span>
+      </a>
+    </div>
+
+    <div class="maktaba-grid" id="newArrivals"></div>
+
+    <!-- Best Sellers -->
+    <div class="maktaba-section-header">
+      <h2 data-i18n="section.best">
+        <span data-lang="ar">الأكثر مبيعاً</span>
+        <span data-lang="en" style="display:none">Best Sellers</span>
+      </h2>
+      <a href="#" data-i18n="viewall2">
+        <span data-lang="ar">عرض الكل &larr;</span>
+        <span data-lang="en" style="display:none">View All &rarr;</span>
+      </a>
+    </div>
+
+    <div class="maktaba-grid" id="bestSellers"></div>
+
+  </main>
+
+  <!-- Floating Cart Button -->
+  <button class="cart-fab" onclick="toggleCart()" aria-label="Shopping Cart">
+    <i data-lucide="shopping-cart" style="width:24px;height:24px;"></i>
+    <span class="cart-count" id="cartCount"></span>
+  </button>
+
+  <!-- Cart Drawer -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()">
+    <div class="cart-drawer" onclick="event.stopPropagation()">
+      <div class="cart-header">
+        <h3>
+          <i data-lucide="shopping-bag" style="width:20px;height:20px;"></i>
+          <span data-lang="ar">سلة التسوق</span>
+          <span data-lang="en" style="display:none">Shopping Cart</span>
+        </h3>
+        <button class="cart-close" onclick="toggleCart()">
+          <i data-lucide="x" style="width:20px;height:20px;"></i>
+        </button>
+      </div>
+      <div class="cart-body" id="cartBody">
+        <div class="cart-empty" id="cartEmpty">
+          <i data-lucide="shopping-bag"></i>
+          <p>
+            <span data-lang="ar">سلتك فارغة</span>
+            <span data-lang="en" style="display:none">Your cart is empty</span>
+          </p>
+        </div>
+      </div>
+      <div class="cart-footer" id="cartFooter" style="display:none;">
+        <div class="cart-total">
+          <span>
+            <span data-lang="ar">المجموع</span>
+            <span data-lang="en" style="display:none">Total</span>
+          </span>
+          <span id="cartTotal">0 <span data-lang="ar">ر.س</span><span data-lang="en" style="display:none">SAR</span></span>
+        </div>
+        <button class="btn-primary" style="width:100%;">
+          <span data-lang="ar">إتمام الشراء</span>
+          <span data-lang="en" style="display:none">Checkout</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Demo Notice -->
+  <div class="demo-notice">
+    <strong>Rukn DS Demo</strong>
+    <span data-lang="ar">هذا عرض توضيحي لنظام تصميم رُكن. <a href="../index.html">اكتشف المزيد</a></span>
+    <span data-lang="en" style="display:none">This is a Rukn Design System demo. <a href="../index.html">Learn more</a></span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="maktaba-footer">
+    <p data-i18n="footer.tagline">
+      <span data-lang="ar">مكتبة - وجهتك للكتب العربية والإنجليزية</span>
+      <span data-lang="en" style="display:none">Maktaba - Your destination for Arabic and English books</span>
+    </p>
+    <p class="powered-by">
+      <span data-lang="ar">مبني بنظام تصميم <a href="../index.html">رُكن</a> - مفتوح المصدر ومجاني</span>
+      <span data-lang="en" style="display:none">Built with <a href="../index.html">Rukn</a> Design System - Open source & free</span>
+    </p>
+  </footer>
+
+  <script>
+    // ============================
+    // Book Data (Bilingual)
+    // ============================
+    const books = {
+      newArrivals: [
+        {
+          id: 'n1',
+          title: { ar: 'في ديسمبر تنتهي كل الأحلام', en: 'In December All Dreams End' },
+          author: { ar: 'أثير عبدالله النشمي', en: 'Atheer Al-Nashmi' },
+          price: 58, oldPrice: 75, rating: 4.3, reviews: 842,
+          badge: { ar: 'جديد', en: 'New' }, badgeClass: 'ds-badge-primary',
+          icon: 'book-open'
+        },
+        {
+          id: 'n2',
+          title: { ar: 'أرض زيكولا', en: 'Zecola Land' },
+          author: { ar: 'عمرو عبد الحميد', en: 'Amr Abdel Hamid' },
+          price: 45, rating: 4.5, reviews: 1203,
+          icon: 'map'
+        },
+        {
+          id: 'n3',
+          title: { ar: 'فن اللامبالاة', en: 'The Subtle Art of Not Giving a F*ck' },
+          author: { ar: 'مارك مانسون', en: 'Mark Manson' },
+          price: 52, rating: 4.1, reviews: 3567,
+          badge: { ar: 'الأكثر طلباً', en: 'Trending' }, badgeClass: 'ds-badge-warning',
+          icon: 'flame'
+        },
+        {
+          id: 'n4',
+          title: { ar: 'تعلم البرمجة بلغة بايثون', en: 'Learn Python Programming' },
+          author: { ar: 'فهد الدوسري', en: 'Fahd Al-Dosari' },
+          price: 89, rating: 4.7, reviews: 234,
+          badge: { ar: 'تقنية', en: 'Tech' }, badgeClass: 'ds-badge-neutral',
+          icon: 'code-2'
+        }
+      ],
+      bestSellers: [
+        {
+          id: 'b1',
+          title: { ar: 'مقدمة ابن خلدون', en: 'Muqaddimah by Ibn Khaldun' },
+          author: { ar: 'ابن خلدون', en: 'Ibn Khaldun' },
+          price: 95, rating: 4.9, reviews: 5621,
+          badge: { ar: 'كلاسيكي', en: 'Classic' }, badgeClass: 'ds-badge-success',
+          icon: 'scroll-text'
+        },
+        {
+          id: 'b2',
+          title: { ar: 'رياض الصالحين', en: 'Riyad as-Salihin' },
+          author: { ar: 'الإمام النووي', en: 'Imam an-Nawawi' },
+          price: 40, rating: 4.8, reviews: 8932,
+          icon: 'star'
+        },
+        {
+          id: 'b3',
+          title: { ar: 'الرجل الذي باع ظهره', en: 'The Man Who Sold His Skin' },
+          author: { ar: 'كوثر بن هنية', en: 'Kaouther Ben Hania' },
+          price: 62, oldPrice: 80, rating: 4.4, reviews: 645,
+          badge: { ar: 'خصم ٢٢٪', en: '22% Off' }, badgeClass: 'ds-badge-destructive',
+          icon: 'clapperboard'
+        },
+        {
+          id: 'b4',
+          title: { ar: 'ساق البامبو', en: 'The Bamboo Stalk' },
+          author: { ar: 'سعود السنعوسي', en: 'Saud Alsanousi' },
+          price: 55, rating: 4.6, reviews: 2103,
+          badge: { ar: 'جائزة البوكر', en: 'Booker Prize' }, badgeClass: 'ds-badge-primary',
+          icon: 'trophy'
+        }
+      ]
+    };
+
+    // ============================
+    // Language Management
+    // ============================
+    let currentLang = document.documentElement.lang || 'ar';
+
+    function updateLanguageDisplay() {
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.style.display = el.getAttribute('data-lang') === currentLang ? '' : 'none';
+      });
+
+      // Update search placeholder
+      const searchInput = document.querySelector('.maktaba-search-bar input');
+      if (searchInput) {
+        searchInput.placeholder = currentLang === 'ar'
+          ? 'ابحث عن كتاب، مؤلف، أو موضوع...'
+          : 'Search for a book, author, or topic...';
+      }
+    }
+
+    // Listen for Rukn language changes
+    document.addEventListener('rukn:languagechange', (e) => {
+      currentLang = e.detail?.language || 'en';
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = ['ar', 'ur'].includes(currentLang) ? 'rtl' : 'ltr';
+      renderBooks();
+      updateLanguageDisplay();
+      updateCartDisplay();
+    });
+
+    // ============================
+    // Rendering
+    // ============================
+    function renderStars(rating) {
+      const full = Math.floor(rating);
+      const half = rating % 1 >= 0.3;
+      let stars = '';
+      for (let i = 0; i < 5; i++) {
+        if (i < full) stars += '<i data-lucide="star" style="width:14px;height:14px;fill:currentColor;"></i>';
+        else if (i === full && half) stars += '<i data-lucide="star-half" style="width:14px;height:14px;fill:currentColor;"></i>';
+        else stars += '<i data-lucide="star" style="width:14px;height:14px;opacity:0.25;"></i>';
+      }
+      return stars;
+    }
+
+    function formatPrice(price) {
+      if (currentLang === 'ar') {
+        return new Intl.NumberFormat('ar-SA').format(price) + ' ر.س';
+      }
+      return price + ' SAR';
+    }
+
+    function renderBookCard(book) {
+      const title = book.title[currentLang] || book.title.ar;
+      const author = book.author[currentLang] || book.author.ar;
+      const badge = book.badge ? `<div class="book-badge"><span class="${book.badgeClass}" style="font-size:0.72rem;">${book.badge[currentLang] || book.badge.ar}</span></div>` : '';
+      const oldPrice = book.oldPrice ? `<span class="book-price-old">${formatPrice(book.oldPrice)}</span>` : '';
+      const addLabel = currentLang === 'ar' ? 'أضف' : 'Add';
+
+      return `
+        <div class="book-card">
+          <div class="book-cover" style="background: linear-gradient(135deg, hsl(${Math.random()*360}, 15%, 92%), hsl(${Math.random()*360}, 10%, 88%));">
+            <div class="book-cover-art">
+              <i data-lucide="${book.icon || 'book-open'}" class="cover-icon"></i>
+              <div class="cover-title">${title}</div>
+            </div>
+            ${badge}
+          </div>
+          <div class="book-info">
+            <div class="book-title">${title}</div>
+            <div class="book-author">${author}</div>
+            <div class="book-meta">
+              <div class="book-rating">
+                ${renderStars(book.rating)}
+                <span>(${new Intl.NumberFormat(currentLang === 'ar' ? 'ar-SA' : 'en-US').format(book.reviews)})</span>
+              </div>
+            </div>
+            <div class="book-price-row">
+              <span class="book-price">${formatPrice(book.price)}${oldPrice}</span>
+              <button class="btn-primary book-cart-btn" onclick="addToCart('${book.id}')">
+                <i data-lucide="plus" style="width:14px;height:14px;"></i>
+                ${addLabel}
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderBooks() {
+      const newGrid = document.getElementById('newArrivals');
+      const bestGrid = document.getElementById('bestSellers');
+      newGrid.innerHTML = books.newArrivals.map(renderBookCard).join('');
+      bestGrid.innerHTML = books.bestSellers.map(renderBookCard).join('');
+      // Re-initialize Lucide icons after dynamic render
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // ============================
+    // Cart Logic
+    // ============================
+    let cart = [];
+
+    function findBookById(id) {
+      if (id === 'featured') return {
+        id: 'featured',
+        title: { ar: 'ألف ليلة وليلة', en: 'One Thousand and One Nights' },
+        author: { ar: 'مجهول', en: 'Anonymous' },
+        price: 120, icon: 'book-open'
+      };
+      return [...books.newArrivals, ...books.bestSellers].find(b => b.id === id);
+    }
+
+    function addToCart(bookId) {
+      const book = findBookById(bookId);
+      if (!book) return;
+
+      const existing = cart.find(item => item.id === bookId);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ ...book, qty: 1 });
+      }
+
+      updateCartDisplay();
+      showToast(currentLang === 'ar'
+        ? `تمت الإضافة: ${book.title[currentLang] || book.title.ar}`
+        : `Added: ${book.title[currentLang] || book.title.en}`
+      );
+    }
+
+    function removeFromCart(bookId) {
+      cart = cart.filter(item => item.id !== bookId);
+      updateCartDisplay();
+    }
+
+    function updateCartDisplay() {
+      const countEl = document.getElementById('cartCount');
+      const bodyEl = document.getElementById('cartBody');
+      const emptyEl = document.getElementById('cartEmpty');
+      const footerEl = document.getElementById('cartFooter');
+      const totalEl = document.getElementById('cartTotal');
+
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+      countEl.textContent = totalQty || '';
+
+      if (cart.length === 0) {
+        emptyEl.style.display = '';
+        footerEl.style.display = 'none';
+        // Clear any existing cart items but keep the empty state
+        bodyEl.querySelectorAll('.cart-item').forEach(el => el.remove());
+      } else {
+        emptyEl.style.display = 'none';
+        footerEl.style.display = '';
+
+        // Re-render cart items
+        bodyEl.querySelectorAll('.cart-item').forEach(el => el.remove());
+        cart.forEach(item => {
+          const title = item.title[currentLang] || item.title.ar;
+          const author = item.author[currentLang] || item.author.ar;
+          const removeLabel = currentLang === 'ar' ? 'حذف' : 'Remove';
+          const div = document.createElement('div');
+          div.className = 'cart-item';
+          div.innerHTML = `
+            <div class="cart-item-cover">
+              <i data-lucide="${item.icon || 'book-open'}" style="width:24px;height:24px;opacity:0.3;"></i>
+            </div>
+            <div class="cart-item-details">
+              <div class="cart-item-title">${title}${item.qty > 1 ? ` &times; ${item.qty}` : ''}</div>
+              <div class="cart-item-author">${author}</div>
+              <div class="cart-item-price">${formatPrice(item.price * item.qty)}</div>
+            </div>
+            <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">
+              <i data-lucide="trash-2" style="width:16px;height:16px;"></i>
+            </button>
+          `;
+          bodyEl.appendChild(div);
+        });
+
+        const sarLabel = currentLang === 'ar' ? 'ر.س' : 'SAR';
+        totalEl.textContent = formatPrice(totalPrice);
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function toggleCart() {
+      document.getElementById('cartOverlay').classList.toggle('open');
+    }
+
+    // ============================
+    // Toast Notifications
+    // ============================
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `<i data-lucide="check-circle" style="width:18px;height:18px;"></i> ${message}`;
+      container.appendChild(toast);
+      if (window.lucide) lucide.createIcons();
+
+      requestAnimationFrame(() => {
+        toast.classList.add('show');
+      });
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    // ============================
+    // Category Chip Selection
+    // ============================
+    document.querySelectorAll('.maktaba-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('.maktaba-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+      });
+    });
+
+    // ============================
+    // Init
+    // ============================
+    document.addEventListener('DOMContentLoaded', () => {
+      renderBooks();
+      updateLanguageDisplay();
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+
+</body>
+</html>

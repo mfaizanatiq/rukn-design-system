@@ -118,7 +118,7 @@ Rukn provides **30+ component families** as CSS classes. No JavaScript required.
 <span class="ds-badge ds-badge-success">Active</span>
 ```
 
-**[See all components](./components.html)** | **[Starter template](./starter-template.html)**
+**[See all components](./components.html)** | **[Starter template](./starter-template.html)** | **[Maktaba Bookstore Demo](./demo/maktaba.html)**
 
 ### Web Components (optional)
 
@@ -136,6 +136,15 @@ Layer in vanilla JS Web Components for interactive behavior:
 <rukn-card>Content here</rukn-card>
 <rukn-alert variant="info" title="Note">This is an alert</rukn-alert>
 ```
+
+## Real-World Demo
+
+**[Maktaba Bookstore](./demo/maktaba.html)** — A bilingual Arabic/English e-commerce demo that shows Rukn in a production-like scenario:
+
+- Full RTL layout with Arabic product cards, pricing in SAR, and Arabic typography
+- Live language switching (Arabic ↔ English) — the entire UI flips direction and content
+- Shopping cart with bilingual totals and `Intl.NumberFormat` for Arabic numerals
+- Built entirely with Rukn CSS classes, design tokens, and Web Components (no extra libraries)
 
 ## Design Tokens
 
