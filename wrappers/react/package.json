@@ -1,0 +1,42 @@
+{
+  "name": "@ruknds/react",
+  "version": "2.2.0",
+  "description": "React wrappers for Rukn Design System — RTL-first components for Arabic, Urdu, and multilingual apps",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "echo 'Build step — run your bundler here'",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "rukn",
+    "design-system",
+    "react",
+    "rtl",
+    "arabic",
+    "urdu",
+    "web-components",
+    "multilingual",
+    "i18n"
+  ],
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
+  "dependencies": {
+    "@ruknds/core": "^2.2.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mfaizanatiq/RuknDesignSystem",
+    "directory": "wrappers/react"
+  },
+  "homepage": "https://github.com/mfaizanatiq/RuknDesignSystem#readme",
+  "author": "M Faizan Atiq"
+}
