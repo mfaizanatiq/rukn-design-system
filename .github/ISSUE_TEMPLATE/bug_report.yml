@@ -1,0 +1,97 @@
+name: Bug Report
+description: Report a bug or unexpected behavior in Rukn Design System
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug. Please fill in the sections below
+        as completely as possible so we can reproduce and fix the issue quickly.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of the bug.
+      placeholder: What went wrong?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step instructions to reproduce the behavior.
+      placeholder: |
+        1. Add `<rukn-button variant="primary">` to the page
+        2. Set `dir="rtl"` on the `<html>` element
+        3. Observe that …
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened? Include screenshots or a CodePen link if helpful.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language-direction
+    attributes:
+      label: Language / Direction
+      description: Which language and text direction were you using when the bug occurred?
+      options:
+        - "en — LTR (English)"
+        - "ar — RTL (Arabic)"
+        - "ur — RTL (Urdu / Nastaliq)"
+        - "Mixed / Bidi"
+        - "Other (describe in Additional Context)"
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: "e.g. Chrome 123, Safari 17, Firefox 124, Edge 123"
+      placeholder: Chrome 123
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      description: "e.g. macOS 14, Windows 11, Ubuntu 22.04, iOS 17, Android 14"
+      placeholder: macOS 14
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Rukn Design System Version
+      description: "e.g. 2.2.0 — run `npm list @ruknds/core` to confirm"
+      placeholder: 2.2.0
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other information that might help — error messages, console output, related issues, etc.
+    validations:
+      required: false

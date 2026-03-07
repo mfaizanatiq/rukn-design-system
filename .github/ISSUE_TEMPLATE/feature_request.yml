@@ -1,0 +1,83 @@
+name: Feature Request
+description: Suggest a new feature or improvement for Rukn Design System
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping Rukn grow. Because Rukn is an RTL-first design system,
+        please pay particular attention to the **RTL / Multilingual Considerations** section
+        when proposing any new feature.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Description
+      description: >
+        What problem does this feature solve? Describe the pain point clearly.
+        If your request is related to a specific bug or limitation, please link it here.
+      placeholder: "I find it frustrating that when using Urdu Nastaliq text inside `<rukn-card>`, the line-height tokens are not applied automatically…"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: >
+        Describe the feature you'd like to see. Include any API shape, token names,
+        component attribute names, or markup examples you have in mind.
+      placeholder: |
+        Add a `lang` attribute to `<rukn-card>` that automatically selects the correct
+        typography tokens for the declared language:
+          <rukn-card lang="ur">…</rukn-card>
+    validations:
+      required: true
+
+  - type: textarea
+    id: rtl-considerations
+    attributes:
+      label: RTL / Multilingual Considerations
+      description: >
+        Rukn is built for Arabic, Urdu, and multilingual apps. How does your proposed
+        feature behave in RTL layouts, with Nastaliq script, or when the page language
+        switches at runtime? If there are no RTL implications, please state "None".
+      placeholder: |
+        - In RTL mode the card padding should mirror (logical properties already handle this).
+        - Nastaliq text needs `--r-line-height-urdu-base` applied automatically when `lang="ur"`.
+        - Language switching via `rukn:languagechange` should update the displayed text direction.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: >
+        Describe any alternative solutions or workarounds you have already tried,
+        and why they do not fully address the problem.
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority (your view)
+      options:
+        - "Low — nice to have"
+        - "Medium — would meaningfully improve my workflow"
+        - "High — blocking my use of Rukn"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: >
+        Links to related issues, design references, prior art in other design systems,
+        screenshots, or any other information that supports this request.
+    validations:
+      required: false

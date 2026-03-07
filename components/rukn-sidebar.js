@@ -32,7 +32,7 @@ class RuknSidebar extends HTMLElement {
     toggle.setAttribute('data-i18n-aria-label', 'sidebar.toggle');
     toggle.setAttribute('aria-label', 'Toggle sidebar');
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.innerHTML = '<i class="ph-bold ph-list" style="font-size: 24px;"></i>';
+    toggle.innerHTML = '<i data-lucide="menu" style="font-size: 24px;"></i>';
     
     // Insert elements as siblings to this component (not children)
     const parent = this.parentNode;
@@ -49,11 +49,14 @@ class RuknSidebar extends HTMLElement {
     
     this._initSidebar();
     this._applyTranslations();
-    
+
+    if (typeof lucide !== 'undefined') lucide.createIcons({ attrs: { 'stroke-width': 1 } });
+
     // Listen for language changes
-    document.addEventListener('rukn:languagechange', () => {
+    this._langChangeHandler = () => {
       this._applyTranslations();
-    });
+    };
+    document.addEventListener('rukn:languagechange', this._langChangeHandler);
   }
   
   _applyTranslations() {
@@ -90,36 +93,48 @@ class RuknSidebar extends HTMLElement {
       <div class="sidebar-section">
         <h4 class="sidebar-title" data-i18n="sidebar.foundation.title">Foundation</h4>
         <ul class="sidebar-nav">
-          <li><a href="#colors" class="sidebar-link"><i class="ph-fill ph-palette"></i> <span data-i18n="sidebar.foundation.colors">Colors</span></a></li>
-          <li><a href="#typography" class="sidebar-link"><i class="ph-fill ph-text-aa"></i> <span data-i18n="sidebar.foundation.typography">Typography</span></a></li>
-          <li><a href="#spacing" class="sidebar-link"><i class="ph-fill ph-arrows-out-cardinal"></i> <span data-i18n="sidebar.foundation.spacing">Spacing</span></a></li>
-          <li><a href="#sizes" class="sidebar-link"><i class="ph-fill ph-resize"></i> <span data-i18n="sidebar.foundation.sizes">Sizes</span></a></li>
-          <li><a href="#radius" class="sidebar-link"><i class="ph-fill ph-shapes"></i> <span data-i18n="sidebar.foundation.radius">Border Radius</span></a></li>
-          <li><a href="#surfaces" class="sidebar-link"><i class="ph-fill ph-stack"></i> <span data-i18n="sidebar.foundation.surfaces">Surfaces</span></a></li>
-          <li><a href="#shadows" class="sidebar-link"><i class="ph-fill ph-sun-dim"></i> <span data-i18n="sidebar.foundation.shadows">Shadows</span></a></li>
-          <li><a href="#borders" class="sidebar-link"><i class="ph-fill ph-square-half"></i> <span data-i18n="sidebar.foundation.borders">Border Widths</span></a></li>
-          <li><a href="#motion" class="sidebar-link"><i class="ph-fill ph-pulse"></i> <span data-i18n="sidebar.foundation.motion">Rukn Motion</span></a></li>
+          <li><a href="#colors" class="sidebar-link"><i data-lucide="palette"></i> <span data-i18n="sidebar.foundation.colors">Colors</span></a></li>
+          <li><a href="#color-system" class="sidebar-link"><i data-lucide="pipette"></i> <span>Color Playground</span></a></li>
+          <li><a href="#typography" class="sidebar-link"><i data-lucide="type"></i> <span data-i18n="sidebar.foundation.typography">Typography</span></a></li>
+          <li><a href="#spacing" class="sidebar-link"><i data-lucide="move"></i> <span data-i18n="sidebar.foundation.spacing">Spacing</span></a></li>
+          <li><a href="#sizes" class="sidebar-link"><i data-lucide="scaling"></i> <span data-i18n="sidebar.foundation.sizes">Sizes</span></a></li>
+          <li><a href="#icon-sizes" class="sidebar-link"><i data-lucide="sparkle"></i> <span>Icon Sizes</span></a></li>
+          <li><a href="#radius" class="sidebar-link"><i data-lucide="shapes"></i> <span data-i18n="sidebar.foundation.radius">Border Radius</span></a></li>
+          <li><a href="#surfaces" class="sidebar-link"><i data-lucide="layers"></i> <span data-i18n="sidebar.foundation.surfaces">Surfaces</span></a></li>
+          <li><a href="#shadows" class="sidebar-link"><i data-lucide="sun-dim"></i> <span data-i18n="sidebar.foundation.shadows">Shadows</span></a></li>
+          <li><a href="#borders" class="sidebar-link"><i data-lucide="contrast"></i> <span data-i18n="sidebar.foundation.borders">Border Widths</span></a></li>
+          <li><a href="#z-index" class="sidebar-link"><i data-lucide="layers"></i> <span>Z-Index</span></a></li>
+          <li><a href="#motion" class="sidebar-link"><i data-lucide="activity"></i> <span data-i18n="sidebar.foundation.motion">Rukn Motion</span></a></li>
         </ul>
       </div>
-      
+
       <div class="sidebar-section">
         <h4 class="sidebar-title" data-i18n="sidebar.foundation.layouts">Layouts</h4>
         <ul class="sidebar-nav">
-          <li><a href="#container" class="sidebar-link"><i class="ph-fill ph-container"></i> <span data-i18n="sidebar.foundation.container">Container</span></a></li>
-          <li><a href="#grid" class="sidebar-link"><i class="ph-fill ph-grid-four"></i> <span data-i18n="sidebar.foundation.grid">Grid System</span></a></li>
-          <li><a href="#flexbox" class="sidebar-link"><i class="ph-fill ph-arrows-out"></i> <span data-i18n="sidebar.foundation.flexbox">Flexbox</span></a></li>
-          <li><a href="#responsive" class="sidebar-link"><i class="ph-fill ph-devices"></i> <span data-i18n="sidebar.foundation.responsive">Responsive</span></a></li>
+          <li><a href="#container" class="sidebar-link"><i data-lucide="box"></i> <span data-i18n="sidebar.foundation.container">Container</span></a></li>
+          <li><a href="#grid" class="sidebar-link"><i data-lucide="layout-grid"></i> <span data-i18n="sidebar.foundation.grid">Grid System</span></a></li>
+          <li><a href="#flexbox" class="sidebar-link"><i data-lucide="maximize"></i> <span data-i18n="sidebar.foundation.flexbox">Flexbox</span></a></li>
+          <li><a href="#responsive" class="sidebar-link"><i data-lucide="monitor-smartphone"></i> <span data-i18n="sidebar.foundation.responsive">Responsive</span></a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h4 class="sidebar-title">Patterns</h4>
+        <ul class="sidebar-nav">
+          <li><a href="#opacity" class="sidebar-link"><i data-lucide="droplets"></i> <span>Opacity & Alpha</span></a></li>
+          <li><a href="#focus" class="sidebar-link"><i data-lucide="crosshair"></i> <span>Focus & A11y</span></a></li>
+          <li><a href="#gradients" class="sidebar-link"><i data-lucide="blend"></i> <span>Section Gradients</span></a></li>
         </ul>
       </div>
       
       <div class="sidebar-section" style="border-top: 1px solid hsl(var(--border)); padding-top: var(--space-6);">
         <a href="components.html"><button class="btn-primary btn-sm" style="width: 100%;">
-          <i class="ph ph-stack" style="margin-right: 8px;"></i>
+          <i data-lucide="layers" style="margin-right: 8px;"></i>
           <span data-i18n="sidebar.foundation.viewComponents">View Components</span>
         </button></a>
         <a href="index.html" style="margin-top: var(--r-space-2); display: block;">
           <button class="btn-outline btn-sm" style="width: 100%;">
-            <i class="ph ph-arrow-left" style="margin-right: 8px;"></i>
+            <i data-lucide="arrow-left" style="margin-right: 8px;"></i>
             <span data-i18n="sidebar.foundation.backHome">Back to Home</span>
           </button>
         </a>
@@ -130,50 +145,118 @@ class RuknSidebar extends HTMLElement {
   _getComponentsSidebar() {
     return `
       <div class="sidebar-section">
-        <h4 class="sidebar-title" data-i18n="sidebar.components.title">UI Components</h4>
+        <h4 class="sidebar-title" data-i18n="sidebar.components.actions">Actions</h4>
         <ul class="sidebar-nav">
-          <li><a href="#buttons" class="sidebar-link"><i class="ph-fill ph-cursor-click"></i> <span data-i18n="sidebar.components.buttons">Buttons</span></a></li>
-          <li><a href="#inputs" class="sidebar-link"><i class="ph-fill ph-text-box"></i> <span data-i18n="sidebar.components.inputs">Inputs</span></a></li>
-          <li><a href="#checkbox" class="sidebar-link"><i class="ph-fill ph-check-square"></i> <span data-i18n="sidebar.components.checkbox">Checkbox</span></a></li>
-          <li><a href="#radio" class="sidebar-link"><i class="ph-fill ph-radio-button"></i> <span data-i18n="sidebar.components.radio">Radio Group</span></a></li>
-          <li><a href="#switch" class="sidebar-link"><i class="ph-fill ph-toggle-right"></i> <span data-i18n="sidebar.components.switch">Switch</span></a></li>
-          <li><a href="#slider" class="sidebar-link"><i class="ph-fill ph-sliders-horizontal"></i> <span data-i18n="sidebar.components.slider">Slider</span></a></li>
-          <li><a href="#formfield" class="sidebar-link"><i class="ph-fill ph-text-align-left"></i> <span data-i18n="sidebar.components.formfield">Form Field</span></a></li>
-          <li><a href="#icon-placeholder" class="sidebar-link"><i class="ph-fill ph-shapes"></i> <span data-i18n="sidebar.components.iconPlaceholder">Icon Placeholders</span></a></li>
-          <li><a href="#card" class="sidebar-link"><i class="ph-fill ph-frame-corners"></i> <span data-i18n="sidebar.components.card">Card</span></a></li>
-          <li><a href="#badge" class="sidebar-link"><i class="ph-fill ph-tag"></i> <span data-i18n="sidebar.components.badge">Badges</span></a></li>
-          <li><a href="#modal" class="sidebar-link"><i class="ph-fill ph-frame"></i> <span data-i18n="sidebar.components.modal">Modal</span></a></li>
-          <li><a href="#drawer" class="sidebar-link"><i class="ph-fill ph-sidebar"></i> <span data-i18n="sidebar.components.drawer">Drawer</span></a></li>
-          <li><a href="#navbar" class="sidebar-link"><i class="ph-fill ph-navigation-arrow"></i> <span data-i18n="sidebar.components.navbar">Navbar</span></a></li>
+          <li><a href="#buttons" class="sidebar-link"><i data-lucide="mouse-pointer-click"></i> <span data-i18n="sidebar.components.buttons">Buttons</span></a></li>
+          <li><a href="#button-groups" class="sidebar-link"><i data-lucide="layers"></i> <span>Button Groups</span></a></li>
+          <li><a href="#dropdown" class="sidebar-link"><i data-lucide="chevron-down"></i> <span>Dropdown Menu</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <h4 class="sidebar-title" data-i18n="sidebar.components.forms">Forms</h4>
+        <ul class="sidebar-nav">
+          <li><a href="#inputs" class="sidebar-link"><i data-lucide="text-cursor-input"></i> <span data-i18n="sidebar.components.inputs">Inputs</span></a></li>
+          <li><a href="#checkbox" class="sidebar-link"><i data-lucide="square-check"></i> <span data-i18n="sidebar.components.checkbox">Checkbox</span></a></li>
+          <li><a href="#radio" class="sidebar-link"><i data-lucide="circle-dot"></i> <span data-i18n="sidebar.components.radio">Radio Group</span></a></li>
+          <li><a href="#switch" class="sidebar-link"><i data-lucide="toggle-right"></i> <span data-i18n="sidebar.components.switch">Switch</span></a></li>
+          <li><a href="#slider" class="sidebar-link"><i data-lucide="sliders-horizontal"></i> <span data-i18n="sidebar.components.slider">Slider</span></a></li>
+          <li><a href="#formfield" class="sidebar-link"><i data-lucide="align-left"></i> <span data-i18n="sidebar.components.formfield">Form Field</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <h4 class="sidebar-title" data-i18n="sidebar.components.navigation">Navigation</h4>
+        <ul class="sidebar-nav">
+          <li><a href="#navbar" class="sidebar-link"><i data-lucide="navigation"></i> <span data-i18n="sidebar.components.navbar">Navbar</span></a></li>
+          <li><a href="#breadcrumbs" class="sidebar-link"><i data-lucide="refresh-cw"></i> <span>Breadcrumbs</span></a></li>
+          <li><a href="#tabs" class="sidebar-link"><i data-lucide="panel-top"></i> <span>Tabs</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <h4 class="sidebar-title" data-i18n="sidebar.components.display">Display</h4>
+        <ul class="sidebar-nav">
+          <li><a href="#card" class="sidebar-link"><i data-lucide="scan"></i> <span data-i18n="sidebar.components.card">Card</span></a></li>
+          <li><a href="#badge" class="sidebar-link"><i data-lucide="tag"></i> <span data-i18n="sidebar.components.badge">Badges</span></a></li>
+          <li><a href="#tags" class="sidebar-link"><i data-lucide="tag"></i> <span>Tags</span></a></li>
+          <li><a href="#avatar" class="sidebar-link"><i data-lucide="circle-user"></i> <span>Avatar</span></a></li>
+          <li><a href="#icon-placeholder" class="sidebar-link"><i data-lucide="shapes"></i> <span data-i18n="sidebar.components.iconPlaceholder">Icon Placeholders</span></a></li>
+          <li><a href="#empty-state" class="sidebar-link"><i data-lucide="folder-open"></i> <span>Empty States</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <h4 class="sidebar-title" data-i18n="sidebar.components.data">Data</h4>
+        <ul class="sidebar-nav">
+          <li><a href="#tables" class="sidebar-link"><i data-lucide="table"></i> <span>Tables</span></a></li>
+          <li><a href="#pagination" class="sidebar-link"><i data-lucide="chevrons-left"></i> <span>Pagination</span></a></li>
+          <li><a href="#metrics" class="sidebar-link"><i data-lucide="chart-line"></i> <span>Metrics / Stats</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <h4 class="sidebar-title" data-i18n="sidebar.components.content">Content</h4>
+        <ul class="sidebar-nav">
+          <li><a href="#accordion" class="sidebar-link"><i data-lucide="arrow-down-up"></i> <span>Accordion</span></a></li>
+          <li><a href="#dividers" class="sidebar-link"><i data-lucide="minus"></i> <span>Content Dividers</span></a></li>
+          <li><a href="#code-snippet" class="sidebar-link"><i data-lucide="code"></i> <span>Code Snippet</span></a></li>
+          <li><a href="#carousel" class="sidebar-link"><i data-lucide="images"></i> <span>Carousel</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <h4 class="sidebar-title" data-i18n="sidebar.components.layout">Layout</h4>
+        <ul class="sidebar-nav">
+          <li><a href="#page-headers" class="sidebar-link"><i data-lucide="heading"></i> <span>Page Headers</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <h4 class="sidebar-title" data-i18n="sidebar.components.advanced">Advanced</h4>
+        <ul class="sidebar-nav">
+          <li><a href="#file-uploader" class="sidebar-link"><i data-lucide="cloud-upload"></i> <span>File Uploader</span></a></li>
+          <li><a href="#multi-select" class="sidebar-link"><i data-lucide="list"></i> <span>Multi-Select</span></a></li>
+          <li><a href="#date-picker" class="sidebar-link"><i data-lucide="calendar"></i> <span>Date Picker</span></a></li>
+          <li><a href="#command-menu" class="sidebar-link"><i data-lucide="command"></i> <span>Command Menu</span></a></li>
+          <li><a href="#progress-steps" class="sidebar-link"><i data-lucide="milestone"></i> <span>Progress Steps</span></a></li>
+        </ul>
+      </div>
+      
+      <div class="sidebar-section">
+        <h4 class="sidebar-title" data-i18n="sidebar.components.overlays">Overlays</h4>
+        <ul class="sidebar-nav">
+          <li><a href="#modal" class="sidebar-link"><i data-lucide="frame"></i> <span data-i18n="sidebar.components.modal">Modal</span></a></li>
+          <li><a href="#drawer" class="sidebar-link"><i data-lucide="panel-left"></i> <span data-i18n="sidebar.components.drawer">Drawer</span></a></li>
         </ul>
       </div>
       
       <div class="sidebar-section">
         <h4 class="sidebar-title" data-i18n="sidebar.components.feedback">Feedback</h4>
         <ul class="sidebar-nav">
-          <li><a href="#tooltip" class="sidebar-link"><i class="ph-fill ph-chat-circle-dots"></i> <span data-i18n="sidebar.components.tooltip">Tooltip</span></a></li>
-          <li><a href="#alert" class="sidebar-link"><i class="ph-fill ph-warning-circle"></i> <span data-i18n="sidebar.components.alert">Alert</span></a></li>
-          <li><a href="#toast" class="sidebar-link"><i class="ph-fill ph-bell"></i> <span data-i18n="sidebar.components.toast">Toast</span></a></li>
-          <li><a href="#progress" class="sidebar-link"><i class="ph-fill ph-circle-notch"></i> <span data-i18n="sidebar.components.progress">Progress</span></a></li>
-          <li><a href="#spinner" class="sidebar-link"><i class="ph ph-spinner"></i> <span data-i18n="sidebar.components.spinner">Spinner</span></a></li>
+          <li><a href="#tooltip" class="sidebar-link"><i data-lucide="message-circle"></i> <span data-i18n="sidebar.components.tooltip">Tooltip</span></a></li>
+          <li><a href="#alert" class="sidebar-link"><i data-lucide="circle-alert"></i> <span data-i18n="sidebar.components.alert">Alert</span></a></li>
+          <li><a href="#toast" class="sidebar-link"><i data-lucide="bell"></i> <span data-i18n="sidebar.components.toast">Toast</span></a></li>
+          <li><a href="#progress" class="sidebar-link"><i data-lucide="loader-circle"></i> <span data-i18n="sidebar.components.progress">Progress</span></a></li>
+          <li><a href="#spinner" class="sidebar-link"><i data-lucide="loader"></i> <span data-i18n="sidebar.components.spinner">Spinner</span></a></li>
         </ul>
       </div>
       
       <div class="sidebar-section">
         <h4 class="sidebar-title" data-i18n="sidebar.components.effects">Effects</h4>
         <ul class="sidebar-nav">
-          <li><a href="#glass" class="sidebar-link"><i class="ph-fill ph-sparkle"></i> <span data-i18n="sidebar.components.glass">Glass Morphism</span></a></li>
+          <li><a href="#glass" class="sidebar-link"><i data-lucide="sparkles"></i> <span data-i18n="sidebar.components.glass">Glass Morphism</span></a></li>
         </ul>
       </div>
       
       <div class="sidebar-section" style="border-top: 1px solid hsl(var(--border)); padding-top: var(--space-6);">
         <a href="foundation.html"><button class="btn-outline btn-sm" style="width: 100%;">
-          <i class="ph ph-cube" style="margin-right: 8px;"></i>
+          <i data-lucide="box" style="margin-right: 8px;"></i>
           <span data-i18n="sidebar.components.viewFoundation">View Foundation</span>
         </button></a>
         <a href="index.html" style="margin-top: var(--r-space-2); display: block;">
           <button class="btn-outline btn-sm" style="width: 100%;">
-            <i class="ph ph-arrow-left" style="margin-right: 8px;"></i>
+            <i data-lucide="arrow-left" style="margin-right: 8px;"></i>
             <span data-i18n="sidebar.components.backHome">Back to Home</span>
           </button>
         </a>
@@ -222,7 +305,11 @@ class RuknSidebar extends HTMLElement {
     if (this._scrollHandler) {
       window.removeEventListener('scroll', this._scrollHandler);
     }
-    
+
+    if (this._langChangeHandler) {
+      document.removeEventListener('rukn:languagechange', this._langChangeHandler);
+    }
+
     // Remove inserted elements
     if (this._backdrop && this._backdrop.parentNode) {
       this._backdrop.parentNode.removeChild(this._backdrop);

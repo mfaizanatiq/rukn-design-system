@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="styles/design-system.css">
   
   <!-- Phosphor Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   
   <!-- Load Rukn Web Components (Vanilla JS - No frameworks!) -->
   <script src="components/rukn-navbar.js" defer></script>
@@ -17,6 +17,7 @@
   <script src="components/rukn-ui.js" type="module"></script>
   
   <style>
+    .lucide { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; }
     body {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
       min-height: 100vh;
@@ -192,16 +193,16 @@
       <h2 style="margin-bottom: var(--r-space-4);">Icon Placeholders (Web Components)</h2>
       <div style="display: flex; gap: var(--r-space-4); flex-wrap: wrap; align-items: center;">
         <rukn-icon size="sm" variant="primary" circle>
-          <i class="ph-fill ph-star"></i>
+          <i data-lucide="star"></i>
         </rukn-icon>
         <rukn-icon size="md" variant="accent">
-          <i class="ph-fill ph-heart"></i>
+          <i data-lucide="heart"></i>
         </rukn-icon>
         <rukn-icon size="lg" variant="success" circle>
-          <i class="ph-fill ph-check"></i>
+          <i data-lucide="check"></i>
         </rukn-icon>
         <rukn-icon size="xl" variant="warning">
-          <i class="ph-fill ph-lightning"></i>
+          <i data-lucide="zap"></i>
         </rukn-icon>
       </div>
       
@@ -209,7 +210,7 @@
         <h4 style="margin-bottom: var(--r-space-2);">Usage:</h4>
         <code style="font-family: var(--r-font-mono); font-size: var(--r-font-size-sm);">
           &lt;rukn-icon variant="primary" size="lg" circle&gt;<br>
-          &nbsp;&nbsp;&lt;i class="ph-fill ph-star"&gt;&lt;/i&gt;<br>
+          &nbsp;&nbsp;&lt;i data-lucide="star"&gt;&lt;/i&gt;<br>
           &lt;/rukn-icon&gt;
         </code>
       </div>
@@ -256,8 +257,10 @@
   <!-- Footer Web Component -->
   <rukn-footer></rukn-footer>
   
+<script>lucide.createIcons({attrs:{'stroke-width':1}});const _obs=new MutationObserver(()=>lucide.createIcons({attrs:{'stroke-width':1}}));_obs.observe(document.body,{childList:true,subtree:true});</script>
 </body>
 </html>
+
 
 
 

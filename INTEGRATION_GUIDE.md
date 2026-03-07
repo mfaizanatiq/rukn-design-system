@@ -36,7 +36,7 @@ Copy this starter template:
   <link rel="stylesheet" href="styles/design-system.css">
   
   <!-- Optional: Phosphor Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
   

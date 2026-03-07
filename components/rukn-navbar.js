@@ -472,7 +472,7 @@ class RuknNavbar extends HTMLElement {
           ${hasSearch ? `
           <div style="flex: 1; max-width: 600px; position: relative;" role="search">
             <label for="navSearch" class="sr-only">Search documentation</label>
-            <i class="ph ph-magnifying-glass" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: hsl(var(--foreground) / 0.5); font-size: 16px; pointer-events: none;" aria-hidden="true"></i>
+            <i data-lucide="search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: hsl(var(--foreground) / 0.5); font-size: 16px; pointer-events: none;" aria-hidden="true"></i>
             <input 
               type="search" 
               id="navSearch" 
@@ -494,7 +494,7 @@ class RuknNavbar extends HTMLElement {
               <a href="index.html#roadmap" class="btn-ghost btn-sm" data-i18n="nav.roadmap" title="Roadmap - Future Plans">Roadmap</a>
               <a href="index.html#about" class="btn-ghost btn-sm" data-i18n="nav.about" title="About - Our Mission">About</a>
               <a href="https://github.com/mfaizanatiq/RuknDesignSystem" class="btn-primary btn-sm" target="_blank" rel="noopener noreferrer" title="View on GitHub - Open Source Repository" aria-label="View Rukn Design System on GitHub">
-                  <i class="ph ph-github-logo" style="margin-right: 4px;" aria-hidden="true"></i>
+                  <i data-lucide="github" style="margin-right: 4px;" aria-hidden="true"></i>
                 <span data-i18n="nav.github">GitHub</span>
               </a>
             </div>
@@ -518,8 +518,8 @@ class RuknNavbar extends HTMLElement {
                   style="margin: 0;"
                 >
                 <span class="ds-theme-toggle-icon" aria-hidden="true" style="font-size: 18px; display: flex; align-items: center;">
-                  <i class="ph ph-sun" data-theme-icon="light" style="display: none;"></i>
-                  <i class="ph ph-moon" data-theme-icon="dark"></i>
+                  <i data-lucide="sun" data-theme-icon="light" style="display: none;"></i>
+                  <i data-lucide="moon" data-theme-icon="dark"></i>
                 </span>
               </label>
             </div>
@@ -535,7 +535,7 @@ class RuknNavbar extends HTMLElement {
             <div class="ds-dropdown" data-language-dropdown data-device="desktop">
               <button class="ds-dropdown-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
                 <span class="ds-dropdown-label">English</span>
-                <i class="ph ph-caret-down" aria-hidden="true"></i>
+                <i data-lucide="chevron-down" aria-hidden="true"></i>
               </button>
               <ul class="ds-dropdown-menu" role="listbox" tabindex="-1">
                 <li class="ds-dropdown-option" role="option" data-value="en" tabindex="-1">English</li>
@@ -550,14 +550,14 @@ class RuknNavbar extends HTMLElement {
       
       <div class="ds-navbar-mobile-dropdown" id="${dropdownId}" role="menu" aria-label="Mobile navigation menu" hidden aria-hidden="true">
         <div class="ds-navbar-menu">
-          <a href="index.html" class="btn-ghost btn-sm ${current === 'home' ? 'active' : ''}" role="menuitem" ${current === 'home' ? 'aria-current="page"' : ''}><i class="ph ph-house" aria-hidden="true"></i> <span data-i18n="nav.home">Home</span></a>
-          <a href="foundation.html" class="btn-ghost btn-sm ${current === 'foundation' ? 'active' : ''}" role="menuitem" ${current === 'foundation' ? 'aria-current="page"' : ''}><i class="ph ph-cube" aria-hidden="true"></i> <span data-i18n="nav.foundation">Foundation</span></a>
-          <a href="components.html" class="btn-ghost btn-sm ${current === 'components' ? 'active' : ''}" role="menuitem" ${current === 'components' ? 'aria-current="page"' : ''}><i class="ph ph-stack" aria-hidden="true"></i> <span data-i18n="nav.components">Components</span></a>
-          <a href="index.html#pricing" class="btn-ghost btn-sm" role="menuitem"><i class="ph ph-currency-dollar" aria-hidden="true"></i> <span data-i18n="nav.pricing">Pricing</span></a>
-          <a href="index.html#roadmap" class="btn-ghost btn-sm" role="menuitem"><i class="ph ph-map-trifold" aria-hidden="true"></i> <span data-i18n="nav.roadmap">Roadmap</span></a>
-          <a href="index.html#about" class="btn-ghost btn-sm" role="menuitem"><i class="ph ph-info" aria-hidden="true"></i> <span data-i18n="nav.about">About</span></a>
+          <a href="index.html" class="btn-ghost btn-sm ${current === 'home' ? 'active' : ''}" role="menuitem" ${current === 'home' ? 'aria-current="page"' : ''}><i data-lucide="home" aria-hidden="true"></i> <span data-i18n="nav.home">Home</span></a>
+          <a href="foundation.html" class="btn-ghost btn-sm ${current === 'foundation' ? 'active' : ''}" role="menuitem" ${current === 'foundation' ? 'aria-current="page"' : ''}><i data-lucide="box" aria-hidden="true"></i> <span data-i18n="nav.foundation">Foundation</span></a>
+          <a href="components.html" class="btn-ghost btn-sm ${current === 'components' ? 'active' : ''}" role="menuitem" ${current === 'components' ? 'aria-current="page"' : ''}><i data-lucide="layers" aria-hidden="true"></i> <span data-i18n="nav.components">Components</span></a>
+          <a href="index.html#pricing" class="btn-ghost btn-sm" role="menuitem"><i data-lucide="dollar-sign" aria-hidden="true"></i> <span data-i18n="nav.pricing">Pricing</span></a>
+          <a href="index.html#roadmap" class="btn-ghost btn-sm" role="menuitem"><i data-lucide="map" aria-hidden="true"></i> <span data-i18n="nav.roadmap">Roadmap</span></a>
+          <a href="index.html#about" class="btn-ghost btn-sm" role="menuitem"><i data-lucide="info" aria-hidden="true"></i> <span data-i18n="nav.about">About</span></a>
           <a href="https://github.com/mfaizanatiq/RuknDesignSystem" class="btn-primary btn-sm" target="_blank" rel="noopener noreferrer" role="menuitem" aria-label="View on GitHub">
-            <i class="ph-fill ph-github-logo" aria-hidden="true"></i> <span data-i18n="nav.github">GitHub</span>
+            <i data-lucide="github" aria-hidden="true"></i> <span data-i18n="nav.github">GitHub</span>
           </a>
         </div>
         <div class="ds-navbar-controls-mobile" style="display: flex; flex-direction: column; gap: var(--r-space-3); padding: var(--r-space-4); border-top: 1px solid hsl(var(--border));">
@@ -566,8 +566,8 @@ class RuknNavbar extends HTMLElement {
             <label class="ds-theme-toggle-wrapper" for="themeToggleMobile-${this._uid}" style="display: flex; align-items: center; gap: var(--r-space-2); cursor: pointer; justify-content: space-between;">
               <span style="display: flex; align-items: center; gap: var(--r-space-2);">
                 <span class="ds-theme-toggle-icon" aria-hidden="true" style="font-size: 18px; display: flex; align-items: center;">
-                  <i class="ph ph-sun" data-theme-icon="light" style="display: none;"></i>
-                  <i class="ph ph-moon" data-theme-icon="dark"></i>
+                  <i data-lucide="sun" data-theme-icon="light" style="display: none;"></i>
+                  <i data-lucide="moon" data-theme-icon="dark"></i>
                 </span>
                 <span data-i18n="nav.darkMode">Dark Mode</span>
               </span>
@@ -592,7 +592,7 @@ class RuknNavbar extends HTMLElement {
             <div class="ds-dropdown" data-language-dropdown data-device="mobile">
               <button class="ds-dropdown-trigger" type="button" aria-haspopup="listbox" aria-expanded="false">
                 <span class="ds-dropdown-label">English</span>
-                <i class="ph ph-caret-down" aria-hidden="true"></i>
+                <i data-lucide="chevron-down" aria-hidden="true"></i>
               </button>
               <ul class="ds-dropdown-menu" role="listbox" tabindex="-1">
                 <li class="ds-dropdown-option" role="option" data-value="en" tabindex="-1">English</li>
@@ -617,6 +617,8 @@ class RuknNavbar extends HTMLElement {
     
     // Initialize dark mode toggle
     this._initDarkModeToggle();
+
+    if (typeof lucide !== 'undefined') lucide.createIcons({ attrs: { 'stroke-width': 1 } });
   }
   
   _initMobileMenu() {
@@ -755,12 +757,13 @@ class RuknNavbar extends HTMLElement {
       if (trigger) {
         trigger.addEventListener('click', (event) => {
           event.preventDefault();
+          event.stopPropagation();
           const isOpen = dropdown.classList.contains('open');
           closeAllDropdowns();
           if (!isOpen) {
             dropdown.classList.add('open');
             trigger.setAttribute('aria-expanded', 'true');
-            options[0]?.focus();
+            if (options.length) options[0].focus({ preventScroll: true });
           }
         });
 
@@ -966,14 +969,14 @@ class RuknNavbar extends HTMLElement {
     this._updateThemeIcons(isDark);
     
     // Listen for external dark mode changes
-    const observer = new MutationObserver(() => {
+    this._themeObserver = new MutationObserver(() => {
       const currentIsDark = document.documentElement.classList.contains('dark');
       if (desktopToggle) desktopToggle.checked = currentIsDark;
       if (mobileToggle) mobileToggle.checked = currentIsDark;
       this._updateThemeIcons(currentIsDark);
     });
-    
-    observer.observe(document.documentElement, {
+
+    this._themeObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['class']
     });
@@ -1031,6 +1034,7 @@ class RuknNavbar extends HTMLElement {
     if (this._cleanupLanguageDropdowns) {
       this._cleanupLanguageDropdowns();
     }
+    this._themeObserver?.disconnect();
   }
   
   // Generate unique ID for this instance

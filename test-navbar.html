@@ -6,7 +6,7 @@
   <title>Test Navbar Sticky</title>
   <link rel="stylesheet" href="styles/design-system-variables.css">
   <link rel="stylesheet" href="styles/design-system.css">
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <script src="components/rukn-navbar.js" defer></script>
 </head>
 <body style="min-height: 300vh; background: #0f0f1e;">
@@ -34,5 +34,6 @@
       </select>
     </div>
   </div>
+<script>lucide.createIcons({attrs:{'stroke-width':1}});const _obs=new MutationObserver(()=>lucide.createIcons({attrs:{'stroke-width':1}}));_obs.observe(document.body,{childList:true,subtree:true});</script>
 </body>
 </html>

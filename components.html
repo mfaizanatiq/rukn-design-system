@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="styles/design-system.css">
   
   <!-- Phosphor Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   
   <!-- Rukn Web Components (Vanilla JS) -->
   <script src="components/rukn-navbar.js" defer></script>
@@ -58,6 +58,8 @@
       padding: 0;
       box-sizing: border-box;
     }
+
+    .lucide { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; }
     
     body {
       background: hsl(var(--background));
@@ -65,6 +67,21 @@
       overflow-x: hidden;
       cursor: none;
       position: relative;
+    }
+
+    .ds-drawer-overlay {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .ds-drawer-overlay.active {
+      opacity: 1;
+    }
+    .ds-drawer {
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .ds-drawer.active {
+      transform: translateY(0);
     }
     
     /* Ethereal Background - Subtle Light Refraction */
@@ -680,7 +697,7 @@
       <section id="buttons" class="section" data-keywords="button primary secondary outline ghost tertiary destructive link cta action click">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-cursor-click"></i>
+            <i data-lucide="mouse-pointer-click"></i>
             <span data-i18n="components.buttons.title">Buttons</span>
           </h2>
           <p class="section-description" data-i18n="components.buttons.description">7 variants with multiple sizes and states</p>
@@ -692,7 +709,7 @@
               <p>All button styles</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-buttons-variants">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -720,7 +737,7 @@
               <p>Small, Medium, Large, and Icon</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-buttons-sizes">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -743,7 +760,7 @@
       <section id="inputs" class="section" data-keywords="input text textarea select dropdown form field">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-text-box"></i>
+            <i data-lucide="text-cursor-input"></i>
             Inputs
           </h2>
           <p class="section-description">Text inputs, textarea, and select elements</p>
@@ -755,7 +772,7 @@
               <p>Text, textarea, and select</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-inputs">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -781,7 +798,7 @@
       <section id="checkbox" class="section" data-keywords="checkbox check tick toggle selection multi-select">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-check-square"></i>
+            <i data-lucide="square-check"></i>
             Checkbox
           </h2>
           <p class="section-description">Animated checkboxes with multiple sizes</p>
@@ -793,7 +810,7 @@
               <p>Different states and sizes</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-checkbox">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -824,7 +841,7 @@
       <section id="radio" class="section" data-keywords="radio button group selection single choice option">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-radio-button"></i>
+            <i data-lucide="circle-dot"></i>
             Radio Group
           </h2>
           <p class="section-description">Single selection with layouts</p>
@@ -836,7 +853,7 @@
               <p>Mutually exclusive selection</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-radio">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -867,7 +884,7 @@
       <section id="switch" class="section" data-keywords="switch toggle on off boolean settings">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-toggle-right"></i>
+            <i data-lucide="toggle-right"></i>
             Switch
           </h2>
           <p class="section-description">Toggle switches with smooth animations</p>
@@ -879,7 +896,7 @@
               <p>Perfect for settings</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-switch">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -910,7 +927,7 @@
       <section id="slider" class="section" data-keywords="slider range input number value">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-sliders-horizontal"></i>
+            <i data-lucide="sliders-horizontal"></i>
             Slider
           </h2>
           <p class="section-description">Range inputs with custom styling</p>
@@ -922,7 +939,7 @@
               <p>Interactive range input</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-slider">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -946,7 +963,7 @@
       <section id="formfield" class="section" data-keywords="form field validation error success helper label required">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-text-align-left"></i>
+            <i data-lucide="align-left"></i>
             Form Field
           </h2>
           <p class="section-description">Complete form fields with validation states</p>
@@ -958,7 +975,7 @@
               <p>Error, success, and helper text</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-formfield">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -992,7 +1009,7 @@
       <section id="icon-placeholder" class="section" data-keywords="icon placeholder avatar glass refraction prism light">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-shapes"></i>
+            <i data-lucide="shapes"></i>
             Icon Placeholders
           </h2>
           <p class="section-description">Glass morphism icon containers with prismatic light refraction</p>
@@ -1005,31 +1022,31 @@
               <p>Reflect and refract light like real glass</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-icon-colors">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
             <div style="display: flex; gap: var(--r-space-4); flex-wrap: wrap; justify-content: center;">
               <div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-primary">
-                <i class="ph-fill ph-sparkle"></i>
+                <i data-lucide="sparkles"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-accent">
-                <i class="ph-fill ph-star"></i>
+                <i data-lucide="star"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-success">
-                <i class="ph-fill ph-check-circle"></i>
+                <i data-lucide="circle-check"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-warning">
-                <i class="ph-fill ph-warning"></i>
+                <i data-lucide="triangle-alert"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-error">
-                <i class="ph-fill ph-x-circle"></i>
+                <i data-lucide="circle-x"></i>
               </div>
             </div>
           </div>
           <div class="showcase-code" id="code-icon-colors" style="display: none;">
             <div class="code-block">
-              <code>&lt;div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-primary"&gt;<br>  &lt;i class="ph-fill ph-sparkle"&gt;&lt;/i&gt;<br>&lt;/div&gt;<br><br>&lt;!-- Other variants: accent, success, warning, error --&gt;</code>
+              <code>&lt;div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-primary"&gt;<br>  &lt;i data-lucide="sparkles"&gt;&lt;/i&gt;<br>&lt;/div&gt;<br><br>&lt;!-- Other variants: accent, success, warning, error --&gt;</code>
             </div>
           </div>
         </div>
@@ -1041,31 +1058,31 @@
               <p>From xs to xl with perfect proportions</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-icon-sizes">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
             <div style="display: flex; gap: var(--r-space-4); align-items: center; flex-wrap: wrap; justify-content: center;">
               <div class="ds-icon-placeholder ds-icon-placeholder-xs ds-icon-placeholder-primary">
-                <i class="ph-fill ph-heart"></i>
+                <i data-lucide="heart"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-sm ds-icon-placeholder-accent">
-                <i class="ph-fill ph-heart"></i>
+                <i data-lucide="heart"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-md ds-icon-placeholder-success">
-                <i class="ph-fill ph-heart"></i>
+                <i data-lucide="heart"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-warning">
-                <i class="ph-fill ph-heart"></i>
+                <i data-lucide="heart"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-xl ds-icon-placeholder-error">
-                <i class="ph-fill ph-heart"></i>
+                <i data-lucide="heart"></i>
               </div>
             </div>
           </div>
           <div class="showcase-code" id="code-icon-sizes" style="display: none;">
             <div class="code-block">
-              <code>&lt;!-- Sizes: xs, sm, md, lg, xl --&gt;<br>&lt;div class="ds-icon-placeholder ds-icon-placeholder-md ds-icon-placeholder-primary"&gt;<br>  &lt;i class="ph-fill ph-heart"&gt;&lt;/i&gt;<br>&lt;/div&gt;</code>
+              <code>&lt;!-- Sizes: xs, sm, md, lg, xl --&gt;<br>&lt;div class="ds-icon-placeholder ds-icon-placeholder-md ds-icon-placeholder-primary"&gt;<br>  &lt;i data-lucide="heart"&gt;&lt;/i&gt;<br>&lt;/div&gt;</code>
             </div>
           </div>
         </div>
@@ -1077,28 +1094,28 @@
               <p>Perfect circles for avatars and profiles</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-icon-circle">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
             <div style="display: flex; gap: var(--r-space-4); flex-wrap: wrap; justify-content: center;">
               <div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-circle ds-icon-placeholder-primary">
-                <i class="ph-fill ph-user"></i>
+                <i data-lucide="user"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-circle ds-icon-placeholder-accent">
-                <i class="ph-fill ph-globe"></i>
+                <i data-lucide="globe"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-circle ds-icon-placeholder-success">
-                <i class="ph-fill ph-rocket-launch"></i>
+                <i data-lucide="rocket"></i>
               </div>
               <div class="ds-icon-placeholder ds-icon-placeholder-xl ds-icon-placeholder-circle ds-icon-placeholder-warning">
-                <i class="ph-fill ph-lightning"></i>
+                <i data-lucide="zap"></i>
               </div>
             </div>
           </div>
           <div class="showcase-code" id="code-icon-circle" style="display: none;">
             <div class="code-block">
-              <code>&lt;div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-circle ds-icon-placeholder-primary"&gt;<br>  &lt;i class="ph-fill ph-user"&gt;&lt;/i&gt;<br>&lt;/div&gt;</code>
+              <code>&lt;div class="ds-icon-placeholder ds-icon-placeholder-lg ds-icon-placeholder-circle ds-icon-placeholder-primary"&gt;<br>  &lt;i data-lucide="user"&gt;&lt;/i&gt;<br>&lt;/div&gt;</code>
             </div>
           </div>
         </div>
@@ -1110,7 +1127,7 @@
             The gradient backgrounds blend colors to create a prismatic effect, while the radial gradient adds depth and dimensionality.
           </p>
           <p style="color: hsl(var(--muted-foreground)); font-size: var(--font-size-sm);">
-            <i class="ph ph-info" style="margin-right: 4px; color: hsl(var(--primary));"></i>
+            <i data-lucide="info" style="margin-right: 4px; color: hsl(var(--primary));"></i>
             Hover to see enhanced refraction and elevation • Press to see spring feedback
           </p>
         </div>
@@ -1120,7 +1137,7 @@
       <section id="card" class="section" data-keywords="card container box panel">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-frame-corners"></i>
+            <i data-lucide="scan"></i>
             Card
           </h2>
           <p class="section-description">Flexible containers with shadows</p>
@@ -1132,7 +1149,7 @@
               <p>Content containers</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-card">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -1154,7 +1171,7 @@
       <section id="badge" class="section" data-keywords="badge label status tag pill indicator">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-tag"></i>
+            <i data-lucide="tag"></i>
             Badges
           </h2>
           <p class="section-description">Status indicators with color variants</p>
@@ -1166,7 +1183,7 @@
               <p>5 color options</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-badges">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -1190,7 +1207,7 @@
       <section id="modal" class="section" data-keywords="modal dialog popup overlay window">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-frame"></i>
+            <i data-lucide="frame"></i>
             Modal
           </h2>
           <p class="section-description">Glass morphism dialogs with animations</p>
@@ -1202,12 +1219,12 @@
               <p>Click to see glass effect</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-modal">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
-            <button class="btn-primary" onclick="document.getElementById('compModal').style.display='flex'; document.getElementById('compModalOverlay').style.display='block';">
-              <i class="ph ph-frame" style="margin-right: 8px;"></i>
+            <button class="btn-primary" onclick="openModal('compModal', 'compModalOverlay');">
+              <i data-lucide="frame" style="margin-right: 8px;"></i>
               Open Modal
             </button>
           </div>
@@ -1225,11 +1242,11 @@
               <p>Cards, sections, and surfaces within modals</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-modal-elevation">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
-            <button class="btn-secondary" onclick="document.getElementById('elevationModal').style.display='flex'; document.getElementById('elevationModalOverlay').style.display='block';">
+            <button class="btn-secondary" onclick="openModal('elevationModal', 'elevationModalOverlay');">
               Open Elevation Demo
             </button>
           </div>
@@ -1261,19 +1278,19 @@
             </div>
           </div>
           <p style="margin-top: var(--r-space-6); padding: var(--r-space-4); background: rgba(255, 255, 255, 0.03); border-radius: var(--r-radius-lg); font-size: var(--r-font-size-sm); color: hsl(var(--foreground) / 0.7);">
-            <i class="ph ph-info" style="color: hsl(var(--primary)); margin-right: 4px;"></i>
+            <i data-lucide="info" style="color: hsl(var(--primary)); margin-right: 4px;"></i>
             Each elevation level increases blur, shadow depth, and border brightness for clear visual hierarchy
           </p>
         </div>
       </section>
       
       <!-- Elevation Demo Modal -->
-      <div class="ds-modal-overlay" id="elevationModalOverlay" style="display: none; position: fixed !important; z-index: var(--r-z-modal-backdrop, 3000) !important;" onclick="this.style.display='none'; document.getElementById('elevationModal').style.display='none';"></div>
-      <div class="ds-modal" id="elevationModal" style="display: none; position: fixed !important; z-index: var(--r-z-modal, 3001) !important;">
+      <div class="ds-modal-overlay" id="elevationModalOverlay" style="display: none; position: fixed !important; z-index: var(--r-z-modal-backdrop, 9998) !important;"></div>
+      <div class="ds-modal" id="elevationModal" style="display: none; position: fixed !important; z-index: var(--r-z-modal, 9999) !important;">
         <div class="ds-modal-content">
           <div class="ds-modal-header">
             <h3 class="ds-modal-title">
-              <i class="ph-fill ph-stack" style="margin-right: 8px;"></i>
+              <i data-lucide="layers" style="margin-right: 8px;"></i>
               Modal Elevation System
             </h3>
           </div>
@@ -1283,14 +1300,14 @@
             <div class="ds-modal-grid ds-modal-grid-2">
               <div class="ds-modal-card">
                 <div class="ds-icon-placeholder ds-icon-placeholder-md ds-icon-placeholder-primary" style="margin-bottom: var(--r-space-2);">
-                  <i class="ph-fill ph-rocket-launch"></i>
+                  <i data-lucide="rocket"></i>
                 </div>
                 <h5 style="margin-bottom: var(--r-space-2);">Feature A</h5>
                 <p style="font-size: var(--r-font-size-sm); color: hsl(var(--foreground) / 0.7);">Cards float above modal surface</p>
               </div>
               <div class="ds-modal-card">
                 <div class="ds-icon-placeholder ds-icon-placeholder-md ds-icon-placeholder-accent" style="margin-bottom: var(--r-space-2);">
-                  <i class="ph-fill ph-sparkle"></i>
+                  <i data-lucide="sparkles"></i>
                 </div>
                 <h5 style="margin-bottom: var(--r-space-2);">Feature B</h5>
                 <p style="font-size: var(--r-font-size-sm); color: hsl(var(--foreground) / 0.7);">Hover for elevation increase</p>
@@ -1305,7 +1322,7 @@
             <div class="ds-modal-surface">
               <div style="display: flex; gap: var(--r-space-3); align-items: center; margin-bottom: var(--r-space-3);">
                 <div class="ds-icon-placeholder ds-icon-placeholder-sm ds-icon-placeholder-success ds-icon-placeholder-circle">
-                  <i class="ph-fill ph-check"></i>
+                  <i data-lucide="check"></i>
                 </div>
                 <div>
                   <div style="font-weight: 600; margin-bottom: 4px;">Surface Component</div>
@@ -1325,25 +1342,25 @@
             <h4 class="ds-modal-section-title">Inset Well (Lower)</h4>
             <div class="ds-modal-well">
               <p style="font-size: var(--r-font-size-sm); color: hsl(var(--foreground) / 0.8);">
-                <i class="ph ph-info" style="margin-right: 4px; color: hsl(var(--primary));"></i>
+                <i data-lucide="info" style="margin-right: 4px; color: hsl(var(--primary));"></i>
                 Wells are recessed surfaces - perfect for nested content or data displays
               </p>
             </div>
           </div>
           
           <div class="ds-modal-footer">
-            <button class="btn-ghost" onclick="document.getElementById('elevationModal').style.display='none'; document.getElementById('elevationModalOverlay').style.display='none';">Close</button>
+            <button class="btn-ghost" onclick="closeModal('elevationModal', 'elevationModalOverlay');">Close</button>
             <button class="btn-primary" onclick="alert('Elevation demo!')">Understand</button>
           </div>
         </div>
-        <button class="ds-modal-close" onclick="document.getElementById('elevationModal').style.display='none'; document.getElementById('elevationModalOverlay').style.display='none';">✕</button>
+        <button class="ds-modal-close" onclick="closeModal('elevationModal', 'elevationModalOverlay');">✕</button>
       </div>
       
       <!-- Drawer -->
       <section id="drawer" class="section" data-keywords="drawer sidebar sheet panel slide">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-sidebar"></i>
+            <i data-lucide="panel-left"></i>
             Drawer
           </h2>
           <p class="section-description">Bottom sheets and side drawers</p>
@@ -1355,18 +1372,18 @@
               <p>Slide up from bottom</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-drawer">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
-            <button class="btn-primary" onclick="document.getElementById('compDrawer').style.display='flex'; document.getElementById('compDrawerOverlay').style.display='block';">
-              <i class="ph ph-sidebar" style="margin-right: 8px;"></i>
+            <button class="btn-primary" onclick="openDrawer('compDrawer', 'compDrawerOverlay')">
+              <i data-lucide="panel-left" style="margin-right: 8px;"></i>
               Open Drawer
             </button>
           </div>
           <div class="showcase-code" id="code-drawer" style="display: none;">
             <div class="code-block">
-              <code>&lt;div class="ds-drawer-overlay"&gt;&lt;/div&gt;<br>&lt;div class="ds-drawer"&gt;<br>  &lt;div class="ds-drawer-handle"&gt;&lt;/div&gt;<br>  &lt;div class="ds-drawer-header"&gt;<br>    &lt;h3 class="ds-drawer-title"&gt;Title&lt;/h3&gt;<br>    &lt;button class="ds-drawer-close"&gt;✕&lt;/button&gt;<br>  &lt;/div&gt;<br>  &lt;div class="ds-drawer-content"&gt;...&lt;/div&gt;<br>&lt;/div&gt;</code>
+              <code>&lt;div id="myOverlay" class="ds-drawer-overlay"&gt;&lt;/div&gt;<br>&lt;div id="myDrawer" class="ds-drawer"&gt;<br>  &lt;div class="ds-drawer-handle"&gt;&lt;/div&gt;<br>  &lt;div class="ds-drawer-header"&gt;<br>    &lt;h3 class="ds-drawer-title"&gt;Title&lt;/h3&gt;<br>    &lt;button class="ds-drawer-close"<br>      onclick="closeDrawer('myDrawer','myOverlay')"&gt;✕&lt;/button&gt;<br>  &lt;/div&gt;<br>  &lt;div class="ds-drawer-content"&gt;...&lt;/div&gt;<br>&lt;/div&gt;<br><br>// Open / Close API<br>openDrawer('myDrawer', 'myOverlay');<br>closeDrawer('myDrawer', 'myOverlay');<br>// Also closes with Escape key &amp; backdrop click</code>
             </div>
           </div>
         </div>
@@ -1376,7 +1393,7 @@
       <section id="navbar" class="section" data-keywords="navbar header navigation menu top bar">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-navigation-arrow"></i>
+            <i data-lucide="navigation"></i>
             Navbar
           </h2>
           <p class="section-description">Fixed navigation with backdrop blur</p>
@@ -1388,7 +1405,7 @@
               <p>Fixed top navigation</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-navbar">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -1422,7 +1439,7 @@
       <section id="tooltip" class="section" data-keywords="tooltip hint popup hover help info">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-chat-circle-dots"></i>
+            <i data-lucide="message-circle"></i>
             Tooltip
           </h2>
           <p class="section-description">Floating help text with glass morphism</p>
@@ -1434,7 +1451,7 @@
               <p>Hover over buttons to see tooltips</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-tooltip">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -1462,7 +1479,7 @@
       <section id="alert" class="section" data-keywords="alert notification message banner info success warning error">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-warning-circle"></i>
+            <i data-lucide="circle-alert"></i>
             Alert
           </h2>
           <p class="section-description">Inline notification banners</p>
@@ -1474,7 +1491,7 @@
               <p>Information, success, warning, and error states</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-alert">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -1525,7 +1542,7 @@
       <section id="toast" class="section" data-keywords="toast notification snackbar temporary message popup">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-bell"></i>
+            <i data-lucide="bell"></i>
             Toast Notification
           </h2>
           <p class="section-description">Temporary notification messages</p>
@@ -1537,7 +1554,7 @@
               <p>Click buttons to trigger notifications</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-toast">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -1560,7 +1577,7 @@
       <section id="progress" class="section" data-keywords="progress bar loading indicator percentage linear circular">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-circle-notch"></i>
+            <i data-lucide="loader-circle"></i>
             Progress Indicators
           </h2>
           <p class="section-description">Linear and circular progress bars</p>
@@ -1572,7 +1589,7 @@
               <p>Progress bars with variants</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-progress">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -1609,6 +1626,9 @@
               <h3>Circular Progress</h3>
               <p>SVG-based circular indicators</p>
             </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-progress-circle">
+              <i data-lucide="code"></i> Code
+            </button>
           </div>
           <div class="showcase-preview">
             <div style="display: flex; gap: var(--space-6); align-items: center; justify-content: center; flex-wrap: wrap;">
@@ -1635,6 +1655,11 @@
               </div>
             </div>
           </div>
+          <div class="showcase-code" id="code-progress-circle" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-progress-circle"&gt;<br>  &lt;svg class="ds-progress-circle-svg" viewBox="0 0 100 100"&gt;<br>    &lt;circle class="ds-progress-circle-track" cx="50" cy="50" r="46"&gt;&lt;/circle&gt;<br>    &lt;circle class="ds-progress-circle-fill" cx="50" cy="50" r="46"<br>      stroke-dasharray="289.027" stroke-dashoffset="115.611"&gt;&lt;/circle&gt;<br>  &lt;/svg&gt;<br>  &lt;span class="ds-progress-circle-text"&gt;60%&lt;/span&gt;<br>&lt;/div&gt;<br><br>// Sizes: ds-progress-circle-sm, ds-progress-circle-lg<br>// offset = circumference - (circumference * percent / 100)<br>// circumference = 2 * π * 46 ≈ 289.027</code>
+            </div>
+          </div>
         </div>
       </section>
       
@@ -1642,7 +1667,7 @@
       <section id="spinner" class="section" data-keywords="spinner loading loader indicator rotate spin">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph ph-spinner"></i>
+            <i data-lucide="loader"></i>
             Spinner
           </h2>
           <p class="section-description">Loading indicators and states</p>
@@ -1654,7 +1679,7 @@
               <p>Different sizes for various contexts</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-spinner">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -1678,6 +1703,9 @@
               <h3>Spinner Variants</h3>
               <p>Different colors for status</p>
             </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-spinner-variants">
+              <i data-lucide="code"></i> Code
+            </button>
           </div>
           <div class="showcase-preview">
             <div style="display: flex; gap: var(--space-4); align-items: center; flex-wrap: wrap;">
@@ -1687,6 +1715,11 @@
               <div class="ds-spinner ds-spinner-error"></div>
             </div>
           </div>
+          <div class="showcase-code" id="code-spinner-variants" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-spinner ds-spinner-primary"&gt;&lt;/div&gt;<br>&lt;div class="ds-spinner ds-spinner-success"&gt;&lt;/div&gt;<br>&lt;div class="ds-spinner ds-spinner-warning"&gt;&lt;/div&gt;<br>&lt;div class="ds-spinner ds-spinner-error"&gt;&lt;/div&gt;</code>
+            </div>
+          </div>
         </div>
         <div class="showcase-item">
           <div class="showcase-header">
@@ -1694,12 +1727,20 @@
               <h3>Button Loading State</h3>
               <p>Integrated loading indicators</p>
             </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-btn-loading">
+              <i data-lucide="code"></i> Code
+            </button>
           </div>
           <div class="showcase-preview">
             <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
               <button class="btn-primary btn-sm btn-loading">Loading...</button>
               <button class="btn-secondary btn-sm btn-loading">Processing</button>
               <button class="btn-outline btn-sm btn-loading">Please wait</button>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-btn-loading" style="display: none;">
+            <div class="code-block">
+              <code>&lt;button class="btn-primary btn-loading"&gt;Loading...&lt;/button&gt;<br>&lt;button class="btn-secondary btn-loading"&gt;Processing&lt;/button&gt;<br>&lt;button class="btn-outline btn-loading"&gt;Please wait&lt;/button&gt;<br><br>// Add btn-loading class to show spinner<br>// Remove it when the async operation completes<br>button.classList.add('btn-loading');<br>button.classList.remove('btn-loading');</code>
             </div>
           </div>
         </div>
@@ -1709,7 +1750,7 @@
       <section id="glass" class="section" data-keywords="glass morphism blur backdrop frosted">
         <div class="section-header">
           <h2 class="section-title">
-            <i class="ph-fill ph-sparkle"></i>
+            <i data-lucide="sparkles"></i>
             Glass Morphism
           </h2>
           <p class="section-description">Frosted glass effects with backdrop blur</p>
@@ -1721,7 +1762,7 @@
               <p>Natural frosted effect</p>
             </div>
             <button class="btn-ghost btn-sm toggle-code" data-target="code-glass">
-              <i class="ph ph-code"></i> Code
+              <i data-lucide="code"></i> Code
             </button>
           </div>
           <div class="showcase-preview">
@@ -1738,26 +1779,1050 @@
         </div>
       </section>
       
+      <!-- Avatar -->
+      <section id="avatar" class="section" data-keywords="avatar profile user image initials group">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="circle-user"></i>
+            Avatar
+          </h2>
+          <p class="section-description">User profile images with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Avatar Sizes</h3>
+              <p>Multiple sizes with initials fallback</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-avatar">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div style="display: flex; align-items: center; gap: var(--r-space-4); flex-wrap: wrap;">
+              <div class="ds-avatar ds-avatar-xs">
+                <span class="ds-avatar-initials">XS</span>
+              </div>
+              <div class="ds-avatar ds-avatar-sm">
+                <span class="ds-avatar-initials">SM</span>
+              </div>
+              <div class="ds-avatar ds-avatar-md">
+                <span class="ds-avatar-initials">MD</span>
+              </div>
+              <div class="ds-avatar ds-avatar-lg">
+                <span class="ds-avatar-initials">LG</span>
+              </div>
+              <div class="ds-avatar ds-avatar-xl">
+                <span class="ds-avatar-initials">XL</span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-avatar" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-avatar ds-avatar-md"&gt;<br>  &lt;span class="ds-avatar-initials"&gt;JD&lt;/span&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-item" style="margin-top: var(--r-space-4);">
+          <div class="showcase-header">
+            <div>
+              <h3>Avatar Group & Badge</h3>
+              <p>Stacked avatars and status indicators</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-avatar-group">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div style="display: flex; align-items: center; gap: var(--r-space-6); flex-wrap: wrap;">
+              <div class="ds-avatar-group">
+                <div class="ds-avatar ds-avatar-md"><span class="ds-avatar-initials">A</span></div>
+                <div class="ds-avatar ds-avatar-md"><span class="ds-avatar-initials">B</span></div>
+                <div class="ds-avatar ds-avatar-md"><span class="ds-avatar-initials">C</span></div>
+              </div>
+              <div class="ds-avatar ds-avatar-lg" style="position: relative;">
+                <span class="ds-avatar-initials">JD</span>
+                <span class="ds-avatar-badge online"></span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-avatar-group" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-avatar-group"&gt;<br>  &lt;div class="ds-avatar ds-avatar-md"&gt;...&lt;/div&gt;<br>  &lt;div class="ds-avatar ds-avatar-md"&gt;...&lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Breadcrumbs -->
+      <section id="breadcrumbs" class="section" data-keywords="breadcrumbs navigation hierarchy path">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="refresh-cw"></i>
+            Breadcrumbs
+          </h2>
+          <p class="section-description">Navigation hierarchy with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Breadcrumbs</h3>
+              <p>Clickable navigation path</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-breadcrumbs">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <nav class="ds-breadcrumbs">
+              <div class="ds-breadcrumbs-item">
+                <a href="#">Home</a>
+              </div>
+              <span class="ds-breadcrumbs-separator"></span>
+              <div class="ds-breadcrumbs-item">
+                <a href="#">Products</a>
+              </div>
+              <span class="ds-breadcrumbs-separator"></span>
+              <div class="ds-breadcrumbs-item active">
+                Current Page
+              </div>
+            </nav>
+          </div>
+          <div class="showcase-code" id="code-breadcrumbs" style="display: none;">
+            <div class="code-block">
+              <code>&lt;nav class="ds-breadcrumbs"&gt;<br>  &lt;div class="ds-breadcrumbs-item"&gt;<br>    &lt;a href="/"&gt;Home&lt;/a&gt;<br>  &lt;/div&gt;<br>  &lt;span class="ds-breadcrumbs-separator"&gt;&lt;/span&gt;<br>  &lt;div class="ds-breadcrumbs-item active"&gt;Current&lt;/div&gt;<br>&lt;/nav&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Empty States -->
+      <section id="empty-state" class="section" data-keywords="empty state no data illustration">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="folder-open"></i>
+            Empty States
+          </h2>
+          <p class="section-description">Beautiful empty states for no data scenarios</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Empty State</h3>
+              <p>Icon, title, description, and CTA</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-empty-state">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-empty-state" style="max-width: 100%;">
+              <div class="ds-empty-state-icon">📦</div>
+              <h3 class="ds-empty-state-title">No items found</h3>
+              <p class="ds-empty-state-description">
+                Get started by adding your first item to the collection.
+              </p>
+              <div class="ds-empty-state-action">
+                <button class="btn-primary">Add Item</button>
+                <button class="btn-outline">Learn More</button>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-empty-state" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-empty-state"&gt;<br>  &lt;div class="ds-empty-state-icon"&gt;📦&lt;/div&gt;<br>  &lt;h3 class="ds-empty-state-title"&gt;No items found&lt;/h3&gt;<br>  &lt;p class="ds-empty-state-description"&gt;Get started...&lt;/p&gt;<br>  &lt;div class="ds-empty-state-action"&gt;<br>    &lt;button class="btn-primary"&gt;Add Item&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Button Groups -->
+      <section id="button-groups" class="section" data-keywords="button group segmented related actions">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="layers"></i>
+            Button Groups
+          </h2>
+          <p class="section-description">Related action buttons with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Button Groups</h3>
+              <p>Horizontal and segmented styles</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-button-groups">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div style="display: flex; flex-direction: column; gap: var(--r-space-4);">
+              <div class="ds-button-group">
+                <button class="btn-outline">Left</button>
+                <button class="btn-outline">Center</button>
+                <button class="btn-outline">Right</button>
+              </div>
+              <div class="ds-button-group segmented">
+                <button class="btn-outline active">Grid</button>
+                <button class="btn-outline">List</button>
+                <button class="btn-outline">Card</button>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-button-groups" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-button-group"&gt;<br>  &lt;button class="btn-outline"&gt;Left&lt;/button&gt;<br>  &lt;button class="btn-outline"&gt;Center&lt;/button&gt;<br>  &lt;button class="btn-outline"&gt;Right&lt;/button&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Tags -->
+      <section id="tags" class="section" data-keywords="tags labels removable categories">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="tag"></i>
+            Tags
+          </h2>
+          <p class="section-description">Content categorization with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Tags</h3>
+              <p>Removable tags with color variants</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-tags">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div style="display: flex; flex-wrap: wrap; gap: var(--r-space-2);">
+              <span class="ds-tag">Design</span>
+              <span class="ds-tag">
+                Development
+                <span class="ds-tag-remove"></span>
+              </span>
+              <span class="ds-tag ds-tag-primary">Primary</span>
+              <span class="ds-tag ds-tag-success">Success</span>
+              <span class="ds-tag ds-tag-warning">Warning</span>
+              <span class="ds-tag ds-tag-error">Error</span>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-tags" style="display: none;">
+            <div class="code-block">
+              <code>&lt;span class="ds-tag"&gt;Design&lt;/span&gt;<br>&lt;span class="ds-tag"&gt;<br>  Development<br>  &lt;span class="ds-tag-remove"&gt;&lt;/span&gt;<br>&lt;/span&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Tabs -->
+      <section id="tabs" class="section" data-keywords="tabs navigation content organization">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="panel-top"></i>
+            Tabs
+          </h2>
+          <p class="section-description">Content organization with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Tabs</h3>
+              <p>Horizontal tabs with smooth transitions</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-tabs">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-tabs">
+              <div class="ds-tab-list">
+                <button class="ds-tab active" onclick="switchTab(this, 0)">Overview</button>
+                <button class="ds-tab" onclick="switchTab(this, 1)">Settings</button>
+                <button class="ds-tab" onclick="switchTab(this, 2)">Billing</button>
+              </div>
+              <div class="ds-tab-panels">
+                <div class="ds-tab-panel active">Overview content goes here...</div>
+                <div class="ds-tab-panel">Settings content goes here...</div>
+                <div class="ds-tab-panel">Billing content goes here...</div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-tabs" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-tabs"&gt;<br>  &lt;div class="ds-tab-list"&gt;<br>    &lt;button class="ds-tab active"&gt;Overview&lt;/button&gt;<br>    &lt;button class="ds-tab"&gt;Settings&lt;/button&gt;<br>  &lt;/div&gt;<br>  &lt;div class="ds-tab-panels"&gt;<br>    &lt;div class="ds-tab-panel active"&gt;Content&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-item" style="margin-top: var(--r-space-4);">
+          <div class="showcase-header">
+            <div>
+              <h3>Pills Tabs</h3>
+              <p>Rounded pill-style tabs</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-tabs-pills">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-tabs pills">
+              <div class="ds-tab-list">
+                <button class="ds-tab active" onclick="switchTab(this, 0)">All</button>
+                <button class="ds-tab" onclick="switchTab(this, 1)">Active</button>
+                <button class="ds-tab" onclick="switchTab(this, 2)">Archived</button>
+              </div>
+              <div class="ds-tab-panels">
+                <div class="ds-tab-panel active">Showing all 24 items across every status.</div>
+                <div class="ds-tab-panel">Showing 12 active items currently in progress.</div>
+                <div class="ds-tab-panel">Showing 8 archived items from previous cycles.</div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-tabs-pills" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-tabs pills"&gt;<br>  &lt;div class="ds-tab-list"&gt;<br>    &lt;button class="ds-tab active"&gt;All&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Dropdown Menu -->
+      <section id="dropdown" class="section" data-keywords="dropdown menu actions context">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="chevron-down"></i>
+            Dropdown Menu
+          </h2>
+          <p class="section-description">Action menus with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Dropdown Menu</h3>
+              <p>Glass morphism menu with icons</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-dropdown">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-dropdown" style="position: relative; display: inline-block;">
+              <button class="btn-primary" onclick="toggleDropdown(this)">Actions</button>
+              <div class="ds-dropdown-menu" id="demo-dropdown">
+                <button class="ds-dropdown-item">
+                  <i data-lucide="pencil" class="ds-dropdown-item-icon"></i>
+                  Edit
+                </button>
+                <button class="ds-dropdown-item">
+                  <i data-lucide="copy" class="ds-dropdown-item-icon"></i>
+                  Duplicate
+                </button>
+                <div class="ds-dropdown-divider"></div>
+                <button class="ds-dropdown-item danger">
+                  <i data-lucide="trash-2" class="ds-dropdown-item-icon"></i>
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-dropdown" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-dropdown"&gt;<br>  &lt;button class="btn-primary"&gt;Actions&lt;/button&gt;<br>  &lt;div class="ds-dropdown-menu"&gt;<br>    &lt;button class="ds-dropdown-item"&gt;Edit&lt;/button&gt;<br>    &lt;div class="ds-dropdown-divider"&gt;&lt;/div&gt;<br>    &lt;button class="ds-dropdown-item danger"&gt;Delete&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Accordion -->
+      <section id="accordion" class="section" data-keywords="accordion collapsible expand collapse">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="arrow-down-up"></i>
+            Accordion
+          </h2>
+          <p class="section-description">Collapsible content with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Accordion</h3>
+              <p>Smooth expand/collapse animations</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-accordion">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-accordion">
+              <div class="ds-accordion-item">
+                <button class="ds-accordion-trigger" onclick="toggleAccordion(this)">
+                  <span>What is Rukn Design System?</span>
+                  <i data-lucide="chevron-down" class="ds-accordion-icon"></i>
+                </button>
+                <div class="ds-accordion-content">
+                  <div class="ds-accordion-content-inner">
+                    Rukn is a modern, framework-agnostic CSS design system built with glass morphism, Web Components, and smooth motion principles.
+                  </div>
+                </div>
+              </div>
+              <div class="ds-accordion-item">
+                <button class="ds-accordion-trigger" onclick="toggleAccordion(this)">
+                  <span>How do I get started?</span>
+                  <i data-lucide="chevron-down" class="ds-accordion-icon"></i>
+                </button>
+                <div class="ds-accordion-content">
+                  <div class="ds-accordion-content-inner">
+                    Just copy 2 CSS files and start using the components. See GET_STARTED.md for details.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-accordion" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-accordion"&gt;<br>  &lt;div class="ds-accordion-item"&gt;<br>    &lt;button class="ds-accordion-trigger"&gt;<br>      &lt;span&gt;Question&lt;/span&gt;<br>      &lt;i data-lucide="chevron-down" class="ds-accordion-icon"&gt;&lt;/i&gt;<br>    &lt;/button&gt;<br>    &lt;div class="ds-accordion-content"&gt;<br>      &lt;div class="ds-accordion-content-inner"&gt;Answer&lt;/div&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Tables -->
+      <section id="tables" class="section" data-keywords="table data sortable rows columns">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="table"></i>
+            Tables
+          </h2>
+          <p class="section-description">Data tables with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Table</h3>
+              <p>Sortable columns and hover effects</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-tables">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-table-wrapper">
+              <table class="ds-table">
+                <thead>
+                  <tr>
+                    <th class="sortable">Name</th>
+                    <th class="sortable">Email</th>
+                    <th>Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>John Doe</td>
+                    <td>john@example.com</td>
+                    <td>Admin</td>
+                  </tr>
+                  <tr>
+                    <td>Jane Smith</td>
+                    <td>jane@example.com</td>
+                    <td>User</td>
+                  </tr>
+                  <tr>
+                    <td>Bob Johnson</td>
+                    <td>bob@example.com</td>
+                    <td>Editor</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-tables" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-table-wrapper"&gt;<br>  &lt;table class="ds-table"&gt;<br>    &lt;thead&gt;<br>      &lt;tr&gt;&lt;th class="sortable"&gt;Name&lt;/th&gt;&lt;/tr&gt;<br>    &lt;/thead&gt;<br>    &lt;tbody&gt;<br>      &lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;<br>    &lt;/tbody&gt;<br>  &lt;/table&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-item" style="margin-top: var(--r-space-4);">
+          <div class="showcase-header">
+            <div>
+              <h3>Striped Table</h3>
+              <p>Alternating row colors</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-tables-striped">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-table-wrapper">
+              <table class="ds-table striped">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Product A</td>
+                    <td>$29.99</td>
+                    <td>In Stock</td>
+                  </tr>
+                  <tr>
+                    <td>Product B</td>
+                    <td>$49.99</td>
+                    <td>Low Stock</td>
+                  </tr>
+                  <tr>
+                    <td>Product C</td>
+                    <td>$19.99</td>
+                    <td>Out of Stock</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-tables-striped" style="display: none;">
+            <div class="code-block">
+              <code>&lt;table class="ds-table striped"&gt;...&lt;/table&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Pagination -->
+      <section id="pagination" class="section" data-keywords="pagination navigation pages data">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="chevrons-left"></i>
+            Pagination
+          </h2>
+          <p class="section-description">Data navigation with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Pagination</h3>
+              <p>Numbered pagination with prev/next</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-pagination">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-pagination">
+              <button class="ds-pagination-button ds-pagination-prev">Previous</button>
+              <button class="ds-pagination-button">1</button>
+              <button class="ds-pagination-button active">2</button>
+              <button class="ds-pagination-button">3</button>
+              <span class="ds-pagination-ellipsis">...</span>
+              <button class="ds-pagination-button">10</button>
+              <button class="ds-pagination-button ds-pagination-next">Next</button>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-pagination" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-pagination"&gt;<br>  &lt;button class="ds-pagination-button ds-pagination-prev"&gt;Previous&lt;/button&gt;<br>  &lt;button class="ds-pagination-button active"&gt;2&lt;/button&gt;<br>  &lt;button class="ds-pagination-button ds-pagination-next"&gt;Next&lt;/button&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Content Dividers -->
+      <section id="dividers" class="section" data-keywords="divider separator line section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="minus"></i>
+            Content Dividers
+          </h2>
+          <p class="section-description">Section separation with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Dividers</h3>
+              <p>Horizontal and vertical dividers</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-dividers">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div style="display: flex; flex-direction: column; gap: var(--r-space-4);">
+              <div class="ds-divider"></div>
+              <div class="ds-divider">
+                <span class="ds-divider-text">Or</span>
+              </div>
+              <div class="ds-divider">
+                <i data-lucide="star" class="ds-divider-icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-dividers" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-divider"&gt;&lt;/div&gt;<br>&lt;div class="ds-divider"&gt;<br>  &lt;span class="ds-divider-text"&gt;Or&lt;/span&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Page Headers -->
+      <section id="page-headers" class="section" data-keywords="page header title actions breadcrumbs">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="heading"></i>
+            Page Headers
+          </h2>
+          <p class="section-description">Page structure with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Page Header</h3>
+              <p>Title, description, and actions</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-page-headers">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-page-header">
+              <div class="ds-page-header-content">
+                <h1 class="ds-page-header-title">Page Title</h1>
+                <p class="ds-page-header-description">This is a page description that provides context about the page content.</p>
+              </div>
+              <div class="ds-page-header-actions">
+                <button class="btn-primary">Primary Action</button>
+                <button class="btn-outline">Secondary</button>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-page-headers" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-page-header"&gt;<br>  &lt;div class="ds-page-header-content"&gt;<br>    &lt;h1 class="ds-page-header-title"&gt;Title&lt;/h1&gt;<br>    &lt;p class="ds-page-header-description"&gt;Description&lt;/p&gt;<br>  &lt;/div&gt;<br>  &lt;div class="ds-page-header-actions"&gt;<br>    &lt;button class="btn-primary"&gt;Action&lt;/button&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Metrics / Stats -->
+      <section id="metrics" class="section" data-keywords="metrics stats kpi dashboard analytics">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="chart-line"></i>
+            Metrics / Stats
+          </h2>
+          <p class="section-description">Data visualization with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Metrics</h3>
+              <p>KPI cards with trends</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-metrics">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--r-space-4);">
+              <div class="ds-metric">
+                <div class="ds-metric-label">Total Users</div>
+                <div class="ds-metric-value">12,345</div>
+                <div class="ds-metric-trend up">↑ +12.5%</div>
+              </div>
+              <div class="ds-metric">
+                <div class="ds-metric-label">Revenue</div>
+                <div class="ds-metric-value">$45,678</div>
+                <div class="ds-metric-trend down">↓ -3.2%</div>
+              </div>
+              <div class="ds-metric">
+                <div class="ds-metric-icon">📊</div>
+                <div class="ds-metric-label">Active</div>
+                <div class="ds-metric-value">8,901</div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-metrics" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-metric"&gt;<br>  &lt;div class="ds-metric-label"&gt;Total Users&lt;/div&gt;<br>  &lt;div class="ds-metric-value"&gt;12,345&lt;/div&gt;<br>  &lt;div class="ds-metric-trend up"&gt;↑ +12.5%&lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Progress Steps -->
+      <section id="progress-steps" class="section" data-keywords="progress steps wizard multi-step onboarding">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="milestone"></i>
+            Progress Steps
+          </h2>
+          <p class="section-description">Multi-step flows with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Progress Steps</h3>
+              <p>Horizontal and vertical layouts</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-progress-steps">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-progress-steps">
+              <div class="ds-progress-step completed">
+                <div class="ds-progress-step-indicator">1</div>
+                <div class="ds-progress-step-label">Step 1</div>
+                <div class="ds-progress-step-connector"></div>
+              </div>
+              <div class="ds-progress-step active">
+                <div class="ds-progress-step-indicator">2</div>
+                <div class="ds-progress-step-label">Step 2</div>
+                <div class="ds-progress-step-connector"></div>
+              </div>
+              <div class="ds-progress-step">
+                <div class="ds-progress-step-indicator">3</div>
+                <div class="ds-progress-step-label">Step 3</div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-progress-steps" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-progress-steps"&gt;<br>  &lt;div class="ds-progress-step completed"&gt;<br>    &lt;div class="ds-progress-step-indicator"&gt;1&lt;/div&gt;<br>    &lt;div class="ds-progress-step-label"&gt;Step 1&lt;/div&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Carousel -->
+      <section id="carousel" class="section" data-keywords="carousel slider gallery images testimonials">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="images"></i>
+            Carousel
+          </h2>
+          <p class="section-description">Image galleries with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Carousel</h3>
+              <p>Slide navigation with indicators</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-carousel">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-carousel" style="max-width: 600px; margin: 0 auto;">
+              <div class="ds-carousel-track" id="demo-carousel-track">
+                <div class="ds-carousel-slide">
+                  <div style="text-align: center; padding: var(--r-space-8);">
+                    <h3>Slide 1</h3>
+                    <p>Beautiful glass morphism carousel</p>
+                  </div>
+                </div>
+                <div class="ds-carousel-slide">
+                  <div style="text-align: center; padding: var(--r-space-8);">
+                    <h3>Slide 2</h3>
+                    <p>Smooth transitions and animations</p>
+                  </div>
+                </div>
+                <div class="ds-carousel-slide">
+                  <div style="text-align: center; padding: var(--r-space-8);">
+                    <h3>Slide 3</h3>
+                    <p>Perfect for image galleries</p>
+                  </div>
+                </div>
+              </div>
+              <button class="ds-carousel-prev" onclick="carouselPrev()">←</button>
+              <button class="ds-carousel-next" onclick="carouselNext()">→</button>
+              <div class="ds-carousel-indicators">
+                <button class="ds-carousel-indicator active" onclick="carouselGoTo(0)"></button>
+                <button class="ds-carousel-indicator" onclick="carouselGoTo(1)"></button>
+                <button class="ds-carousel-indicator" onclick="carouselGoTo(2)"></button>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-carousel" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-carousel"&gt;<br>  &lt;div class="ds-carousel-track"&gt;<br>    &lt;div class="ds-carousel-slide"&gt;Slide 1&lt;/div&gt;<br>    &lt;div class="ds-carousel-slide"&gt;Slide 2&lt;/div&gt;<br>  &lt;/div&gt;<br>  &lt;button class="ds-carousel-prev"&gt;←&lt;/button&gt;<br>  &lt;button class="ds-carousel-next"&gt;→&lt;/button&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Code Snippet -->
+      <section id="code-snippet" class="section" data-keywords="code snippet block copy syntax">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="code"></i>
+            Code Snippet
+          </h2>
+          <p class="section-description">Developer content with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Code Snippet</h3>
+              <p>Code blocks with copy button</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-code-snippet">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-code-snippet">
+              <div class="ds-code-snippet-header">
+                <span class="ds-code-snippet-language">JavaScript</span>
+                <button class="ds-code-snippet-copy" onclick="copyCode(this)">Copy</button>
+              </div>
+              <pre><code>const hello = "world";
+console.log(hello);</code></pre>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-code-snippet" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-code-snippet"&gt;<br>  &lt;div class="ds-code-snippet-header"&gt;<br>    &lt;span&gt;JavaScript&lt;/span&gt;<br>    &lt;button class="ds-code-snippet-copy"&gt;Copy&lt;/button&gt;<br>  &lt;/div&gt;<br>  &lt;pre&gt;&lt;code&gt;const hello = "world";&lt;/code&gt;&lt;/pre&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- File Uploader -->
+      <section id="file-uploader" class="section" data-keywords="file upload drag drop media">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="cloud-upload"></i>
+            File Uploader
+          </h2>
+          <p class="section-description">File management with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>File Uploader</h3>
+              <p>Drag & drop with preview</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-file-uploader">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-file-uploader">
+              <div class="ds-file-uploader-dropzone" onclick="this.querySelector('input').click()">
+                <i data-lucide="cloud-upload" class="ds-file-uploader-icon"></i>
+                <div class="ds-file-uploader-text">Drag and drop files here</div>
+                <div class="ds-file-uploader-hint">or click to browse</div>
+                <input type="file" class="ds-file-uploader-input" multiple>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-file-uploader" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-file-uploader"&gt;<br>  &lt;div class="ds-file-uploader-dropzone"&gt;<br>    &lt;i data-lucide="cloud-upload"&gt;&lt;/i&gt;<br>    &lt;div&gt;Drag and drop files here&lt;/div&gt;<br>    &lt;input type="file" multiple&gt;<br>  &lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Multi-Select -->
+      <section id="multi-select" class="section" data-keywords="multi-select combobox searchable tags">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="list"></i>
+            Multi-Select / Combobox
+          </h2>
+          <p class="section-description">Advanced form inputs with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Multi-Select</h3>
+              <p>Searchable select with tags</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-multi-select">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-multi-select">
+              <div class="ds-multi-select-input" onclick="toggleMultiSelect(this)">
+                <div class="ds-multi-select-tags">
+                  <span class="ds-tag">Option 1<span class="ds-tag-remove"></span></span>
+                </div>
+                <input type="text" placeholder="Search or select...">
+              </div>
+              <div class="ds-multi-select-menu">
+                <div class="ds-multi-select-item selected">
+                  <div class="ds-multi-select-item-checkbox"></div>
+                  <span>Option 1</span>
+                </div>
+                <div class="ds-multi-select-item">
+                  <div class="ds-multi-select-item-checkbox"></div>
+                  <span>Option 2</span>
+                </div>
+                <div class="ds-multi-select-item">
+                  <div class="ds-multi-select-item-checkbox"></div>
+                  <span>Option 3</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-multi-select" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-multi-select"&gt;<br>  &lt;div class="ds-multi-select-input"&gt;<br>    &lt;div class="ds-multi-select-tags"&gt;&lt;/div&gt;<br>    &lt;input type="text" placeholder="Search..."&gt;<br>  &lt;/div&gt;<br>  &lt;div class="ds-multi-select-menu"&gt;...&lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Date Picker -->
+      <section id="date-picker" class="section" data-keywords="date picker calendar selection">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="calendar"></i>
+            Date Picker
+          </h2>
+          <p class="section-description">Date selection with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Date Picker</h3>
+              <p>Calendar with date selection</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-date-picker">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <div class="ds-date-picker" style="max-width: 20rem;" id="demo-date-picker-wrapper">
+              <input type="text" class="ds-input ds-date-picker-input" placeholder="Select date" onclick="toggleDatePicker(this)" readonly>
+              <div class="ds-date-picker-calendar" id="demo-date-picker">
+                <div class="ds-date-picker-header">
+                  <div class="ds-date-picker-nav">
+                    <button class="ds-date-picker-nav-button" onclick="navigateMonth(-1)">←</button>
+                    <button class="ds-date-picker-nav-button" onclick="navigateMonth(1)">→</button>
+                  </div>
+                  <div class="ds-date-picker-month-year" id="dp-month-year"></div>
+                </div>
+                <div class="ds-date-picker-weekdays">
+                  <div class="ds-date-picker-weekday">S</div>
+                  <div class="ds-date-picker-weekday">M</div>
+                  <div class="ds-date-picker-weekday">T</div>
+                  <div class="ds-date-picker-weekday">W</div>
+                  <div class="ds-date-picker-weekday">T</div>
+                  <div class="ds-date-picker-weekday">F</div>
+                  <div class="ds-date-picker-weekday">S</div>
+                </div>
+                <div class="ds-date-picker-days" id="dp-days"></div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-date-picker" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-date-picker"&gt;<br>  &lt;input type="text" class="ds-input" placeholder="Select date"&gt;<br>  &lt;div class="ds-date-picker-calendar"&gt;...&lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Command Menu -->
+      <section id="command-menu" class="section" data-keywords="command menu palette cmd k keyboard">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i data-lucide="command"></i>
+            Command Menu
+          </h2>
+          <p class="section-description">Power user feature with glass morphism</p>
+        </div>
+        <div class="showcase-item">
+          <div class="showcase-header">
+            <div>
+              <h3>Command Menu</h3>
+              <p>Press Cmd+K (or Ctrl+K) to open</p>
+            </div>
+            <button class="btn-ghost btn-sm toggle-code" data-target="code-command-menu">
+              <i data-lucide="code"></i> Code
+            </button>
+          </div>
+          <div class="showcase-preview">
+            <button class="btn-primary" onclick="openCommandMenu()">Open Command Menu (Cmd+K)</button>
+            <div class="ds-command-menu-backdrop" id="command-menu-backdrop" onclick="closeCommandMenu()"></div>
+            <div class="ds-command-menu" id="command-menu">
+              <div class="ds-command-menu-input">
+                <i data-lucide="search"></i>
+                <input type="text" placeholder="Type a command or search...">
+              </div>
+              <div class="ds-command-menu-list">
+                <div class="ds-command-menu-group">
+                  <div class="ds-command-menu-label">Actions</div>
+                  <div class="ds-command-menu-item">
+                    <i data-lucide="file" class="ds-command-menu-item-icon"></i>
+                    <div class="ds-command-menu-item-content">
+                      <div class="ds-command-menu-item-title">New File</div>
+                    </div>
+                    <div class="ds-command-menu-item-shortcut">
+                      <kbd>⌘</kbd><kbd>N</kbd>
+                    </div>
+                  </div>
+                  <div class="ds-command-menu-item">
+                    <i data-lucide="folder" class="ds-command-menu-item-icon"></i>
+                    <div class="ds-command-menu-item-content">
+                      <div class="ds-command-menu-item-title">New Folder</div>
+                    </div>
+                    <div class="ds-command-menu-item-shortcut">
+                      <kbd>⌘</kbd><kbd>F</kbd>
+                    </div>
+                  </div>
+                </div>
+                <div class="ds-command-menu-group">
+                  <div class="ds-command-menu-label">Navigation</div>
+                  <div class="ds-command-menu-item">
+                    <i data-lucide="home" class="ds-command-menu-item-icon"></i>
+                    <div class="ds-command-menu-item-content">
+                      <div class="ds-command-menu-item-title">Go to Home</div>
+                    </div>
+                    <div class="ds-command-menu-item-shortcut">
+                      <kbd>⌘</kbd><kbd>H</kbd>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-code" id="code-command-menu" style="display: none;">
+            <div class="code-block">
+              <code>&lt;div class="ds-command-menu"&gt;<br>  &lt;div class="ds-command-menu-input"&gt;<br>    &lt;input type="text" placeholder="Type a command..."&gt;<br>  &lt;/div&gt;<br>  &lt;div class="ds-command-menu-list"&gt;...&lt;/div&gt;<br>&lt;/div&gt;</code>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       <!-- Documentation CTA -->
       <div style="text-align: center; margin: var(--space-20) 0; padding: var(--space-12); background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-2xl); backdrop-filter: blur(10px);">
-        <i class="ph-fill ph-book-open" style="font-size: 48px; color: hsl(var(--primary)); margin-bottom: var(--space-4);"></i>
+        <i data-lucide="book-open" style="font-size: 48px; color: hsl(var(--primary)); margin-bottom: var(--space-4);"></i>
         <h3 style="font-size: var(--font-size-2xl); margin-bottom: var(--space-3);">Need More Details?</h3>
         <p style="color: hsl(var(--foreground) / 0.7); margin-bottom: var(--space-6); font-size: var(--font-size-lg);">
           Check out the complete examples page or read the full documentation
         </p>
         <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-          <a href="example.html"><button class="btn-primary btn-lg">
-            <i class="ph ph-eye" style="margin-right: 8px;"></i>
+          <a href="example.html" class="btn-primary btn-lg">
+            <i data-lucide="eye" style="margin-right: 8px;"></i>
             Full Examples
-          </button></a>
-          <a href="README.md"><button class="btn-secondary btn-lg">
-            <i class="ph ph-book-open" style="margin-right: 8px;"></i>
+          </a>
+          <a href="README.md" class="btn-secondary btn-lg">
+            <i data-lucide="book-open" style="margin-right: 8px;"></i>
             Documentation
-          </button></a>
-          <a href="DESIGN_TOKENS.md"><button class="btn-outline btn-lg">
-            <i class="ph ph-cube" style="margin-right: 8px;"></i>
+          </a>
+          <a href="DESIGN_TOKENS.md" class="btn-outline btn-lg">
+            <i data-lucide="box" style="margin-right: 8px;"></i>
             All Tokens
-          </button></a>
+          </a>
         </div>
       </div>
       
@@ -1766,7 +2831,7 @@
   
   <!-- Mobile Sidebar Toggle -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
-    <i class="ph-bold ph-list" style="font-size: 24px;"></i>
+    <i data-lucide="menu" style="font-size: 24px;"></i>
   </button>
   
   <!-- Custom Cursor Elements -->
@@ -1999,10 +3064,10 @@
         
         if (codeBlock.style.display === 'none') {
           codeBlock.style.display = 'block';
-          this.innerHTML = '<i class="ph ph-code"></i> Hide Code';
+          this.innerHTML = '<i data-lucide="code"></i> Hide Code';
         } else {
           codeBlock.style.display = 'none';
-          this.innerHTML = '<i class="ph ph-code"></i> Code';
+          this.innerHTML = '<i data-lucide="code"></i> Code';
         }
       });
     });
@@ -2016,11 +3081,333 @@
         sliderValue.textContent = e.target.value;
       });
     }
+    
+    // Tab switching
+    function switchTab(button, index) {
+      const tabs = button.parentElement;
+      const panels = tabs.nextElementSibling;
+      
+      // Remove active from all tabs and panels
+      tabs.querySelectorAll('.ds-tab').forEach(t => t.classList.remove('active'));
+      panels.querySelectorAll('.ds-tab-panel').forEach(p => p.classList.remove('active'));
+      
+      // Add active to clicked tab and corresponding panel
+      button.classList.add('active');
+      panels.children[index].classList.add('active');
+    }
+    
+    // Dropdown toggle
+    function toggleDropdown(button) {
+      const dropdown = button.parentElement;
+      const menu = dropdown.querySelector('.ds-dropdown-menu');
+      menu.classList.toggle('show');
+      
+      // Close on outside click
+      document.addEventListener('click', function closeDropdown(e) {
+        if (!dropdown.contains(e.target)) {
+          menu.classList.remove('show');
+          document.removeEventListener('click', closeDropdown);
+        }
+      });
+    }
+    
+    // Accordion toggle
+    function toggleAccordion(button) {
+      const item = button.closest('.ds-accordion-item');
+      const isActive = item.classList.contains('active');
+      
+      // Close all items in the same accordion
+      const accordion = item.parentElement;
+      accordion.querySelectorAll('.ds-accordion-item').forEach(i => {
+        i.classList.remove('active');
+      });
+      
+      // Toggle current item
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    }
+    
+    // Carousel navigation
+    let currentSlide = 0;
+    const totalSlides = 3;
+    
+    function carouselNext() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateCarousel();
+    }
+    
+    function carouselPrev() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateCarousel();
+    }
+    
+    function carouselGoTo(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+    
+    function updateCarousel() {
+      const track = document.getElementById('demo-carousel-track');
+      const indicators = document.querySelectorAll('.ds-carousel-indicator');
+      if (track) {
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+      indicators.forEach((ind, i) => {
+        ind.classList.toggle('active', i === currentSlide);
+      });
+    }
+    
+    // Code copy
+    function copyCode(button) {
+      const snippet = button.closest('.ds-code-snippet');
+      const code = snippet.querySelector('code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+        setTimeout(() => {
+          button.textContent = 'Copy';
+          button.classList.remove('copied');
+        }, 2000);
+      });
+    }
+    
+    // Multi-select toggle
+    function toggleMultiSelect(input) {
+      const multiSelect = input.closest('.ds-multi-select');
+      const menu = multiSelect.querySelector('.ds-multi-select-menu');
+      menu.classList.toggle('show');
+    }
+    
+    // Date Picker — dynamic calendar
+    const dpState = { year: new Date().getFullYear(), month: new Date().getMonth() };
+    const MONTH_NAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+    function renderDatePicker() {
+      const label = document.getElementById('dp-month-year');
+      const grid = document.getElementById('dp-days');
+      if (!label || !grid) return;
+
+      label.textContent = `${MONTH_NAMES[dpState.month]} ${dpState.year}`;
+      grid.innerHTML = '';
+
+      const firstDay = new Date(dpState.year, dpState.month, 1).getDay();
+      const daysInMonth = new Date(dpState.year, dpState.month + 1, 0).getDate();
+      const daysInPrev = new Date(dpState.year, dpState.month, 0).getDate();
+      const today = new Date();
+
+      for (let i = firstDay - 1; i >= 0; i--) {
+        const btn = document.createElement('button');
+        btn.className = 'ds-date-picker-day other-month';
+        btn.textContent = daysInPrev - i;
+        grid.appendChild(btn);
+      }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const btn = document.createElement('button');
+        btn.className = 'ds-date-picker-day';
+        if (d === today.getDate() && dpState.month === today.getMonth() && dpState.year === today.getFullYear()) {
+          btn.classList.add('today');
+        }
+        btn.textContent = d;
+        btn.addEventListener('click', () => selectDate(d));
+        grid.appendChild(btn);
+      }
+      const totalCells = firstDay + daysInMonth;
+      const remaining = (7 - (totalCells % 7)) % 7;
+      for (let i = 1; i <= remaining; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'ds-date-picker-day other-month';
+        btn.textContent = i;
+        grid.appendChild(btn);
+      }
+    }
+
+    function navigateMonth(dir) {
+      dpState.month += dir;
+      if (dpState.month > 11) { dpState.month = 0; dpState.year++; }
+      if (dpState.month < 0) { dpState.month = 11; dpState.year--; }
+      renderDatePicker();
+    }
+
+    function selectDate(day) {
+      const wrapper = document.getElementById('demo-date-picker-wrapper');
+      const input = wrapper?.querySelector('.ds-date-picker-input');
+      const calendar = wrapper?.querySelector('.ds-date-picker-calendar');
+      if (input) {
+        const m = String(dpState.month + 1).padStart(2, '0');
+        const d = String(day).padStart(2, '0');
+        input.value = `${dpState.year}-${m}-${d}`;
+      }
+      if (calendar) calendar.classList.remove('show');
+      wrapper?.querySelectorAll('.ds-date-picker-day').forEach(b => b.classList.remove('selected'));
+    }
+
+    function toggleDatePicker(input) {
+      const datePicker = input.closest('.ds-date-picker');
+      const calendar = datePicker.querySelector('.ds-date-picker-calendar');
+      calendar.classList.toggle('show');
+    }
+
+    renderDatePicker();
+    
+    // Command menu
+    function openCommandMenu() {
+      const menu = document.getElementById('command-menu');
+      const backdrop = document.getElementById('command-menu-backdrop');
+      if (menu && backdrop) {
+        menu.classList.add('show');
+        backdrop.classList.add('show');
+        menu.querySelector('input').focus();
+      }
+    }
+    
+    function closeCommandMenu() {
+      const menu = document.getElementById('command-menu');
+      const backdrop = document.getElementById('command-menu-backdrop');
+      if (menu && backdrop) {
+        menu.classList.remove('show');
+        backdrop.classList.remove('show');
+      }
+    }
+    
+    // Keyboard shortcut for command menu (Cmd+K / Ctrl+K)
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        const menu = document.getElementById('command-menu');
+        if (menu && menu.classList.contains('show')) {
+          closeCommandMenu();
+        } else {
+          openCommandMenu();
+        }
+      }
+      
+      // Close on Escape
+      if (e.key === 'Escape') {
+        closeCommandMenu();
+        // Also close any open drawers
+        document.querySelectorAll('.ds-drawer.active').forEach(drawer => {
+          const overlay = drawer.previousElementSibling;
+          closeDrawer(drawer.id, overlay?.id);
+        });
+      }
+    });
+    
+    // Drawer Functions — mirrors Modal API
+    function openDrawer(drawerId, overlayId) {
+      const drawer = document.getElementById(drawerId);
+      const overlay = document.getElementById(overlayId);
+      if (!drawer) return;
+      if (overlay) overlay.style.display = 'block';
+      drawer.style.display = 'flex';
+      requestAnimationFrame(() => {
+        if (overlay) overlay.classList.add('active');
+        drawer.classList.add('active');
+      });
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer(drawerId, overlayId) {
+      const drawer = document.getElementById(drawerId);
+      const overlay = document.getElementById(overlayId);
+      if (!drawer) return;
+      drawer.classList.remove('active');
+      if (overlay) overlay.classList.remove('active');
+      setTimeout(() => {
+        drawer.style.display = 'none';
+        if (overlay) overlay.style.display = 'none';
+      }, 300);
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+
+    // Backdrop click closes drawer
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('ds-drawer-overlay')) {
+        const overlay = e.target;
+        const drawer = overlay.nextElementSibling;
+        if (drawer && drawer.classList.contains('ds-drawer')) {
+          closeDrawer(drawer.id, overlay.id);
+        }
+      }
+    });
+
+    // Modal Functions with Body Scroll Lock
+    function openModal(modalId, overlayId) {
+      const modal = document.getElementById(modalId);
+      const overlay = overlayId ? document.getElementById(overlayId) : modal?.previousElementSibling?.classList.contains('ds-modal-overlay') 
+        ? modal.previousElementSibling 
+        : null;
+      
+      if (modal) {
+        modal.style.display = 'flex';
+        if (overlay) {
+          overlay.style.display = 'block';
+        }
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    
+    function closeModal(modalId, overlayId) {
+      const modal = document.getElementById(modalId);
+      const overlay = overlayId ? document.getElementById(overlayId) : modal?.previousElementSibling?.classList.contains('ds-modal-overlay') 
+        ? modal.previousElementSibling 
+        : null;
+      
+      if (modal) {
+        modal.style.display = 'none';
+        if (overlay) {
+          overlay.style.display = 'none';
+        }
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      }
+    }
+    
+    // Auto-close modal when clicking overlay
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('ds-modal-overlay')) {
+        const overlay = e.target;
+        const modal = overlay.nextElementSibling?.classList.contains('ds-modal') 
+          ? overlay.nextElementSibling 
+          : overlay.parentElement?.querySelector('.ds-modal');
+        if (modal) {
+          closeModal(modal.id, overlay.id);
+        }
+      }
+      
+      // Close modal when clicking close button
+      if (e.target.classList.contains('ds-modal-close') || e.target.closest('.ds-modal-close')) {
+        const closeBtn = e.target.classList.contains('ds-modal-close') ? e.target : e.target.closest('.ds-modal-close');
+        const modal = closeBtn.closest('.ds-modal');
+        if (modal) {
+          const overlay = modal.previousElementSibling?.classList.contains('ds-modal-overlay') 
+            ? modal.previousElementSibling 
+            : modal.parentElement?.querySelector('.ds-modal-overlay');
+          closeModal(modal.id, overlay?.id);
+        }
+      }
+    });
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const openModal = document.querySelector('.ds-modal[style*="display: flex"], .ds-modal[style*="display:block"]');
+        if (openModal) {
+          const overlay = openModal.previousElementSibling?.classList.contains('ds-modal-overlay') 
+            ? openModal.previousElementSibling 
+            : openModal.parentElement?.querySelector('.ds-modal-overlay');
+          closeModal(openModal.id, overlay?.id);
+        }
+      }
+    });
   </script>
   
   <!-- Demo Modal -->
-  <div id="compModalOverlay" class="ds-modal-overlay" onclick="this.style.display='none'; document.getElementById('compModal').style.display='none';" style="display: none; position: fixed !important; z-index: var(--r-z-modal-backdrop, 3000) !important;"></div>
-  <div id="compModal" class="ds-modal" style="display: none; position: fixed !important; z-index: var(--r-z-modal, 3001) !important;">
+  <div id="compModalOverlay" class="ds-modal-overlay" style="display: none; position: fixed !important; z-index: var(--r-z-modal-backdrop, 9998) !important;"></div>
+  <div id="compModal" class="ds-modal" style="display: none; position: fixed !important; z-index: var(--r-z-modal, 9999) !important;">
     <div class="ds-modal-content ds-modal-scroll">
       <div class="ds-modal-header ds-modal-header-left">
         <h3 class="ds-modal-title">Modal Example</h3>
@@ -2030,31 +3417,36 @@
         <p>Modal content with beautiful backdrop blur and smooth animations. The glass effect creates depth while maintaining readability.</p>
       </div>
       <div class="ds-modal-footer ds-modal-footer-row">
-        <button class="btn-secondary btn-sm" onclick="document.getElementById('compModal').style.display='none'; document.getElementById('compModalOverlay').style.display='none';">Cancel</button>
-        <button class="btn-primary btn-sm" onclick="document.getElementById('compModal').style.display='none'; document.getElementById('compModalOverlay').style.display='none';">Confirm</button>
+        <button class="btn-secondary btn-sm" onclick="closeModal('compModal', 'compModalOverlay');">Cancel</button>
+        <button class="btn-primary btn-sm" onclick="closeModal('compModal', 'compModalOverlay');">Confirm</button>
       </div>
     </div>
-    <button class="ds-modal-close" onclick="document.getElementById('compModal').style.display='none'; document.getElementById('compModalOverlay').style.display='none';">✕</button>
+    <button class="ds-modal-close" onclick="closeModal('compModal', 'compModalOverlay');">✕</button>
   </div>
   
   <!-- Demo Drawer -->
-  <div id="compDrawerOverlay" class="ds-drawer-overlay" onclick="this.style.display='none'; document.getElementById('compDrawer').style.display='none';" style="display: none;"></div>
+  <div id="compDrawerOverlay" class="ds-drawer-overlay" style="display: none;"></div>
   <div id="compDrawer" class="ds-drawer" style="display: none;">
-    <div class="ds-drawer-handle" onclick="document.getElementById('compDrawer').style.display='none'; document.getElementById('compDrawerOverlay').style.display='none';"></div>
+    <div class="ds-drawer-handle"></div>
     <div class="ds-drawer-header">
       <h3 class="ds-drawer-title">Drawer Example</h3>
-      <button class="ds-drawer-close" onclick="document.getElementById('compDrawer').style.display='none'; document.getElementById('compDrawerOverlay').style.display='none';">✕</button>
+      <button class="ds-drawer-close" onclick="closeDrawer('compDrawer', 'compDrawerOverlay')">✕</button>
     </div>
     <div class="ds-drawer-content ds-scrollbar">
       <p>Bottom sheet drawer with smooth slide-in animation. Perfect for mobile-first experiences and quick actions.</p>
-      <p style="margin-top: var(--space-4); color: hsl(var(--foreground) / 0.7);">Try swiping down on the handle (visual feedback only in this demo).</p>
+      <p style="margin-top: var(--space-4); color: hsl(var(--foreground) / 0.7);">Press Escape or click the backdrop to dismiss.</p>
     </div>
     <div class="ds-drawer-footer">
-      <button class="btn-secondary btn-sm" onclick="document.getElementById('compDrawer').style.display='none'; document.getElementById('compDrawerOverlay').style.display='none';">Cancel</button>
-      <button class="btn-primary btn-sm" onclick="document.getElementById('compDrawer').style.display='none'; document.getElementById('compDrawerOverlay').style.display='none';">Save</button>
+      <button class="btn-secondary btn-sm" onclick="closeDrawer('compDrawer', 'compDrawerOverlay')">Cancel</button>
+      <button class="btn-primary btn-sm" onclick="closeDrawer('compDrawer', 'compDrawerOverlay')">Save</button>
     </div>
   </div>
-  
+
+  <script>
+    lucide.createIcons({ attrs: { 'stroke-width': 1 } });
+    const _obs = new MutationObserver(() => lucide.createIcons({ attrs: { 'stroke-width': 1 } }));
+    _obs.observe(document.body, { childList: true, subtree: true });
+  </script>
 </body>
 </html>
 

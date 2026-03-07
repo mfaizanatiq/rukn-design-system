@@ -1,38 +1,55 @@
-# 🏛️ Rukn Design System
+# Rukn Design System
 
-> **Rukn** (Arabic: رُكن, Urdu: رکن, meaning "pillar" or "foundation") — A modern, framework-agnostic CSS design system built with glass morphism, Web Components, and smooth motion principles.
+**The first modern design system built for Arabic, Urdu, and multilingual applications.**
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/mfaizanatiq/RuknDesignSystem)
+> **Rukn** (رُكن / رکن) means "pillar" in Arabic and Urdu — the structural foundation your multilingual app needs.
+
+[![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/mfaizanatiq/RuknDesignSystem)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)]()
 
-## ✨ Features
+Every major design system assumes left-to-right English. Arabic and Urdu developers spend weeks wrestling components into RTL layout, fighting font fallbacks, and patching spacing that was never designed for Nastaliq script. **Rukn starts from the opposite end.**
 
-- ⚡ **2-Minute Setup** — Just copy 2 CSS files, no build tools or dependencies needed
-- 🌓 **Beautiful Dark Theme** — Optimized glass morphism effects (default theme)
-- 🎨 **150+ Design Tokens** — Comprehensive W3C-compliant CSS variables (`--r-` prefix)
-- 🪟 **Glass Morphism** — Stunning frosted glass effects with animated light refraction
-- 📱 **Rukn Motion Design** — Smooth iOS-inspired easing curves and spring animations
-- 🧩 **Web Components** — Optional vanilla JS components, zero dependencies
-- 🎯 **Framework Agnostic** — Works with React, Vue, Angular, Svelte, or plain HTML
-- 🌓 **Light Theme Available** — Toggle with a single class change
-- 📐 **Complete Layout System** — Responsive grids, flexbox utilities, and containers
-- ♿ **Accessible** — WCAG 2.1 AA compliant with `prefers-reduced-motion` support
-- 🚀 **Lightweight** — ~30KB gzipped (CSS + optional JS)
-- 🌍 **Multi-language Support** — Built-in Arabic and Urdu support with RTL layout
-- 🎨 **Easy to Customize** — Override any color or token with CSS variables
+## What makes Rukn different
 
-## 🚀 Quick Start
+- **RTL-first** — `dir="rtl"` works out of the box, not as an afterthought. 87+ RTL CSS rules ship by default.
+- **Arabic typography tokens** — `--r-font-arabic` pre-wired to IBM Plex Sans Arabic, optimized for UI.
+- **Urdu Nastaliq support** — Noto Nastaliq Urdu with dedicated line-height tokens (`--r-line-height-urdu-base: 1.75`) because Nastaliq script demands more vertical space.
+- **Language-aware Web Components** — The navbar, alerts, and buttons respond to language changes with built-in `ar`/`ur`/`en` translations.
+- **Glass morphism aesthetic** — Frosted glass effects with iOS-inspired motion ("Rukn Motion").
+- **Zero dependencies** — Pure CSS + optional vanilla JS Web Components. ~30KB gzipped total.
+- **150+ design tokens** — W3C-compliant `--r-` prefix. Colors, spacing, typography, shadows, motion.
+- **Dark & Light themes** — Single class toggle. Tokens adapt automatically.
+- **Accessible** — WCAG 2.1 AA, `prefers-reduced-motion` support, ARIA labels in all components.
 
-### ⚡ Get Started in 2 Minutes
+## Quick Start
 
-**Step 1:** Download the design system
-```bash
-git clone https://github.com/mfaizanatiq/RuknDesignSystem.git
+### For Arabic / RTL applications
+
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تطبيقي مع ركن</title>
+  <link rel="stylesheet" href="styles/design-system-variables.css">
+  <link rel="stylesheet" href="styles/design-system.css">
+</head>
+<body>
+  <div class="ds-container" style="padding: 2rem;">
+    <h1>مرحبا بركن</h1>
+    <button class="btn-primary">ابدأ الآن</button>
+    <div class="ds-card" style="margin-top: 1rem; padding: 1.5rem;">
+      <h3>بطاقة زجاجية</h3>
+      <p>مع تأثيرات الزجاج المذهلة</p>
+    </div>
+  </div>
+</body>
+</html>
 ```
 
-**Step 2:** Copy the `styles/` folder to your project
-
-**Step 3:** Use the [starter template](./starter-template.html) or add to your HTML:
+### For English / LTR applications
 
 ```html
 <!DOCTYPE html>
@@ -41,22 +58,15 @@ git clone https://github.com/mfaizanatiq/RuknDesignSystem.git
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My App with Rukn</title>
-  
-  <!-- Rukn Design System CSS -->
   <link rel="stylesheet" href="styles/design-system-variables.css">
   <link rel="stylesheet" href="styles/design-system.css">
-  
-  <!-- Optional: Phosphor Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
 </head>
 <body>
-  <!-- Start building! -->
   <div class="ds-container" style="padding: 2rem;">
-    <h1>Hello Rukn! 🏛️</h1>
+    <h1>Hello Rukn</h1>
     <button class="btn-primary">Get Started</button>
-    
-    <div class="ds-card" style="margin-top: 2rem; padding: 1.5rem;">
-      <h3>Beautiful Glass Card</h3>
+    <div class="ds-card" style="margin-top: 1rem; padding: 1.5rem;">
+      <h3>Glass Card</h3>
       <p>With stunning glass morphism effects.</p>
     </div>
   </div>
@@ -64,297 +74,161 @@ git clone https://github.com/mfaizanatiq/RuknDesignSystem.git
 </html>
 ```
 
-**That's it!** 🎉
+### Install via npm
 
-### 📖 Complete Integration Guide
-
-- **[📘 Integration Guide](./INTEGRATION_GUIDE.md)** - Complete setup guide for all frameworks
-- **[🌓 Theme Guide](./THEME_GUIDE.md)** - How to use dark/light themes
-- **[🚀 Quick Start](./QUICK_START.md)** - 60-second setup
-- **[📝 Starter Template](./starter-template.html)** - Copy-paste ready template
-
-### 🌓 Theme System
-
-**Dark theme is default** (optimized for glass morphism)
-
-To enable light theme, remove the `dark` class:
-```html
-<!-- Dark theme (default) -->
-<html lang="en" class="dark">
-
-<!-- Light theme -->
-<html lang="en">
+```bash
+npm install @ruknds/core
 ```
 
-**Toggle with JavaScript:**
-```javascript
-document.documentElement.classList.toggle('dark');
+```js
+// Import in your bundler
+import '@ruknds/core/styles/design-system-variables.css';
+import '@ruknds/core/styles/design-system.css';
 ```
 
-See the [Theme Guide](./THEME_GUIDE.md) for advanced theming options.
+### Or copy the files
 
-## 📚 Documentation
+```bash
+git clone https://github.com/mfaizanatiq/RuknDesignSystem.git
+# Copy the styles/ folder to your project — that's it
+```
 
-### 🚀 Getting Started (Pick One)
-- **[⚡ GET STARTED](./GET_STARTED.md)** — **Simplest guide** - 3 steps, you're done!
-- **[📄 Quick Reference](./QUICK_REFERENCE.md)** — **Print this!** One-page cheat sheet
-- **[📦 Files to Copy](./FILES_TO_COPY.md)** — What files you need (just 2!)
-- **[📘 Integration Guide](./INTEGRATION_GUIDE.md)** — Complete guide for all frameworks
-- **[🚀 Quick Start](./QUICK_START.md)** — 60-second overview
+## Components
 
-### 📝 Templates & Examples
-- **[📄 Minimal Example](./minimal-example.html)** — Absolute minimum (2 CSS files)
-- **[📋 Starter Template](./starter-template.html)** — Full-featured starter
-- **[🧩 Components Showcase](./components.html)** — Live examples of all components
-
-### 🎨 Customization
-- **[🌓 Theme Guide](./THEME_GUIDE.md)** — Dark/Light themes & customization
-- **[🎨 Design Tokens](./foundation.html)** — All CSS variables with live color picker
-
-### 🔧 Advanced
-- **[🌐 Web Components](./components/README.md)** — Optional vanilla JS components
-- **[📁 All Documentation](./docs/)** — Complete docs directory
-
-## 🎨 Component Showcase
-
-Rukn provides **ready-to-use CSS classes** - no JavaScript required!
-
-### Buttons & Forms
+Rukn provides **30+ component families** as CSS classes. No JavaScript required.
 
 ```html
-<!-- Buttons with Glass Morphism -->
+<!-- Buttons -->
 <button class="btn-primary">Primary Action</button>
 <button class="btn-secondary">Secondary</button>
 <button class="btn-outline">Outline</button>
 
+<!-- Cards with Glass Effect -->
+<div class="ds-card">
+  <h3>Card Title</h3>
+  <p>Content with glass morphism</p>
+</div>
+
 <!-- Form Inputs -->
 <input type="text" class="ds-input" placeholder="Enter text">
-<textarea class="ds-textarea" placeholder="Enter message"></textarea>
-
-<!-- Form Controls -->
-<label class="ds-checkbox-wrapper">
-  <input type="checkbox" class="ds-checkbox">
-  <span>Accept terms</span>
-</label>
-
-<label class="ds-switch-wrapper">
-  <input type="checkbox" class="ds-switch">
-  <span>Enable feature</span>
-</label>
-```
-
-### Cards & Badges
-
-```html
-<!-- Card with Glass Effect -->
-<div class="ds-card">
-  <h3>Beautiful Card</h3>
-  <p>With stunning glass morphism effects</p>
-</div>
+<textarea class="ds-textarea" placeholder="Message"></textarea>
 
 <!-- Badges -->
 <span class="ds-badge ds-badge-primary">New</span>
 <span class="ds-badge ds-badge-success">Active</span>
 ```
 
-**[See all 50+ components →](./components.html)**
+**[See all components](./components.html)** | **[Starter template](./starter-template.html)**
 
-### Web Components (Vanilla JavaScript)
+### Web Components (optional)
+
+Layer in vanilla JS Web Components for interactive behavior:
 
 ```html
-<!-- Include Web Components -->
 <script src="components/rukn-navbar.js" defer></script>
 <script src="components/rukn-ui.js" type="module"></script>
 
-<!-- Use Custom Elements -->
+<!-- Navbar with built-in language switcher (en/ar/ur) -->
 <rukn-navbar current="home"></rukn-navbar>
 
+<!-- Interactive components -->
 <rukn-button variant="primary">Click Me</rukn-button>
 <rukn-card>Content here</rukn-card>
-<rukn-alert variant="info">This is an alert</rukn-alert>
+<rukn-alert variant="info" title="Note">This is an alert</rukn-alert>
 ```
 
-## 🎯 Design Tokens
+## Design Tokens
 
-Rukn uses W3C-compliant design tokens with the `--r-` prefix:
+150+ W3C-compliant CSS custom properties with `--r-` prefix:
 
 ```css
-/* Typography */
+/* Typography — including Arabic and Urdu */
 --r-font-heading: 'Space Grotesk', sans-serif;
 --r-font-body: 'Space Grotesk', sans-serif;
 --r-font-arabic: 'IBM Plex Sans Arabic', sans-serif;
 --r-font-urdu: 'Noto Nastaliq Urdu', serif;
 
-/* Colors */
---primary: 210 100% 50%;
---accent: 280 100% 60%;
---background: 0 0% 3%;
---foreground: 0 0% 98%;
+/* Urdu-specific line heights (Nastaliq needs more space) */
+--r-line-height-urdu-base: 1.75;
+--r-line-height-urdu-heading: 1.5;
 
-/* Spacing */
---r-space-1: 0.25rem;  /* 4px */
---r-space-2: 0.5rem;   /* 8px */
---r-space-4: 1rem;     /* 16px */
-
-/* Rukn Motion */
+/* Rukn Motion — iOS-inspired easing */
 --r-ease-ios-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
 --r-spring-smooth: cubic-bezier(0.5, 1.25, 0.75, 1);
+--r-spring-bouncy: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+/* Spacing (4px grid) */
+--r-space-1: 0.25rem;   /* 4px */
+--r-space-4: 1rem;      /* 16px */
+--r-space-8: 2rem;      /* 32px */
 ```
 
-**Full token reference:** See [foundation.html](./foundation.html) or [docs/DESIGN_TOKENS.md](./docs/DESIGN_TOKENS.md)
+**Full token reference:** [foundation.html](./foundation.html) | [docs/DESIGN_TOKENS.md](./docs/DESIGN_TOKENS.md)
 
-## 🌐 Browser Support
+## Theme System
 
-- ✅ Chrome/Edge 88+
-- ✅ Firefox 85+
-- ✅ Safari 14+
-- ✅ iOS Safari 14+
-- ✅ Android Chrome 88+
+Dark theme is default (optimized for glass morphism). Toggle with a single class:
 
-## 🗺️ Project Structure
+```html
+<!-- Dark theme (default) -->
+<html lang="ar" dir="rtl" class="dark">
 
-```
-RuknDS/
-├── index.html                      # 🏠 Landing page
-├── foundation.html                 # 🎨 Design tokens & layouts
-├── components.html                 # 🧩 UI components showcase
-├── example.html                    # 📋 Component examples
-├── styles/                         # 🎨 Stylesheets
-│   ├── design-system-variables.css # Design tokens (150+)
-│   └── design-system.css           # Component styles
-├── components/                     # 🧩 Web Components
-│   ├── rukn-navbar.js              # Navigation component
-│   ├── rukn-sidebar.js             # Sidebar component
-│   ├── rukn-footer.js              # Footer component
-│   ├── rukn-ui.js                  # All UI components
-│   └── README.md                   # Components guide
-├── scripts/                         # ⚙️ JavaScript helpers
-│   ├── component-helpers.js        # Component utilities
-│   └── modal-drawer-helpers.js     # Modal/drawer helpers
-├── docs/                           # 📚 Documentation
-│   ├── DESIGN_TOKENS.md            # Token reference
-│   ├── INTEGRATION.md              # Integration guide
-│   ├── RUKN_DESIGN_LANGUAGE.md     # Design guidelines
-│   └── ...                         # More guides
-├── package.json                    # 📦 Package config
-├── types.d.ts                      # 📘 TypeScript definitions
-├── LICENSE                         # ⚖️ MIT License
-├── README.md                       # 📖 This file
-├── QUICK_START.md                  # ⚡ Quick setup guide
-├── CHANGELOG.md                    # 📝 Version history
-└── netlify.toml                    # ⚙️ Netlify config
+<!-- Light theme -->
+<html lang="ar" dir="rtl">
 ```
 
-## 🎨 Why Rukn?
+```javascript
+// Toggle programmatically
+document.documentElement.classList.toggle('dark');
+```
 
-### Open Source First
-- 🌍 **Community-Driven** — Built for and by developers
-- 🆓 **Forever Free** — MIT licensed, use anywhere
-- 🤝 **Collaborative** — We welcome contributions
-- 📖 **Transparent** — All decisions documented publicly
+## RTL & Multilingual Support
 
-### Modern Design Principles
-- ✨ **Glass Morphism** — Elegant frosted glass effects
-- 🎬 **Rukn Motion** — Smooth, natural animations
-- 📱 **Mobile-First** — Responsive by default
-- ♿ **Accessible** — WCAG 2.1 AA compliant
-- 🌍 **Multi-language** — Arabic and Urdu support with RTL
+Rukn's RTL support is built into the foundation, not bolted on:
 
-### Developer Experience
-- ⚡ **Zero Config** — Just link the CSS
-- 📦 **Lightweight** — ~70KB gzipped (CSS + JS)
-- 🔧 **Customizable** — Override any token
-- 📚 **Well Documented** — Clear examples and guides
-- 🧩 **Web Components** — Native browser standard, no framework needed
+- **Automatic font switching** — `:lang(ar)` and `:lang(ur)` CSS selectors apply the correct font family
+- **RTL layout rules** — Flexbox, grid, and spacing adapt to `dir="rtl"` automatically
+- **Language-aware Web Components** — `<rukn-navbar>` ships with full English, Arabic, and Urdu translations
+- **Runtime language switching** — Dispatch `rukn:languagechange` event to update all components at once
 
-## 🛣️ Roadmap
+See [docs/RTL_GUIDE.md](./docs/RTL_GUIDE.md) for the complete multilingual development guide.
 
-### ✅ Completed (v2.0.0)
-- Glass morphism design system
-- Rukn motion principles
-- 150+ design tokens
-- Responsive layout system
-- Web Components (navbar, sidebar, footer, UI components)
-- Multi-language support (Arabic, Urdu, RTL)
-- Icon placeholders with refraction
-- Modal elevation system
-- Full navbar variations
+## Browser Support
 
-### 🚧 In Progress
-- Additional form components
-- Data visualization components
-- Advanced animation utilities
-- NPM package publishing
+- Chrome/Edge 88+
+- Firefox 85+
+- Safari 14+
+- iOS Safari 14+
+- Android Chrome 88+
 
-### 📋 Planned
-- Additional color themes
-- More component variants
-- Advanced layout patterns
-- Accessibility enhancements
-- Figma design kit
+## Documentation
 
-### 💡 Community Requests
-- More icon sets
-- Custom color palette generator
-- Figma design kit
-- Storybook integration
+- **[Integration Guide](./INTEGRATION_GUIDE.md)** — Setup for React, Vue, Angular, Svelte, Next.js, Vite
+- **[Web Components Reference](./WEB_COMPONENTS_COMPLETE.md)** — All custom elements and their APIs
+- **[Design Tokens](./docs/DESIGN_TOKENS.md)** — Complete token reference
+- **[RTL Guide](./docs/RTL_GUIDE.md)** — Building multilingual apps with Rukn
+- **[Component API](./docs/COMPONENT_API.md)** — All component classes and attributes
 
-## 📝 Changelog
+## Contributing
 
-See [CHANGELOG.md](./CHANGELOG.md) for detailed version history.
+We welcome contributions, especially translations and RTL improvements. See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions, RTL testing guidelines, and how to add translations.
 
-### Recent Highlights
-
-**v2.0.0 (2025-11-05)**
-- ✨ Web Components revolution (12 components)
-- 🌍 Multi-language support (Arabic, Urdu, RTL)
-- 🎨 Primary color picker
-- ♿ Improved accessibility
-- 🐛 Fixed z-index and layout issues
-
-**v1.3.1 (2024-11-05)**
-- ✨ Added glass refraction icon placeholders
-- 🎨 Implemented modal elevation system
-- 🐛 Fixed cursor z-index above modals
-- 📱 Improved mobile navigation
-
-## 👨‍💻 Author
+## Author
 
 **M Faizan Atiq**
-- 💼 [LinkedIn](https://www.linkedin.com/in/mfaizanatiq/)
-- 🐙 [GitHub](https://github.com/mfaizanatiq)
-- 📧 Contact: mfaizanatiq@gmail.com
+- [LinkedIn](https://www.linkedin.com/in/mfaizanatiq/)
+- [GitHub](https://github.com/mfaizanatiq)
 
-## 🤝 Contributing
+## License
 
-We welcome contributions! This is a community-driven project.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-**Repository:** https://github.com/mfaizanatiq/RuknDesignSystem
-
-## 📄 License
-
-MIT License — see [LICENSE](./LICENSE) for details.
-
-**TL;DR:** Use it anywhere, modify it freely, just keep the license notice.
-
-## 🙏 Acknowledgments
-
-- Inspired by Apple's Human Interface Guidelines
-- Glass morphism design trends
-- The amazing open source community
+MIT License — see [LICENSE](./LICENSE) for details. Use it anywhere, modify it freely.
 
 ---
 
 <div align="center">
 
-**Built with ❤️ for the open source community**
+**Built on the pillar of language.**
 
-[GitHub Repository](https://github.com/mfaizanatiq/RuknDesignSystem) • [Documentation](./QUICK_START.md) • [Report Issues](https://github.com/mfaizanatiq/RuknDesignSystem/issues)
+[GitHub](https://github.com/mfaizanatiq/RuknDesignSystem) | [Live Demo](https://rukn.design) | [Report Issues](https://github.com/mfaizanatiq/RuknDesignSystem/issues)
 
 </div>

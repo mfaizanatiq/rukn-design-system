@@ -10,9 +10,10 @@
   <link rel="stylesheet" href="styles/design-system.css">
   
   <!-- Optional: Phosphor Icons for beautiful icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   
   <style>
+    .lucide { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; }
     /* Your custom styles here */
     body {
       min-height: 100vh;
@@ -78,11 +79,11 @@
         
         <div class="button-group">
           <button class="btn-primary btn-lg">
-            <i class="ph ph-rocket-launch"></i>
+            <i data-lucide="rocket"></i>
             Get Started
           </button>
           <button class="btn-outline btn-lg">
-            <i class="ph ph-github-logo"></i>
+            <i data-lucide="github"></i>
             View on GitHub
           </button>
         </div>
@@ -206,8 +207,8 @@
   
   <!-- Theme Toggle Button (Fixed Bottom Right) -->
   <button class="theme-toggle btn-outline" onclick="toggleTheme()" title="Toggle theme">
-    <i class="ph ph-moon theme-icon-dark" style="display: none;"></i>
-    <i class="ph ph-sun theme-icon-light"></i>
+    <i data-lucide="moon" class="theme-icon-dark" style="display: none;"></i>
+    <i data-lucide="sun" class="theme-icon-light"></i>
   </button>
   
   <!-- Theme Toggle Script -->
@@ -278,6 +279,7 @@
     });
   </script>
   
+<script>lucide.createIcons({attrs:{'stroke-width':1}});const _obs=new MutationObserver(()=>lucide.createIcons({attrs:{'stroke-width':1}}));_obs.observe(document.body,{childList:true,subtree:true});</script>
 </body>
 </html>
 

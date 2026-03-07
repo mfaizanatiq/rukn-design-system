@@ -3,31 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO -->
-  <title>Rukn Design System - رُكن | Modern Glass Morphism CSS Framework</title>
-  <meta name="description" content="Rukn (رُكن) - Built on the pillars of great design. Framework-agnostic CSS design system with glass morphism, Rukn motion, and 150+ tokens.">
-  <meta name="keywords" content="rukn, design system, glass morphism, Rukn motion, CSS framework, design tokens">
-  
-  <!-- Favicon -->
+
+  <title>Rukn Design System — RTL-First Design System for Arabic, Urdu & Multilingual Apps</title>
+  <meta name="description" content="Rukn (رُكن) — The first modern design system built for Arabic, Urdu, and multilingual applications. RTL-first CSS, built-in i18n Web Components, 150+ design tokens, glass morphism. Open source forever.">
+  <meta name="keywords" content="rukn, design system, rtl, arabic, urdu, right-to-left, multilingual, i18n, bidi, nastaliq, arabic-typography, glass morphism, CSS framework, web components, design tokens, open source">
+
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
-  
-  <!-- Styles -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/design-system-variables.css">
   <link rel="stylesheet" href="styles/design-system.css">
-  
-  <!-- Phosphor Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
-  
-  <!-- Rukn Web Components (Vanilla JS) -->
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
   <script src="components/rukn-navbar.js" defer></script>
   <script src="components/rukn-footer.js" defer></script>
   <script src="components/rukn-ui.js" type="module"></script>
-  
-  <!-- Structured Data for SEO -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -35,1278 +29,974 @@
     "name": "Rukn Design System",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
-    "description": "Modern Web Component library with glass morphism and Rukn Motion. 100% Vanilla JavaScript, zero dependencies, works in any framework.",
+    "description": "The first modern design system built for Arabic, Urdu, and multilingual applications. RTL-first CSS, built-in i18n Web Components, glass morphism.",
     "url": "https://rukn.design",
     "license": "https://opensource.org/licenses/MIT",
-    "author": {
-      "@type": "Person",
-      "name": "M Faizan Atiq",
-      "url": "https://github.com/mfaizanatiq"
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "softwareVersion": "2.0.0",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "ratingCount": "1"
-    }
+    "author": { "@type": "Person", "name": "M Faizan Atiq", "url": "https://github.com/mfaizanatiq" },
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "softwareVersion": "2.2.0"
   }
   </script>
-  
-  <!-- Noscript Fallback for SEO -->
+
   <noscript>
     <style>
       rukn-navbar, rukn-footer { display: none; }
       .noscript-nav { display: block !important; }
     </style>
   </noscript>
-  
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
+    .lucide { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; }
+
+    /* =========================================================
+       RESET & BASE
+       ========================================================= */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
       background: hsl(var(--background));
       color: hsl(var(--foreground));
       overflow-x: hidden;
-      cursor: none;
-      position: relative;
+      font-family: var(--r-font-body);
     }
-    
-    /* Ethereal Background - Ambient Light Refraction */
-    body::before {
-      content: '';
-      position: fixed;
-      top: -30%;
-      left: -30%;
-      width: 160%;
-      height: 160%;
-      background: 
-        radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 70% 40%, hsl(var(--accent) / 0.10) 0%, transparent 45%),
-        radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.08) 0%, transparent 35%),
-        radial-gradient(circle at 85% 75%, hsl(var(--accent) / 0.09) 0%, transparent 38%);
-      animation: ambientShift 45s ease-in-out infinite;
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(80px);
-      opacity: 0.7;
-    }
-    
-    /* Light Mode - Softer, lighter gradients */
-    html:not(.dark) body::before {
-      background: 
-        radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 70% 40%, hsl(var(--accent) / 0.06) 0%, transparent 45%),
-        radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.05) 0%, transparent 35%),
-        radial-gradient(circle at 85% 75%, hsl(var(--accent) / 0.06) 0%, transparent 38%);
-      opacity: 0.5;
-      filter: blur(100px);
-    }
-    
+
+    /* =========================================================
+       NOISE TEXTURE OVERLAY
+       ========================================================= */
     body::after {
       content: '';
       position: fixed;
       inset: 0;
-      background: 
-        radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.03) 0%, transparent 70%);
-      animation: ambientPulse 25s ease-in-out infinite alternate;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.5;
+    }
+
+    /* Ambient glow — single, subtle */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120%;
+      height: 60%;
+      background: radial-gradient(ellipse, hsl(var(--primary) / 0.08) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
-      filter: blur(100px);
+      filter: blur(80px);
     }
-    
-    /* Light Mode - Softer pulse */
-    html:not(.dark) body::after {
-      background: 
-        radial-gradient(circle at 50% 50%, hsl(var(--primary) / 0.02) 0%, transparent 70%);
-      filter: blur(120px);
+    html:not(.dark) body::before {
+      background: radial-gradient(ellipse, hsl(var(--primary) / 0.04) 0%, transparent 70%);
     }
-    
-    @keyframes ambientShift {
-      0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 0.7;
-      }
-      25% {
-        transform: translate(3%, 4%) rotate(90deg);
-        opacity: 0.5;
-      }
-      50% {
-        transform: translate(-2%, 6%) rotate(180deg);
-        opacity: 0.6;
-      }
-      75% {
-        transform: translate(5%, -3%) rotate(270deg);
-        opacity: 0.4;
-      }
-    }
-    
-    @keyframes ambientPulse {
-      0% {
-        opacity: 0.2;
-        transform: scale(0.95);
-      }
-      100% {
-        opacity: 0.4;
-        transform: scale(1.05);
-      }
-    }
-    
-    /* Ensure all content is above background */
-    nav:not(.ds-navbar), section, footer, .hero {
+
+    /* =========================================================
+       LAYOUT
+       ========================================================= */
+    .page-section {
       position: relative;
       z-index: 1;
+      padding: clamp(5rem, 12vh, 10rem) clamp(1.5rem, 5vw, 3rem);
     }
-    
-    body, body *, a, button, input, textarea, select, label { cursor: none !important; }
-    
-    /* Custom Cursor - Optimized for performance */
-    .custom-cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid hsl(var(--primary));
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 99999;
-      transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
-      mix-blend-mode: difference;
-      will-change: transform;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform: translate(-50%, -50%);
+    .page-container {
+      max-width: 1120px;
+      margin: 0 auto;
+      width: 100%;
     }
-    .custom-cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: hsl(var(--primary));
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 100000;
-      mix-blend-mode: difference;
-      will-change: transform;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform: translate(-50%, -50%);
+    .page-container--narrow { max-width: 840px; }
+    .page-container--wide { max-width: 1320px; }
+
+    /* =========================================================
+       SCROLL REVEAL
+       ========================================================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .custom-cursor.hover {
-      width: 40px;
-      height: 40px;
-      background: hsl(var(--primary) / 0.1);
-      border-color: hsl(var(--primary) / 0.8);
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
-    
-    /* Hero */
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* =========================================================
+       TYPOGRAPHY
+       ========================================================= */
+    .heading-display {
+      font-family: var(--r-font-heading);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: var(--r-font-weight-bold);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: hsl(var(--foreground));
+    }
+    .heading-section {
+      font-family: var(--r-font-heading);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: var(--r-font-weight-bold);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: hsl(var(--foreground));
+    }
+    .text-secondary {
+      color: hsl(var(--foreground) / 0.55);
+    }
+    .text-accent {
+      color: hsl(var(--primary));
+    }
+    .label-caps {
+      font-size: 0.75rem;
+      font-weight: var(--r-font-weight-semibold);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: hsl(var(--primary));
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      padding: var(--r-space-8);
+      padding: 7rem 1.5rem 5rem;
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, hsl(var(--primary) / 0.15) 0%, transparent 70%);
-      animation: rotate 20s linear infinite;
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 5rem);
+      align-items: center;
+      max-width: 1220px;
+      width: 100%;
     }
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: var(--r-space-6);
     }
-    
-    /* Interactive Floating Components */
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      opacity: 0.15;
-      pointer-events: all;
-      overflow: hidden;
-    }
-    .floating {
-      position: absolute;
-      animation: float 20s ease-in-out infinite;
-      filter: blur(0.5px);
-    }
-    .floating:nth-child(1) { top: 10%; left: 8%; animation-delay: 0s; }
-    .floating:nth-child(2) { top: 15%; right: 12%; animation-delay: 2s; }
-    .floating:nth-child(3) { bottom: 25%; left: 10%; animation-delay: 4s; }
-    .floating:nth-child(4) { bottom: 20%; right: 15%; animation-delay: 6s; }
-    .floating:nth-child(5) { top: 45%; left: 5%; animation-delay: 3s; }
-    .floating:nth-child(6) { top: 55%; right: 8%; animation-delay: 5s; }
-    .floating:nth-child(7) { top: 70%; left: 20%; animation-delay: 1s; }
-    .floating:nth-child(8) { bottom: 40%; right: 25%; animation-delay: 7s; }
-    .floating:nth-child(9) { top: 30%; left: 25%; animation-delay: 8s; }
-    .floating:nth-child(10) { bottom: 50%; right: 5%; animation-delay: 9s; }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-      25% { transform: translateY(-30px) rotate(5deg) scale(1.05); }
-      50% { transform: translateY(-15px) rotate(-5deg) scale(0.95); }
-      75% { transform: translateY(-40px) rotate(3deg) scale(1.02); }
-    }
-    
-    .hero-content { position: relative; z-index: 1; max-width: 800px; }
-    .hero-badge {
+    .hero-name {
       display: inline-flex;
       align-items: center;
-      gap: var(--r-space-2);
-      padding: var(--r-space-2) var(--r-space-4);
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--r-radius-full);
-      font-size: var(--font-size-sm);
-      margin-bottom: var(--r-space-6);
-      backdrop-filter: blur(10px);
-      transition: all var(--r-transition-base) var(--r-spring-smooth);
+      gap: var(--r-space-3);
+      font-family: var(--r-font-heading);
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      color: hsl(var(--primary));
+      font-weight: var(--r-font-weight-semibold);
     }
-    .hero-badge:hover { transform: scale(1.05); }
-    
-    .hero h1 {
-      font-size: clamp(2.5rem, 10vw, 5.5rem);
-      margin-bottom: var(--r-space-6);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.85));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-      position: relative;
-      display: inline-block;
-      padding-bottom: var(--r-space-2);
-    }
-    
-    /* Light mode - dark text on light gradients - Accessible contrast */
-    html:not(.dark) .hero h1 {
-      background: linear-gradient(135deg, hsl(220 15% 8%), hsl(220 15% 12%));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    /* Ensure spans inside h1 also get the gradient in light mode */
-    html:not(.dark) .hero h1 span {
-      background: inherit;
-      -webkit-background-clip: inherit;
-      -webkit-text-fill-color: inherit;
-      background-clip: inherit;
-    }
-    
-    /* Override inline color styles in light mode for gradient to work */
-    html:not(.dark) .hero h1 span[style*="color"] {
-      color: transparent !important;
-      background: linear-gradient(135deg, hsl(220 15% 8%), hsl(220 15% 12%));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    /* Special handling for "Built Different" with primary color in light mode - Accessible */
-    html:not(.dark) .hero h1 span[style*="color: hsl(var(--primary))"] {
-      background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.9));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .hero h1::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.5), transparent);
-      border-radius: var(--r-radius-full);
-    }
-    .hero p {
-      font-size: var(--font-size-2xl);
-      color: hsl(var(--foreground) / 0.7);
-      margin-bottom: var(--r-space-8);
-      line-height: var(--line-height-relaxed);
+    .hero-desc {
+      font-size: clamp(1.05rem, 1.5vw, 1.25rem);
+      line-height: 1.7;
+      color: hsl(var(--foreground) / 0.6);
+      max-width: 480px;
     }
     .hero-actions {
       display: flex;
-      gap: var(--r-space-4);
-      justify-content: center;
+      gap: var(--r-space-3);
       flex-wrap: wrap;
     }
-    
-    /* Section Styles */
-    .section {
-      padding: var(--r-space-24) var(--r-space-6);
+    .hero-code {
       position: relative;
+      border-radius: var(--r-radius-2xl);
+      background: hsl(var(--foreground) / 0.03);
+      border: 1px solid hsl(var(--foreground) / 0.08);
+      padding: var(--r-space-6);
+      font-family: var(--r-font-mono);
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: hsl(var(--foreground) / 0.7);
+      overflow-x: auto;
+      backdrop-filter: blur(12px);
     }
-    /* Section Dark - Token-driven gradient using primary/accent colors */
-    .section-dark {
-      background: var(--r-section-gradient-dark);
+    .hero-code .line-keyword { color: hsl(280 80% 70%); }
+    .hero-code .line-tag { color: hsl(var(--primary)); }
+    .hero-code .line-attr { color: hsl(180 60% 65%); }
+    .hero-code .line-str { color: hsl(100 50% 60%); }
+    .hero-code .line-comment { color: hsl(var(--foreground) / 0.3); font-style: italic; }
+    .hero-code .line-number {
+      display: inline-block;
+      width: 2ch;
+      margin-right: 1.5ch;
+      color: hsl(var(--foreground) / 0.2);
+      user-select: none;
+      text-align: right;
     }
-    
-    /* Light Mode - Lighter, accessible gradient */
-    html:not(.dark) .section-dark {
-      background: var(--r-section-gradient-light);
+    .hero-code-label {
+      position: absolute;
+      top: var(--r-space-3);
+      right: var(--r-space-4);
+      font-family: var(--r-font-body);
+      font-size: 0.7rem;
+      color: hsl(var(--foreground) / 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
-    .section-title {
-      font-size: var(--font-size-5xl);
+
+    @media (max-width: 860px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-text { align-items: center; }
+      .hero-desc { max-width: 520px; margin: 0 auto; }
+      .hero-actions { justify-content: center; }
+      .hero-name { justify-content: center; }
+    }
+
+    /* =========================================================
+       FRAMEWORK BAR
+       ========================================================= */
+    .framework-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(2rem, 5vw, 4rem);
+      flex-wrap: wrap;
+      padding: var(--r-space-2) 0;
+    }
+    .framework-item {
+      display: flex;
+      align-items: center;
+      gap: var(--r-space-2);
+      font-size: 0.9rem;
+      font-weight: var(--r-font-weight-medium);
+      color: hsl(var(--foreground) / 0.35);
+      transition: color 0.3s ease;
+    }
+    .framework-item:hover { color: hsl(var(--foreground) / 0.7); }
+    .framework-item i { font-size: 1.25rem; }
+
+    /* =========================================================
+       STATS ROW
+       ========================================================= */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--r-space-6);
+      border-top: 1px solid hsl(var(--foreground) / 0.06);
+      border-bottom: 1px solid hsl(var(--foreground) / 0.06);
+      padding: var(--r-space-10) 0;
+    }
+    .stat {
       text-align: center;
-      margin-bottom: var(--r-space-8);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.75));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    }
+    .stat-value {
+      font-family: var(--r-font-heading);
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      font-weight: var(--r-font-weight-bold);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: hsl(var(--foreground));
+    }
+    .stat-label {
+      margin-top: var(--r-space-2);
+      font-size: 0.85rem;
+      font-weight: var(--r-font-weight-medium);
+      color: hsl(var(--foreground) / 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    @media (max-width: 640px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* =========================================================
+       BENTO GRID — FEATURES
+       ========================================================= */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(220px, auto);
+      gap: var(--r-space-4);
+    }
+    .bento-card {
       position: relative;
-      padding-bottom: var(--r-space-4);
+      overflow: hidden;
+      border-radius: var(--r-radius-2xl);
+      background: hsl(var(--foreground) / 0.025);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      transition: border-color 0.4s ease, background 0.4s ease;
     }
-    
-    /* Light mode - dark text on light gradients - Accessible contrast */
-    html:not(.dark) .section-title {
-      background: linear-gradient(135deg, hsl(220 15% 8%), hsl(220 15% 12%));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .bento-card:hover {
+      border-color: hsl(var(--primary) / 0.15);
+      background: hsl(var(--primary) / 0.03);
     }
-    .section-title::after {
+    .bento-card--span-2 { grid-column: span 2; }
+    .bento-card--tall { grid-row: span 2; }
+    .bento-icon {
+      font-size: 2rem;
+      color: hsl(var(--primary));
+      margin-bottom: var(--r-space-4);
+    }
+    .bento-title {
+      font-family: var(--r-font-heading);
+      font-size: clamp(1.15rem, 1.5vw, 1.35rem);
+      font-weight: var(--r-font-weight-semibold);
+      margin-bottom: var(--r-space-2);
+      color: hsl(var(--foreground));
+    }
+    .bento-desc {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: hsl(var(--foreground) / 0.5);
+    }
+
+    @media (max-width: 860px) {
+      .bento-grid { grid-template-columns: 1fr 1fr; }
+      .bento-card--span-2 { grid-column: span 2; }
+    }
+    @media (max-width: 560px) {
+      .bento-grid { grid-template-columns: 1fr; }
+      .bento-card--span-2 { grid-column: span 1; }
+    }
+
+    /* =========================================================
+       COMPONENT SHOWCASE — LIVE DEMO STRIP
+       ========================================================= */
+    .showcase-strip {
+      display: flex;
+      flex-direction: column;
+      gap: var(--r-space-10);
+    }
+    .showcase-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--r-space-8);
+      align-items: center;
+    }
+    .showcase-row--reverse { direction: rtl; }
+    .showcase-row--reverse > * { direction: ltr; }
+    .showcase-demo {
+      border-radius: var(--r-radius-2xl);
+      background: hsl(var(--foreground) / 0.025);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      padding: clamp(2rem, 4vw, 3rem);
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--r-space-3);
+      align-items: center;
+      justify-content: center;
+    }
+    .showcase-info { display: flex; flex-direction: column; gap: var(--r-space-3); }
+    .showcase-info h3 {
+      font-family: var(--r-font-heading);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: var(--r-font-weight-semibold);
+      letter-spacing: -0.01em;
+    }
+    .showcase-info p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: hsl(var(--foreground) / 0.55);
+      max-width: 420px;
+    }
+    @media (max-width: 768px) {
+      .showcase-row,
+      .showcase-row--reverse { grid-template-columns: 1fr; }
+      .showcase-row--reverse { direction: ltr; }
+    }
+
+    /* =========================================================
+       CODE SECTION
+       ========================================================= */
+    .code-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--r-space-8);
+      align-items: center;
+    }
+    .code-block {
+      border-radius: var(--r-radius-2xl);
+      background: hsl(var(--foreground) / 0.03);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      padding: var(--r-space-6) var(--r-space-6) var(--r-space-6) var(--r-space-6);
+      font-family: var(--r-font-mono);
+      font-size: 0.82rem;
+      line-height: 1.9;
+      color: hsl(var(--foreground) / 0.7);
+      overflow-x: auto;
+      position: relative;
+      backdrop-filter: blur(8px);
+    }
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: var(--r-space-4);
+      padding-bottom: var(--r-space-3);
+      border-bottom: 1px solid hsl(var(--foreground) / 0.06);
+    }
+    .code-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: hsl(var(--foreground) / 0.12);
+    }
+    @media (max-width: 768px) {
+      .code-section { grid-template-columns: 1fr; }
+    }
+
+    /* =========================================================
+       ROADMAP — MINIMAL TIMELINE
+       ========================================================= */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--r-space-6);
+    }
+    .timeline-item {
+      position: relative;
+      padding: var(--r-space-6);
+      border-radius: var(--r-radius-2xl);
+      background: hsl(var(--foreground) / 0.02);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+    }
+    .timeline-status {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--r-space-2);
+      font-size: 0.75rem;
+      font-weight: var(--r-font-weight-semibold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--r-space-3);
+    }
+    .timeline-status--done { color: hsl(var(--success)); }
+    .timeline-status--progress { color: hsl(var(--primary)); }
+    .timeline-status--planned { color: hsl(var(--foreground) / 0.35); }
+    .timeline-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--r-space-2);
+    }
+    .timeline-list li {
+      font-size: 0.9rem;
+      color: hsl(var(--foreground) / 0.6);
+      display: flex;
+      align-items: center;
+      gap: var(--r-space-2);
+    }
+    .timeline-list li i { font-size: 0.85rem; flex-shrink: 0; }
+    @media (max-width: 768px) {
+      .timeline { grid-template-columns: 1fr; }
+    }
+
+    /* =========================================================
+       CTA
+       ========================================================= */
+    .cta-block {
+      text-align: center;
+      padding: clamp(4rem, 10vh, 8rem) clamp(1.5rem, 5vw, 3rem);
+      position: relative;
+    }
+    .cta-block::before {
       content: '';
       position: absolute;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.5), transparent);
-      border-radius: var(--r-radius-full);
+      width: 60%;
+      height: 50%;
+      background: radial-gradient(ellipse, hsl(var(--primary) / 0.06) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
     }
-    .section-subtitle {
-      font-size: var(--font-size-xl);
-      text-align: center;
-      color: hsl(var(--foreground) / 0.6);
-      margin-bottom: var(--r-space-12);
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+    .cta-actions {
+      display: flex;
+      gap: var(--r-space-4);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--r-space-8);
     }
-    
-    /* Feature Grid */
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: var(--r-space-6);
-      max-width: 1200px;
-      margin: 0 auto;
+    .cta-meta {
+      margin-top: var(--r-space-6);
+      font-size: 0.85rem;
+      color: hsl(var(--foreground) / 0.3);
     }
-    .feature-card {
-      text-align: center;
+    .cta-meta i { margin-right: 4px; }
+
+    /* =========================================================
+       DIVIDER
+       ========================================================= */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: hsl(var(--foreground) / 0.06);
+      border: none;
     }
-    .feature-icon {
-      font-size: 3rem;
-      color: hsl(var(--primary));
-      margin-bottom: var(--r-space-4);
-    }
-    .feature-title {
-      font-size: var(--font-size-2xl);
-      margin-bottom: var(--r-space-3);
-      color: hsl(var(--foreground));
-    }
-    .feature-desc {
-      color: hsl(var(--foreground) / 0.7);
-      line-height: var(--line-height-relaxed);
-    }
-    
-    /* Stats */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--r-space-6);
-      max-width: 1000px;
-      margin: var(--r-space-12) auto;
-      text-align: center;
-    }
-    .stat-item {
-      padding: var(--r-space-6);
-      transition: all var(--r-transition-base) var(--r-ease-ios-smooth);
-    }
-    .stat-item:hover {
-      transform: translateY(-4px) scale(1.02);
-    }
-    .stat-number {
-      font-size: clamp(3rem, 8vw, 5rem);
-      font-weight: var(--r-font-weight-bold);
-      background: linear-gradient(135deg, 
-        hsl(var(--primary)) 0%, 
-        hsl(var(--accent)) 100%
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: var(--r-space-2);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      text-shadow: 0 4px 20px hsl(var(--primary) / 0.3);
-      filter: drop-shadow(0 4px 20px hsl(var(--primary) / 0.3));
-    }
-    .stat-label {
-      font-size: var(--font-size-lg);
-      font-weight: 600;
-      color: hsl(var(--foreground) / 0.9);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: var(--font-size-sm);
-    }
-    
-    /* Component Showcase */
-    .showcase-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: var(--r-space-6);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .showcase-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--r-radius-2xl);
-      padding: var(--r-space-6);
-      text-align: center;
-      transition: all var(--r-transition-base) var(--r-ease-ios-smooth);
-    }
-    .showcase-item:hover {
-      transform: translateY(-4px);
-      background: hsl(var(--primary) / 0.05);
-      border-color: hsl(var(--primary) / 0.15);
-      box-shadow: 
-        0 8px 24px hsl(var(--primary) / 0.15),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
-    
-    /* CTA Section */
-    .cta-box {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: var(--r-space-12);
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: var(--r-radius-3xl);
-      text-align: center;
-      backdrop-filter: blur(20px);
-    }
-    .cta-title {
-      font-size: var(--font-size-4xl);
-      margin-bottom: var(--r-space-4);
-    }
-    .cta-desc {
-      font-size: var(--font-size-xl);
-      color: hsl(var(--foreground) / 0.7);
-      margin-bottom: var(--r-space-8);
-    }
+
+    /* =========================================================
+       UTILITIES
+       ========================================================= */
+    .gap-2 { gap: var(--r-space-2); }
+    .mb-16 { margin-bottom: var(--r-space-16); }
+    .text-center { text-align: center; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
   </style>
 </head>
 <body data-page="index">
-  
-  <!-- Navbar (Web Component) -->
+
   <rukn-navbar current="home"></rukn-navbar>
-  
-  <!-- Hero with Subtle Background -->
+
+  <!-- ====================================
+       HERO
+       ==================================== -->
   <section class="hero">
-    <div class="hero-bg" id="heroBg">
-      <!-- Minimal floating elements with gradients -->
-      <div class="floating" style="opacity: 0.3;">
-        <div style="padding: 0.6rem 1.2rem; border-radius: var(--r-radius-full); background: linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--primary) / 0.05)); border: 1px solid hsl(var(--primary) / 0.15);">
-          <i class="ph ph-sparkle" style="font-size: 1.2rem; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-        </div>
-      </div>
-      <div class="floating" style="opacity: 0.25;">
-        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, hsl(var(--accent) / 0.3), hsl(var(--primary) / 0.3));"></div>
-      </div>
-      <div class="floating" style="opacity: 0.3;">
-        <div style="padding: 0.5rem 1rem; border-radius: var(--r-radius-full); background: linear-gradient(135deg, hsl(var(--accent) / 0.1), hsl(var(--accent) / 0.05)); border: 1px solid hsl(var(--accent) / 0.15);">
-          <i class="ph ph-star" style="font-size: 1.2rem; background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-        </div>
-      </div>
-    </div>
-    
-    <div class="hero-content">
-      <div data-i18n-html="index.hero.name" class="ds-font-heading" style="font-size: clamp(1.25rem, 2.2vw, 1.75rem); color: hsl(var(--primary)); margin-bottom: var(--r-space-3);">
-        <span style="display: inline-flex; align-items: center; gap: var(--r-space-2);">
+    <div class="hero-inner">
+      <div class="hero-text reveal">
+        <div class="hero-name">
           <strong>Rukn</strong>
-          <span aria-hidden="true">•</span>
+          <span aria-hidden="true" style="opacity:0.3;">|</span>
           <span class="arabic-text">رُكن</span>
-          <span aria-hidden="true">•</span>
-          <span class="urdu-text">رکن</span>
-        </span>
-      </div>
-      <h1 class="ds-font-heading">
-        <span data-i18n="index.hero.heading.primary">Design System</span><br>
-        <span data-i18n="index.hero.heading.secondary" style="color: hsl(var(--primary));">Built Different.</span>
-      </h1>
-      <p>
-        <span data-i18n="index.hero.message" style="display: block;" class="ds-font-body">A community-built, open-source design system for everyone</span>
-        <span data-i18n="index.hero.subtext" style="display: block; margin-bottom: var(--r-space-2);" class="ds-font-body">Because great design should be free, accessible, and yours to own.</span>
-      </p>
-      <div class="hero-actions">
-        <a href="components.html"><button class="btn-primary btn-lg">
-          <i class="ph ph-rocket-launch" style="margin-right: 8px;"></i>
-          <span data-i18n="index.hero.cta.primary">Explore Components</span>
-        </button></a>
-        <a href="https://github.com/your-username/rukn"><button class="btn-secondary btn-lg">
-          <i class="ph ph-github-logo" style="margin-right: 8px;"></i>
-          <span data-i18n="index.hero.cta.secondary">View on GitHub</span>
-        </button></a>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Stats - Clean & Minimal -->
-  <section class="section" style="padding: var(--r-space-24) var(--r-space-6);">
-    <div class="ds-container" style="max-width: 1000px;">
-      <div class="stats">
-        <div class="stat-item">
-          <div class="stat-number" style="font-size: clamp(3rem, 8vw, 5rem);">150+</div>
-          <div class="stat-label" data-i18n="index.stats.tokens" style="font-size: var(--r-font-size-lg); margin-top: var(--r-space-2);">Design Tokens</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-number" style="font-size: clamp(3rem, 8vw, 5rem);">20+</div>
-          <div class="stat-label" data-i18n="index.stats.components" style="font-size: var(--r-font-size-lg); margin-top: var(--r-space-2);">Components</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" style="font-size: clamp(3rem, 8vw, 5rem);">0</div>
-          <div class="stat-label" data-i18n="index.stats.dependencies" style="font-size: var(--r-font-size-lg); margin-top: var(--r-space-2);">Dependencies</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number" style="font-size: clamp(3rem, 8vw, 5rem);">100%</div>
-          <div class="stat-label" data-i18n="index.stats.customizable" style="font-size: var(--r-font-size-lg); margin-top: var(--r-space-2);">Customizable</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Pricing - Simplified -->
-  <section id="pricing" class="section" style="padding: var(--r-space-32) var(--r-space-6);">
-    <div class="ds-container" style="max-width: 700px;">
-      <h2 class="section-title" data-i18n="index.section.pricing.title">Pricing</h2>
-      
-      <div class="card-surface" style="padding: var(--r-space-12); text-align: center; border-radius: var(--r-radius-3xl);">
-        
-        <div style="margin-bottom: var(--r-space-6);">
-          <div style="font-size: clamp(4rem, 15vw, 7rem); font-weight: var(--r-font-weight-extrabold); line-height: 1; background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.7) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">
-            <span data-i18n="index.section.pricing.plan">Free</span>
-          </div>
-          <div style="font-size: var(--r-font-size-xl); color: hsl(var(--foreground) / 0.6); margin-top: var(--r-space-3);" data-i18n="index.section.pricing.subtitle">
-            Open source forever
-          </div>
-        </div>
-        
-        <p style="font-size: var(--r-font-size-lg); color: hsl(var(--foreground) / 0.7); margin-bottom: var(--r-space-8); max-width: 500px; margin-left: auto; margin-right: auto;" data-i18n="index.section.pricing.body">
-          Building the world's most modern, open-source design system. MIT licensed, free forever.
+        <h1 class="heading-display">
+          The design system that<br>
+          <span class="text-accent">speaks Arabic.</span>
+        </h1>
+        <p class="hero-desc">
+          Built for Arabic, Urdu, and multilingual applications from day one. RTL layouts, Arabic and Nastaliq typography tokens, and language-aware Web Components — no patching required. Zero dependencies. MIT licensed.
         </p>
-        
-        <div style="display: flex; gap: var(--r-space-4); justify-content: center; flex-wrap: wrap;">
-          <a href="components.html"><button class="btn-primary btn-lg" data-i18n="index.section.pricing.cta.primary">
-            Start Building
-          </button></a>
-          <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener"><button class="btn-outline btn-lg">
-            <i class="ph ph-github-logo" style="margin-right: 8px;"></i>
-            <span data-i18n="index.hero.cta.secondary">View on GitHub</span>
-          </button></a>
-        </div>
-          
-        </div>
-      </div>
-      
-      <!-- Contribution Model -->
-      <div style="max-width: 900px; margin: var(--r-space-12) auto 0; text-align: center;">
-        <h3 style="font-size: var(--r-font-size-2xl); font-weight: var(--r-font-weight-semibold); margin-bottom: var(--r-space-4);">
-          <i class="ph ph-heart" style="color: hsl(var(--primary)); margin-right: 8px;"></i>
-          Built by the Community, For the Community
-        </h3>
-        <p style="font-size: var(--r-font-size-lg); color: hsl(var(--foreground) / 0.8); line-height: var(--r-line-height-relaxed); margin-bottom: var(--r-space-6);">
-          Rukn stays free and cutting-edge through community contributions. Star us on GitHub, share your feedback, contribute components, or spread the word. Together, we're building something that belongs to everyone.
-        </p>
-        <div style="display: flex; gap: var(--r-space-3); justify-content: center; flex-wrap: wrap;">
-          <span class="ds-badge ds-badge-primary" style="padding: var(--r-space-2) var(--r-space-4); font-size: var(--r-font-size-sm);">
-            <i class="ph ph-star"></i> Star on GitHub
-          </span>
-          <span class="ds-badge ds-badge-success" style="padding: var(--r-space-2) var(--r-space-4); font-size: var(--r-font-size-sm);">
-            <i class="ph ph-git-pull-request"></i> Contribute Code
-          </span>
-          <span class="ds-badge ds-badge-neutral" style="padding: var(--r-space-2) var(--r-space-4); font-size: var(--r-font-size-sm);">
-            <i class="ph ph-chats-circle"></i> Share Feedback
-          </span>
-          <span class="ds-badge ds-badge-warning" style="padding: var(--r-space-2) var(--r-space-4); font-size: var(--r-font-size-sm);">
-            <i class="ph ph-share-network"></i> Spread the Word
-          </span>
-        </div>
-      </div>
-      
-    </div>
-  </section>
-  
-  <!-- Features - Simplified -->
-  <section id="features" class="section section-dark" style="padding: var(--r-space-32) var(--r-space-6);">
-    <div class="ds-container" style="max-width: 1100px;">
-      <h2 class="section-title">Built on Pillars of Excellence</h2>
-      <p class="section-subtitle" style="max-width: 600px; margin: 0 auto var(--r-space-16);">
-        Every detail crafted with precision
-      </p>
-      
-      <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--r-space-10);">
-        <div class="feature-card card-surface">
-          <div style="font-size: 2.5rem; margin-bottom: var(--r-space-4);">
-            <i class="ph ph-drop-half-bottom" style="background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-          </div>
-          <h3 class="feature-title" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Glass Morphism</h3>
-          <p class="feature-desc">Stunning frosted glass effects with perfect blur and translucency</p>
-        </div>
-        
-        <div class="feature-card card-surface">
-          <div style="font-size: 2.5rem; margin-bottom: var(--r-space-4);">
-            <i class="ph ph-watch" style="background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-          </div>
-          <h3 class="feature-title" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Rukn Motion</h3>
-          <p class="feature-desc">Smooth easing curves and spring animations that feel natural</p>
-        </div>
-        
-        <div class="feature-card card-surface">
-          <div style="font-size: 2.5rem; margin-bottom: var(--r-space-4);">
-            <i class="ph ph-palette" style="background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-          </div>
-          <h3 class="feature-title" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">150+ Design Tokens</h3>
-          <p class="feature-desc">W3C compliant tokens for complete design control</p>
-        </div>
-        
-        <div class="feature-card card-surface">
-          <div style="font-size: 2.5rem; margin-bottom: var(--r-space-4);">
-            <i class="ph ph-cube" style="background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-          </div>
-          <h3 class="feature-title" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Framework Agnostic</h3>
-          <p class="feature-desc">Pure CSS that works with React, Vue, Angular, or vanilla JS</p>
-        </div>
-        
-        <div class="feature-card card-surface">
-          <div style="font-size: 2.5rem; margin-bottom: var(--r-space-4);">
-            <i class="ph ph-devices" style="background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-          </div>
-          <h3 class="feature-title" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Fully Responsive</h3>
-          <p class="feature-desc">Mobile-first design that adapts to any screen size</p>
-        </div>
-        
-        <div class="feature-card card-surface">
-          <div style="font-size: 2.5rem; margin-bottom: var(--r-space-4);">
-            <i class="ph ph-lightning" style="background: linear-gradient(135deg, hsl(var(--warning)), hsl(var(--warning) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-          </div>
-          <h3 class="feature-title" style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Lightweight & Fast</h3>
-          <p class="feature-desc">Minimal CSS footprint with lightning-fast load times</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Component Showcase -->
-  <section class="section" style="padding: var(--r-space-32) var(--r-space-6);">
-    <div class="ds-container">
-      <h2 class="section-title">Components That Shine</h2>
-      <p class="section-subtitle" style="max-width: 500px; margin: 0 auto var(--r-space-16);">
-        Production-ready components with glass morphism
-      </p>
-      
-      <div class="showcase-grid">
-        <div class="showcase-item">
-          <i class="ph ph-cursor-click" style="font-size: 3rem; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--r-space-3);"></i>
-          <h4 style="font-size: var(--r-font-size-xl); margin-bottom: var(--r-space-2);">Buttons</h4>
-          <p style="font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.6); margin-bottom: var(--r-space-4);">7 variants with smooth press</p>
-          <button class="btn-primary btn-sm">Primary</button>
-        </div>
-        
-        <div class="showcase-item">
-          <i class="ph ph-text-align-left" style="font-size: 3rem; background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--r-space-3);"></i>
-          <h4 style="font-size: var(--r-font-size-xl); margin-bottom: var(--r-space-2);">Inputs</h4>
-          <p style="font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.6); margin-bottom: var(--r-space-4);">Glass inputs & textareas</p>
-          <input type="text" class="ds-input" placeholder="Type..." aria-label="Sample input" style="max-width: 200px;">
-        </div>
-        
-        <div class="showcase-item">
-          <i class="ph ph-frame-corners" style="font-size: 3rem; background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--r-space-3);"></i>
-          <h4 style="font-size: var(--r-font-size-xl); margin-bottom: var(--r-space-2);">Cards</h4>
-          <p style="font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.6); margin-bottom: var(--r-space-4);">Hover & glass effects</p>
-          <div class="ds-card" style="padding: var(--r-space-4); max-width: 180px; margin: 0 auto;">Card</div>
-        </div>
-        
-        <div class="showcase-item">
-          <i class="ph ph-tag" style="font-size: 3rem; background: linear-gradient(135deg, hsl(var(--warning)), hsl(var(--warning) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--r-space-3);"></i>
-          <h4 style="font-size: var(--r-font-size-xl); margin-bottom: var(--r-space-2);">Badges</h4>
-          <p style="font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.6); margin-bottom: var(--r-space-4);">Color variants</p>
-          <div class="ds-badge ds-badge-primary">Badge</div>
-        </div>
-        
-        <div class="showcase-item">
-          <i class="ph ph-list-checks" style="font-size: 3rem; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--r-space-3);"></i>
-          <h4 style="font-size: var(--r-font-size-xl); margin-bottom: var(--r-space-2);">Form Controls</h4>
-          <p style="font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.6); margin-bottom: var(--r-space-4);">Checkbox, radio, switch</p>
-          <label class="ds-switch-wrapper">
-            <input type="checkbox" class="ds-switch" checked aria-label="Sample toggle">
-          </label>
-        </div>
-        
-        <div class="showcase-item">
-          <i class="ph ph-frame" style="font-size: 3rem; background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.6)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: var(--r-space-3);"></i>
-          <h4 style="font-size: var(--r-font-size-xl); margin-bottom: var(--r-space-2);">Modals & More</h4>
-          <p style="font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.6); margin-bottom: var(--r-space-4);">20+ components</p>
-          <a href="components.html"><button class="btn-outline btn-sm">View All</button></a>
-        </div>
-
-        <div class="showcase-item">
-          <div class="ds-icon-placeholder ds-icon-placeholder-xl ds-icon-placeholder-success ds-icon-placeholder-circle" style="margin-bottom: 1rem;">
-            <i class="ph ph-shapes"></i>
-          </div>
-          <h4>Icon Placeholders</h4>
-          <p style="font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.6); margin: 1rem 0;">Prismatic glass refraction</p>
-          <div style="display: flex; gap: var(--r-space-2); justify-content: center;">
-            <div class="ds-icon-placeholder ds-icon-placeholder-sm ds-icon-placeholder-primary">
-              <i class="ph ph-heart"></i>
-            </div>
-            <div class="ds-icon-placeholder ds-icon-placeholder-sm ds-icon-placeholder-accent">
-              <i class="ph ph-star"></i>
-            </div>
-          </div>
-        </div>
-
-        <div class="showcase-item">
-          <div class="ds-icon-placeholder ds-icon-placeholder-xl ds-icon-placeholder-error ds-icon-placeholder-circle" style="margin-bottom: 1rem;">
-            <i class="ph ph-grid-four"></i>
-          </div>
-          <h4>Responsive Layouts</h4>
-          <p style="font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.6); margin: 1rem 0;">Grid, flex & containers</p>
-          <div class="ds-grid ds-grid-cols-2 ds-gap-2" style="max-width: 120px; margin: 0 auto;">
-            <div style="height: 20px; background: hsl(var(--primary)); border-radius: var(--r-radius-md);"></div>
-            <div style="height: 20px; background: hsl(var(--accent)); border-radius: var(--r-radius-md);"></div>
-            <div style="height: 20px; background: hsl(var(--success)); border-radius: var(--r-radius-md);"></div>
-            <div style="height: 20px; background: hsl(var(--warning)); border-radius: var(--r-radius-md);"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-      <div style="text-align: center; margin-top: var(--r-space-12);">
-        <a href="components.html"><button class="btn-primary btn-lg">
-          View All Components <i class="ph ph-arrow-right" style="margin-left: 8px;"></i>
-        </button></a>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Why Open Source -->
-  <section class="section section-dark">
-    <div class="ds-container">
-      <h2 class="section-title">Why Open Source?</h2>
-      <p class="section-subtitle">Design systems should belong to everyone. Here's why we're free forever.</p>
-      
-      <div class="ds-grid ds-grid-cols-1 ds-md-grid-cols-2 ds-gap-8" style="max-width: 1000px; margin: 0 auto;">
-        <div style="padding: var(--r-space-8);">
-          <h3 style="font-size: var(--font-size-3xl); margin-bottom: var(--r-space-4); color: hsl(var(--primary));">
-            <i class="ph ph-hand-heart" style="margin-right: 0.5rem;"></i>
-            Freedom & Ownership
-          </h3>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
-            <li style="margin-bottom: 1rem; display: flex; align-items: start; gap: 1rem;">
-              <i class="ph ph-check-circle" style="color: hsl(var(--primary)); font-size: 1.5rem; flex-shrink: 0;"></i>
-              <span style="color: hsl(var(--foreground) / 0.8);"><strong>No vendor lock-in.</strong> Modify, extend, or fork without restrictions.</span>
-            </li>
-            <li style="margin-bottom: 1rem; display: flex; align-items: start; gap: 1rem;">
-              <i class="ph ph-check-circle" style="color: hsl(var(--primary)); font-size: 1.5rem; flex-shrink: 0;"></i>
-              <span style="color: hsl(var(--foreground) / 0.8);"><strong>MIT Licensed.</strong> Use commercially, privately, or anywhere you want.</span>
-            </li>
-            <li style="margin-bottom: 1rem; display: flex; align-items: start; gap: 1rem;">
-              <i class="ph ph-check-circle" style="color: hsl(var(--primary)); font-size: 1.5rem; flex-shrink: 0;"></i>
-              <span style="color: hsl(var(--foreground) / 0.8);"><strong>No paywalls.</strong> Every component, token, and feature is free forever.</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: 1rem;">
-              <i class="ph ph-check-circle" style="color: hsl(var(--primary)); font-size: 1.5rem; flex-shrink: 0;"></i>
-              <span style="color: hsl(var(--foreground) / 0.8);"><strong>Your code, your control.</strong> Self-host, customize, or build upon it.</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div style="padding: var(--r-space-8);">
-          <h3 style="font-size: var(--font-size-3xl); margin-bottom: var(--r-space-4); color: hsl(var(--accent));">
-            <i class="ph ph-users-three" style="margin-right: 0.5rem;"></i>
-            Community & Transparency
-          </h3>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem;">
-            <li style="margin-bottom: 1rem; display: flex; align-items: start; gap: 1rem;">
-              <i class="ph ph-check-circle" style="color: hsl(var(--accent)); font-size: 1.5rem; flex-shrink: 0;"></i>
-              <span style="color: hsl(var(--foreground) / 0.8);"><strong>Built in public.</strong> Every decision, every line of code is visible on GitHub.</span>
-            </li>
-            <li style="margin-bottom: 1rem; display: flex; align-items: start; gap: 1rem;">
-              <i class="ph ph-check-circle" style="color: hsl(var(--accent)); font-size: 1.5rem; flex-shrink: 0;"></i>
-              <span style="color: hsl(var(--foreground) / 0.8);"><strong>Community contributions.</strong> Your ideas and PRs shape the future of Rukn.</span>
-            </li>
-            <li style="margin-bottom: 1rem; display: flex; align-items: start; gap: 1rem;">
-              <i class="ph ph-check-circle" style="color: hsl(var(--accent)); font-size: 1.5rem; flex-shrink: 0;"></i>
-              <span style="color: hsl(var(--foreground) / 0.8);"><strong>No tracking or analytics.</strong> Your privacy is respected, always.</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: 1rem;">
-              <i class="ph ph-check-circle" style="color: hsl(var(--accent)); font-size: 1.5rem; flex-shrink: 0;"></i>
-              <span style="color: hsl(var(--foreground) / 0.8);"><strong>Learn and grow.</strong> Study the code, understand the patterns, make it yours.</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Roadmap -->
-  <section id="roadmap" class="section">
-    <div class="ds-container">
-      <h2 class="section-title">Roadmap</h2>
-      <p class="section-subtitle">Community-driven features coming to Rukn</p>
-      
-      <div class="ds-grid ds-grid-cols-1 ds-md-grid-cols-2 ds-gap-6" style="max-width: 1000px; margin: 0 auto;">
-        <div class="card-surface" style="border-radius: var(--r-radius-2xl); border-left: 3px solid hsl(var(--success) / 0.4);">
-          <div style="display: flex; align-items: center; gap: var(--r-space-3); margin-bottom: var(--r-space-4);">
-            <i class="ph ph-check-circle" style="font-size: 1.8rem; background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-            <h3 style="font-size: var(--font-size-xl); margin: 0; background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Completed</h3>
-          </div>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--r-space-3);">
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-check" style="margin-top: 4px; background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-              <span>Glass morphism components</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-check" style="margin-top: 4px; background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-              <span>Rukn motion system</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-check" style="margin-top: 4px; background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-              <span>150+ design tokens</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-check" style="margin-top: 4px; background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-              <span>Responsive layout system</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-check" style="margin-top: 4px; background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-              <span>Web Components library</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="card-surface" style="border-radius: var(--r-radius-2xl); border-left: 3px solid hsl(var(--primary) / 0.4);">
-          <div style="display: flex; align-items: center; gap: var(--r-space-3); margin-bottom: var(--r-space-4);">
-            <i class="ph ph-rocket-launch" style="font-size: 1.8rem; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-            <h3 style="font-size: var(--font-size-xl); margin: 0; background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">In Progress</h3>
-          </div>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--r-space-3);">
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-circle" style="margin-top: 4px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-              <span>NPM package publication</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-circle" style="margin-top: 4px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-              <span>Advanced form components</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-circle" style="color: hsl(var(--primary)); margin-top: 4px;"></i>
-              <span>Figma design kit</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-circle" style="color: hsl(var(--primary)); margin-top: 4px;"></i>
-              <span>VSCode extension</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="card-surface" style="border-left: 4px solid hsl(var(--muted-foreground) / 0.3);">
-          <div style="display: flex; align-items: center; gap: var(--r-space-2); margin-bottom: var(--r-space-4);">
-            <i class="ph ph-lightbulb" style="color: hsl(var(--warning)); font-size: 1.5rem;"></i>
-            <h3 style="font-size: var(--font-size-xl); margin: 0;">Planned</h3>
-          </div>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--r-space-3);">
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-circle" style="color: hsl(var(--muted-foreground)); margin-top: 4px;"></i>
-              <span>Vue component library</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-circle" style="color: hsl(var(--muted-foreground)); margin-top: 4px;"></i>
-              <span>Tailwind CSS plugin</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-circle" style="color: hsl(var(--muted-foreground)); margin-top: 4px;"></i>
-              <span>More advanced components</span>
-            </li>
-            <li style="display: flex; align-items: start; gap: var(--r-space-2);">
-              <i class="ph ph-circle" style="color: hsl(var(--muted-foreground)); margin-top: 4px;"></i>
-              <span>CLI tool for scaffolding</span>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="card-surface" style="border-left: 4px solid hsl(var(--accent));">
-          <div style="display: flex; align-items: center; gap: var(--r-space-2); margin-bottom: var(--r-space-4);">
-            <i class="ph ph-users-three" style="color: hsl(var(--accent)); font-size: 1.5rem;"></i>
-            <h3 style="font-size: var(--font-size-xl); margin: 0;">Community Requests</h3>
-          </div>
-          <p style="color: hsl(var(--foreground) / 0.7); margin-bottom: var(--r-space-3);">
-            Have an idea? The roadmap is shaped by you!
-          </p>
-          <a href="https://github.com/mfaizanatiq/RuknDesignSystem/discussions" target="_blank" rel="noopener">
-            <button class="btn-outline" style="width: 100%;">
-              <i class="ph ph-chat-circle-dots" style="margin-right: 8px;"></i>
-              Suggest a Feature
-            </button>
+        <div class="hero-actions">
+          <a href="components.html">
+            <button class="btn-primary btn-lg">Get Started</button>
           </a>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- Changelog -->
-  <section id="changelog" class="section section-dark">
-    <div class="ds-container">
-      <h2 class="section-title">Changelog</h2>
-      <p class="section-subtitle">What's new in Rukn Design System</p>
-      
-      <div style="max-width: 800px; margin: 0 auto;">
-        <!-- Version 1.3.1 -->
-        <div class="card-surface" style="margin-bottom: var(--r-space-6); border-left: 4px solid hsl(var(--primary));">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--r-space-4); flex-wrap: wrap; gap: var(--r-space-2);">
-            <div>
-              <h3 style="font-size: var(--font-size-2xl); margin-bottom: var(--r-space-2);">v1.3.1</h3>
-              <p style="color: hsl(var(--muted-foreground)); font-size: var(--font-size-sm);">November 5, 2024</p>
-            </div>
-            <span class="ds-badge ds-badge-primary">Latest</span>
-          </div>
-          
-          <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--r-space-3); color: hsl(var(--primary));">
-            <i class="ph ph-plus-circle"></i> New Features
-          </h4>
-          <ul style="list-style: none; padding: 0; margin-bottom: var(--r-space-4); display: flex; flex-direction: column; gap: var(--r-space-2);">
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Icon placeholders with prismatic glass refraction effect
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Animated light refraction simulating glass prisms
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Full-width navbar variant with search integration
-            </li>
-          </ul>
-        </div>
-        
-        <!-- Version 1.3.0 -->
-        <div class="card-surface" style="margin-bottom: var(--r-space-6);">
-          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: var(--r-space-4); flex-wrap: wrap; gap: var(--r-space-2);">
-            <div>
-              <h3 style="font-size: var(--font-size-2xl); margin-bottom: var(--r-space-2);">v1.3.0</h3>
-              <p style="color: hsl(var(--muted-foreground)); font-size: var(--font-size-sm);">November 5, 2024</p>
-            </div>
-          </div>
-          
-          <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--r-space-3); color: hsl(var(--primary));">
-            <i class="ph ph-plus-circle"></i> New Features
-          </h4>
-          <ul style="list-style: none; padding: 0; margin-bottom: var(--r-space-4); display: flex; flex-direction: column; gap: var(--r-space-2);">
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Rukn motion system with Apple-inspired easing curves
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Complete responsive layout system (Grid, Flexbox, Container)
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Modern floating navbar with size variants
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Smooth custom cursor with hardware acceleration
-            </li>
-          </ul>
-          
-          <h4 style="font-size: var(--font-size-lg); margin-bottom: var(--r-space-3); color: hsl(var(--accent));">
-            <i class="ph ph-wrench"></i> Improvements
-          </h4>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--r-space-2);">
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-arrow-right" style="position: absolute; left: 0; top: 4px; color: hsl(var(--accent));"></i>
-              Reduced motion support for accessibility
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-arrow-right" style="position: absolute; left: 0; top: 4px; color: hsl(var(--accent));"></i>
-              Spring animations on form controls
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-arrow-right" style="position: absolute; left: 0; top: 4px; color: hsl(var(--accent));"></i>
-              Enhanced glass morphism effects
-            </li>
-          </ul>
-        </div>
-        
-        <!-- Version 1.2.2 -->
-        <div class="card-surface" style="margin-bottom: var(--r-space-6);">
-          <div style="margin-bottom: var(--r-space-4);">
-            <h3 style="font-size: var(--font-size-2xl); margin-bottom: var(--r-space-2);">v1.2.2</h3>
-            <p style="color: hsl(var(--muted-foreground)); font-size: var(--font-size-sm);">November 4, 2024</p>
-          </div>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--r-space-2);">
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Added Rubik font for Arabic language support
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Custom artistic cursor implementation
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Enhanced marketing copy and homepage design
-            </li>
-          </ul>
-        </div>
-        
-        <!-- Version 1.2.0 -->
-        <div class="card-surface">
-          <div style="margin-bottom: var(--r-space-4);">
-            <h3 style="font-size: var(--font-size-2xl); margin-bottom: var(--r-space-2);">v1.2.0</h3>
-            <p style="color: hsl(var(--muted-foreground)); font-size: var(--font-size-sm);">November 3, 2024</p>
-          </div>
-          <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--r-space-2);">
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              W3C compliant design tokens with <code style="background: hsl(var(--muted)); padding: 2px 6px; border-radius: 4px;">--r-</code> prefix
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Space Grotesk typography system
-            </li>
-            <li style="padding-left: var(--r-space-4); position: relative;">
-              <i class="ph ph-check" style="position: absolute; left: 0; top: 4px; color: hsl(var(--success));"></i>
-              Comprehensive showcase website
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- About -->
-  <section id="about" class="section">
-    <div class="ds-container">
-      <h2 class="section-title">About Rukn</h2>
-      <p class="section-subtitle">Open source forever — Built by the community, for the community</p>
-      
-      <div class="ds-grid ds-grid-cols-1 ds-md-grid-cols-3 ds-gap-8" style="max-width: 1200px; margin: 0 auto;">
-        <!-- Open Source Forever -->
-        <div class="card-surface" style="padding: var(--r-space-8); border-radius: var(--r-radius-2xl); border-left: 3px solid hsl(var(--success) / 0.4);">
-          <div style="font-size: 3rem; margin-bottom: var(--r-space-4); text-align: center;">
-            <i class="ph ph-code" style="background: linear-gradient(135deg, hsl(var(--success)), hsl(var(--success) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-          </div>
-          <h3 style="font-size: var(--font-size-2xl); margin-bottom: var(--r-space-3); background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Open Source Forever</h3>
-          <p style="color: hsl(var(--foreground) / 0.7); line-height: var(--line-height-relaxed);">
-            MIT licensed. Use commercially, modify freely. No paywalls, premium tiers, or tracking.
-          </p>
-        </div>
-        
-        <!-- Join the Movement -->
-        <div class="card-surface" style="padding: var(--r-space-8); border-radius: var(--r-radius-2xl); border-left: 3px solid hsl(var(--primary) / 0.4);">
-          <div style="font-size: 3rem; margin-bottom: var(--r-space-4); text-align: center;">
-            <i class="ph ph-users-three" style="background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
-          </div>
-          <h3 style="font-size: var(--font-size-2xl); margin-bottom: var(--r-space-3); background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Join the Movement</h3>
-          <p style="color: hsl(var(--foreground) / 0.7); line-height: var(--line-height-relaxed); margin-bottom: var(--r-space-4);">
-            Every contribution shapes the future. Star on GitHub, share feedback, or contribute code.
-          </p>
           <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener">
-            <button class="btn-primary" style="width: 100%;">
-              <i class="ph ph-github-logo" style="margin-right: 8px;"></i>
-              Star on GitHub
+            <button class="btn-ghost btn-lg">
+              <i data-lucide="github" style="margin-right:6px;"></i>
+              GitHub
             </button>
           </a>
         </div>
-        
-        <!-- Get in Touch -->
-        <div class="card-surface" style="padding: var(--r-space-8); border-radius: var(--r-radius-2xl); border-left: 3px solid hsl(var(--accent) / 0.4);">
-          <div style="font-size: 3rem; margin-bottom: var(--r-space-4); text-align: center;">
-            <i class="ph ph-chats-circle" style="background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent) / 0.7)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"></i>
+      </div>
+
+      <div class="hero-code reveal reveal-delay-2">
+        <span class="hero-code-label">index.html</span>
+        <div><span class="line-comment">&lt;!-- RTL Arabic — just set lang and dir --&gt;</span></div>
+        <div><span class="line-tag">&lt;html</span> <span class="line-attr">lang</span>=<span class="line-str">"ar"</span> <span class="line-attr">dir</span>=<span class="line-str">"rtl"</span> <span class="line-attr">class</span>=<span class="line-str">"dark"</span><span class="line-tag">&gt;</span></div>
+        <br>
+        <div><span class="line-comment">&lt;!-- Components work in both directions --&gt;</span></div>
+        <div><span class="line-tag">&lt;button</span> <span class="line-attr">class</span>=<span class="line-str">"btn-primary"</span><span class="line-tag">&gt;</span>ابدأ الآن<span class="line-tag">&lt;/button&gt;</span></div>
+        <br>
+        <div><span class="line-tag">&lt;div</span> <span class="line-attr">class</span>=<span class="line-str">"ds-card"</span><span class="line-tag">&gt;</span></div>
+        <div>&nbsp;&nbsp;بطاقة زجاجية جميلة<br></div>
+        <div><span class="line-tag">&lt;/div&gt;</span></div>
+        <br>
+        <div><span class="line-comment">&lt;!-- Navbar with built-in i18n --&gt;</span></div>
+        <div><span class="line-tag">&lt;rukn-navbar</span> <span class="line-attr">current</span>=<span class="line-str">"home"</span><span class="line-tag">&gt;</span></div>
+        <div><span class="line-tag">&lt;/rukn-navbar&gt;</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       FRAMEWORK BAR
+       ==================================== -->
+  <section class="page-section" style="padding-top:0; padding-bottom:0;">
+    <div class="page-container reveal">
+      <div class="framework-bar">
+        <div class="framework-item"><i data-lucide="file-code"></i> HTML</div>
+        <div class="framework-item"><i data-lucide="atom"></i> React</div>
+        <div class="framework-item"><i data-lucide="code"></i> Vue</div>
+        <div class="framework-item"><i data-lucide="code-2"></i> Angular</div>
+        <div class="framework-item"><i data-lucide="zap"></i> Svelte</div>
+        <div class="framework-item"><i data-lucide="globe"></i> Any Framework</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       STATS
+       ==================================== -->
+  <section class="page-section">
+    <div class="page-container reveal">
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-value">150+</div>
+          <div class="stat-label">Design Tokens</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">20+</div>
+          <div class="stat-label">Components</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">0</div>
+          <div class="stat-label">Dependencies</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Languages (ar/ur/en)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       FEATURES — BENTO GRID
+       ==================================== -->
+  <section class="page-section">
+    <div class="page-container">
+      <div class="mb-16 reveal">
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);">Why Rukn</p>
+        <h2 class="heading-section" style="max-width:560px;">Built on the pillar of language.</h2>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card bento-card--span-2 reveal">
+          <i data-lucide="droplet" class="bento-icon"></i>
+          <h3 class="bento-title">Glass Morphism</h3>
+          <p class="bento-desc">Frosted glass surfaces, light refraction effects, and translucent depth layers that give your UI a premium, physical feel.</p>
+        </div>
+        <div class="bento-card reveal reveal-delay-1">
+          <i data-lucide="clock" class="bento-icon"></i>
+          <h3 class="bento-title">Rukn Motion</h3>
+          <p class="bento-desc">iOS-inspired easing curves and spring physics for buttery animations.</p>
+        </div>
+        <div class="bento-card reveal reveal-delay-1">
+          <i data-lucide="palette" class="bento-icon"></i>
+          <h3 class="bento-title">150+ Tokens</h3>
+          <p class="bento-desc">W3C-compliant design tokens covering color, spacing, typography, shadows, and motion.</p>
+        </div>
+        <div class="bento-card reveal reveal-delay-2">
+          <i data-lucide="languages" class="bento-icon"></i>
+          <h3 class="bento-title">RTL First</h3>
+          <p class="bento-desc">Arabic and Urdu layouts that just work. <code>dir="rtl"</code> flips everything — no patches needed.</p>
+        </div>
+        <div class="bento-card reveal reveal-delay-3">
+          <i data-lucide="moon" class="bento-icon"></i>
+          <h3 class="bento-title">Dark & Light</h3>
+          <p class="bento-desc">Toggle themes with a single class. Tokens adapt automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================================
+       COMPONENT SHOWCASE — LIVE DEMOS
+       ==================================== -->
+  <section class="page-section">
+    <div class="page-container">
+      <div class="mb-16 reveal">
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);">Components</p>
+        <h2 class="heading-section" style="max-width:560px;">Production-ready.<br>Copy, paste, ship.</h2>
+      </div>
+
+      <div class="showcase-strip">
+        <!-- Buttons -->
+        <div class="showcase-row reveal">
+          <div class="showcase-info">
+            <h3>Buttons</h3>
+            <p>Seven variants, three sizes, loading states, and icon support. Accessible focus rings included.</p>
+            <a href="components.html#buttons" style="color:hsl(var(--primary)); font-size:0.9rem; font-weight:var(--r-font-weight-medium);">View docs <i data-lucide="arrow-right" style="font-size:0.8rem;"></i></a>
           </div>
-          <h3 style="font-size: var(--font-size-2xl); margin-bottom: var(--r-space-3); background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.8)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Get in Touch</h3>
-          <p style="color: hsl(var(--foreground) / 0.7); line-height: var(--line-height-relaxed); margin-bottom: var(--r-space-4);">
-            Questions, ideas, or want to collaborate? Connect on LinkedIn or join discussions.
+          <div class="showcase-demo">
+            <button class="btn-primary">Primary</button>
+            <button class="btn-secondary">Secondary</button>
+            <button class="btn-outline">Outline</button>
+            <button class="btn-ghost">Ghost</button>
+            <button class="btn-destructive btn-sm">Delete</button>
+          </div>
+        </div>
+
+        <!-- Form Controls -->
+        <div class="showcase-row showcase-row--reverse reveal">
+          <div class="showcase-info">
+            <h3>Form Controls</h3>
+            <p>Inputs, checkboxes, radio buttons, toggles, sliders — all with glass morphism styling and spring animations.</p>
+            <a href="components.html#inputs" style="color:hsl(var(--primary)); font-size:0.9rem; font-weight:var(--r-font-weight-medium);">View docs <i data-lucide="arrow-right" style="font-size:0.8rem;"></i></a>
+          </div>
+          <div class="showcase-demo" style="flex-direction:column; gap:var(--r-space-4);">
+            <input type="text" class="ds-input" placeholder="Email address" aria-label="Email" style="max-width:280px; width:100%;">
+            <div style="display:flex; gap:var(--r-space-6); align-items:center;">
+              <label class="ds-checkbox-wrapper">
+                <input type="checkbox" class="ds-checkbox" checked>
+                <span style="font-size:0.85rem;">Checkbox</span>
+              </label>
+              <label class="ds-switch-wrapper">
+                <input type="checkbox" class="ds-switch" checked aria-label="Toggle">
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards & Badges -->
+        <div class="showcase-row reveal">
+          <div class="showcase-info">
+            <h3>Cards & Badges</h3>
+            <p>Surface components with hover states, glass variants, and semantic badge colors for status indicators.</p>
+            <a href="components.html#cards" style="color:hsl(var(--primary)); font-size:0.9rem; font-weight:var(--r-font-weight-medium);">View docs <i data-lucide="arrow-right" style="font-size:0.8rem;"></i></a>
+          </div>
+          <div class="showcase-demo" style="flex-direction:column; gap:var(--r-space-4);">
+            <div class="ds-card" style="padding:var(--r-space-5); max-width:260px; width:100%;">
+              <h4 style="margin-bottom:var(--r-space-2); font-size:0.95rem;">Glass Card</h4>
+              <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.5);">Beautiful surface component with subtle depth.</p>
+            </div>
+            <div style="display:flex; gap:var(--r-space-2); flex-wrap:wrap;">
+              <span class="ds-badge ds-badge-primary">Primary</span>
+              <span class="ds-badge ds-badge-success">Success</span>
+              <span class="ds-badge ds-badge-warning">Warning</span>
+              <span class="ds-badge ds-badge-neutral">Neutral</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center reveal" style="margin-top:var(--r-space-12);">
+        <a href="components.html">
+          <button class="btn-outline btn-lg">
+            View All Components <i data-lucide="arrow-right" style="margin-left:8px;"></i>
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================================
+       INSTALL / CODE
+       ==================================== -->
+  <section class="page-section">
+    <div class="page-container">
+      <div class="code-section">
+        <div class="reveal">
+          <p class="label-caps" style="margin-bottom:var(--r-space-3);">Get started</p>
+          <h2 class="heading-section" style="margin-bottom:var(--r-space-4);">Two files.<br>Zero config.</h2>
+          <p style="color:hsl(var(--foreground)/0.5); font-size:1rem; line-height:1.7; max-width:400px; margin-bottom:var(--r-space-6);">
+            Copy two CSS files into your project, link them in your HTML, and you have a complete design system. No npm, no build tools, no config files.
           </p>
-          <a href="https://www.linkedin.com/in/mfaizanatiq/" target="_blank" rel="noopener">
-            <button class="btn-secondary" style="width: 100%;">
-              <i class="ph ph-linkedin-logo" style="margin-right: 8px;"></i>
-              Connect on LinkedIn
-            </button>
-          </a>
+          <div style="display:flex; gap:var(--r-space-3); flex-wrap:wrap;">
+            <a href="INTEGRATION_GUIDE.md">
+              <button class="btn-primary">Integration Guide</button>
+            </a>
+            <a href="foundation.html">
+              <button class="btn-ghost">Browse Tokens</button>
+            </a>
+          </div>
         </div>
-      </div>
-      
-      <!-- Rukn Vision Statement -->
-      <div style="max-width: 800px; margin: var(--r-space-12) auto 0; text-align: center;">
-        <p style="font-size: var(--font-size-xl); color: hsl(var(--foreground) / 0.7); line-height: var(--line-height-relaxed);">
-          <strong>Rukn</strong> <span class="arabic-text" style="font-size: var(--font-size-2xl); color: hsl(var(--primary));">رُكن</span> means "pillar" in Arabic. We're building the foundation for beautiful, accessible web experiences — completely free, forever.
-        </p>
+        <div class="code-block reveal reveal-delay-2">
+          <div class="code-block-header">
+            <span class="code-dot"></span>
+            <span class="code-dot"></span>
+            <span class="code-dot"></span>
+          </div>
+<span class="line-comment"># Option 1: Copy files</span>
+<span class="line-tag">cp</span> styles/*.css your-project/
+
+<span class="line-comment"># Option 2: npm</span>
+<span class="line-tag">npm</span> install @ruknds/core
+
+<span class="line-comment"># Option 3: CDN</span>
+<span class="line-tag">&lt;link</span> <span class="line-attr">rel</span>=<span class="line-str">"stylesheet"</span>
+  <span class="line-attr">href</span>=<span class="line-str">"unpkg.com/@ruknds/core/styles/design-system.css"</span><span class="line-tag">&gt;</span>
+        </div>
       </div>
     </div>
   </section>
-  
-  <!-- CTA -->
-  <section class="section">
-    <div class="ds-container">
-      <div class="cta-box">
-        <h2 class="cta-title">Start Building Today</h2>
-        <p class="cta-desc">Beautiful, accessible components with glass morphism and Rukn motion design. Zero dependencies. Open source forever.</p>
-        <div style="display: flex; gap: var(--r-space-4); justify-content: center; flex-wrap: wrap;">
-          <a href="components.html"><button class="btn-primary btn-lg">
-            <i class="ph ph-rocket-launch" style="margin-right: 8px;"></i>
+
+  <hr class="section-divider">
+
+  <!-- ====================================
+       ROADMAP
+       ==================================== -->
+  <section id="roadmap" class="page-section">
+    <div class="page-container">
+      <div class="mb-16 reveal">
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);">Roadmap</p>
+        <h2 class="heading-section">What's next.</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-status timeline-status--done">
+            <i data-lucide="circle-check"></i> Shipped
+          </div>
+          <ul class="timeline-list">
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Glass morphism system</li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> 150+ design tokens</li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Web Components library</li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Rukn Motion easing</li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Responsive layouts</li>
+          </ul>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-status timeline-status--progress">
+            <i data-lucide="loader-circle"></i> In Progress
+          </div>
+          <ul class="timeline-list">
+            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> NPM package</li>
+            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> Advanced form components</li>
+            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> Figma design kit</li>
+            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> VS Code extension</li>
+          </ul>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-status timeline-status--planned">
+            <i data-lucide="lightbulb"></i> Planned
+          </div>
+          <ul class="timeline-list">
+            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> Tailwind CSS plugin</li>
+            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> CLI scaffolding tool</li>
+            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> Data visualization</li>
+            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> Community themes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================================
+       ABOUT — OPEN SOURCE + COMMUNITY
+       ==================================== -->
+  <section id="about" class="page-section">
+    <div class="page-container page-container--narrow text-center">
+      <div class="reveal">
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);">Open Source</p>
+        <h2 class="heading-section" style="margin-bottom:var(--r-space-4);">
+          Free forever.<br>No strings attached.
+        </h2>
+        <p style="font-size:1.05rem; line-height:1.8; color:hsl(var(--foreground)/0.5); max-width:600px; margin:0 auto var(--r-space-8);">
+          <strong style="color:hsl(var(--foreground)/0.8);">Rukn</strong> <span class="arabic-text" style="color:hsl(var(--primary));">رُكن</span> means "pillar" in Arabic. We're building the foundation for beautiful, accessible web experiences — MIT licensed, community-driven, and free for commercial use.
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--r-space-4); margin-bottom:var(--r-space-10);" class="reveal reveal-delay-1">
+        <div style="padding:var(--r-space-6); border-radius:var(--r-radius-2xl); border:1px solid hsl(var(--foreground)/0.06);">
+          <i data-lucide="code" style="font-size:1.5rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-3); display:block;"></i>
+          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);">MIT Licensed</h4>
+          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);">Use commercially. Modify freely. No attribution required.</p>
+        </div>
+        <div style="padding:var(--r-space-6); border-radius:var(--r-radius-2xl); border:1px solid hsl(var(--foreground)/0.06);">
+          <i data-lucide="users" style="font-size:1.5rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-3); display:block;"></i>
+          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);">Community Driven</h4>
+          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);">Your PRs and ideas shape the roadmap.</p>
+        </div>
+        <div style="padding:var(--r-space-6); border-radius:var(--r-radius-2xl); border:1px solid hsl(var(--foreground)/0.06);">
+          <i data-lucide="eye-off" style="font-size:1.5rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-3); display:block;"></i>
+          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);">No Tracking</h4>
+          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);">No analytics, no telemetry, no paywalls. Ever.</p>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2" style="display:flex; gap:var(--r-space-3); justify-content:center; flex-wrap:wrap;">
+        <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener">
+          <button class="btn-primary">
+            <i data-lucide="github" style="margin-right:6px;"></i>
+            Star on GitHub
+          </button>
+        </a>
+        <a href="https://github.com/mfaizanatiq/RuknDesignSystem/discussions" target="_blank" rel="noopener">
+          <button class="btn-ghost">
+            <i data-lucide="message-circle" style="margin-right:6px;"></i>
+            Discussions
+          </button>
+        </a>
+        <a href="https://www.linkedin.com/in/mfaizanatiq/" target="_blank" rel="noopener">
+          <button class="btn-ghost">
+            <i data-lucide="linkedin" style="margin-right:6px;"></i>
+            Connect
+          </button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================
+       CTA
+       ==================================== -->
+  <section class="cta-block page-section">
+    <div class="page-container page-container--narrow reveal">
+      <h2 class="heading-display" style="font-size:clamp(2.5rem,6vw,4rem); margin-bottom:var(--r-space-4);">
+        Start building<br>something beautiful.
+      </h2>
+      <p style="font-size:1.1rem; color:hsl(var(--foreground)/0.45); max-width:480px; margin:0 auto;">
+        Glass morphism, motion design, and 20+ components. Drop in two files and go.
+      </p>
+      <div class="cta-actions">
+        <a href="components.html">
+          <button class="btn-primary btn-lg">
+            <i data-lucide="rocket" style="margin-right:8px;"></i>
             Explore Components
-          </button></a>
-          <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener"><button class="btn-secondary btn-lg">
-            <i class="ph ph-github-logo" style="margin-right: 8px;"></i>
+          </button>
+        </a>
+        <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener">
+          <button class="btn-outline btn-lg">
+            <i data-lucide="github" style="margin-right:8px;"></i>
             View on GitHub
-          </button></a>
-        </div>
-        <p style="margin-top: var(--r-space-6); font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.5);">
-          <i class="ph ph-heart" style="color: hsl(var(--primary)); margin-right: 4px;"></i>
-          MIT Licensed • No Attribution Required • Open Source Forever
-        </p>
+          </button>
+        </a>
       </div>
+      <p class="cta-meta">
+        <i data-lucide="heart" style="color:hsl(var(--primary));"></i>
+        MIT Licensed &middot; Zero Dependencies &middot; Open Source Forever
+      </p>
     </div>
   </section>
-  
-  
-  <!-- Footer (Web Component) -->
+
   <rukn-footer></rukn-footer>
-  
-  <!-- Custom Cursor -->
-  <div class="custom-cursor"></div>
-  <div class="custom-cursor-dot"></div>
-  
+
+  <!-- ====================================
+       SCROLL REVEAL
+       ==================================== -->
   <script>
-    // Optimized Custom Cursor - Hardware accelerated
-    const cursor = document.querySelector('.custom-cursor');
-    const cursorDot = document.querySelector('.custom-cursor-dot');
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let cursorX = mouseX;
-    let cursorY = mouseY;
-    let dotX = mouseX;
-    let dotY = mouseY;
-    
-    // Make cursor visible immediately
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
-    cursorDot.style.left = dotX + 'px';
-    cursorDot.style.top = dotY + 'px';
-    
-    // Use passive event listener for better performance
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    }, { passive: true });
-    
-    // Optimized animation with left/top for better compatibility
-    function animateCursor() {
-      // Smooth following with easing
-      const ease = 0.18;
-      const dotEase = 0.3;
-      
-      cursorX += (mouseX - cursorX) * ease;
-      cursorY += (mouseY - cursorY) * ease;
-      dotX += (mouseX - dotX) * dotEase;
-      dotY += (mouseY - dotY) * dotEase;
-      
-      // Update position
-      cursor.style.left = cursorX + 'px';
-      cursor.style.top = cursorY + 'px';
-      cursorDot.style.left = dotX + 'px';
-      cursorDot.style.top = dotY + 'px';
-      
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-    
-    document.querySelectorAll('a, button, input, label, .ds-card, .feature-card, .showcase-item, .ds-icon-placeholder').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-    
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealElements.forEach((el) => observer.observe(el));
+
     // Navbar scroll effect
     const navbar = document.querySelector('.ds-navbar');
-    let lastScroll = 0;
-    
-    window.addEventListener('scroll', () => {
-      const currentScroll = window.pageYOffset;
-      
-      if (currentScroll > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-      
-      lastScroll = currentScroll;
-    });
-    
-    // Mobile Navigation Toggle
+    if (navbar) {
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.pageYOffset > 50);
+      }, { passive: true });
+    }
+
+    // Mobile navigation
     const navToggle = document.getElementById('navToggle');
     const navDropdown = document.getElementById('navDropdown');
-    
     if (navToggle && navDropdown) {
       navToggle.addEventListener('click', () => {
         navToggle.classList.toggle('open');
         navDropdown.classList.toggle('open');
       });
-      
-      // Close menu when clicking a link
-      navDropdown.querySelectorAll('a').forEach(link => {
+      navDropdown.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
           navToggle.classList.remove('open');
           navDropdown.classList.remove('open');
         });
       });
-      
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!navbar.contains(e.target) && !navDropdown.contains(e.target)) {
-          navToggle.classList.remove('open');
-          navDropdown.classList.remove('open');
-        }
-      });
     }
-    
-    // Make floating components more interactive on hover
-    document.querySelectorAll('.floating').forEach((el, index) => {
-      el.addEventListener('mouseenter', () => {
-        el.style.animationPlayState = 'paused';
-        el.style.transform = 'scale(1.1)';
-        el.style.filter = 'blur(0)';
-        el.style.opacity = '0.8';
-      });
-      
-      el.addEventListener('mouseleave', () => {
-        el.style.animationPlayState = 'running';
-        el.style.transform = '';
-        el.style.filter = 'blur(0.5px)';
-        el.style.opacity = '';
-      });
-    });
+  </script>
+
+  <script>
+    lucide.createIcons({ attrs: { 'stroke-width': 1 } });
   </script>
 </body>
 </html>

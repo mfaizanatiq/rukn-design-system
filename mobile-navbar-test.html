@@ -10,12 +10,13 @@
   <link rel="stylesheet" href="styles/design-system.css">
   
   <!-- Phosphor Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   
   <!-- Rukn Navbar Component -->
   <script src="components/rukn-navbar.js" defer></script>
   
   <style>
+    .lucide { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; }
     body {
       background: hsl(var(--background));
       color: hsl(var(--foreground));
@@ -176,6 +177,7 @@
       <p>Scroll back up to see the navbar remain sticky and visible. The navbar should stay fixed at the top with enhanced glass effects when scrolled.</p>
     </div>
   </div>
+<script>lucide.createIcons({attrs:{'stroke-width':1}});const _obs=new MutationObserver(()=>lucide.createIcons({attrs:{'stroke-width':1}}));_obs.observe(document.body,{childList:true,subtree:true});</script>
 </body>
 </html>
 

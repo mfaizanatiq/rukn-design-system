@@ -8,10 +8,11 @@
   <link rel="stylesheet" href="styles/design-system-variables.css">
   <link rel="stylesheet" href="styles/design-system.css">
   
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <script src="components/rukn-navbar.js" defer></script>
   
   <style>
+    .lucide { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; }
     body {
       min-height: 300vh;
       background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f0f1e 100%);
@@ -148,6 +149,7 @@
     }, 500);
   </script>
   
+<script>lucide.createIcons({attrs:{'stroke-width':1}});const _obs=new MutationObserver(()=>lucide.createIcons({attrs:{'stroke-width':1}}));_obs.observe(document.body,{childList:true,subtree:true});</script>
 </body>
 </html>
 

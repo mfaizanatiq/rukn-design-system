@@ -30,6 +30,20 @@
 
 const PRIMARY_COLOR_STORAGE_KEY = 'rukn-primary-color';
 
+/**
+ * Moves the host's original children into the <slot> position (light DOM).
+ * Slots only work in Shadow DOM; without it, setting innerHTML wipes children.
+ * Call after setting innerHTML: pass the host and the childNodes captured before.
+ */
+function ruknApplySlotContent(host, savedChildren) {
+  if (!savedChildren || savedChildren.length === 0) return;
+  const slot = host.querySelector('slot');
+  if (!slot) return;
+  const parent = slot.parentNode;
+  savedChildren.forEach((n) => parent.insertBefore(n, slot));
+  slot.remove();
+}
+
 function ruknHexToHsl(hex) {
   const sanitized = hex.replace('#', '');
   if (sanitized.length !== 6) {
@@ -196,28 +210,39 @@ class RuknButton extends HTMLElement {
   static get observedAttributes() {
     return ['variant', 'size', 'disabled', 'loading'];
   }
-  
+
   connectedCallback() {
+    this._originalSlotContent = Array.from(this.childNodes).map(n => n.cloneNode(true));
+    this._langChangeHandler = () => {
+      if (this.hasAttribute('loading')) {
+        this._applyTranslations();
+      }
+    };
+    document.addEventListener('rukn:languagechange', this._langChangeHandler);
     this.render();
   }
-  
+
+  disconnectedCallback() {
+    document.removeEventListener('rukn:languagechange', this._langChangeHandler);
+  }
+
   attributeChangedCallback() {
     this.render();
   }
-  
+
   render() {
     const variant = this.getAttribute('variant') || 'primary';
     const size = this.getAttribute('size') || 'md';
     const disabled = this.hasAttribute('disabled');
     const loading = this.hasAttribute('loading');
     const icon = this.getAttribute('icon');
-    
+
     const classes = [
       `btn-${variant}`,
       `btn-${size}`,
       loading ? 'btn-loading' : ''
     ].filter(Boolean).join(' ');
-    
+
     this.innerHTML = `
       <button class="${classes}" ${disabled ? 'disabled' : ''}>
         ${icon ? `<i class="${icon}" style="margin-right: 8px;"></i>` : ''}
@@ -225,17 +250,11 @@ class RuknButton extends HTMLElement {
         <slot></slot>
       </button>
     `;
-    
+    ruknApplySlotContent(this, (this._originalSlotContent || []).map(n => n.cloneNode(true)));
+
     if (loading) {
       this._applyTranslations();
     }
-    
-    // Listen for language changes
-    document.addEventListener('rukn:languagechange', () => {
-      if (this.hasAttribute('loading')) {
-        this._applyTranslations();
-      }
-    });
   }
   
   _applyTranslations() {
@@ -265,23 +284,25 @@ class RuknBadge extends HTMLElement {
   static get observedAttributes() {
     return ['variant'];
   }
-  
+
   connectedCallback() {
+    this._originalSlotContent = Array.from(this.childNodes).map(n => n.cloneNode(true));
     this.render();
   }
-  
+
   attributeChangedCallback() {
     this.render();
   }
-  
+
   render() {
     const variant = this.getAttribute('variant') || 'neutral';
-    
+
     this.innerHTML = `
       <span class="ds-badge ds-badge-${variant}">
         <slot></slot>
       </span>
     `;
+    ruknApplySlotContent(this, (this._originalSlotContent || []).map(n => n.cloneNode(true)));
   }
 }
 
@@ -293,14 +314,16 @@ customElements.define('rukn-badge', RuknBadge);
 
 class RuknCard extends HTMLElement {
   connectedCallback() {
+    this._originalSlotContent = Array.from(this.childNodes).map(n => n.cloneNode(true));
     const glass = this.hasAttribute('glass');
     const className = glass ? 'ds-glass' : 'ds-card';
-    
+
     this.innerHTML = `
       <div class="${className}">
         <slot></slot>
       </div>
     `;
+    ruknApplySlotContent(this, (this._originalSlotContent || []).map(n => n.cloneNode(true)));
   }
 }
 
@@ -314,20 +337,21 @@ class RuknAlert extends HTMLElement {
   static get observedAttributes() {
     return ['variant', 'dismissible'];
   }
-  
+
   connectedCallback() {
+    this._originalSlotContent = Array.from(this.childNodes).map(n => n.cloneNode(true));
     this.render();
   }
-  
+
   attributeChangedCallback() {
     this.render();
   }
-  
+
   render() {
     const variant = this.getAttribute('variant') || 'info';
     const title = this.getAttribute('title') || '';
     const dismissible = this.hasAttribute('dismissible');
-    
+
     const icons = {
       info: 'ℹ',
       success: '✓',
@@ -335,7 +359,7 @@ class RuknAlert extends HTMLElement {
       error: '✕',
       destructive: '✕'
     };
-    
+
     this.innerHTML = `
       <div class="ds-alert ds-alert-${variant}">
         <div class="ds-alert-icon">${icons[variant]}</div>
@@ -348,7 +372,8 @@ class RuknAlert extends HTMLElement {
         ${dismissible ? '<button class="ds-alert-close" data-i18n-aria-label="component.alert.close" aria-label="Close">✕</button>' : ''}
       </div>
     `;
-    
+    ruknApplySlotContent(this, (this._originalSlotContent || []).map(n => n.cloneNode(true)));
+
     if (dismissible) {
       const closeBtn = this.querySelector('.ds-alert-close');
       closeBtn?.addEventListener('click', () => {
@@ -463,9 +488,15 @@ customElements.define('rukn-progress', RuknProgress);
 
 class RuknModal extends HTMLElement {
   connectedCallback() {
+    this._originalSlotContent = Array.from(this.childNodes).map(n => n.cloneNode(true));
+    this._langChangeHandler = () => {
+      this._applyTranslations();
+    };
+    document.addEventListener('rukn:languagechange', this._langChangeHandler);
+
     const id = this.getAttribute('modal-id') || 'modal';
     const title = this.getAttribute('title') || '';
-    
+
     this.innerHTML = `
       <div class="ds-modal-overlay" id="${id}-overlay" style="display: none;"></div>
       <div class="ds-modal" id="${id}" style="display: none;">
@@ -482,13 +513,13 @@ class RuknModal extends HTMLElement {
         <button class="ds-modal-close" data-i18n-aria-label="component.modal.close" aria-label="Close" onclick="this.closest('rukn-modal').close()">✕</button>
       </div>
     `;
-    
+    ruknApplySlotContent(this, (this._originalSlotContent || []).map(n => n.cloneNode(true)));
+
     this._applyTranslations();
-    
-    // Listen for language changes
-    document.addEventListener('rukn:languagechange', () => {
-      this._applyTranslations();
-    });
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener('rukn:languagechange', this._langChangeHandler);
   }
   
   _applyTranslations() {
@@ -586,32 +617,34 @@ class RuknIcon extends HTMLElement {
   static get observedAttributes() {
     return ['variant', 'size', 'circle'];
   }
-  
+
   connectedCallback() {
+    this._originalSlotContent = Array.from(this.childNodes).map(n => n.cloneNode(true));
     this.render();
   }
-  
+
   attributeChangedCallback() {
     this.render();
   }
-  
+
   render() {
     const variant = this.getAttribute('variant') || '';
     const size = this.getAttribute('size') || 'md';
     const circle = this.hasAttribute('circle');
-    
+
     const classes = [
       'ds-icon-placeholder',
       size ? `ds-icon-placeholder-${size}` : '',
       variant ? `ds-icon-placeholder-${variant}` : '',
       circle ? 'ds-icon-placeholder-circle' : ''
     ].filter(Boolean).join(' ');
-    
+
     this.innerHTML = `
       <div class="${classes}">
         <slot></slot>
       </div>
     `;
+    ruknApplySlotContent(this, (this._originalSlotContent || []).map(n => n.cloneNode(true)));
   }
 }
 

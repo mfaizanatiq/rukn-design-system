@@ -1,53 +1,51 @@
 {
   "name": "@ruknds/core",
-  "version": "2.0.0",
-  "description": "Modern Web Component library with glass morphism and Rukn Motion. 100% Vanilla JavaScript, zero dependencies, works in any framework. Ultra-lightweight (~5KB gzipped).",
+  "version": "2.2.0",
+  "description": "The first modern design system built for Arabic, Urdu, and multilingual applications. RTL-first CSS tokens, Web Components with built-in i18n (ar/ur/en), glass morphism, zero dependencies.",
   "main": "components/rukn-ui.js",
   "style": "styles/design-system.css",
   "files": [
     "components/",
     "styles/",
     "scripts/",
-    "docs/",
     "types.d.ts",
-    "index.html",
-    "foundation.html",
-    "components.html",
-    "example.html",
-    "web-components-demo.html",
     "README.md",
     "LICENSE",
-    "robots.txt",
-    "sitemap.xml"
+    "CHANGELOG.md"
   ],
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --no-cache",
+    "build": "echo \"No build step required\"",
+    "prepublishOnly": "npm test"
+  },
   "homepage": "https://rukn.design",
   "bugs": {
     "url": "https://github.com/mfaizanatiq/RuknDesignSystem/issues"
   },
   "keywords": [
-    "web-components",
-    "vanilla-javascript",
+    "rtl",
+    "arabic",
+    "urdu",
+    "right-to-left",
+    "multilingual",
+    "i18n",
+    "bidi",
+    "nastaliq",
+    "arabic-typography",
     "design-system",
     "css",
+    "web-components",
+    "vanilla-javascript",
     "ui-library",
     "component-library",
     "framework-agnostic",
-    "react",
-    "vue",
-    "angular",
-    "svelte",
     "glass-morphism",
-    "glassmorphism",
-    "modern",
-    "lightweight",
     "zero-dependencies",
-    "responsive",
-    "accessible",
-    "space-grotesk",
-    "typography",
     "design-tokens",
-    "phosphor-icons",
-    "dark-mode"
+    "dark-mode",
+    "accessible",
+    "responsive",
+    "lightweight"
   ],
   "author": "M Faizan Atiq <mfaizanatiq@gmail.com>",
   "license": "MIT",
@@ -59,6 +57,8 @@
     ".": "./components/rukn-ui.js",
     "./components/*": "./components/*",
     "./styles/*": "./styles/*",
+    "./styles/design-system.css": "./styles/design-system.css",
+    "./styles/design-system-variables.css": "./styles/design-system-variables.css",
     "./navbar": "./components/rukn-navbar.js",
     "./sidebar": "./components/rukn-sidebar.js",
     "./footer": "./components/rukn-footer.js"
@@ -66,5 +66,12 @@
   "type": "module",
   "engines": {
     "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  },
+  "jest": {
+    "testMatch": ["**/tests/**/*.test.js"],
+    "transform": {}
   }
 }

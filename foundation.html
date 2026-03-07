@@ -1,172 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-  <!-- Meta Tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <!-- SEO Meta Tags -->
-  <title>Foundation & Design Tokens - Rukn Design System رُكن</title>
-  <meta name="description" content="Explore Rukn's design foundation - colors, typography, spacing, and layout systems. Complete design token reference with live examples.">
+
+  <title>Foundation & Design Tokens — Rukn Design System</title>
+  <meta name="description" content="Explore Rukn's design foundation — colors, typography, spacing, and layout systems. Complete design token reference with live examples.">
   <meta name="keywords" content="rukn design tokens, CSS variables, typography, spacing, colors, layout system, grid, flexbox">
-  
-  <!-- Favicon -->
+
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
-  
-  <!-- Canonical URL -->
-  <link rel="canonical" href="https://rukn.design/components.html">
-  
-  <!-- Stylesheets -->
+  <link rel="canonical" href="https://rukn.design/foundation.html">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/design-system-variables.css">
   <link rel="stylesheet" href="styles/design-system.css">
-  
-  <!-- Phosphor Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web@2.0.3"></script>
-  
-  <!-- Rukn Web Components (Vanilla JS) -->
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
   <script src="components/rukn-navbar.js" defer></script>
   <script src="components/rukn-sidebar.js" defer></script>
   <script src="components/rukn-ui.js" type="module"></script>
-  
-  <!-- Structured Data for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "TechArticle",
-    "headline": "Rukn Design System - Foundation & Design Tokens",
-    "description": "Complete guide to Rukn design tokens including colors, typography, spacing, shadows, and motion system. W3C-compliant CSS variables.",
-    "author": {
-      "@type": "Person",
-      "name": "M Faizan Atiq"
-    },
-    "datePublished": "2025-11-05",
-    "dateModified": "2025-11-05",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Rukn Design System",
-      "url": "https://rukn.design"
-    }
-  }
-  </script>
-  
+
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
+    /* =========================================================
+       RESET & BASE
+       ========================================================= */
+    .lucide { width: 1em; height: 1em; display: inline-block; vertical-align: -0.125em; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       background: hsl(var(--background));
       color: hsl(var(--foreground));
       overflow-x: hidden;
-      cursor: none;
-      position: relative;
+      font-family: var(--r-font-body);
     }
-    
-    /* Ethereal Background - Soft Prismatic Light */
-    body::before {
+
+    /* Grain texture */
+    body::after {
       content: '';
       position: fixed;
       inset: 0;
-      background: 
-        radial-gradient(circle at 25% 20%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 30%, hsl(var(--accent) / 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 50% 85%, hsl(var(--success) / 0.06) 0%, transparent 40%),
-        radial-gradient(circle at 10% 60%, hsl(var(--warning) / 0.04) 0%, transparent 35%);
-      animation: prismaticShift 35s ease-in-out infinite;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px;
       pointer-events: none;
-      z-index: 0;
-      filter: blur(65px);
-      opacity: 0.6;
+      z-index: 9999;
+      opacity: 0.5;
     }
-    
-    @keyframes prismaticShift {
-      0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 0.6;
-      }
-      33% {
-        transform: translate(4%, -3%) rotate(120deg);
-        opacity: 0.4;
-      }
-      66% {
-        transform: translate(-3%, 4%) rotate(240deg);
-        opacity: 0.5;
-      }
-    }
-    
-    /* Ensure content is above background */
-    .ds-navbar, .docs-layout, .sidebar, .main-content {
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Hide all default cursors */
-    body, body *, a, button, input, textarea, select, label {
-      cursor: none !important;
-    }
-    
-    /* Custom Cursor - Optimized for performance */
-    .custom-cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid hsl(var(--primary));
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 99999;
-      transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
-      mix-blend-mode: difference;
-      will-change: transform;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform: translate(-50%, -50%);
-    }
-    
-    .custom-cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: hsl(var(--primary));
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 100000;
-      mix-blend-mode: difference;
-      will-change: transform;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform: translate(-50%, -50%);
-    }
-    
-    .custom-cursor.hover {
-      width: 40px;
-      height: 40px;
-      background: hsl(var(--primary) / 0.1);
-      border-color: hsl(var(--primary) / 0.8);
-    }
-    
-    /* Arabic Text */
-    .arabic-text {
-      font-family: var(--font-arabic);
-      font-weight: var(--font-weight-medium);
-    }
-    
-    /* Layout */
+
+    .arabic-text { font-family: var(--r-font-arabic); font-weight: var(--r-font-weight-medium); }
+    .urdu-text { font-family: var(--r-font-urdu); font-weight: var(--r-font-weight-medium); }
+
+    /* =========================================================
+       DOCS LAYOUT
+       ========================================================= */
     .docs-layout {
       display: flex;
       min-height: 100vh;
       padding-top: 3.5rem;
+      position: relative;
+      z-index: 1;
     }
-    
-    /* Sidebar */
+
+    /* =========================================================
+       SIDEBAR — Glass Morphism (Rukn identity)
+       ========================================================= */
     .sidebar {
       width: 280px;
       position: fixed;
@@ -181,14 +81,12 @@
       overflow-y: auto;
       padding: var(--r-space-6);
       z-index: 40;
-      box-shadow: 
+      box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
         0 2px 8px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
       transition: all var(--r-transition-base) var(--r-ease-ios-smooth);
     }
-    
-    /* Light Mode - Sidebar Glass Morphism - Softer shadows, light strokes, smooth gradients */
     html:not(.dark) .sidebar {
       background: linear-gradient(135deg,
         rgba(255, 255, 255, 0.90) 0%,
@@ -200,48 +98,29 @@
       backdrop-filter: blur(24px) saturate(1.6) brightness(1.03);
       -webkit-backdrop-filter: blur(24px) saturate(1.6) brightness(1.03);
       border: 1px solid rgba(0, 0, 0, 0.08);
-      box-shadow: 
+      box-shadow:
         0 2px 8px rgba(0, 0, 0, 0.03),
         0 1px 3px rgba(0, 0, 0, 0.02);
     }
-    
-    /* Sidebar scrollbar */
-    .sidebar::-webkit-scrollbar {
-      width: 6px;
-    }
-    .sidebar::-webkit-scrollbar-track {
-      background: transparent;
-    }
+
+    .sidebar::-webkit-scrollbar { width: 6px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
     .sidebar::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.2);
       border-radius: var(--r-radius-full);
     }
-    .sidebar::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    
-    /* Light Mode - Sidebar Scrollbar */
-    html:not(.dark) .sidebar::-webkit-scrollbar-thumb {
-      background: rgba(0, 0, 0, 0.2);
-    }
-    html:not(.dark) .sidebar::-webkit-scrollbar-thumb:hover {
-      background: rgba(0, 0, 0, 0.3);
-    }
-    
-    .sidebar-section {
-      margin-bottom: var(--r-space-8);
-    }
-    
+    .sidebar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
+    html:not(.dark) .sidebar::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.2); }
+    html:not(.dark) .sidebar::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.3); }
+
+    .sidebar-section { margin-bottom: var(--r-space-8); }
     .sidebar-section:not(:last-child) {
       padding-bottom: var(--r-space-6);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
-    
-    /* Light Mode - Sidebar Section Borders */
     html:not(.dark) .sidebar-section:not(:last-child) {
       border-bottom: 1px solid rgba(0, 0, 0, 0.08);
     }
-    
     .sidebar-title {
       font-size: var(--r-font-size-xs);
       font-weight: 700;
@@ -253,22 +132,12 @@
       background: rgba(255, 255, 255, 0.03);
       border-radius: var(--r-radius-lg);
     }
-    
-    /* Light Mode - Sidebar Title */
     html:not(.dark) .sidebar-title {
       background: rgba(0, 0, 0, 0.03);
       color: hsl(var(--foreground) / 0.6);
     }
-    
-    .sidebar-nav {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .sidebar-nav li {
-      margin-bottom: var(--space-1);
-    }
-    
+    .sidebar-nav { list-style: none; }
+    .sidebar-nav li { margin-bottom: var(--r-space-1); }
     .sidebar-link {
       display: flex;
       align-items: center;
@@ -282,7 +151,6 @@
       position: relative;
       overflow: hidden;
     }
-    
     .sidebar-link::before {
       content: '';
       position: absolute;
@@ -295,165 +163,586 @@
       transition: transform var(--r-transition-base) var(--r-spring-smooth);
       border-radius: 0 var(--r-radius-md) var(--r-radius-md) 0;
     }
-    
     .sidebar-link:hover {
       background: rgba(255, 255, 255, 0.08);
       color: hsl(var(--foreground));
       transform: translateX(4px);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
-    
-    /* Light Mode - Sidebar Link Hover */
     html:not(.dark) .sidebar-link:hover {
       background: rgba(0, 0, 0, 0.04);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
-    
-    .sidebar-link:active {
-      transform: translateX(2px) scale(0.98);
-    }
-    
+    .sidebar-link:active { transform: translateX(2px) scale(0.98); }
     .sidebar-link.active {
-      background: linear-gradient(135deg, 
-        hsl(var(--primary) / 0.2), 
+      background: linear-gradient(135deg,
+        hsl(var(--primary) / 0.2),
         hsl(var(--primary) / 0.1));
       color: hsl(var(--primary));
       font-weight: 600;
-      box-shadow: 
+      box-shadow:
         0 2px 8px hsl(var(--primary) / 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
-    
-    /* Light Mode - Sidebar Link Active */
     html:not(.dark) .sidebar-link.active {
-      box-shadow: 
+      box-shadow:
         0 2px 8px hsl(var(--primary) / 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
-    
-    .sidebar-link.active::before {
-      transform: scaleY(1);
-    }
-    
+    .sidebar-link.active::before { transform: scaleY(1); }
     .sidebar-link i {
       font-size: 18px;
       transition: transform var(--r-transition-fast) var(--r-spring-smooth);
     }
-    
-    .sidebar-link:hover i {
-      transform: scale(1.1) rotate(5deg);
-    }
-    
-    /* Main Content */
+    .sidebar-link:hover i { transform: scale(1.1) rotate(5deg); }
+
+    /* =========================================================
+       MAIN CONTENT
+       ========================================================= */
     .main-content {
       flex: 1;
       margin-left: calc(280px + var(--r-space-8));
-      padding: var(--r-space-8) var(--r-space-6);
-      max-width: 1400px;
+      padding: var(--r-space-8) var(--r-space-8) var(--r-space-16);
+      max-width: 960px;
     }
-    
-    /* Section */
-    .section {
-      margin-bottom: var(--space-20);
-      scroll-margin-top: 4rem;
+
+    /* =========================================================
+       PAGE HEADER
+       ========================================================= */
+    .page-header {
+      margin-bottom: var(--r-space-12);
+      padding-bottom: var(--r-space-8);
+      border-bottom: 1px solid hsl(var(--foreground) / 0.06);
     }
-    
-    .section-header {
-      margin-bottom: var(--space-8);
+    .page-header h1 {
+      font-family: var(--r-font-heading);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: var(--r-font-weight-bold);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--r-space-2);
     }
-    
-    .section-title {
-      font-size: var(--font-size-3xl);
-      margin-bottom: var(--space-3);
+    .page-header p {
+      font-size: 1.05rem;
+      color: hsl(var(--foreground) / 0.5);
+      line-height: 1.6;
+    }
+    .page-badges {
       display: flex;
-      align-items: center;
-      gap: var(--space-3);
+      gap: var(--r-space-2);
+      flex-wrap: wrap;
+      margin-top: var(--r-space-4);
     }
-    
-    .section-title i {
+
+    /* =========================================================
+       SECTIONS
+       ========================================================= */
+    .section {
+      margin-bottom: var(--r-space-16);
+      scroll-margin-top: 5rem;
+    }
+    .section-head {
+      margin-bottom: var(--r-space-6);
+    }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: var(--r-font-weight-semibold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: hsl(var(--primary));
+      margin-bottom: var(--r-space-2);
     }
-    
-    .section-description {
-      font-size: var(--font-size-lg);
-      color: hsl(var(--foreground) / 0.7);
+    .section-title {
+      font-family: var(--r-font-heading);
+      font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+      font-weight: var(--r-font-weight-semibold);
+      letter-spacing: -0.01em;
+      margin-bottom: var(--r-space-2);
     }
-    
-    /* Showcase Styles */
-    .showcase-grid {
+    .section-desc {
+      font-size: 0.9rem;
+      color: hsl(var(--foreground) / 0.45);
+      line-height: 1.6;
+    }
+
+    /* =========================================================
+       TOKEN CARD
+       ========================================================= */
+    .token-card {
+      border-radius: var(--r-radius-2xl);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      background: hsl(var(--foreground) / 0.02);
+      padding: clamp(1.25rem, 3vw, 2rem);
+    }
+
+    /* =========================================================
+       TOKEN GRID — COLORS
+       ========================================================= */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--r-space-3);
+    }
+    .color-swatch {
+      border-radius: var(--r-radius-xl);
+      padding: var(--r-space-5) var(--r-space-4);
+      color: white;
       display: flex;
       flex-direction: column;
-      gap: var(--space-6);
+      gap: var(--r-space-1);
+      transition: transform 0.2s ease;
     }
-    
-    .showcase-item {
-      background: hsl(var(--card));
-      border: 1px solid hsl(var(--border));
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      transition: all var(--transition-base) var(--ease-out);
+    .color-swatch:hover { transform: translateY(-2px); }
+    .color-swatch .swatch-var {
+      font-family: var(--r-font-mono);
+      font-size: 0.72rem;
+      opacity: 0.8;
     }
-    
-    .showcase-item.hidden {
-      display: none;
+    .color-swatch .swatch-name {
+      font-weight: var(--r-font-weight-semibold);
+      font-size: 0.9rem;
     }
-    
-    .showcase-header {
+    .color-swatch .swatch-role {
+      font-size: 0.72rem;
+      opacity: 0.65;
+    }
+
+    /* =========================================================
+       TYPOGRAPHY SHOWCASE
+       ========================================================= */
+    .type-row {
+      padding: var(--r-space-4) 0;
+      border-bottom: 1px solid hsl(var(--foreground) / 0.04);
+    }
+    .type-row:last-child { border-bottom: none; }
+    .type-meta {
+      font-family: var(--r-font-mono);
+      font-size: 0.72rem;
+      color: hsl(var(--foreground) / 0.3);
+      margin-top: var(--r-space-1);
+    }
+
+    /* =========================================================
+       SPACING BARS
+       ========================================================= */
+    .spacing-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 50px;
+      align-items: center;
+      gap: var(--r-space-4);
+      padding: var(--r-space-2) 0;
+    }
+    .spacing-label {
+      font-family: var(--r-font-mono);
+      font-size: 0.78rem;
+      color: hsl(var(--foreground) / 0.4);
+    }
+    .spacing-bar {
+      height: 20px;
+      background: hsl(var(--primary) / 0.15);
+      border-left: 3px solid hsl(var(--primary));
+      border-radius: 0 var(--r-radius-md) var(--r-radius-md) 0;
+    }
+    .spacing-px {
+      font-size: 0.72rem;
+      color: hsl(var(--foreground) / 0.3);
+      text-align: right;
+      font-family: var(--r-font-mono);
+    }
+
+    /* =========================================================
+       SIZE SQUARES
+       ========================================================= */
+    .size-grid {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: var(--space-6);
-      border-bottom: 1px solid hsl(var(--border));
-      gap: var(--space-4);
+      gap: var(--r-space-5);
+      align-items: flex-end;
+      flex-wrap: wrap;
     }
-    
-    .showcase-header h3 {
-      font-size: var(--font-size-xl);
-      margin-bottom: var(--space-1);
+    .size-item { text-align: center; }
+    .size-box {
+      background: hsl(var(--primary) / 0.12);
+      border: 1px solid hsl(var(--primary) / 0.2);
+      border-radius: var(--r-radius-lg);
+      margin-bottom: var(--r-space-2);
+    }
+    .size-label {
+      font-family: var(--r-font-mono);
+      font-size: 0.68rem;
+      color: hsl(var(--foreground) / 0.35);
+    }
+
+    /* =========================================================
+       RADIUS SHAPES
+       ========================================================= */
+    .radius-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      gap: var(--r-space-5);
+    }
+    .radius-item { text-align: center; }
+    .radius-box {
+      width: 72px;
+      height: 72px;
+      background: hsl(var(--primary) / 0.12);
+      border: 1px solid hsl(var(--primary) / 0.2);
+      margin: 0 auto var(--r-space-2);
+    }
+
+    /* =========================================================
+       SHADOW CARDS
+       ========================================================= */
+    .shadow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: var(--r-space-4);
+    }
+    .shadow-item {
+      padding: var(--r-space-5);
+      background: hsl(var(--card));
+      border-radius: var(--r-radius-xl);
+      text-align: center;
+    }
+    .shadow-name {
+      font-size: 0.95rem;
+      font-weight: var(--r-font-weight-semibold);
+      margin-bottom: var(--r-space-1);
+    }
+    .shadow-var {
+      font-family: var(--r-font-mono);
+      font-size: 0.68rem;
+      color: hsl(var(--foreground) / 0.3);
+    }
+
+    /* =========================================================
+       MOTION TOKENS
+       ========================================================= */
+    .motion-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: var(--r-space-3);
+    }
+    .motion-item {
+      padding: var(--r-space-4);
+      border-radius: var(--r-radius-xl);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      background: hsl(var(--foreground) / 0.02);
+    }
+    .motion-var {
+      font-family: var(--r-font-mono);
+      font-size: 0.78rem;
+      color: hsl(var(--primary));
+      margin-bottom: var(--r-space-1);
+    }
+    .motion-desc {
+      font-size: 0.78rem;
+      color: hsl(var(--foreground) / 0.4);
+    }
+
+    /* =========================================================
+       BORDER SHOWCASE
+       ========================================================= */
+    .border-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 40px;
+      align-items: center;
+      gap: var(--r-space-4);
+      padding: var(--r-space-3) 0;
+    }
+    .border-preview {
+      height: 48px;
+      border-radius: var(--r-radius-lg);
+    }
+
+    /* =========================================================
+       SURFACE GRID
+       ========================================================= */
+    .surface-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--r-space-4);
+    }
+    .surface-card {
+      padding: var(--r-space-5);
+      border-radius: var(--r-radius-xl);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+    }
+    .surface-chip {
+      width: 100%;
+      height: 48px;
+      border-radius: var(--r-radius-lg);
+      margin-bottom: var(--r-space-3);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+    }
+    .surface-name {
+      font-size: 0.9rem;
+      font-weight: var(--r-font-weight-medium);
+      margin-bottom: var(--r-space-1);
+    }
+    .surface-var {
+      font-family: var(--r-font-mono);
+      font-size: 0.72rem;
+      color: hsl(var(--foreground) / 0.3);
+    }
+
+    /* =========================================================
+       COLOR PLAYGROUND
+       ========================================================= */
+    .color-playground {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--r-space-4);
+    }
+    .color-playground input[type="color"] {
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: var(--r-radius-lg);
+      padding: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       LAYOUT SHOWCASE
+       ========================================================= */
+    .layout-preview {
+      padding: var(--r-space-5);
+      border-radius: var(--r-radius-xl);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      background: hsl(var(--foreground) / 0.02);
+    }
+    .layout-cell {
+      padding: var(--r-space-3);
+      background: hsl(var(--primary) / 0.1);
+      border-radius: var(--r-radius-md);
+      text-align: center;
+      font-size: 0.82rem;
+      color: hsl(var(--foreground) / 0.6);
+    }
+    .layout-cell--accent {
+      background: hsl(var(--accent) / 0.1);
+    }
+
+    .code-block {
+      font-family: var(--r-font-mono);
+      font-size: 0.78rem;
+      line-height: 1.8;
+      padding: var(--r-space-4);
+      border-radius: var(--r-radius-xl);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      background: hsl(var(--foreground) / 0.02);
+      overflow-x: auto;
+      color: hsl(var(--foreground) / 0.65);
+    }
+
+    .info-note {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
+      gap: var(--r-space-2);
+      margin-top: var(--r-space-4);
+      padding: var(--r-space-3) var(--r-space-4);
+      border-radius: var(--r-radius-lg);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      font-size: 0.8rem;
+      color: hsl(var(--foreground) / 0.5);
     }
-    
-    .showcase-header h3 i {
+    .info-note i { color: hsl(var(--primary)); font-size: 1rem; flex-shrink: 0; }
+
+    /* =========================================================
+       FONT SIZE SCALE
+       ========================================================= */
+    .font-scale-item {
+      display: flex;
+      align-items: baseline;
+      gap: var(--r-space-4);
+      padding: var(--r-space-3) 0;
+      border-bottom: 1px solid hsl(var(--foreground) / 0.04);
+    }
+    .font-scale-item:last-child { border-bottom: none; }
+    .font-scale-meta {
+      min-width: 130px;
+      font-family: var(--r-font-mono);
+      font-size: 0.72rem;
+      color: hsl(var(--foreground) / 0.3);
+      flex-shrink: 0;
+    }
+
+    /* =========================================================
+       THEME COMPARISON
+       ========================================================= */
+    .theme-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--r-space-3);
+    }
+    @media (max-width: 640px) { .theme-compare { grid-template-columns: 1fr; } }
+    .theme-half {
+      padding: var(--r-space-5);
+      border-radius: var(--r-radius-xl);
+    }
+    .theme-half--dark {
+      background: hsl(220 5% 4%);
+      color: hsl(210 15% 92%);
+    }
+    .theme-half--light {
+      background: hsl(220 20% 98%);
+      color: hsl(220 15% 8%);
+      border: 1px solid hsl(220 15% 90%);
+    }
+    .theme-half h4 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--r-space-3);
+      opacity: 0.5;
+    }
+    .theme-swatch-row {
+      display: flex;
+      align-items: center;
+      gap: var(--r-space-3);
+      padding: var(--r-space-1) 0;
+    }
+    .theme-dot {
+      width: 20px;
+      height: 20px;
+      border-radius: var(--r-radius-full);
+      border: 1px solid rgba(128,128,128,0.2);
+      flex-shrink: 0;
+    }
+    .theme-swatch-label {
+      font-family: var(--r-font-mono);
+      font-size: 0.72rem;
+      opacity: 0.6;
+    }
+
+    /* =========================================================
+       Z-INDEX STACK
+       ========================================================= */
+    .z-stack { display: flex; flex-direction: column; gap: var(--r-space-2); }
+    .z-layer {
+      display: grid;
+      grid-template-columns: 160px 1fr 60px;
+      align-items: center;
+      gap: var(--r-space-4);
+      padding: var(--r-space-3) var(--r-space-4);
+      border-radius: var(--r-radius-lg);
+      border: 1px solid hsl(var(--foreground) / 0.06);
+      background: hsl(var(--foreground) / 0.02);
+      transition: transform 0.2s ease;
+    }
+    .z-layer:hover { transform: translateX(4px); }
+    .z-layer-name {
+      font-weight: var(--r-font-weight-medium);
+      font-size: 0.85rem;
+    }
+    .z-layer-use {
+      font-size: 0.78rem;
+      color: hsl(var(--foreground) / 0.4);
+    }
+    .z-layer-val {
+      font-family: var(--r-font-mono);
+      font-size: 0.78rem;
       color: hsl(var(--primary));
+      text-align: right;
     }
-    
-    .showcase-header p {
-      color: hsl(var(--foreground) / 0.7);
-      font-size: var(--font-size-sm);
+
+    /* =========================================================
+       DURATION BARS
+       ========================================================= */
+    .duration-row {
+      display: grid;
+      grid-template-columns: 160px 1fr 60px;
+      align-items: center;
+      gap: var(--r-space-4);
+      padding: var(--r-space-2) 0;
     }
-    
-    .showcase-preview {
-      padding: var(--space-8);
-      min-height: 120px;
+    .duration-track {
+      height: 6px;
+      background: hsl(var(--foreground) / 0.06);
+      border-radius: var(--r-radius-full);
+      overflow: hidden;
+    }
+    .duration-fill {
+      height: 100%;
+      background: hsl(var(--primary));
+      border-radius: var(--r-radius-full);
+    }
+
+    /* =========================================================
+       FOCUS DEMO
+       ========================================================= */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: var(--r-space-4);
+    }
+    .focus-item {
+      padding: var(--r-space-5);
+      border-radius: var(--r-radius-xl);
+      border: 2px solid hsl(var(--foreground) / 0.06);
+      text-align: center;
+      font-size: 0.85rem;
+      color: hsl(var(--foreground) / 0.6);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      outline: none;
+      background: transparent;
+    }
+    .focus-item:focus-visible {
+      border-color: hsl(var(--ring));
+      box-shadow: 0 0 0 3px hsl(var(--ring) / 0.3);
+    }
+
+    /* =========================================================
+       OPACITY SCALE
+       ========================================================= */
+    .opacity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: var(--r-space-3);
+      text-align: center;
+    }
+    .opacity-item {
+      padding: var(--r-space-3);
+      border-radius: var(--r-radius-lg);
+    }
+    .opacity-chip {
+      width: 100%;
+      height: 40px;
+      border-radius: var(--r-radius-md);
+      margin-bottom: var(--r-space-2);
+    }
+    .opacity-label {
+      font-family: var(--r-font-mono);
+      font-size: 0.68rem;
+      color: hsl(var(--foreground) / 0.35);
+    }
+
+    /* =========================================================
+       ICON SHOWCASE
+       ========================================================= */
+    .icon-grid {
+      display: flex;
+      gap: var(--r-space-6);
+      align-items: flex-end;
+      flex-wrap: wrap;
+    }
+    .icon-item { text-align: center; }
+    .icon-box {
       display: flex;
       align-items: center;
       justify-content: center;
+      background: hsl(var(--primary) / 0.08);
+      border-radius: var(--r-radius-lg);
+      margin-bottom: var(--r-space-2);
+      color: hsl(var(--primary));
     }
-    
-    .showcase-code {
-      padding: var(--space-6);
-      background: hsl(var(--muted) / 0.3);
-      border-top: 1px solid hsl(var(--border));
-    }
-    
-    .code-block {
-      background: hsl(var(--muted));
-      border: 1px solid hsl(var(--border));
-      border-radius: var(--radius-lg);
-      padding: var(--space-4);
-      overflow-x: auto;
-      font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
-      line-height: var(--line-height-relaxed);
-    }
-    
-    .code-block code {
-      color: hsl(var(--foreground) / 0.9);
-    }
-    
-    /* Mobile Sidebar Toggle */
+
+    /* =========================================================
+       MOBILE SIDEBAR
+       ========================================================= */
     .sidebar-toggle {
       position: fixed;
       bottom: var(--r-space-6);
@@ -467,7 +756,7 @@
       display: none;
       align-items: center;
       justify-content: center;
-      box-shadow: 
+      box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.3),
         0 2px 8px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -475,23 +764,29 @@
       transition: all var(--r-transition-fast) var(--r-ease-ios-smooth);
       backdrop-filter: blur(10px);
     }
-    
     .sidebar-toggle:hover {
       transform: scale(1.05);
-      box-shadow: 
+      box-shadow:
         0 12px 40px rgba(0, 0, 0, 0.4),
-        0 4px 12px rgba(0, 0, 0, 0.3),
+        0 4px 16px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
     }
-    
-    .sidebar-toggle:active {
-      transform: scale(0.95);
+    .sidebar-toggle:active { transform: scale(0.95); }
+    .sidebar-toggle i { font-size: 22px; }
+
+    .sidebar-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 35;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--r-transition-base) var(--r-ease-ios-smooth);
+      display: none;
     }
-    
-    .sidebar-toggle i {
-      font-size: 24px;
-    }
-    
+
     @media (max-width: 1024px) {
       .sidebar {
         top: calc(3.5rem + var(--r-space-4) + var(--r-space-2));
@@ -507,1168 +802,1235 @@
         transition: transform var(--r-transition-slow) var(--r-spring-smooth);
         box-shadow: none;
       }
-      
       .sidebar.open {
         transform: translateX(0);
-        box-shadow: 
+        box-shadow:
           0 -4px 24px rgba(0, 0, 0, 0.2),
           inset 0 1px 0 rgba(255, 255, 255, 0.1);
       }
-      
       .main-content {
         margin-left: 0;
         padding: var(--r-space-4) var(--r-space-3);
       }
-      
-      .sidebar-toggle {
-        display: flex;
-      }
-    }
-    
-    /* Sidebar backdrop for mobile */
-    .sidebar-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      z-index: 35;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--r-transition-base) var(--r-ease-ios-smooth);
-      display: none;
-    }
-    
-    @media (max-width: 1024px) {
-      .sidebar-backdrop {
-        display: block;
-        top: calc(3.5rem + var(--r-space-4) + var(--r-space-2));
-      }
-      
-      .sidebar-backdrop.open {
-        opacity: 1;
-        pointer-events: all;
-      }
-    }
-    
-    /* Search */
-    .search-wrapper {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: hsl(var(--background));
-      padding: var(--space-6) 0;
-      margin-bottom: var(--space-8);
-      border-bottom: 1px solid hsl(var(--border));
-    }
-    
-    /* Token Grid */
-    .token-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--space-4);
-    }
-    
-    .token-item {
-      padding: var(--space-6);
-      background: hsl(var(--card));
-      border: 1px solid hsl(var(--border));
-      border-radius: var(--radius-lg);
-      text-align: center;
-      transition: all var(--transition-base);
-    }
-    
-    .token-item:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: hsl(var(--primary) / 0.3);
-    }
-    
-    /* Navbar Search - Mobile Adjustments */
-    @media (max-width: 768px) {
-      .ds-navbar-mobile-dropdown {
-        top: calc(3.5rem + var(--r-space-2) + var(--r-space-2));
-      }
-      
-      #navSearch {
-        display: none;
-      }
-      
-      .ds-navbar-container {
-        gap: var(--r-space-2) !important;
-      }
-    }
-    
-    /* Sidebar Toggle Button - Better positioning on mobile */
-    @media (max-width: 1024px) {
-      .sidebar-toggle {
-        bottom: var(--r-space-4);
-        right: var(--r-space-4);
-        left: auto;
-        width: 56px;
-        height: 56px;
-        box-shadow: 
-          0 8px 32px rgba(0, 0, 0, 0.4),
-          0 4px 16px rgba(0, 0, 0, 0.3),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2);
-      }
-      
-      .sidebar-toggle i {
-        font-size: 26px;
-      }
+      .sidebar-toggle { display: flex; }
+      .sidebar-backdrop { display: block; }
+      .sidebar-backdrop.open { opacity: 1; pointer-events: all; }
     }
   </style>
 </head>
 <body data-page="foundation">
+
   <rukn-navbar current="foundation" search></rukn-navbar>
-  
-  
-  <!-- Layout -->
+
   <div class="docs-layout">
-    
-    <!-- Sidebar (Web Component) -->
+
     <rukn-sidebar type="foundation"></rukn-sidebar>
-    
-    <!-- Main Content -->
+
     <main class="main-content">
+
+      <!-- PAGE HEADER -->
       <div class="page-header">
-        <h1 data-i18n="foundation.page.title" class="ds-font-heading" style="font-size: var(--r-font-size-4xl); font-weight: var(--r-font-weight-bold); margin-bottom: var(--r-space-3);">
-          Foundation
-        </h1>
-        <p data-i18n="foundation.page.subtitle" class="ds-font-body" style="font-size: var(--font-size-xl); color: hsl(var(--foreground) / 0.7);">
-          Design tokens, typography, spacing, and layout systems that power Rukn
-        </p>
-        <div style="margin-top: var(--r-space-4); display: flex; gap: var(--r-space-2); flex-wrap: wrap;">
-          <span class="ds-badge ds-badge-primary" data-i18n="foundation.badge.tokens">150+ Design Tokens</span>
-          <span class="ds-badge ds-badge-success" data-i18n="foundation.badge.compliant">W3C Compliant</span>
-          <span class="ds-badge ds-badge-neutral" data-i18n="foundation.badge.layout">Layout Systems</span>
+        <h1>Foundation</h1>
+        <p>Design tokens, typography, spacing, layout, and accessibility systems that power Rukn across marketing sites, dashboards, Figma plugins, and utility apps.</p>
+        <div class="page-badges">
+          <span class="ds-badge ds-badge-primary">200+ Tokens</span>
+          <span class="ds-badge ds-badge-success">W3C Compliant</span>
+          <span class="ds-badge ds-badge-neutral">Layout Systems</span>
+          <span class="ds-badge ds-badge-neutral">A11y First</span>
         </div>
       </div>
-      
-      <section id="colors" class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-palette"></i>
-            <span data-i18n="foundation.colors.title">Colors</span>
-          </h2>
-          <p class="section-description" data-i18n="foundation.colors.description">Semantic color tokens for consistent theming</p>
+
+      <!-- ====== COLORS ====== -->
+      <section id="colors" class="section" data-keywords="color primary accent success warning destructive muted semantic theme foreground background secondary border ring">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Colors</h2>
+          <p class="section-desc">Semantic color tokens for consistent theming across light and dark modes. Every color adapts automatically between themes.</p>
         </div>
-        <div class="token-grid">
-          <div style="padding: var(--space-6); background: hsl(var(--primary)); border-radius: var(--radius-lg); color: white;">
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); opacity: 0.9; margin-bottom: var(--space-2);">--primary</div>
-            <div style="font-weight: var(--font-weight-semibold);">Primary</div>
-            <div style="font-size: var(--font-size-xs); opacity: 0.8; margin-top: var(--space-1);">Brand color</div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Brand & State</h3>
+        <div class="color-grid" style="margin-bottom:var(--r-space-6);">
+          <div class="color-swatch" style="background:hsl(var(--primary));">
+            <span class="swatch-var">--primary</span>
+            <span class="swatch-name">Primary</span>
+            <span class="swatch-role">Brand color, CTAs</span>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--accent)); border-radius: var(--radius-lg); color: white;">
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); opacity: 0.9; margin-bottom: var(--space-2);">--accent</div>
-            <div style="font-weight: var(--font-weight-semibold);">Accent</div>
-            <div style="font-size: var(--font-size-xs); opacity: 0.8; margin-top: var(--space-1);">Secondary brand</div>
+          <div class="color-swatch" style="background:hsl(var(--accent));">
+            <span class="swatch-var">--accent</span>
+            <span class="swatch-name">Accent</span>
+            <span class="swatch-role">Secondary brand</span>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--success)); border-radius: var(--radius-lg); color: white;">
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); opacity: 0.9; margin-bottom: var(--space-2);">--success</div>
-            <div style="font-weight: var(--font-weight-semibold);">Success</div>
-            <div style="font-size: var(--font-size-xs); opacity: 0.8; margin-top: var(--space-1);">Positive actions</div>
+          <div class="color-swatch" style="background:hsl(var(--success));">
+            <span class="swatch-var">--success</span>
+            <span class="swatch-name">Success</span>
+            <span class="swatch-role">Positive actions</span>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--warning)); border-radius: var(--radius-lg); color: white;">
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); opacity: 0.9; margin-bottom: var(--space-2);">--warning</div>
-            <div style="font-weight: var(--font-weight-semibold);">Warning</div>
-            <div style="font-size: var(--font-size-xs); opacity: 0.8; margin-top: var(--space-1);">Caution states</div>
+          <div class="color-swatch" style="background:hsl(var(--warning));">
+            <span class="swatch-var">--warning</span>
+            <span class="swatch-name">Warning</span>
+            <span class="swatch-role">Caution states</span>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--destructive)); border-radius: var(--radius-lg); color: white;">
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); opacity: 0.9; margin-bottom: var(--space-2);">--destructive</div>
-            <div style="font-weight: var(--font-weight-semibold);">Destructive</div>
-            <div style="font-size: var(--font-size-xs); opacity: 0.8; margin-top: var(--space-1);">Dangerous actions</div>
+          <div class="color-swatch" style="background:hsl(var(--destructive));">
+            <span class="swatch-var">--destructive</span>
+            <span class="swatch-name">Destructive</span>
+            <span class="swatch-role">Dangerous actions</span>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--muted)); border-radius: var(--radius-lg);">
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.6); margin-bottom: var(--space-2);">--muted</div>
-            <div style="font-weight: var(--font-weight-semibold);">Muted</div>
-            <div style="font-size: var(--font-size-xs); color: hsl(var(--foreground) / 0.6); margin-top: var(--space-1);">Subtle backgrounds</div>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Surfaces & Utility</h3>
+        <div class="color-grid" style="margin-bottom:var(--r-space-6);">
+          <div class="color-swatch" style="background:hsl(var(--background)); color:hsl(var(--foreground)); border:1px solid hsl(var(--foreground)/0.1);">
+            <span class="swatch-var">--background</span>
+            <span class="swatch-name">Background</span>
+            <span class="swatch-role">Page base</span>
+          </div>
+          <div class="color-swatch" style="background:hsl(var(--foreground)); color:hsl(var(--background));">
+            <span class="swatch-var">--foreground</span>
+            <span class="swatch-name">Foreground</span>
+            <span class="swatch-role">Primary text</span>
+          </div>
+          <div class="color-swatch" style="background:hsl(var(--card)); color:hsl(var(--card-foreground)); border:1px solid hsl(var(--foreground)/0.1);">
+            <span class="swatch-var">--card</span>
+            <span class="swatch-name">Card</span>
+            <span class="swatch-role">Card surfaces</span>
+          </div>
+          <div class="color-swatch" style="background:hsl(var(--secondary)); color:hsl(var(--secondary-foreground)); border:1px solid hsl(var(--foreground)/0.1);">
+            <span class="swatch-var">--secondary</span>
+            <span class="swatch-name">Secondary</span>
+            <span class="swatch-role">Subtle fills</span>
+          </div>
+          <div class="color-swatch" style="background:hsl(var(--muted)); color:hsl(var(--muted-foreground));">
+            <span class="swatch-var">--muted</span>
+            <span class="swatch-name">Muted</span>
+            <span class="swatch-role">Disabled, hints</span>
+          </div>
+          <div class="color-swatch" style="background:hsl(var(--popover)); color:hsl(var(--popover-foreground)); border:1px solid hsl(var(--foreground)/0.1);">
+            <span class="swatch-var">--popover</span>
+            <span class="swatch-name">Popover</span>
+            <span class="swatch-role">Dropdowns, tooltips</span>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Borders & Focus</h3>
+        <div class="color-grid" style="margin-bottom:var(--r-space-6);">
+          <div class="color-swatch" style="background:hsl(var(--border)); color:hsl(var(--foreground));">
+            <span class="swatch-var">--border</span>
+            <span class="swatch-name">Border</span>
+            <span class="swatch-role">Dividers, outlines</span>
+          </div>
+          <div class="color-swatch" style="background:hsl(var(--input)); color:hsl(var(--foreground));">
+            <span class="swatch-var">--input</span>
+            <span class="swatch-name">Input</span>
+            <span class="swatch-role">Form field borders</span>
+          </div>
+          <div class="color-swatch" style="background:hsl(var(--ring)); color:white;">
+            <span class="swatch-var">--ring</span>
+            <span class="swatch-name">Ring</span>
+            <span class="swatch-role">Focus rings</span>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Theme Comparison</h3>
+        <div class="theme-compare">
+          <div class="theme-half theme-half--dark">
+            <h4>Dark Mode</h4>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(220 5% 4%);"></div><span class="theme-swatch-label">--background: 220 5% 4%</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(210 15% 92%);"></div><span class="theme-swatch-label">--foreground: 210 15% 92%</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(352 100% 63%);"></div><span class="theme-swatch-label">--primary: 352 100% 63%</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(18 100% 63%);"></div><span class="theme-swatch-label">--accent: 18 100% 63%</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(220 7% 7%);"></div><span class="theme-swatch-label">--card: 220 7% 7%</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(220 8% 9%);"></div><span class="theme-swatch-label">--muted: 220 8% 9%</span></div>
+          </div>
+          <div class="theme-half theme-half--light">
+            <h4>Light Mode</h4>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(220 20% 98%);"></div><span class="theme-swatch-label">--background: 220 20% 98%</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(220 15% 8%);"></div><span class="theme-swatch-label">--foreground: 220 15% 8%</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(352 95% 58%);"></div><span class="theme-swatch-label">--primary: 352 95% 58%</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(18 90% 65%);"></div><span class="theme-swatch-label">--accent: 18 90% 65%</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(0 0% 100% / 0.7);"></div><span class="theme-swatch-label">--card: 0 0% 100% / 0.7</span></div>
+            <div class="theme-swatch-row"><div class="theme-dot" style="background:hsl(220 10% 96%);"></div><span class="theme-swatch-label">--muted: 220 10% 96%</span></div>
+          </div>
+        </div>
+        <div class="info-note" style="margin-top:var(--r-space-4);">
+          <i data-lucide="info"></i>
+          All colors use HSL format: <code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.75rem;">hsl(var(--primary))</code>. Alpha is supported via <code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.75rem;">hsl(var(--primary) / 0.5)</code>.
+        </div>
+      </section>
+
+      <!-- ====== PRIMARY COLOR PLAYGROUND ====== -->
+      <section id="color-system" class="section" data-keywords="color primary tokens theme picker playground">
+        <div class="section-head">
+          <div class="section-label">Interactive</div>
+          <h2 class="section-title">Primary Color Playground</h2>
+          <p class="section-desc">Pick a new primary hue and watch the entire system update in real time.</p>
+        </div>
+        <div class="token-card">
+          <div class="color-playground">
+            <input type="color" id="primaryColorPicker" value="#ff4154" aria-label="Select primary color">
+            <div>
+              <div style="font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-1);">Pick a primary color</div>
+              <div id="primaryColorValue" style="font-family:var(--r-font-mono); font-size:0.78rem; color:hsl(var(--foreground)/0.4);">--primary: 352 95% 58%</div>
+            </div>
+          </div>
+          <div class="info-note">
+            <i data-lucide="info"></i>
+            Updates <code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.75rem;">--primary</code>, <code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.75rem;">--accent</code>, and <code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.75rem;">--ring</code> in real time. Persists across page loads.
           </div>
         </div>
       </section>
-      
-      <!-- Typography -->
-      <section id="typography" class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-text-aa"></i>
-            Typography
-          </h2>
-          <p class="section-description">Space Grotesk for headings, Rubik for Arabic, system fonts for body</p>
+
+      <!-- ====== TYPOGRAPHY ====== -->
+      <section id="typography" class="section" data-keywords="typography font heading body arabic urdu text size weight line-height letter-spacing">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Typography</h2>
+          <p class="section-desc">Space Grotesk for headings, system fonts for body, with full Arabic and Urdu support. 4 font families, 12 size tokens, 6 weights, 9 line heights, and 6 letter-spacing values.</p>
         </div>
-        <div class="ds-card">
-          <div style="display: flex; flex-direction: column; gap: var(--space-6);">
-            <div>
-              <h1 class="ds-h1">The quick brown fox jumps</h1>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-top: var(--space-2); font-family: var(--font-mono);">h1 • --r-font-heading (Space Grotesk) • 48px</div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Font Families</h3>
+        <div class="token-card" style="margin-bottom:var(--r-space-6);">
+          <div class="type-row">
+            <h1 class="ds-h1">The quick brown fox jumps</h1>
+            <div class="type-meta">h1 · --r-font-heading · Space Grotesk · 48px</div>
+          </div>
+          <div class="type-row">
+            <h2 class="ds-h2">The quick brown fox jumps</h2>
+            <div class="type-meta">h2 · --r-font-heading · Space Grotesk · 36px</div>
+          </div>
+          <div class="type-row">
+            <h3 class="ds-h3">The quick brown fox jumps over the lazy dog</h3>
+            <div class="type-meta">h3 · --r-font-heading · Space Grotesk · 30px</div>
+          </div>
+          <div class="type-row">
+            <p style="line-height:var(--r-line-height-relaxed);">Body text using system fonts for optimal performance and readability across all devices and platforms.</p>
+            <div class="type-meta">p · --r-font-body · System UI · 16px</div>
+          </div>
+          <div class="type-row">
+            <p style="font-family:var(--r-font-mono); font-size:0.9rem;">const system = new RuknDesignSystem();</p>
+            <div class="type-meta">code · --r-font-mono · SF Mono / Cascadia Code</div>
+          </div>
+          <div class="type-row">
+            <p class="arabic-text" style="font-size:var(--r-font-size-2xl);">رُكن تصميم النظام</p>
+            <div class="type-meta">Arabic · --r-font-arabic · IBM Plex Sans Arabic · 30px</div>
+          </div>
+          <div class="type-row">
+            <p class="urdu-text" style="font-size:var(--r-font-size-2xl);">رکن ڈیزائن سسٹم</p>
+            <div class="type-meta">Urdu · --r-font-urdu · Noto Nastaliq Urdu · 30px</div>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Font Size Scale</h3>
+        <div class="token-card" style="margin-bottom:var(--r-space-6);">
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-xs</span>
+            <span style="font-size:var(--r-font-size-xs);">The quick brown fox — 12px</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-sm</span>
+            <span style="font-size:var(--r-font-size-sm);">The quick brown fox — 14px</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-base</span>
+            <span style="font-size:var(--r-font-size-base);">The quick brown fox — 16px</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-md</span>
+            <span style="font-size:var(--r-font-size-md);">The quick brown fox — 18px</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-lg</span>
+            <span style="font-size:var(--r-font-size-lg);">The quick brown fox — 20px</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-xl</span>
+            <span style="font-size:var(--r-font-size-xl);">The quick brown fox — 24px</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-2xl</span>
+            <span style="font-size:var(--r-font-size-2xl);">The quick brown fox — 30px</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-3xl</span>
+            <span style="font-size:var(--r-font-size-3xl);">The quick brown fox — 36px</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-4xl</span>
+            <span style="font-size:var(--r-font-size-4xl); font-family:var(--r-font-heading);">Quick brown fox — 48px</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-size-5xl</span>
+            <span style="font-size:var(--r-font-size-5xl); font-family:var(--r-font-heading);">Brown fox — 60px</span>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Font Weights</h3>
+        <div class="token-card" style="margin-bottom:var(--r-space-6);">
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-weight-light</span>
+            <span style="font-weight:var(--r-font-weight-light); font-size:1.1rem;">Light 300 — Elegant, understated</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-weight-normal</span>
+            <span style="font-weight:var(--r-font-weight-normal); font-size:1.1rem;">Normal 400 — Default body text</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-weight-medium</span>
+            <span style="font-weight:var(--r-font-weight-medium); font-size:1.1rem;">Medium 500 — Subtle emphasis</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-weight-semibold</span>
+            <span style="font-weight:var(--r-font-weight-semibold); font-size:1.1rem;">Semibold 600 — Labels, nav items</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-weight-bold</span>
+            <span style="font-weight:var(--r-font-weight-bold); font-size:1.1rem;">Bold 700 — Headings, strong text</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-font-weight-extrabold</span>
+            <span style="font-weight:var(--r-font-weight-extrabold); font-size:1.1rem;">Extrabold 800 — Hero, display</span>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Line Heights</h3>
+        <div class="token-card" style="margin-bottom:var(--r-space-6);">
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-line-height-none</span>
+            <span style="line-height:var(--r-line-height-none); font-size:0.88rem;">1.0 — Tight fit for icons and single-line labels</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-line-height-tight</span>
+            <span style="line-height:var(--r-line-height-tight); font-size:0.88rem;">1.25 — Compact headings and display type</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-line-height-snug</span>
+            <span style="line-height:var(--r-line-height-snug); font-size:0.88rem;">1.375 — Subheadings and short paragraphs</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-line-height-normal</span>
+            <span style="line-height:var(--r-line-height-normal); font-size:0.88rem;">1.5 — Default body text</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-line-height-relaxed</span>
+            <span style="line-height:var(--r-line-height-relaxed); font-size:0.88rem;">1.625 — Long-form content, articles</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-line-height-loose</span>
+            <span style="line-height:var(--r-line-height-loose); font-size:0.88rem;">2.0 — Maximum readability, annotations</span>
+          </div>
+          <div class="font-scale-item" style="border-top:1px solid hsl(var(--foreground)/0.06); padding-top:var(--r-space-3); margin-top:var(--r-space-2);">
+            <span class="font-scale-meta">--r-line-height-urdu-*</span>
+            <span class="urdu-text" style="font-size:1rem; line-height:var(--r-line-height-urdu-body);">رکن ڈیزائن سسٹم — Nastaliq needs 1.75–1.8× line height</span>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Letter Spacing</h3>
+        <div class="token-card">
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-letter-spacing-tighter</span>
+            <span style="letter-spacing:var(--r-letter-spacing-tighter); font-size:1.1rem;">-0.05em — Dense display text</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-letter-spacing-tight</span>
+            <span style="letter-spacing:var(--r-letter-spacing-tight); font-size:1.1rem;">-0.025em — Headings</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-letter-spacing-normal</span>
+            <span style="letter-spacing:var(--r-letter-spacing-normal); font-size:1.1rem;">0 — Body text default</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-letter-spacing-wide</span>
+            <span style="letter-spacing:var(--r-letter-spacing-wide); font-size:1.1rem;">0.025em — Buttons, labels</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-letter-spacing-wider</span>
+            <span style="letter-spacing:var(--r-letter-spacing-wider); font-size:1.1rem;">0.05em — Small caps, tags</span>
+          </div>
+          <div class="font-scale-item">
+            <span class="font-scale-meta">--r-letter-spacing-widest</span>
+            <span style="letter-spacing:var(--r-letter-spacing-widest); font-size:1.1rem; text-transform:uppercase;">0.1em — Section labels</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====== SPACING ====== -->
+      <section id="spacing" class="section" data-keywords="spacing space gap padding margin 4px base unit rem">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Spacing Scale</h2>
+          <p class="section-desc">4px base unit system for consistent spatial rhythm. 25 tokens from 0 to 128px, covering everything from tight component padding to generous section margins.</p>
+        </div>
+        <div class="token-card">
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-0</span>
+            <div class="spacing-bar" style="width:0;"></div>
+            <span class="spacing-px">0</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-px</span>
+            <div class="spacing-bar" style="width:var(--r-space-px);"></div>
+            <span class="spacing-px">1px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-0-5</span>
+            <div class="spacing-bar" style="width:var(--r-space-0-5);"></div>
+            <span class="spacing-px">2px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-1</span>
+            <div class="spacing-bar" style="width:var(--r-space-1);"></div>
+            <span class="spacing-px">4px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-1-5</span>
+            <div class="spacing-bar" style="width:var(--r-space-1-5);"></div>
+            <span class="spacing-px">6px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-2</span>
+            <div class="spacing-bar" style="width:var(--r-space-2);"></div>
+            <span class="spacing-px">8px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-3</span>
+            <div class="spacing-bar" style="width:var(--r-space-3);"></div>
+            <span class="spacing-px">12px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-4</span>
+            <div class="spacing-bar" style="width:var(--r-space-4);"></div>
+            <span class="spacing-px">16px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-5</span>
+            <div class="spacing-bar" style="width:var(--r-space-5);"></div>
+            <span class="spacing-px">20px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-6</span>
+            <div class="spacing-bar" style="width:var(--r-space-6);"></div>
+            <span class="spacing-px">24px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-8</span>
+            <div class="spacing-bar" style="width:var(--r-space-8);"></div>
+            <span class="spacing-px">32px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-10</span>
+            <div class="spacing-bar" style="width:var(--r-space-10);"></div>
+            <span class="spacing-px">40px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-12</span>
+            <div class="spacing-bar" style="width:var(--r-space-12);"></div>
+            <span class="spacing-px">48px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-16</span>
+            <div class="spacing-bar" style="width:var(--r-space-16);"></div>
+            <span class="spacing-px">64px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-20</span>
+            <div class="spacing-bar" style="width:var(--r-space-20);"></div>
+            <span class="spacing-px">80px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-24</span>
+            <div class="spacing-bar" style="width:var(--r-space-24);"></div>
+            <span class="spacing-px">96px</span>
+          </div>
+          <div class="spacing-row">
+            <span class="spacing-label">--r-space-32</span>
+            <div class="spacing-bar" style="width:var(--r-space-32);"></div>
+            <span class="spacing-px">128px</span>
+          </div>
+        </div>
+        <div class="info-note">
+          <i data-lucide="info"></i>
+          Half-step tokens (1.5, 2.5, 3.5) available for fine-tuning. Full list: 0, px, 0.5, 1–12, 14, 16, 20, 24, 28, 32.
+        </div>
+      </section>
+
+      <!-- ====== SIZES ====== -->
+      <section id="sizes" class="section" data-keywords="size component button input icon xs sm md lg xl">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Component Sizes</h2>
+          <p class="section-desc">Consistent sizing tokens for buttons, inputs, and interactive elements.</p>
+        </div>
+        <div class="token-card">
+          <div class="size-grid">
+            <div class="size-item">
+              <div class="size-box" style="width:var(--r-size-xs); height:var(--r-size-xs);"></div>
+              <div class="size-label">xs · 24px</div>
             </div>
-            <div>
-              <h2 class="ds-h2">The quick brown fox jumps</h2>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-top: var(--space-2); font-family: var(--font-mono);">h2 • --r-font-heading (Space Grotesk) • 36px</div>
+            <div class="size-item">
+              <div class="size-box" style="width:var(--r-size-sm); height:var(--r-size-sm);"></div>
+              <div class="size-label">sm · 32px</div>
             </div>
-            <div>
-              <h3 class="ds-h3">The quick brown fox jumps over the lazy dog</h3>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-top: var(--space-2); font-family: var(--font-mono);">h3 • --r-font-heading (Space Grotesk) • 30px</div>
+            <div class="size-item">
+              <div class="size-box" style="width:var(--r-size-md); height:var(--r-size-md);"></div>
+              <div class="size-label">md · 40px</div>
             </div>
-            <div>
-              <p style="font-size: var(--font-size-base); line-height: var(--line-height-relaxed);">Body text using system fonts for optimal performance and readability across all devices and platforms. This ensures consistent appearance while maintaining excellent legibility.</p>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-top: var(--space-2); font-family: var(--font-mono);">p • --r-font-body (System UI) • 16px</div>
+            <div class="size-item">
+              <div class="size-box" style="width:var(--r-size-lg); height:var(--r-size-lg);"></div>
+              <div class="size-label">lg · 48px</div>
             </div>
-            <div>
-              <p class="arabic-text inline" style="font-size: var(--font-size-2xl);">رُكن تصميم النظام</p>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-top: var(--space-2); font-family: var(--font-mono);">Arabic • --r-font-arabic (Rubik) • 30px</div>
+            <div class="size-item">
+              <div class="size-box" style="width:var(--r-size-xl); height:var(--r-size-xl);"></div>
+              <div class="size-label">xl · 56px</div>
             </div>
-            <div>
-              <p class="urdu-text inline" style="font-size: var(--font-size-2xl);">رکن ڈیزائن سسٹم</p>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-top: var(--space-2); font-family: var(--font-mono);">Urdu • --r-font-urdu (Noto Nastaliq Urdu) • 30px</div>
+            <div class="size-item">
+              <div class="size-box" style="width:var(--r-size-2xl); height:var(--r-size-2xl);"></div>
+              <div class="size-label">2xl · 64px</div>
             </div>
           </div>
         </div>
       </section>
-      
-      <!-- Spacing -->
-      <section id="spacing" class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-arrows-out-cardinal"></i>
-            Spacing Scale
-          </h2>
-          <p class="section-description">4px base unit system for consistent spacing rhythm</p>
+
+      <!-- ====== ICON SIZES ====== -->
+      <section id="icon-sizes" class="section" data-keywords="icon size xs sm md lg xl pictogram glyph">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Icon Sizes</h2>
+          <p class="section-desc">Consistent icon sizing from compact UI to large feature icons. Works with any icon library.</p>
         </div>
-        <div class="ds-card">
-          <div style="display: flex; flex-direction: column; gap: var(--space-3);">
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 130px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-space-1</div>
-              <div style="height: 24px; background: hsl(var(--primary)); width: var(--space-1); border-radius: var(--radius-base);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">4px</div>
+        <div class="token-card">
+          <div class="icon-grid">
+            <div class="icon-item">
+              <div class="icon-box" style="width:var(--r-size-xs); height:var(--r-size-xs);">
+                <i data-lucide="star" style="font-size:var(--r-icon-xs);"></i>
+              </div>
+              <div class="size-label">xs · 12px</div>
             </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 130px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-space-2</div>
-              <div style="height: 24px; background: hsl(var(--primary)); width: var(--space-2); border-radius: var(--radius-base);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">8px</div>
+            <div class="icon-item">
+              <div class="icon-box" style="width:var(--r-size-sm); height:var(--r-size-sm);">
+                <i data-lucide="star" style="font-size:var(--r-icon-sm);"></i>
+              </div>
+              <div class="size-label">sm · 16px</div>
             </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 130px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-space-4</div>
-              <div style="height: 24px; background: hsl(var(--primary)); width: var(--space-4); border-radius: var(--radius-base);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">16px</div>
+            <div class="icon-item">
+              <div class="icon-box" style="width:var(--r-size-md); height:var(--r-size-md);">
+                <i data-lucide="star" style="font-size:var(--r-icon-md);"></i>
+              </div>
+              <div class="size-label">md · 20px</div>
             </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 130px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-space-6</div>
-              <div style="height: 24px; background: hsl(var(--primary)); width: var(--space-6); border-radius: var(--radius-base);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">24px</div>
+            <div class="icon-item">
+              <div class="icon-box" style="width:var(--r-size-lg); height:var(--r-size-lg);">
+                <i data-lucide="star" style="font-size:var(--r-icon-lg);"></i>
+              </div>
+              <div class="size-label">lg · 24px</div>
             </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 130px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-space-8</div>
-              <div style="height: 24px; background: hsl(var(--primary)); width: var(--space-8); border-radius: var(--radius-base);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">32px</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 130px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-space-12</div>
-              <div style="height: 24px; background: hsl(var(--primary)); width: var(--space-12); border-radius: var(--radius-base);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">48px</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 130px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-space-16</div>
-              <div style="height: 24px; background: hsl(var(--primary)); width: var(--space-16); border-radius: var(--radius-base);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">64px</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 130px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-space-20</div>
-              <div style="height: 24px; background: hsl(var(--primary)); width: var(--space-20); border-radius: var(--radius-base);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">80px</div>
+            <div class="icon-item">
+              <div class="icon-box" style="width:var(--r-size-xl); height:var(--r-size-xl);">
+                <i data-lucide="star" style="font-size:var(--r-icon-xl);"></i>
+              </div>
+              <div class="size-label">xl · 32px</div>
             </div>
           </div>
-          <p style="margin-top: var(--space-6); color: hsl(var(--muted-foreground)); font-size: var(--font-size-sm);">
-            <i class="ph ph-info" style="margin-right: 4px;"></i>
-            W3C Compliant • 32 spacing tokens from 2px to 128px
-          </p>
+        </div>
+        <div class="code-block" style="margin-top:var(--r-space-4);">
+          <code>font-size: var(--r-icon-md); &nbsp;/* 20px — default for inline icons */<br>font-size: var(--r-icon-sm); &nbsp;/* 16px — compact buttons, badges */<br>font-size: var(--r-icon-xl); &nbsp;/* 32px — feature cards, empty states */</code>
         </div>
       </section>
-      
-      <!-- Sizes -->
-      <section id="sizes" class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-resize"></i>
-            Component Sizes
-          </h2>
-          <p class="section-description">Consistent sizing tokens for buttons, inputs, and icons</p>
+
+      <!-- ====== BORDER RADIUS ====== -->
+      <section id="radius" class="section" data-keywords="border radius rounded corner circle shape">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Border Radius</h2>
+          <p class="section-desc">From sharp corners to full circles.</p>
         </div>
-        <div class="ds-card">
-          <div style="display: flex; gap: var(--space-6); align-items: flex-end; flex-wrap: wrap; justify-content: center;">
-            <div style="text-align: center;">
-              <div style="width: var(--size-xs); height: var(--size-xs); background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8)); border-radius: var(--radius-lg); margin-bottom: var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-size-xs</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">24px</div>
+        <div class="token-card">
+          <div class="radius-grid">
+            <div class="radius-item">
+              <div class="radius-box" style="border-radius:0;"></div>
+              <div class="size-label">none · 0</div>
             </div>
-            <div style="text-align: center;">
-              <div style="width: var(--size-sm); height: var(--size-sm); background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8)); border-radius: var(--radius-lg); margin-bottom: var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-size-sm</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">32px</div>
+            <div class="radius-item">
+              <div class="radius-box" style="border-radius:var(--r-radius-sm);"></div>
+              <div class="size-label">sm · 4px</div>
             </div>
-            <div style="text-align: center;">
-              <div style="width: var(--size-md); height: var(--size-md); background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8)); border-radius: var(--radius-lg); margin-bottom: var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-size-md</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">40px</div>
+            <div class="radius-item">
+              <div class="radius-box" style="border-radius:var(--r-radius-md);"></div>
+              <div class="size-label">md · 8px</div>
             </div>
-            <div style="text-align: center;">
-              <div style="width: var(--size-lg); height: var(--size-lg); background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8)); border-radius: var(--radius-lg); margin-bottom: var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-size-lg</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">48px</div>
+            <div class="radius-item">
+              <div class="radius-box" style="border-radius:var(--r-radius-lg);"></div>
+              <div class="size-label">lg · 12px</div>
             </div>
-            <div style="text-align: center;">
-              <div style="width: var(--size-xl); height: var(--size-xl); background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8)); border-radius: var(--radius-lg); margin-bottom: var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-size-xl</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">56px</div>
+            <div class="radius-item">
+              <div class="radius-box" style="border-radius:var(--r-radius-xl);"></div>
+              <div class="size-label">xl · 16px</div>
             </div>
-            <div style="text-align: center;">
-              <div style="width: var(--size-2xl); height: var(--size-2xl); background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary) / 0.8)); border-radius: var(--radius-lg); margin-bottom: var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-size-2xl</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">64px</div>
+            <div class="radius-item">
+              <div class="radius-box" style="border-radius:var(--r-radius-2xl);"></div>
+              <div class="size-label">2xl · 24px</div>
+            </div>
+            <div class="radius-item">
+              <div class="radius-box" style="border-radius:var(--r-radius-full);"></div>
+              <div class="size-label">full · circle</div>
             </div>
           </div>
         </div>
       </section>
-      
-      <!-- Border Radius -->
-      <section id="radius" class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-shapes"></i>
-            Border Radius
-          </h2>
-          <p class="section-description">From sharp corners to full circles</p>
+
+      <!-- ====== SURFACES ====== -->
+      <section id="surfaces" class="section" data-keywords="surface elevation card background muted glass layer">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Surfaces & Elevation</h2>
+          <p class="section-desc">Layered surfaces for visual hierarchy and depth.</p>
         </div>
-        <div class="ds-card">
-          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--space-6);">
-            <div style="text-align: center;">
-              <div style="width: 80px; height: 80px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))); border-radius: var(--radius-none); margin: 0 auto var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-radius-none</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">0px</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="width: 80px; height: 80px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))); border-radius: var(--radius-sm); margin: 0 auto var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-radius-sm</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">4px</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="width: 80px; height: 80px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))); border-radius: var(--radius-base); margin: 0 auto var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-radius-base</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">6px</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="width: 80px; height: 80px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))); border-radius: var(--radius-md); margin: 0 auto var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-radius-md</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">8px</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="width: 80px; height: 80px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))); border-radius: var(--radius-lg); margin: 0 auto var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-radius-lg</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">12px</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="width: 80px; height: 80px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))); border-radius: var(--radius-xl); margin: 0 auto var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-radius-xl</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">16px</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="width: 80px; height: 80px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))); border-radius: var(--radius-2xl); margin: 0 auto var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-radius-2xl</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">24px</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="width: 80px; height: 80px; background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))); border-radius: var(--radius-full); margin: 0 auto var(--space-2);"></div>
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground)); margin-bottom: var(--space-1);">--r-radius-full</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">Circle</div>
-            </div>
+        <div class="surface-grid">
+          <div class="surface-card">
+            <div class="surface-chip" style="background:hsl(var(--background));"></div>
+            <div class="surface-name">Background</div>
+            <div class="surface-var">--background</div>
           </div>
-        </div>
-      </section>
-      
-      <!-- Primary Color Playground -->
-      <section id="color-system" class="section" data-keywords="color primary tokens theme picker">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-eyedropper"></i>
-            Primary Color Playground
-          </h2>
-          <p class="section-description">Test how changing the primary hue updates the entire system</p>
-        </div>
-        <div class="card-surface" style="display: flex; flex-direction: column; gap: var(--r-space-6); max-width: 640px;">
-          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: var(--r-space-4);">
-            <label for="primaryColorPicker" style="font-weight: var(--r-font-weight-semibold); font-size: var(--font-size-lg);">Pick a new primary color</label>
-            <input type="color" id="primaryColorPicker" value="#ff4154" aria-label="Select primary color" style="width: 52px; height: 52px; border: none; border-radius: var(--r-radius-lg); padding: 0; background: transparent; cursor: pointer;">
+          <div class="surface-card">
+            <div class="surface-chip" style="background:hsl(var(--card)); box-shadow:var(--r-shadow-sm);"></div>
+            <div class="surface-name">Card</div>
+            <div class="surface-var">--card</div>
           </div>
-          <div>
-            <p id="primaryColorValue" style="font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--muted-foreground));">--primary: 352 95% 58%</p>
-            <p style="font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.7);">Updates <code style="background: hsl(var(--muted)); padding: 2px 6px; border-radius: 4px;">--primary</code> & <code style="background: hsl(var(--muted)); padding: 2px 6px; border-radius: 4px;">--primary-foreground</code> in real time.</p>
+          <div class="surface-card">
+            <div class="surface-chip" style="background:hsl(var(--muted));"></div>
+            <div class="surface-name">Muted</div>
+            <div class="surface-var">--muted</div>
           </div>
-        </div>
-      </section>
-      
-      <!-- Surfaces -->
-      <section id="surfaces" class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-stack"></i>
-            Surfaces & Elevation
-          </h2>
-          <p class="section-description">Layered surfaces for visual hierarchy</p>
-        </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-6);">
-          <div class="card-surface surface-item">
-            <div class="surface-role">Background</div>
-            <div class="surface-title">Base Layer</div>
-            <div class="surface-chip" style="background: hsl(var(--background)); box-shadow: none;"></div>
-            <div class="surface-meta">--background</div>
-          </div>
-          <div class="card-surface surface-item">
-            <div class="surface-role">Card</div>
-            <div class="surface-title">Elevated Surface</div>
-            <div class="surface-chip" style="background: hsl(var(--card)); box-shadow: var(--shadow-sm);"></div>
-            <div class="surface-meta">--card</div>
-          </div>
-          <div class="card-surface surface-item">
-            <div class="surface-role">Muted</div>
-            <div class="surface-title">Subtle Surface</div>
-            <div class="surface-chip" style="background: hsl(var(--muted));"></div>
-            <div class="surface-meta">--muted</div>
-          </div>
-          <div class="card-surface surface-item">
-            <div class="surface-role">Glass</div>
-            <div class="surface-title">Frosted Glass</div>
+          <div class="surface-card">
             <div class="surface-chip ds-glass"></div>
-            <div class="surface-meta">.ds-glass</div>
+            <div class="surface-name">Glass</div>
+            <div class="surface-var">.ds-glass</div>
           </div>
         </div>
       </section>
-      
-      <!-- Shadows -->
-      <section id="shadows" class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-sun-dim"></i>
-            Shadows & Depth
-          </h2>
-          <p class="section-description">Elevation system from subtle to dramatic</p>
+
+      <!-- ====== SHADOWS ====== -->
+      <section id="shadows" class="section" data-keywords="shadow elevation depth drop-shadow box-shadow">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Shadows & Depth</h2>
+          <p class="section-desc">Elevation system from subtle to dramatic.</p>
         </div>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-6);">
-          <div style="padding: var(--space-6); background: hsl(var(--card)); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-xs);">
-            <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">XS</div>
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">--r-shadow-xs</div>
+        <div class="shadow-grid">
+          <div class="shadow-item" style="box-shadow:var(--r-shadow-xs);">
+            <div class="shadow-name">XS</div>
+            <div class="shadow-var">--r-shadow-xs</div>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--card)); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-sm);">
-            <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">SM</div>
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">--r-shadow-sm</div>
+          <div class="shadow-item" style="box-shadow:var(--r-shadow-sm);">
+            <div class="shadow-name">SM</div>
+            <div class="shadow-var">--r-shadow-sm</div>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--card)); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-base);">
-            <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">Base</div>
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">--r-shadow-base</div>
+          <div class="shadow-item" style="box-shadow:var(--r-shadow-base);">
+            <div class="shadow-name">Base</div>
+            <div class="shadow-var">--r-shadow-base</div>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--card)); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-md);">
-            <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">MD</div>
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">--r-shadow-md</div>
+          <div class="shadow-item" style="box-shadow:var(--r-shadow-md);">
+            <div class="shadow-name">MD</div>
+            <div class="shadow-var">--r-shadow-md</div>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--card)); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-lg);">
-            <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">LG</div>
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">--r-shadow-lg</div>
+          <div class="shadow-item" style="box-shadow:var(--r-shadow-lg);">
+            <div class="shadow-name">LG</div>
+            <div class="shadow-var">--r-shadow-lg</div>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--card)); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-xl);">
-            <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">XL</div>
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">--r-shadow-xl</div>
+          <div class="shadow-item" style="box-shadow:var(--r-shadow-xl);">
+            <div class="shadow-name">XL</div>
+            <div class="shadow-var">--r-shadow-xl</div>
           </div>
-          <div style="padding: var(--space-6); background: hsl(var(--card)); border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-2xl);">
-            <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--space-2);">2XL</div>
-            <div style="font-family: var(--font-mono); font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">--r-shadow-2xl</div>
+          <div class="shadow-item" style="box-shadow:var(--r-shadow-2xl);">
+            <div class="shadow-name">2XL</div>
+            <div class="shadow-var">--r-shadow-2xl</div>
           </div>
         </div>
       </section>
-      
-      <!-- Border Widths -->
-      <section id="borders" class="section">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-square-half"></i>
-            Border Widths
-          </h2>
-          <p class="section-description">Border thickness options from 1px to 8px</p>
+
+      <!-- ====== BORDERS ====== -->
+      <section id="borders" class="section" data-keywords="border width thickness stroke">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Border Widths</h2>
+          <p class="section-desc">Border thickness options from 1px to 8px.</p>
         </div>
-        <div class="ds-card">
-          <div style="display: flex; flex-direction: column; gap: var(--space-4);">
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 160px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-border-width-1</div>
-              <div style="flex: 1; height: 60px; border: var(--border-width-1) solid hsl(var(--primary)); border-radius: var(--radius-lg);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">1px</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 160px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-border-width-2</div>
-              <div style="flex: 1; height: 60px; border: var(--border-width-2) solid hsl(var(--primary)); border-radius: var(--radius-lg);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">2px</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 160px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-border-width-4</div>
-              <div style="flex: 1; height: 60px; border: var(--border-width-4) solid hsl(var(--primary)); border-radius: var(--radius-lg);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">4px</div>
-            </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 160px; font-size: var(--font-size-sm); color: hsl(var(--muted-foreground)); font-family: var(--font-mono);">--r-border-width-8</div>
-              <div style="flex: 1; height: 60px; border: var(--border-width-8) solid hsl(var(--primary)); border-radius: var(--radius-lg);"></div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">8px</div>
-            </div>
+        <div class="token-card">
+          <div class="border-row">
+            <span class="spacing-label">--r-border-width-1</span>
+            <div class="border-preview" style="border:var(--r-border-width-1) solid hsl(var(--primary));"></div>
+            <span class="spacing-px">1px</span>
+          </div>
+          <div class="border-row">
+            <span class="spacing-label">--r-border-width-2</span>
+            <div class="border-preview" style="border:var(--r-border-width-2) solid hsl(var(--primary));"></div>
+            <span class="spacing-px">2px</span>
+          </div>
+          <div class="border-row">
+            <span class="spacing-label">--r-border-width-4</span>
+            <div class="border-preview" style="border:var(--r-border-width-4) solid hsl(var(--primary));"></div>
+            <span class="spacing-px">4px</span>
+          </div>
+          <div class="border-row">
+            <span class="spacing-label">--r-border-width-8</span>
+            <div class="border-preview" style="border:var(--r-border-width-8) solid hsl(var(--primary));"></div>
+            <span class="spacing-px">8px</span>
           </div>
         </div>
       </section>
-      
-      <!-- Rukn Motion -->
-      <section id="motion" class="section" data-keywords="motion animation easing spring transition ios apple smooth">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-pulse"></i>
-            Rukn Motion & Easing
-          </h2>
-          <p class="section-description">Smooth motion design with spring animations for natural micro-interactions</p>
+
+      <!-- ====== Z-INDEX ====== -->
+      <section id="z-index" class="section" data-keywords="z-index layer stacking order depth overlay modal tooltip dropdown navbar popover">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Z-Index / Layering</h2>
+          <p class="section-desc">Structured stacking context system. Prevents z-index wars across marketing pages, dashboards, and plugin UIs.</p>
         </div>
-        <div class="ds-card">
-          <h4 style="margin-bottom: var(--space-4);">Easing Functions</h4>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4);">
-            <div style="padding: var(--space-4); background: hsl(var(--muted)); border-radius: var(--radius-lg);">
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--primary)); margin-bottom: var(--space-2);">--r-ease-ios-standard</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">Standard motion</div>
-            </div>
-            <div style="padding: var(--space-4); background: hsl(var(--muted)); border-radius: var(--radius-lg);">
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--primary)); margin-bottom: var(--space-2);">--r-ease-ios-smooth</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">Default smooth curve</div>
-            </div>
-            <div style="padding: var(--space-4); background: hsl(var(--muted)); border-radius: var(--radius-lg);">
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--primary)); margin-bottom: var(--space-2);">--r-spring-smooth</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">Gentle spring effect</div>
-            </div>
-            <div style="padding: var(--space-4); background: hsl(var(--muted)); border-radius: var(--radius-lg);">
-              <div style="font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--primary)); margin-bottom: var(--space-2);">--r-spring-bouncy</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">Playful bounce</div>
-            </div>
+        <div class="z-stack">
+          <div class="z-layer">
+            <span class="z-layer-name">Base</span>
+            <span class="z-layer-use">Default content layer</span>
+            <span class="z-layer-val">1</span>
           </div>
-          <p style="margin-top: var(--space-6); padding: var(--space-4); background: rgba(255, 255, 255, 0.03); border-radius: var(--radius-lg); font-size: var(--font-size-sm); color: hsl(var(--foreground) / 0.7);">
-            <i class="ph ph-info" style="color: hsl(var(--primary)); margin-right: 4px;"></i>
-            All animations respect <code style="background: hsl(var(--muted)); padding: 2px 6px; border-radius: 4px;">prefers-reduced-motion</code> for accessibility
-          </p>
+          <div class="z-layer">
+            <span class="z-layer-name">Dropdown</span>
+            <span class="z-layer-use">Menus, popovers, selects</span>
+            <span class="z-layer-val">1000</span>
+          </div>
+          <div class="z-layer">
+            <span class="z-layer-name">Sticky</span>
+            <span class="z-layer-use">Sticky headers, table headers</span>
+            <span class="z-layer-val">1020</span>
+          </div>
+          <div class="z-layer">
+            <span class="z-layer-name">Fixed</span>
+            <span class="z-layer-use">Fixed sidebars, toolbars</span>
+            <span class="z-layer-val">1030</span>
+          </div>
+          <div class="z-layer">
+            <span class="z-layer-name">Popover</span>
+            <span class="z-layer-use">Floating panels, color pickers</span>
+            <span class="z-layer-val">1060</span>
+          </div>
+          <div class="z-layer">
+            <span class="z-layer-name">Tooltip</span>
+            <span class="z-layer-use">Help text, abbreviations</span>
+            <span class="z-layer-val">1070</span>
+          </div>
+          <div class="z-layer">
+            <span class="z-layer-name">Navbar</span>
+            <span class="z-layer-use">Top navigation bar</span>
+            <span class="z-layer-val">2000</span>
+          </div>
+          <div class="z-layer">
+            <span class="z-layer-name">Modal Backdrop</span>
+            <span class="z-layer-use">Overlay behind modals</span>
+            <span class="z-layer-val">9998</span>
+          </div>
+          <div class="z-layer">
+            <span class="z-layer-name">Modal</span>
+            <span class="z-layer-use">Dialogs, confirmations</span>
+            <span class="z-layer-val">9999</span>
+          </div>
         </div>
-      </section>
-      
-      <!-- LAYOUT SECTIONS -->
-      
-      <!-- Container -->
-      <section id="container" class="section" data-keywords="container max-width responsive centered layout">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-container"></i>
-            Container
-          </h2>
-          <p class="section-description">Responsive max-width containers with auto margins</p>
-        </div>
-        <div class="showcase-item">
-          <div class="showcase-header">
-            <div>
-              <h3>Container Sizes</h3>
-              <p>11 size options from xs to 7xl</p>
-            </div>
-            <button class="btn-ghost btn-sm toggle-code" data-target="code-container">
-              <i class="ph ph-code"></i> Code
-            </button>
-          </div>
-          <div class="showcase-preview" style="display: block; padding: var(--space-4);">
-            <div class="ds-container ds-container-sm" style="background: hsl(var(--primary) / 0.1); padding: var(--space-4); border-radius: var(--radius-lg); margin-bottom: var(--space-3);">
-              <div style="font-size: var(--font-size-sm);">ds-container-sm (384px)</div>
-            </div>
-            <div class="ds-container ds-container-md" style="background: hsl(var(--primary) / 0.1); padding: var(--space-4); border-radius: var(--radius-lg); margin-bottom: var(--space-3);">
-              <div style="font-size: var(--font-size-sm);">ds-container-md (448px)</div>
-            </div>
-            <div class="ds-container ds-container-lg" style="background: hsl(var(--primary) / 0.1); padding: var(--space-4); border-radius: var(--radius-lg);">
-              <div style="font-size: var(--space-sm);">ds-container-lg (512px)</div>
-            </div>
-          </div>
-          <div class="showcase-code" id="code-container" style="display: none;">
-            <div class="code-block">
-              <code>&lt;div class="ds-container"&gt;<br>  &lt;!-- Auto-centered, max-width 1280px --&gt;<br>&lt;/div&gt;<br><br>&lt;div class="ds-container ds-container-lg"&gt;<br>  &lt;!-- Max-width 512px --&gt;<br>&lt;/div&gt;</code>
-            </div>
-          </div>
+        <div class="code-block" style="margin-top:var(--r-space-4);">
+          <code>z-index: var(--r-z-dropdown); &nbsp;/* 1000 */<br>z-index: var(--r-z-navbar); &nbsp;&nbsp;&nbsp;/* 2000 */<br>z-index: var(--r-z-modal); &nbsp;&nbsp;&nbsp;&nbsp;/* 9999 */</code>
         </div>
       </section>
-      
-      <!-- Grid System -->
+
+      <!-- ====== MOTION ====== -->
+      <section id="motion" class="section" data-keywords="motion animation easing spring transition ios apple smooth duration timing">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Rukn Motion & Easing</h2>
+          <p class="section-desc">iOS-inspired easing curves, spring physics, and 5 duration tiers for natural micro-interactions across all surface types.</p>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Duration Tokens</h3>
+        <div class="token-card" style="margin-bottom:var(--r-space-6);">
+          <div class="duration-row">
+            <span class="spacing-label">--r-transition-instant</span>
+            <div class="duration-track"><div class="duration-fill" style="width:10%;"></div></div>
+            <span class="spacing-px">100ms</span>
+          </div>
+          <div class="duration-row">
+            <span class="spacing-label">--r-transition-fast</span>
+            <div class="duration-track"><div class="duration-fill" style="width:25%;"></div></div>
+            <span class="spacing-px">200ms</span>
+          </div>
+          <div class="duration-row">
+            <span class="spacing-label">--r-transition-base</span>
+            <div class="duration-track"><div class="duration-fill" style="width:45%;"></div></div>
+            <span class="spacing-px">300ms</span>
+          </div>
+          <div class="duration-row">
+            <span class="spacing-label">--r-transition-slow</span>
+            <div class="duration-track"><div class="duration-fill" style="width:65%;"></div></div>
+            <span class="spacing-px">400ms</span>
+          </div>
+          <div class="duration-row">
+            <span class="spacing-label">--r-transition-slower</span>
+            <div class="duration-track"><div class="duration-fill" style="width:90%;"></div></div>
+            <span class="spacing-px">600ms</span>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Easing Curves</h3>
+        <div class="motion-grid" style="margin-bottom:var(--r-space-6);">
+          <div class="motion-item">
+            <div class="motion-var">--r-ease-ios-standard</div>
+            <div class="motion-desc">Standard motion · (0.4, 0, 0.2, 1)</div>
+          </div>
+          <div class="motion-item">
+            <div class="motion-var">--r-ease-ios-smooth</div>
+            <div class="motion-desc">Apple default · (0.42, 0, 0.58, 1)</div>
+          </div>
+          <div class="motion-item">
+            <div class="motion-var">--r-ease-ios-decelerate</div>
+            <div class="motion-desc">Quick start, slow end · (0, 0, 0.2, 1)</div>
+          </div>
+          <div class="motion-item">
+            <div class="motion-var">--r-ease-ios-accelerate</div>
+            <div class="motion-desc">Slow start, quick end · (0.4, 0, 1, 1)</div>
+          </div>
+          <div class="motion-item">
+            <div class="motion-var">--r-ease-ios-sharp</div>
+            <div class="motion-desc">Pronounced motion · (0.4, 0, 0.6, 1)</div>
+          </div>
+        </div>
+
+        <h3 style="font-size:0.95rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3); color:hsl(var(--foreground)/0.7);">Spring Physics</h3>
+        <div class="motion-grid">
+          <div class="motion-item">
+            <div class="motion-var">--r-spring-smooth</div>
+            <div class="motion-desc">Gentle spring · (0.5, 0, 0.1, 1)</div>
+          </div>
+          <div class="motion-item">
+            <div class="motion-var">--r-spring-bouncy</div>
+            <div class="motion-desc">Playful bounce · (0.68, -0.55, 0.265, 1.55)</div>
+          </div>
+          <div class="motion-item">
+            <div class="motion-var">--r-spring-snappy</div>
+            <div class="motion-desc">Quick snap · (0.34, 1.56, 0.64, 1)</div>
+          </div>
+        </div>
+        <div class="code-block" style="margin-top:var(--r-space-4);">
+          <code>transition: transform var(--r-transition-fast) var(--r-ease-ios-smooth);<br>transition: opacity var(--r-transition-base) var(--r-spring-smooth);<br>transition: all var(--r-transition-slow) var(--r-spring-bouncy);</code>
+        </div>
+        <div class="info-note">
+          <i data-lucide="info"></i>
+          All animations respect <code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.75rem;">prefers-reduced-motion</code> for accessibility. Legacy aliases (<code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.75rem;">--ease-in</code>, <code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.75rem;">--ease-out</code>) map to iOS equivalents.
+        </div>
+      </section>
+
+      <!-- ====== CONTAINER ====== -->
+      <section id="container" class="section" data-keywords="container max-width responsive centered layout plugin dashboard">
+        <div class="section-head">
+          <div class="section-label">Layout</div>
+          <h2 class="section-title">Container</h2>
+          <p class="section-desc">Responsive max-width containers with auto margins. 11 sizes covering Figma plugin widths (320px) to full marketing layouts (1280px).</p>
+        </div>
+        <div class="token-card" style="margin-bottom:var(--r-space-4);">
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-xs</span>
+            <div class="spacing-bar" style="width:25%;"></div>
+            <span class="spacing-px">320px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-sm</span>
+            <div class="spacing-bar" style="width:30%;"></div>
+            <span class="spacing-px">384px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-md</span>
+            <div class="spacing-bar" style="width:35%;"></div>
+            <span class="spacing-px">448px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-lg</span>
+            <div class="spacing-bar" style="width:40%;"></div>
+            <span class="spacing-px">512px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-xl</span>
+            <div class="spacing-bar" style="width:45%;"></div>
+            <span class="spacing-px">576px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-2xl</span>
+            <div class="spacing-bar" style="width:52%;"></div>
+            <span class="spacing-px">672px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-3xl</span>
+            <div class="spacing-bar" style="width:60%;"></div>
+            <span class="spacing-px">768px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-4xl</span>
+            <div class="spacing-bar" style="width:70%;"></div>
+            <span class="spacing-px">896px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-5xl</span>
+            <div class="spacing-bar" style="width:80%;"></div>
+            <span class="spacing-px">1024px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-6xl</span>
+            <div class="spacing-bar" style="width:90%;"></div>
+            <span class="spacing-px">1152px</span>
+          </div>
+          <div class="spacing-row" style="grid-template-columns:140px 1fr 60px;">
+            <span class="spacing-label">--r-container-7xl</span>
+            <div class="spacing-bar" style="width:100%;"></div>
+            <span class="spacing-px">1280px</span>
+          </div>
+        </div>
+        <div class="layout-preview" style="margin-bottom:var(--r-space-4);">
+          <div class="ds-container ds-container-xs" style="background:hsl(var(--primary)/0.08); padding:var(--r-space-3); border-radius:var(--r-radius-md); margin-bottom:var(--r-space-3);">
+            <span style="font-size:0.78rem; color:hsl(var(--foreground)/0.5);">xs — Figma plugins, tooltips</span>
+          </div>
+          <div class="ds-container ds-container-md" style="background:hsl(var(--primary)/0.08); padding:var(--r-space-3); border-radius:var(--r-radius-md); margin-bottom:var(--r-space-3);">
+            <span style="font-size:0.78rem; color:hsl(var(--foreground)/0.5);">md — Modals, forms, login</span>
+          </div>
+          <div class="ds-container ds-container-3xl" style="background:hsl(var(--primary)/0.08); padding:var(--r-space-3); border-radius:var(--r-radius-md); margin-bottom:var(--r-space-3);">
+            <span style="font-size:0.78rem; color:hsl(var(--foreground)/0.5);">3xl — Blog content, utilities</span>
+          </div>
+          <div class="ds-container ds-container-5xl" style="background:hsl(var(--accent)/0.08); padding:var(--r-space-3); border-radius:var(--r-radius-md); margin-bottom:var(--r-space-3);">
+            <span style="font-size:0.78rem; color:hsl(var(--foreground)/0.5);">5xl — Dashboard panels</span>
+          </div>
+          <div style="background:hsl(var(--accent)/0.08); padding:var(--r-space-3); border-radius:var(--r-radius-md);">
+            <span style="font-size:0.78rem; color:hsl(var(--foreground)/0.5);">7xl (default) — Full marketing layout (1280px)</span>
+          </div>
+        </div>
+        <div class="code-block">
+          <code>&lt;div class="ds-container"&gt;Default 1280px max-width&lt;/div&gt;<br>&lt;div class="ds-container ds-container-xs"&gt;320px — Figma plugin panel&lt;/div&gt;<br>&lt;div class="ds-container ds-container-5xl"&gt;1024px — Dashboard content area&lt;/div&gt;</code>
+        </div>
+      </section>
+
+      <!-- ====== GRID ====== -->
       <section id="grid" class="section" data-keywords="grid columns layout responsive auto-fit">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-grid-four"></i>
-            Grid System
-          </h2>
-          <p class="section-description">Powerful CSS Grid with responsive columns</p>
+        <div class="section-head">
+          <div class="section-label">Layout</div>
+          <h2 class="section-title">Grid System</h2>
+          <p class="section-desc">CSS Grid with responsive column utilities from 1 to 12 columns.</p>
         </div>
-        <div class="showcase-item">
-          <div class="showcase-header">
-            <div>
-              <h3>Grid Columns</h3>
-              <p>1 to 12 column grids</p>
-            </div>
-            <button class="btn-ghost btn-sm toggle-code" data-target="code-grid">
-              <i class="ph ph-code"></i> Code
-            </button>
+        <div class="layout-preview" style="margin-bottom:var(--r-space-4);">
+          <div class="ds-grid ds-grid-cols-3 ds-gap-3" style="margin-bottom:var(--r-space-4);">
+            <div class="layout-cell">Col 1</div>
+            <div class="layout-cell">Col 2</div>
+            <div class="layout-cell">Col 3</div>
           </div>
-          <div class="showcase-preview" style="display: block;">
-            <div class="ds-grid ds-grid-cols-3 ds-gap-4" style="margin-bottom: var(--space-4);">
-              <div style="padding: var(--space-4); background: hsl(var(--primary) / 0.2); border-radius: var(--radius-lg); text-align: center; font-size: var(--font-size-sm);">Col 1</div>
-              <div style="padding: var(--space-4); background: hsl(var(--primary) / 0.2); border-radius: var(--radius-lg); text-align: center; font-size: var(--font-size-sm);">Col 2</div>
-              <div style="padding: var(--space-4); background: hsl(var(--primary) / 0.2); border-radius: var(--radius-lg); text-align: center; font-size: var(--font-size-sm);">Col 3</div>
-            </div>
-            <div class="ds-grid ds-grid-auto-fit ds-gap-4">
-              <div style="padding: var(--space-4); background: hsl(var(--accent) / 0.2); border-radius: var(--radius-lg); text-align: center; font-size: var(--font-size-sm);">Auto-fit 1</div>
-              <div style="padding: var(--space-4); background: hsl(var(--accent) / 0.2); border-radius: var(--radius-lg); text-align: center; font-size: var(--font-size-sm);">Auto-fit 2</div>
-              <div style="padding: var(--space-4); background: hsl(var(--accent) / 0.2); border-radius: var(--radius-lg); text-align: center; font-size: var(--font-size-sm);">Auto-fit 3</div>
-            </div>
+          <div class="ds-grid ds-grid-auto-fit ds-gap-3">
+            <div class="layout-cell layout-cell--accent">Auto 1</div>
+            <div class="layout-cell layout-cell--accent">Auto 2</div>
+            <div class="layout-cell layout-cell--accent">Auto 3</div>
           </div>
-          <div class="showcase-code" id="code-grid" style="display: none;">
-            <div class="code-block">
-              <code>&lt;div class="ds-grid ds-grid-cols-3 ds-gap-4"&gt;<br>  &lt;div&gt;Column 1&lt;/div&gt;<br>  &lt;div&gt;Column 2&lt;/div&gt;<br>  &lt;div&gt;Column 3&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;!-- Auto-fit responsive grid --&gt;<br>&lt;div class="ds-grid ds-grid-auto-fit ds-gap-4"&gt;<br>  &lt;div&gt;Auto-fits to space&lt;/div&gt;<br>&lt;/div&gt;</code>
-            </div>
-          </div>
+        </div>
+        <div class="code-block">
+          <code>&lt;div class="ds-grid ds-grid-cols-3 ds-gap-4"&gt;<br>&nbsp;&nbsp;&lt;div&gt;Column 1&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div&gt;Column 2&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div&gt;Column 3&lt;/div&gt;<br>&lt;/div&gt;</code>
         </div>
       </section>
-      
-      <!-- Flexbox -->
+
+      <!-- ====== FLEXBOX ====== -->
       <section id="flexbox" class="section" data-keywords="flex flexbox row column justify align gap">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-arrows-out"></i>
-            Flexbox Utilities
-          </h2>
-          <p class="section-description">Flexible layouts with alignment and gap utilities</p>
+        <div class="section-head">
+          <div class="section-label">Layout</div>
+          <h2 class="section-title">Flexbox Utilities</h2>
+          <p class="section-desc">Flexible layouts with alignment and gap utilities.</p>
         </div>
-        <div class="showcase-item">
-          <div class="showcase-header">
-            <div>
-              <h3>Flex Layouts</h3>
-              <p>Row, column, center, between, etc.</p>
-            </div>
-            <button class="btn-ghost btn-sm toggle-code" data-target="code-flex">
-              <i class="ph ph-code"></i> Code
-            </button>
+        <div class="layout-preview" style="margin-bottom:var(--r-space-4);">
+          <div class="ds-flex ds-justify-between ds-items-center ds-flex-gap-4" style="margin-bottom:var(--r-space-4);">
+            <div class="layout-cell">Item 1</div>
+            <div class="layout-cell">Item 2</div>
+            <div class="layout-cell">Item 3</div>
           </div>
-          <div class="showcase-preview" style="display: block;">
-            <div class="ds-flex ds-justify-between ds-items-center ds-flex-gap-4" style="padding: var(--space-4); background: hsl(var(--muted)); border-radius: var(--radius-lg); margin-bottom: var(--space-4);">
-              <div style="padding: var(--space-3); background: hsl(var(--primary)); border-radius: var(--radius-md); color: white;">Item 1</div>
-              <div style="padding: var(--space-3); background: hsl(var(--primary)); border-radius: var(--radius-md); color: white;">Item 2</div>
-              <div style="padding: var(--space-3); background: hsl(var(--primary)); border-radius: var(--radius-md); color: white;">Item 3</div>
-            </div>
-            <div class="ds-flex ds-flex-col ds-items-center ds-flex-gap-3" style="padding: var(--space-4); background: hsl(var(--muted)); border-radius: var(--radius-lg);">
-              <div style="padding: var(--space-3); background: hsl(var(--accent)); border-radius: var(--radius-md); color: white;">Centered</div>
-              <div style="padding: var(--space-3); background: hsl(var(--accent)); border-radius: var(--radius-md); color: white;">Column</div>
-            </div>
+          <div class="ds-flex ds-flex-col ds-items-center ds-flex-gap-3">
+            <div class="layout-cell layout-cell--accent">Centered</div>
+            <div class="layout-cell layout-cell--accent">Column</div>
           </div>
-          <div class="showcase-code" id="code-flex" style="display: none;">
-            <div class="code-block">
-              <code>&lt;div class="ds-flex ds-justify-between ds-items-center ds-flex-gap-4"&gt;<br>  &lt;div&gt;Item 1&lt;/div&gt;<br>  &lt;div&gt;Item 2&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="ds-flex ds-flex-col ds-items-center"&gt;<br>  &lt;div&gt;Centered column&lt;/div&gt;<br>&lt;/div&gt;</code>
-            </div>
-          </div>
+        </div>
+        <div class="code-block">
+          <code>&lt;div class="ds-flex ds-justify-between ds-items-center ds-flex-gap-4"&gt;<br>&nbsp;&nbsp;&lt;div&gt;Item 1&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div&gt;Item 2&lt;/div&gt;<br>&lt;/div&gt;</code>
         </div>
       </section>
-      
-      <!-- Responsive -->
+
+      <!-- ====== RESPONSIVE ====== -->
       <section id="responsive" class="section" data-keywords="responsive breakpoint mobile tablet desktop adaptive">
-        <div class="section-header">
-          <h2 class="section-title">
-            <i class="ph-fill ph-devices"></i>
-            Responsive Design
-          </h2>
-          <p class="section-description">Mobile-first responsive utilities and breakpoints</p>
+        <div class="section-head">
+          <div class="section-label">Layout</div>
+          <h2 class="section-title">Responsive Design</h2>
+          <p class="section-desc">Mobile-first responsive utilities and breakpoints.</p>
         </div>
-        <div class="ds-card">
-          <h4 style="margin-bottom: var(--space-4);">Breakpoints</h4>
-          <div style="display: flex; flex-direction: column; gap: var(--space-3);">
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 100px; font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--muted-foreground));">Base</div>
-              <div style="font-size: var(--font-size-sm);">0px - 767px</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">Mobile</div>
+        <div class="token-card">
+          <div style="display:flex; flex-direction:column; gap:var(--r-space-3);">
+            <div class="spacing-row" style="grid-template-columns:80px 1fr auto;">
+              <span class="spacing-label">Base</span>
+              <span style="font-size:0.85rem;">0 – 767px</span>
+              <span class="spacing-px" style="width:auto;">Mobile</span>
             </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 100px; font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--primary));">md:</div>
-              <div style="font-size: var(--font-size-sm);">768px+</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">Tablet</div>
+            <div class="spacing-row" style="grid-template-columns:80px 1fr auto;">
+              <span class="spacing-label" style="color:hsl(var(--primary));">md:</span>
+              <span style="font-size:0.85rem;">768px+</span>
+              <span class="spacing-px" style="width:auto;">Tablet</span>
             </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 100px; font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--primary));">lg:</div>
-              <div style="font-size: var(--font-size-sm);">1024px+</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">Desktop</div>
+            <div class="spacing-row" style="grid-template-columns:80px 1fr auto;">
+              <span class="spacing-label" style="color:hsl(var(--primary));">lg:</span>
+              <span style="font-size:0.85rem;">1024px+</span>
+              <span class="spacing-px" style="width:auto;">Desktop</span>
             </div>
-            <div style="display: flex; align-items: center; gap: var(--space-4);">
-              <div style="width: 100px; font-family: var(--font-mono); font-size: var(--font-size-sm); color: hsl(var(--primary));">xl:</div>
-              <div style="font-size: var(--font-size-sm);">1280px+</div>
-              <div style="font-size: var(--font-size-xs); color: hsl(var(--muted-foreground));">Large Desktop</div>
+            <div class="spacing-row" style="grid-template-columns:80px 1fr auto;">
+              <span class="spacing-label" style="color:hsl(var(--primary));">xl:</span>
+              <span style="font-size:0.85rem;">1280px+</span>
+              <span class="spacing-px" style="width:auto;">Large</span>
             </div>
           </div>
-          
-          <h4 style="margin: var(--space-8) 0 var(--space-4);">Examples</h4>
-          <div class="code-block">
-            <code>&lt;!-- 1 col mobile, 2 cols tablet, 3 cols desktop --&gt;<br>&lt;div class="ds-grid ds-grid-cols-1 ds-md-grid-cols-2 ds-lg-grid-cols-3"&gt;<br>  &lt;div&gt;Responsive item&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;!-- Hide on mobile, show on desktop --&gt;<br>&lt;div class="ds-hidden-mobile"&gt;Desktop only&lt;/div&gt;<br><br>&lt;!-- Column on mobile, row on tablet+ --&gt;<br>&lt;div class="ds-flex ds-flex-col ds-md-flex-row"&gt;<br>  &lt;div&gt;Responsive flex&lt;/div&gt;<br>&lt;/div&gt;</code>
-          </div>
+        </div>
+        <div class="code-block" style="margin-top:var(--r-space-4);">
+          <code>&lt;!-- 1 col mobile, 2 tablet, 3 desktop --&gt;<br>&lt;div class="ds-grid ds-grid-cols-1 ds-md-grid-cols-2 ds-lg-grid-cols-3"&gt;<br>&nbsp;&nbsp;&lt;div&gt;Responsive item&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;!-- Column on mobile, row on tablet+ --&gt;<br>&lt;div class="ds-flex ds-flex-col ds-md-flex-row"&gt;<br>&nbsp;&nbsp;&lt;div&gt;Responsive flex&lt;/div&gt;<br>&lt;/div&gt;</code>
         </div>
       </section>
-      
-          Check out the complete examples page or read the full documentation
-        </p>
-        <div style="display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-          <a href="example.html"><button class="btn-primary btn-lg">
-            <i class="ph ph-eye" style="margin-right: 8px;"></i>
-            Full Examples
-          </button></a>
-          <a href="README.md"><button class="btn-secondary btn-lg">
-            <i class="ph ph-book-open" style="margin-right: 8px;"></i>
-            Documentation
-          </button></a>
-          <a href="DESIGN_TOKENS.md"><button class="btn-outline btn-lg">
-            <i class="ph ph-cube" style="margin-right: 8px;"></i>
-            All Tokens
-          </button></a>
+
+      <!-- ====== OPACITY PATTERNS ====== -->
+      <section id="opacity" class="section" data-keywords="opacity alpha transparency fade glass overlay dim">
+        <div class="section-head">
+          <div class="section-label">Pattern</div>
+          <h2 class="section-title">Opacity & Alpha Patterns</h2>
+          <p class="section-desc">Rukn uses HSL alpha syntax for consistent transparency. These patterns work across marketing glass effects, dashboard overlays, and Figma plugin backdrops.</p>
         </div>
-      </div>
-      
+        <div class="token-card" style="margin-bottom:var(--r-space-4);">
+          <div class="opacity-grid">
+            <div class="opacity-item">
+              <div class="opacity-chip" style="background:hsl(var(--primary));"></div>
+              <div class="opacity-label">/ 1.0</div>
+            </div>
+            <div class="opacity-item">
+              <div class="opacity-chip" style="background:hsl(var(--primary) / 0.8);"></div>
+              <div class="opacity-label">/ 0.8</div>
+            </div>
+            <div class="opacity-item">
+              <div class="opacity-chip" style="background:hsl(var(--primary) / 0.6);"></div>
+              <div class="opacity-label">/ 0.6</div>
+            </div>
+            <div class="opacity-item">
+              <div class="opacity-chip" style="background:hsl(var(--primary) / 0.4);"></div>
+              <div class="opacity-label">/ 0.4</div>
+            </div>
+            <div class="opacity-item">
+              <div class="opacity-chip" style="background:hsl(var(--primary) / 0.2);"></div>
+              <div class="opacity-label">/ 0.2</div>
+            </div>
+            <div class="opacity-item">
+              <div class="opacity-chip" style="background:hsl(var(--primary) / 0.1);"></div>
+              <div class="opacity-label">/ 0.1</div>
+            </div>
+            <div class="opacity-item">
+              <div class="opacity-chip" style="background:hsl(var(--primary) / 0.05);"></div>
+              <div class="opacity-label">/ 0.05</div>
+            </div>
+          </div>
+        </div>
+        <div class="code-block">
+          <code>background: hsl(var(--primary) / 0.1); &nbsp;/* Subtle tint */<br>border: 1px solid hsl(var(--foreground) / 0.06); &nbsp;/* Ghost border */<br>color: hsl(var(--foreground) / 0.5); &nbsp;/* Muted text */<br>backdrop-filter: blur(24px); background: rgba(0,0,0,0.5); /* Glass */</code>
+        </div>
+      </section>
+
+      <!-- ====== FOCUS & ACCESSIBILITY ====== -->
+      <section id="focus" class="section" data-keywords="focus ring accessibility a11y keyboard tab focus-visible reduced-motion contrast">
+        <div class="section-head">
+          <div class="section-label">Accessibility</div>
+          <h2 class="section-title">Focus & Accessibility</h2>
+          <p class="section-desc">Keyboard-accessible focus rings using the <code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.85rem;">--ring</code> token. Focus is only visible on keyboard navigation (<code style="background:hsl(var(--foreground)/0.06); padding:2px 6px; border-radius:4px; font-size:0.85rem;">:focus-visible</code>), never on mouse click.</p>
+        </div>
+        <div class="focus-grid" style="margin-bottom:var(--r-space-4);">
+          <button class="focus-item" tabindex="0">Tab to me (Button)</button>
+          <button class="focus-item" tabindex="0">Focus ring demo</button>
+          <button class="focus-item" tabindex="0">Keyboard only</button>
+        </div>
+        <div class="token-card" style="margin-bottom:var(--r-space-4);">
+          <h3 style="font-size:0.9rem; font-weight:var(--r-font-weight-semibold); margin-bottom:var(--r-space-3);">Accessibility Checklist</h3>
+          <div style="display:flex; flex-direction:column; gap:var(--r-space-2);">
+            <div style="display:flex; align-items:center; gap:var(--r-space-2); font-size:0.85rem; color:hsl(var(--foreground)/0.7);">
+              <i data-lucide="circle-check" style="color:hsl(var(--success));"></i>
+              <span><strong>:focus-visible</strong> — Focus rings appear only on keyboard navigation</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:var(--r-space-2); font-size:0.85rem; color:hsl(var(--foreground)/0.7);">
+              <i data-lucide="circle-check" style="color:hsl(var(--success));"></i>
+              <span><strong>prefers-reduced-motion</strong> — Animations disabled for motion-sensitive users</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:var(--r-space-2); font-size:0.85rem; color:hsl(var(--foreground)/0.7);">
+              <i data-lucide="circle-check" style="color:hsl(var(--success));"></i>
+              <span><strong>Semantic colors</strong> — WCAG 2.1 AA contrast ratios across light/dark themes</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:var(--r-space-2); font-size:0.85rem; color:hsl(var(--foreground)/0.7);">
+              <i data-lucide="circle-check" style="color:hsl(var(--success));"></i>
+              <span><strong>sr-only utility</strong> — Screen-reader-only content class available</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:var(--r-space-2); font-size:0.85rem; color:hsl(var(--foreground)/0.7);">
+              <i data-lucide="circle-check" style="color:hsl(var(--success));"></i>
+              <span><strong>ARIA attributes</strong> — All components ship with proper roles and labels</span>
+            </div>
+          </div>
+        </div>
+        <div class="code-block">
+          <code>/* Focus ring pattern */<br>:focus-visible {<br>&nbsp;&nbsp;outline: none;<br>&nbsp;&nbsp;box-shadow: 0 0 0 3px hsl(var(--ring) / 0.3);<br>&nbsp;&nbsp;border-color: hsl(var(--ring));<br>}<br><br>/* Reduced motion */<br>@media (prefers-reduced-motion: reduce) {<br>&nbsp;&nbsp;*, *::before, *::after {<br>&nbsp;&nbsp;&nbsp;&nbsp;animation-duration: 0.01ms !important;<br>&nbsp;&nbsp;&nbsp;&nbsp;transition-duration: 0.01ms !important;<br>&nbsp;&nbsp;}<br>}</code>
+        </div>
+      </section>
+
+      <!-- ====== SECTION GRADIENTS ====== -->
+      <section id="gradients" class="section" data-keywords="gradient section background brand decoration decorative">
+        <div class="section-head">
+          <div class="section-label">Tokens</div>
+          <h2 class="section-title">Section Gradients</h2>
+          <p class="section-desc">Token-driven decorative gradients using primary/accent colors. Ideal for marketing hero sections and landing page separators.</p>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:var(--r-space-3);">
+          <div style="height:120px; border-radius:var(--r-radius-xl); background:var(--r-section-gradient-dark); border:1px solid hsl(var(--foreground)/0.06); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:var(--r-font-mono); font-size:0.72rem; color:hsl(var(--foreground)/0.4);">--r-section-gradient-dark</span>
+          </div>
+          <div style="height:120px; border-radius:var(--r-radius-xl); background:var(--r-section-gradient-light); border:1px solid hsl(var(--foreground)/0.06); display:flex; align-items:center; justify-content:center;">
+            <span style="font-family:var(--r-font-mono); font-size:0.72rem; color:hsl(var(--foreground)/0.4);">--r-section-gradient-light</span>
+          </div>
+        </div>
+        <div class="code-block" style="margin-top:var(--r-space-4);">
+          <code>background: var(--r-section-gradient-dark); /* Dark-themed sections */<br>background: var(--r-section-gradient-light); /* Light-themed sections */</code>
+        </div>
+      </section>
+
     </main>
   </div>
-  
+
   <!-- Mobile Sidebar Toggle -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
-    <i class="ph-bold ph-list" style="font-size: 24px;"></i>
+    <i data-lucide="menu"></i>
   </button>
-  
-  <!-- Custom Cursor Elements -->
-  <div class="custom-cursor"></div>
-  <div class="custom-cursor-dot"></div>
-  
-  <!-- Component Helpers -->
+
   <script src="scripts/component-helpers.js"></script>
-  
+
   <script>
-    // Optimized Custom Cursor - Hardware accelerated
-    const cursor = document.querySelector('.custom-cursor');
-    const cursorDot = document.querySelector('.custom-cursor-dot');
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let cursorX = mouseX;
-    let cursorY = mouseY;
-    let dotX = mouseX;
-    let dotY = mouseY;
-    
-    // Make cursor visible immediately
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
-    cursorDot.style.left = dotX + 'px';
-    cursorDot.style.top = dotY + 'px';
-    
-    // Use passive event listener for better performance
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    }, { passive: true });
-    
-    // Optimized animation with left/top for better compatibility
-    function animateCursor() {
-      // Smooth following with easing
-      const ease = 0.18;
-      const dotEase = 0.3;
-      
-      cursorX += (mouseX - cursorX) * ease;
-      cursorY += (mouseY - cursorY) * ease;
-      dotX += (mouseX - dotX) * dotEase;
-      dotY += (mouseY - dotY) * dotEase;
-      
-      // Update position
-      cursor.style.left = cursorX + 'px';
-      cursor.style.top = cursorY + 'px';
-      cursorDot.style.left = dotX + 'px';
-      cursorDot.style.top = dotY + 'px';
-      
-      requestAnimationFrame(animateCursor);
-    }
-    
-    animateCursor();
-    
-    document.querySelectorAll('a, button, input, textarea, select, label, .ds-card, .sidebar-link, .showcase-item, .feature-card, .ds-icon-placeholder').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-    
-    // Sidebar Navigation Active State
+    // Sidebar active state tracking
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.sidebar-link');
-    
+
     function updateActiveNav() {
       let current = '';
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 100)) {
+      sections.forEach((section) => {
+        if (scrollY >= section.offsetTop - 120) {
           current = section.getAttribute('id');
         }
       });
-      
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
       });
     }
-    
-    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
     updateActiveNav();
-    
-    // Smooth Scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
-    
-    // Mobile Navigation Toggle
-    const navToggleComponents = document.getElementById('navToggleComponents');
-    const navDropdownComponents = document.getElementById('navDropdownComponents');
-    const navbarComponents = document.querySelector('.ds-navbar');
-    
-    if (navToggleComponents && navDropdownComponents) {
-      navToggleComponents.addEventListener('click', (e) => {
-        e.stopPropagation();
-        navToggleComponents.classList.toggle('open');
-        navDropdownComponents.classList.toggle('open');
-      });
-      
-      // Close menu when clicking a link
-      navDropdownComponents.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-          navToggleComponents.classList.remove('open');
-          navDropdownComponents.classList.remove('open');
-        });
-      });
-      
-      // Close menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!navbarComponents.contains(e.target) && !navDropdownComponents.contains(e.target)) {
-          navToggleComponents.classList.remove('open');
-          navDropdownComponents.classList.remove('open');
-        }
-      });
-    }
-    
-    // Mobile Sidebar Toggle
+
+    // Mobile sidebar toggle
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
-    
     const sidebarBackdrop = document.getElementById('sidebarBackdrop');
-    
-    if (sidebarToggle && sidebar && sidebarBackdrop) {
+
+    if (sidebarToggle && sidebar) {
       sidebarToggle.addEventListener('click', () => {
         sidebar.classList.toggle('open');
-        sidebarBackdrop.classList.toggle('open');
+        if (sidebarBackdrop) sidebarBackdrop.classList.toggle('open');
       });
-      
-      // Close sidebar when clicking backdrop
-      sidebarBackdrop.addEventListener('click', () => {
-        sidebar.classList.remove('open');
-        sidebarBackdrop.classList.remove('open');
-      });
-      
-      // Close sidebar when clicking a link
-      sidebar.querySelectorAll('.sidebar-link').forEach(link => {
+      if (sidebarBackdrop) {
+        sidebarBackdrop.addEventListener('click', () => {
+          sidebar.classList.remove('open');
+          sidebarBackdrop.classList.remove('open');
+        });
+      }
+      sidebar.querySelectorAll('.sidebar-link').forEach((link) => {
         link.addEventListener('click', () => {
           if (window.innerWidth <= 1024) {
             sidebar.classList.remove('open');
-            sidebarBackdrop.classList.remove('open');
+            if (sidebarBackdrop) sidebarBackdrop.classList.remove('open');
           }
         });
       });
     }
-    
-    // Search Functionality
-    const searchInput = document.getElementById('componentSearch');
+
+    // Search (syncs navbar search to section filtering)
     const navSearch = document.getElementById('navSearch');
-    const clearSearchBtn = document.getElementById('clearSearch');
-    const searchResultsText = document.getElementById('searchResults');
     const searchableSections = document.querySelectorAll('section[id]');
-    
-    // Sync nav search with main search (hidden)
-    if (navSearch) {
-      navSearch.addEventListener('input', (e) => {
-        if (searchInput) {
-          searchInput.value = e.target.value;
-        }
-        searchContent();
-      });
-    }
-    
-    function searchContent() {
-      const searchTerm = searchInput.value.toLowerCase().trim();
-      let visibleCount = 0;
-      
-      searchableSections.forEach(section => {
-        const keywords = section.getAttribute('data-keywords') || '';
+
+    function searchContent(term) {
+      const q = (term || '').toLowerCase().trim();
+      searchableSections.forEach((section) => {
+        if (!q) { section.style.display = ''; return; }
+        const keywords = (section.getAttribute('data-keywords') || '').toLowerCase();
         const title = section.querySelector('h2') ? section.querySelector('h2').textContent.toLowerCase() : '';
-        const content = section.textContent.toLowerCase();
-        
-        const matches = searchTerm === '' || 
-                       keywords.toLowerCase().includes(searchTerm) || 
-                       title.includes(searchTerm) ||
-                       content.includes(searchTerm);
-        
-        if (matches) {
-          section.style.display = 'block';
-          visibleCount++;
-        } else {
-          section.style.display = 'none';
-        }
-      });
-      
-      if (searchTerm !== '') {
-        searchResultsText.textContent = `${visibleCount} section${visibleCount !== 1 ? 's' : ''} found`;
-        clearSearchBtn.style.display = 'block';
-      } else {
-        searchResultsText.textContent = '';
-        clearSearchBtn.style.display = 'none';
-      }
-    }
-    
-    searchInput.addEventListener('input', searchContent);
-    
-    clearSearchBtn.addEventListener('click', () => {
-      searchInput.value = '';
-      searchContent();
-      searchInput.focus();
-    });
-    
-    // Code Toggle
-    document.querySelectorAll('.toggle-code').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const targetId = this.getAttribute('data-target');
-        const codeBlock = document.getElementById(targetId);
-        
-        if (codeBlock.style.display === 'none') {
-          codeBlock.style.display = 'block';
-          this.innerHTML = '<i class="ph ph-code"></i> Hide Code';
-        } else {
-          codeBlock.style.display = 'none';
-          this.innerHTML = '<i class="ph ph-code"></i> Code';
-        }
-      });
-    });
-    
-    // Slider value update
-    const demoSlider = document.getElementById('demoSlider');
-    const sliderValue = document.getElementById('sliderValue');
-    
-    if (demoSlider && sliderValue) {
-      demoSlider.addEventListener('input', (e) => {
-        sliderValue.textContent = e.target.value;
+        const match = keywords.includes(q) || title.includes(q) || section.textContent.toLowerCase().includes(q);
+        section.style.display = match ? '' : 'none';
       });
     }
+    if (navSearch) navSearch.addEventListener('input', (e) => searchContent(e.target.value));
 
     // Primary color playground
     const primaryColorPicker = document.getElementById('primaryColorPicker');
     const primaryColorValue = document.getElementById('primaryColorValue');
-    const PRIMARY_COLOR_STORAGE_KEY = 'rukn-primary-color';
+    const PRIMARY_KEY = 'rukn-primary-color';
 
-    function fallbackHexToHsl(hex) {
-      const sanitized = hex.replace('#', '');
-      const bigint = parseInt(sanitized, 16);
-      const r = (bigint >> 16) & 255;
-      const g = (bigint >> 8) & 255;
-      const b = bigint & 255;
-
-      const rNorm = r / 255;
-      const gNorm = g / 255;
-      const bNorm = b / 255;
-
-      const max = Math.max(rNorm, gNorm, bNorm);
-      const min = Math.min(rNorm, gNorm, bNorm);
-      let h;
-      let s;
-      const l = (max + min) / 2;
-
-      if (max === min) {
-        h = s = 0;
-      } else {
-        const d = max - min;
-        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-        switch (max) {
-          case rNorm:
-            h = (gNorm - bNorm) / d + (gNorm < bNorm ? 6 : 0);
-            break;
-          case gNorm:
-            h = (bNorm - rNorm) / d + 2;
-            break;
-          default:
-            h = (rNorm - gNorm) / d + 4;
-        }
+    function hexToHsl(hex) {
+      const s = hex.replace('#', '');
+      const bi = parseInt(s, 16);
+      const r = ((bi >> 16) & 255) / 255;
+      const g = ((bi >> 8) & 255) / 255;
+      const b = (bi & 255) / 255;
+      const mx = Math.max(r, g, b), mn = Math.min(r, g, b);
+      let h, sat;
+      const l = (mx + mn) / 2;
+      if (mx === mn) { h = sat = 0; }
+      else {
+        const d = mx - mn;
+        sat = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn);
+        if (mx === r) h = (g - b) / d + (g < b ? 6 : 0);
+        else if (mx === g) h = (b - r) / d + 2;
+        else h = (r - g) / d + 4;
         h /= 6;
       }
-
-      return {
-        h: Math.round(h * 360),
-        s: Math.round(s * 100),
-        l: Math.round(l * 100)
-      };
+      return { h: Math.round(h * 360), s: Math.round(sat * 100), l: Math.round(l * 100) };
     }
 
-    function fallbackHslToHex(hslString) {
-      const [hStr, sStr, lStr] = hslString.split(' ');
-      const h = parseFloat(hStr);
-      const s = parseFloat(sStr);
-      const l = parseFloat(lStr);
-
-      const sNorm = s / 100;
-      const lNorm = l / 100;
-
-      const c = (1 - Math.abs(2 * lNorm - 1)) * sNorm;
-      const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-      const m = lNorm - c / 2;
-
-      let rPrime = 0;
-      let gPrime = 0;
-      let bPrime = 0;
-
-      if (h >= 0 && h < 60) {
-        rPrime = c; gPrime = x; bPrime = 0;
-      } else if (h < 120) {
-        rPrime = x; gPrime = c; bPrime = 0;
-      } else if (h < 180) {
-        rPrime = 0; gPrime = c; bPrime = x;
-      } else if (h < 240) {
-        rPrime = 0; gPrime = x; bPrime = c;
-      } else if (h < 300) {
-        rPrime = x; gPrime = 0; bPrime = c;
-      } else {
-        rPrime = c; gPrime = 0; bPrime = x;
+    function applyPrimary(hex, persist) {
+      const { h, s, l } = hexToHsl(hex);
+      const hsl = `${h} ${s}% ${l}%`;
+      const root = document.documentElement;
+      root.style.setProperty('--primary', hsl);
+      root.style.setProperty('--primary-foreground', l > 55 ? '0 0% 12%' : '0 0% 98%');
+      const ah = (h + 20) % 360, al = Math.min(96, l + 15), as = Math.max(25, s - 10);
+      root.style.setProperty('--accent', `${ah} ${as}% ${al}%`);
+      root.style.setProperty('--ring', `${h} ${s}% ${Math.min(98, l + 18)}%`);
+      if (document.body) {
+        document.body.style.setProperty('--primary', hsl);
+        document.body.style.setProperty('--accent', `${ah} ${as}% ${al}%`);
+        document.body.style.setProperty('--ring', `${h} ${s}% ${Math.min(98, l + 18)}%`);
       }
-
-      const r = Math.round((rPrime + m) * 255);
-      const g = Math.round((gPrime + m) * 255);
-      const b = Math.round((bPrime + m) * 255);
-
-      const toHex = (value) => value.toString(16).padStart(2, '0');
-      return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+      if (persist) { try { localStorage.setItem(PRIMARY_KEY, hex); } catch (_) {} }
+      if (primaryColorValue) primaryColorValue.textContent = `--primary: ${hsl}`;
     }
 
-    function fallbackApplyPrimary(hex, persist = true) {
-      const { h, s, l } = fallbackHexToHsl(hex);
-      const primaryHsl = `${h} ${s}% ${l}%`;
-      document.documentElement.style.setProperty('--primary', primaryHsl);
-      document.documentElement.style.setProperty('--primary-foreground', l > 55 ? '0 0% 12%' : '0 0% 98%');
-      document.body.style.setProperty('--primary', primaryHsl);
-      document.body.style.setProperty('--primary-foreground', l > 55 ? '0 0% 12%' : '0 0% 98%');
-
-      const accentHue = (h + 20) % 360;
-      const accentLight = Math.min(96, l + 15);
-      const accentSat = Math.max(25, s - 10);
-      document.documentElement.style.setProperty('--accent', `${accentHue} ${accentSat}% ${accentLight}%`);
-      document.documentElement.style.setProperty('--accent-foreground', accentLight > 55 ? '0 0% 12%' : '0 0% 98%');
-      const ringLight = Math.min(98, l + 18);
-      document.documentElement.style.setProperty('--ring', `${h} ${s}% ${ringLight}%`);
-      document.body.style.setProperty('--accent', `${accentHue} ${accentSat}% ${accentLight}%`);
-      document.body.style.setProperty('--accent-foreground', accentLight > 55 ? '0 0% 12%' : '0 0% 98%');
-      document.body.style.setProperty('--ring', `${h} ${s}% ${ringLight}%`);
-
-      if (persist) {
-        try { window.localStorage.setItem(PRIMARY_COLOR_STORAGE_KEY, hex); } catch (_) {}
-      }
-      return primaryHsl;
-    }
-
-    function updatePrimaryLabel() {
-      if (!primaryColorValue) return;
-      const currentPrimary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
-      primaryColorValue.textContent = `--primary: ${currentPrimary}`;
-    }
-
-    if (primaryColorPicker && primaryColorValue) {
-      let initialHex = '#ff4154';
-      try {
-        const storedHex = window.localStorage.getItem(PRIMARY_COLOR_STORAGE_KEY);
-        if (storedHex) {
-          initialHex = storedHex;
-          if (window.ruknSetPrimaryColor) {
-            window.ruknSetPrimaryColor(storedHex, false);
-          } else {
-            fallbackApplyPrimary(storedHex, false);
-          }
-        }
-      } catch (_) {}
-
-      if (!initialHex && window.ruknGetPrimaryColor) {
-        initialHex = window.ruknGetPrimaryColor().hex;
-      }
-
-      if (!initialHex) {
-        const currentPrimary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
-        initialHex = fallbackHslToHex(currentPrimary);
-      }
-
-      primaryColorPicker.value = initialHex;
-      if (window.ruknSetPrimaryColor) {
-        window.ruknSetPrimaryColor(initialHex, false);
-      } else {
-        fallbackApplyPrimary(initialHex, false);
-      }
-      updatePrimaryLabel();
-
-      primaryColorPicker.addEventListener('input', (event) => {
-        const hex = event.target.value;
-        if (window.ruknSetPrimaryColor) {
-          window.ruknSetPrimaryColor(hex, true);
-        } else {
-          fallbackApplyPrimary(hex, true);
-        }
-        updatePrimaryLabel();
-      });
+    if (primaryColorPicker) {
+      let initial = '#ff4154';
+      try { const stored = localStorage.getItem(PRIMARY_KEY); if (stored) initial = stored; } catch (_) {}
+      primaryColorPicker.value = initial;
+      applyPrimary(initial, false);
+      primaryColorPicker.addEventListener('input', (e) => applyPrimary(e.target.value, true));
     }
   </script>
-  
-  <!-- Demo Modal -->
-  <div id="compModalOverlay" class="ds-modal-overlay" onclick="this.style.display='none'; document.getElementById('compModal').style.display='none';" style="display: none;"></div>
-  <div id="compModal" class="ds-modal" style="display: none;">
-    <div class="ds-modal-content ds-modal-scroll">
-      <div class="ds-modal-header ds-modal-header-left">
-        <h3 class="ds-modal-title">Modal Example</h3>
-        <p class="ds-modal-description">This is a glass morphism modal dialog</p>
-      </div>
-      <div style="padding: 1rem 0;">
-        <p>Modal content with beautiful backdrop blur and smooth animations. The glass effect creates depth while maintaining readability.</p>
-      </div>
-      <div class="ds-modal-footer ds-modal-footer-row">
-        <button class="btn-secondary btn-sm" onclick="document.getElementById('compModal').style.display='none'; document.getElementById('compModalOverlay').style.display='none';">Cancel</button>
-        <button class="btn-primary btn-sm" onclick="document.getElementById('compModal').style.display='none'; document.getElementById('compModalOverlay').style.display='none';">Confirm</button>
-      </div>
-    </div>
-    <button class="ds-modal-close" onclick="document.getElementById('compModal').style.display='none'; document.getElementById('compModalOverlay').style.display='none';">✕</button>
-  </div>
-  
-  <!-- Demo Drawer -->
-  <div id="compDrawerOverlay" class="ds-drawer-overlay" onclick="this.style.display='none'; document.getElementById('compDrawer').style.display='none';" style="display: none;"></div>
-  <div id="compDrawer" class="ds-drawer" style="display: none;">
-    <div class="ds-drawer-handle" onclick="document.getElementById('compDrawer').style.display='none'; document.getElementById('compDrawerOverlay').style.display='none';"></div>
-    <div class="ds-drawer-header">
-      <h3 class="ds-drawer-title">Drawer Example</h3>
-      <button class="ds-drawer-close" onclick="document.getElementById('compDrawer').style.display='none'; document.getElementById('compDrawerOverlay').style.display='none';">✕</button>
-    </div>
-    <div class="ds-drawer-content ds-scrollbar">
-      <p>Bottom sheet drawer with smooth slide-in animation. Perfect for mobile-first experiences and quick actions.</p>
-      <p style="margin-top: var(--space-4); color: hsl(var(--foreground) / 0.7);">Try swiping down on the handle (visual feedback only in this demo).</p>
-    </div>
-    <div class="ds-drawer-footer">
-      <button class="btn-secondary btn-sm" onclick="document.getElementById('compDrawer').style.display='none'; document.getElementById('compDrawerOverlay').style.display='none';">Cancel</button>
-      <button class="btn-primary btn-sm" onclick="document.getElementById('compDrawer').style.display='none'; document.getElementById('compDrawerOverlay').style.display='none';">Save</button>
-    </div>
-  </div>
-  
+
+  <script>
+    lucide.createIcons({ attrs: { 'stroke-width': 1 } });
+  </script>
 </body>
 </html>
-
