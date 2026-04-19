@@ -422,7 +422,7 @@
   
   /* Primary Brand Color */
   --primary: 352 100% 63%;           /* #FF4154 - Warm Red */
-  --primary-foreground: 0 0% 5%;     /* onAccent inverse */
+  --primary-foreground: 0 0% 98%;    /* White text on primary */
   
   /* Secondary */
   --secondary: 220 8% 9%;            /* #141518 */

@@ -65,8 +65,17 @@
       background: hsl(var(--background));
       color: hsl(var(--foreground));
       overflow-x: hidden;
-      cursor: none;
       position: relative;
+    }
+
+    /* Light mode — rich mesh background so glass has something to refract */
+    html:not(.dark) body {
+      background:
+        radial-gradient(ellipse 80% 50% at 15% 20%,  hsl(var(--primary) / 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 85% 10%,  hsl(260 80% 65% / 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 50% 90%,  hsl(200 80% 60% / 0.09) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 35% at 80% 60%,  hsl(var(--primary) / 0.07) 0%, transparent 50%),
+        hsl(var(--background));
     }
 
     .ds-drawer-overlay {
@@ -117,53 +126,6 @@
       z-index: 1;
     }
     
-    /* Hide all default cursors */
-    body, body *, a, button, input, textarea, select, label {
-      cursor: none !important;
-    }
-    
-    /* Custom Cursor - Optimized for performance */
-    .custom-cursor {
-      width: 20px;
-      height: 20px;
-      border: 2px solid hsl(var(--primary));
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 99999;
-      transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
-      mix-blend-mode: difference;
-      will-change: transform;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform: translate(-50%, -50%);
-    }
-    
-    .custom-cursor-dot {
-      width: 6px;
-      height: 6px;
-      background: hsl(var(--primary));
-      border-radius: 50%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 100000;
-      mix-blend-mode: difference;
-      will-change: transform;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      transform: translate(-50%, -50%);
-    }
-    
-    .custom-cursor.hover {
-      width: 40px;
-      height: 40px;
-      background: hsl(var(--primary) / 0.1);
-      border-color: hsl(var(--primary) / 0.8);
-    }
     
     /* Arabic Text */
     .arabic-text {
@@ -295,18 +257,6 @@
       overflow: hidden;
     }
     
-    .sidebar-link::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: hsl(var(--primary));
-      transform: scaleY(0);
-      transition: transform var(--r-transition-base) var(--r-spring-smooth);
-      border-radius: 0 var(--r-radius-md) var(--r-radius-md) 0;
-    }
     
     .sidebar-link:hover {
       background: rgba(255, 255, 255, 0.08);
@@ -328,10 +278,6 @@
       box-shadow: 
         0 2px 8px hsl(var(--primary) / 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    }
-    
-    .sidebar-link.active::before {
-      transform: scaleY(1);
     }
     
     .sidebar-link i {
@@ -389,8 +335,12 @@
       background: hsl(var(--card));
       border: 1px solid hsl(var(--border));
       border-radius: var(--radius-xl);
-      overflow: hidden;
+      overflow: visible;
       transition: all var(--transition-base) var(--ease-out);
+    }
+    .showcase-code {
+      overflow: hidden;
+      border-radius: 0 0 var(--radius-xl) var(--radius-xl);
     }
     
     .showcase-item.hidden {
@@ -1230,7 +1180,7 @@
           </div>
           <div class="showcase-code" id="code-modal" style="display: none;">
             <div class="code-block">
-              <code>&lt;div class="ds-modal-overlay"&gt;&lt;/div&gt;<br>&lt;div class="ds-modal"&gt;<br>  &lt;div class="ds-modal-content"&gt;<br>    &lt;div class="ds-modal-header"&gt;<br>      &lt;h3 class="ds-modal-title"&gt;Title&lt;/h3&gt;<br>    &lt;/div&gt;<br>    &lt;div&gt;Content...&lt;/div&gt;<br>    &lt;div class="ds-modal-footer"&gt;<br>      &lt;button class="btn-primary"&gt;Confirm&lt;/button&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br>  &lt;button class="ds-modal-close"&gt;✕&lt;/button&gt;<br>&lt;/div&gt;</code>
+              <code>&lt;div class="ds-modal-overlay"&gt;&lt;/div&gt;<br>&lt;div class="ds-modal"&gt;<br>  &lt;div class="ds-modal-content"&gt;<br>    &lt;div class="ds-modal-header"&gt;<br>      &lt;h3 class="ds-modal-title"&gt;Title&lt;/h3&gt;<br>    &lt;/div&gt;<br>    &lt;div&gt;Content...&lt;/div&gt;<br>    &lt;div class="ds-modal-footer"&gt;<br>      &lt;button class="btn-primary"&gt;Confirm&lt;/button&gt;<br>    &lt;/div&gt;<br>  &lt;/div&gt;<br>  &lt;button class="ds-modal-close"&gt;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>&lt;/button&gt;<br>&lt;/div&gt;</code>
             </div>
           </div>
         </div>
@@ -1353,7 +1303,7 @@
             <button class="btn-primary" onclick="alert('Elevation demo!')">Understand</button>
           </div>
         </div>
-        <button class="ds-modal-close" onclick="closeModal('elevationModal', 'elevationModalOverlay');">✕</button>
+        <button class="ds-modal-close" onclick="closeModal('elevationModal', 'elevationModalOverlay');"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
       
       <!-- Drawer -->
@@ -1383,7 +1333,7 @@
           </div>
           <div class="showcase-code" id="code-drawer" style="display: none;">
             <div class="code-block">
-              <code>&lt;div id="myOverlay" class="ds-drawer-overlay"&gt;&lt;/div&gt;<br>&lt;div id="myDrawer" class="ds-drawer"&gt;<br>  &lt;div class="ds-drawer-handle"&gt;&lt;/div&gt;<br>  &lt;div class="ds-drawer-header"&gt;<br>    &lt;h3 class="ds-drawer-title"&gt;Title&lt;/h3&gt;<br>    &lt;button class="ds-drawer-close"<br>      onclick="closeDrawer('myDrawer','myOverlay')"&gt;✕&lt;/button&gt;<br>  &lt;/div&gt;<br>  &lt;div class="ds-drawer-content"&gt;...&lt;/div&gt;<br>&lt;/div&gt;<br><br>// Open / Close API<br>openDrawer('myDrawer', 'myOverlay');<br>closeDrawer('myDrawer', 'myOverlay');<br>// Also closes with Escape key &amp; backdrop click</code>
+              <code>&lt;div id="myOverlay" class="ds-drawer-overlay"&gt;&lt;/div&gt;<br>&lt;div id="myDrawer" class="ds-drawer"&gt;<br>  &lt;div class="ds-drawer-handle"&gt;&lt;/div&gt;<br>  &lt;div class="ds-drawer-header"&gt;<br>    &lt;h3 class="ds-drawer-title"&gt;Title&lt;/h3&gt;<br>    &lt;button class="ds-drawer-close"<br>      onclick="closeDrawer('myDrawer','myOverlay')"&gt;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>&lt;/button&gt;<br>  &lt;/div&gt;<br>  &lt;div class="ds-drawer-content"&gt;...&lt;/div&gt;<br>&lt;/div&gt;<br><br>// Open / Close API<br>openDrawer('myDrawer', 'myOverlay');<br>closeDrawer('myDrawer', 'myOverlay');<br>// Also closes with Escape key &amp; backdrop click</code>
             </div>
           </div>
         </div>
@@ -1502,7 +1452,7 @@
                   <div class="ds-alert-title">Information</div>
                   <div class="ds-alert-description">This is an informational message</div>
                 </div>
-                <button class="ds-alert-close">✕</button>
+                <button class="ds-alert-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
               </div>
               <div class="ds-alert ds-alert-success">
                 <div class="ds-alert-icon">✓</div>
@@ -1510,7 +1460,7 @@
                   <div class="ds-alert-title">Success</div>
                   <div class="ds-alert-description">Your changes have been saved</div>
                 </div>
-                <button class="ds-alert-close">✕</button>
+                <button class="ds-alert-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
               </div>
               <div class="ds-alert ds-alert-warning">
                 <div class="ds-alert-icon">⚠</div>
@@ -1518,21 +1468,21 @@
                   <div class="ds-alert-title">Warning</div>
                   <div class="ds-alert-description">Please review before continuing</div>
                 </div>
-                <button class="ds-alert-close">✕</button>
+                <button class="ds-alert-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
               </div>
               <div class="ds-alert ds-alert-error">
-                <div class="ds-alert-icon">✕</div>
+                <div class="ds-alert-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
                 <div class="ds-alert-content">
                   <div class="ds-alert-title">Error</div>
                   <div class="ds-alert-description">Unable to save changes</div>
                 </div>
-                <button class="ds-alert-close">✕</button>
+                <button class="ds-alert-close"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
               </div>
             </div>
           </div>
           <div class="showcase-code" id="code-alert" style="display: none;">
             <div class="code-block">
-              <code>&lt;div class="ds-alert ds-alert-success"&gt;<br>  &lt;div class="ds-alert-icon"&gt;✓&lt;/div&gt;<br>  &lt;div class="ds-alert-content"&gt;<br>    &lt;div class="ds-alert-title"&gt;Success&lt;/div&gt;<br>    &lt;div class="ds-alert-description"&gt;Saved&lt;/div&gt;<br>  &lt;/div&gt;<br>  &lt;button class="ds-alert-close"&gt;✕&lt;/button&gt;<br>&lt;/div&gt;</code>
+              <code>&lt;div class="ds-alert ds-alert-success"&gt;<br>  &lt;div class="ds-alert-icon"&gt;✓&lt;/div&gt;<br>  &lt;div class="ds-alert-content"&gt;<br>    &lt;div class="ds-alert-title"&gt;Success&lt;/div&gt;<br>    &lt;div class="ds-alert-description"&gt;Saved&lt;/div&gt;<br>  &lt;/div&gt;<br>  &lt;button class="ds-alert-close"&gt;<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>&lt;/button&gt;<br>&lt;/div&gt;</code>
             </div>
           </div>
         </div>
@@ -2109,7 +2059,10 @@
           </div>
           <div class="showcase-preview">
             <div class="ds-dropdown" style="position: relative; display: inline-block;">
-              <button class="btn-primary" onclick="toggleDropdown(this)">Actions</button>
+              <button class="btn-primary" onclick="toggleDropdown(this)" style="gap: 6px;">
+                Actions
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
               <div class="ds-dropdown-menu" id="demo-dropdown">
                 <button class="ds-dropdown-item">
                   <i data-lucide="pencil" class="ds-dropdown-item-icon"></i>
@@ -2829,68 +2782,10 @@ console.log(hello);</code></pre>
     </main>
   </div>
   
-  <!-- Mobile Sidebar Toggle -->
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
-    <i data-lucide="menu" style="font-size: 24px;"></i>
-  </button>
-  
-  <!-- Custom Cursor Elements -->
-  <div class="custom-cursor"></div>
-  <div class="custom-cursor-dot"></div>
-  
   <!-- Component Helpers -->
   <script src="scripts/component-helpers.js"></script>
   
   <script>
-    // Optimized Custom Cursor - Hardware accelerated
-    const cursor = document.querySelector('.custom-cursor');
-    const cursorDot = document.querySelector('.custom-cursor-dot');
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let cursorX = mouseX;
-    let cursorY = mouseY;
-    let dotX = mouseX;
-    let dotY = mouseY;
-    
-    // Make cursor visible immediately
-    cursor.style.left = cursorX + 'px';
-    cursor.style.top = cursorY + 'px';
-    cursorDot.style.left = dotX + 'px';
-    cursorDot.style.top = dotY + 'px';
-    
-    // Use passive event listener for better performance
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    }, { passive: true });
-    
-    // Optimized animation with left/top for better compatibility
-    function animateCursor() {
-      // Smooth following with easing
-      const ease = 0.18;
-      const dotEase = 0.3;
-      
-      cursorX += (mouseX - cursorX) * ease;
-      cursorY += (mouseY - cursorY) * ease;
-      dotX += (mouseX - dotX) * dotEase;
-      dotY += (mouseY - dotY) * dotEase;
-      
-      // Update position
-      cursor.style.left = cursorX + 'px';
-      cursor.style.top = cursorY + 'px';
-      cursorDot.style.left = dotX + 'px';
-      cursorDot.style.top = dotY + 'px';
-      
-      requestAnimationFrame(animateCursor);
-    }
-    
-    animateCursor();
-    
-    document.querySelectorAll('a, button, input, textarea, select, label, .ds-card, .sidebar-link, .showcase-item, .feature-card, .ds-icon-placeholder').forEach(el => {
-      el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-      el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-    });
-    
     // Sidebar Navigation Active State
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.sidebar-link');
@@ -2971,34 +2866,7 @@ console.log(hello);</code></pre>
       initNavbarControls();
     });
     
-    // Mobile Sidebar Toggle
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const sidebar = document.getElementById('sidebar');
-    
-    const sidebarBackdrop = document.getElementById('sidebarBackdrop');
-    
-    if (sidebarToggle && sidebar && sidebarBackdrop) {
-      sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-        sidebarBackdrop.classList.toggle('open');
-      });
-      
-      // Close sidebar when clicking backdrop
-      sidebarBackdrop.addEventListener('click', () => {
-        sidebar.classList.remove('open');
-        sidebarBackdrop.classList.remove('open');
-      });
-      
-      // Close sidebar when clicking a link
-      sidebar.querySelectorAll('.sidebar-link').forEach(link => {
-        link.addEventListener('click', () => {
-          if (window.innerWidth <= 1024) {
-            sidebar.classList.remove('open');
-            sidebarBackdrop.classList.remove('open');
-          }
-        });
-      });
-    }
+    // Mobile sidebar toggle is handled internally by the rukn-sidebar web component.
     
     // Search Functionality
     const searchInput = document.getElementById('componentSearch');
@@ -3061,13 +2929,13 @@ console.log(hello);</code></pre>
       btn.addEventListener('click', function() {
         const targetId = this.getAttribute('data-target');
         const codeBlock = document.getElementById(targetId);
-        
+
         if (codeBlock.style.display === 'none') {
           codeBlock.style.display = 'block';
-          this.innerHTML = '<i data-lucide="code"></i> Hide Code';
+          this.textContent = '{ } Hide Code';
         } else {
           codeBlock.style.display = 'none';
-          this.innerHTML = '<i data-lucide="code"></i> Code';
+          this.textContent = '{ } Code';
         }
       });
     });
@@ -3421,7 +3289,7 @@ console.log(hello);</code></pre>
         <button class="btn-primary btn-sm" onclick="closeModal('compModal', 'compModalOverlay');">Confirm</button>
       </div>
     </div>
-    <button class="ds-modal-close" onclick="closeModal('compModal', 'compModalOverlay');">✕</button>
+    <button class="ds-modal-close" onclick="closeModal('compModal', 'compModalOverlay');"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
   </div>
   
   <!-- Demo Drawer -->
@@ -3430,7 +3298,7 @@ console.log(hello);</code></pre>
     <div class="ds-drawer-handle"></div>
     <div class="ds-drawer-header">
       <h3 class="ds-drawer-title">Drawer Example</h3>
-      <button class="ds-drawer-close" onclick="closeDrawer('compDrawer', 'compDrawerOverlay')">✕</button>
+      <button class="ds-drawer-close" onclick="closeDrawer('compDrawer', 'compDrawerOverlay')"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="ds-drawer-content ds-scrollbar">
       <p>Bottom sheet drawer with smooth slide-in animation. Perfect for mobile-first experiences and quick actions.</p>
@@ -3443,9 +3311,17 @@ console.log(hello);</code></pre>
   </div>
 
   <script>
-    lucide.createIcons({ attrs: { 'stroke-width': 1 } });
-    const _obs = new MutationObserver(() => lucide.createIcons({ attrs: { 'stroke-width': 1 } }));
-    _obs.observe(document.body, { childList: true, subtree: true });
+    // Run createIcons once after all web components have rendered.
+    // Avoids any MutationObserver loop: components call createIcons themselves during init,
+    // so we just need one final pass after everything is settled.
+    Promise.all([
+      customElements.whenDefined('rukn-navbar'),
+      customElements.whenDefined('rukn-sidebar'),
+    ]).then(() => {
+      requestAnimationFrame(() => {
+        lucide.createIcons({ attrs: { 'stroke-width': 1 } });
+      });
+    });
   </script>
 </body>
 </html>

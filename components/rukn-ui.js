@@ -129,7 +129,7 @@ function ruknHslToHexString(hslString) {
 }
 
 function ruknComputeForeground(l) {
-  return l > 55 ? '0 0% 12%' : '0 0% 98%';
+  return l > 72 ? '0 0% 12%' : '0 0% 98%';
 }
 
 function ruknShiftHue(h, shift) {
@@ -169,8 +169,8 @@ function ruknApplyPrimaryColor(hex, persist = false) {
   if (persist) {
     try {
       window.localStorage.setItem(PRIMARY_COLOR_STORAGE_KEY, hex);
-    } catch (error) {
-      console.warn('Rukn: Unable to persist primary color', error);
+    } catch {
+      // localStorage unavailable — color not persisted
     }
   }
 }
@@ -181,8 +181,8 @@ if (typeof window !== 'undefined') {
     if (storedColor) {
       ruknApplyPrimaryColor(storedColor, false);
     }
-  } catch (error) {
-    console.warn('Rukn: Unable to read stored primary color', error);
+  } catch {
+    // localStorage unavailable — use default color
   }
 
   window.ruknSetPrimaryColor = (hex, persist = true) => {
@@ -663,5 +663,5 @@ export {
   RuknIcon
 };
 
-console.log('✨ Rukn UI Web Components loaded - 100% Vanilla JavaScript, Zero Dependencies');
+
 

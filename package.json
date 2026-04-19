@@ -7,6 +7,7 @@
   "files": [
     "components/",
     "styles/",
+    "dist/",
     "scripts/",
     "types.d.ts",
     "README.md",
@@ -15,8 +16,8 @@
   ],
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/.bin/jest --no-cache",
-    "build": "echo \"No build step required\"",
-    "prepublishOnly": "npm test"
+    "build": "node build.cjs",
+    "prepublishOnly": "npm run build && npm test"
   },
   "homepage": "https://rukn.design",
   "bugs": {
@@ -61,7 +62,11 @@
     "./styles/design-system-variables.css": "./styles/design-system-variables.css",
     "./navbar": "./components/rukn-navbar.js",
     "./sidebar": "./components/rukn-sidebar.js",
-    "./footer": "./components/rukn-footer.js"
+    "./footer": "./components/rukn-footer.js",
+    "./dist/rukn.css": "./dist/rukn.css",
+    "./dist/rukn.min.css": "./dist/rukn.min.css",
+    "./dist/rukn.js": "./dist/rukn.js",
+    "./dist/rukn.min.js": "./dist/rukn.min.js"
   },
   "type": "module",
   "engines": {

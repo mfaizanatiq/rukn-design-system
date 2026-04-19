@@ -37,6 +37,16 @@
       font-family: var(--r-font-body);
     }
 
+    /* Light mode — rich mesh background so glass has something to refract */
+    html:not(.dark) body {
+      background:
+        radial-gradient(ellipse 80% 50% at 15% 20%,  hsl(var(--primary) / 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 85% 10%,  hsl(260 80% 65% / 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 50% 90%,  hsl(200 80% 60% / 0.09) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 35% at 80% 60%,  hsl(var(--primary) / 0.07) 0%, transparent 50%),
+        hsl(var(--background));
+    }
+
     /* Grain texture */
     body::after {
       content: '';
@@ -151,18 +161,6 @@
       position: relative;
       overflow: hidden;
     }
-    .sidebar-link::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: hsl(var(--primary));
-      transform: scaleY(0);
-      transition: transform var(--r-transition-base) var(--r-spring-smooth);
-      border-radius: 0 var(--r-radius-md) var(--r-radius-md) 0;
-    }
     .sidebar-link:hover {
       background: rgba(255, 255, 255, 0.08);
       color: hsl(var(--foreground));
@@ -189,7 +187,6 @@
         0 2px 8px hsl(var(--primary) / 0.15),
         inset 0 1px 0 rgba(255, 255, 255, 0.8);
     }
-    .sidebar-link.active::before { transform: scaleY(1); }
     .sidebar-link i {
       font-size: 18px;
       transition: transform var(--r-transition-fast) var(--r-spring-smooth);
@@ -2007,7 +2004,7 @@
       const hsl = `${h} ${s}% ${l}%`;
       const root = document.documentElement;
       root.style.setProperty('--primary', hsl);
-      root.style.setProperty('--primary-foreground', l > 55 ? '0 0% 12%' : '0 0% 98%');
+      root.style.setProperty('--primary-foreground', l > 72 ? '0 0% 12%' : '0 0% 98%');
       const ah = (h + 20) % 360, al = Math.min(96, l + 15), as = Math.max(25, s - 10);
       root.style.setProperty('--accent', `${ah} ${as}% ${al}%`);
       root.style.setProperty('--ring', `${h} ${s}% ${Math.min(98, l + 18)}%`);

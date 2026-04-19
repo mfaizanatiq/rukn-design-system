@@ -49,12 +49,13 @@ const DEFAULT_TRANSLATIONS = {
     'nav.darkMode': 'Dark Mode',
     'nav.lightMode': 'Light Mode',
     'index.hero.name': '<strong>Rukn</strong><span aria-hidden="true">•</span><span class="arabic-text">رُكن</span><span aria-hidden="true">•</span><span class="urdu-text">رکن</span>',
-    'index.hero.heading.primary': 'Design System',
-    'index.hero.heading.secondary': 'Built Different.',
-    'index.hero.message': 'A community-built, open-source design system for everyone',
-    'index.hero.subtext': 'Because great design should be free, accessible, and yours to own.',
+    'index.hero.heading.primary': 'The design system',
+    'index.hero.heading.secondary': 'built for Arabic.',
+    'index.hero.message': 'Zero-dependency Web Components with native RTL, Arabic typography, and Urdu Nastaliq — production-ready on day one.',
+    'index.hero.subtext': 'Open source. MIT licensed. Yours to own, extend, and ship.',
     'index.hero.cta.primary': 'Explore Components',
     'index.hero.cta.secondary': 'View on GitHub',
+    'index.hero.cta.demo': 'See Demo',
     'index.stats.tokens': 'Design Tokens',
     'index.stats.components': 'Components',
     'index.stats.dependencies': 'Dependencies',
@@ -152,11 +153,12 @@ const DEFAULT_TRANSLATIONS = {
     'nav.lightMode': 'الوضع الفاتح',
     'index.hero.name': '<strong>ركن</strong><span aria-hidden="true">•</span><span class="arabic-text">رُكن</span><span aria-hidden="true">•</span><span class="urdu-text">رکن</span>',
     'index.hero.heading.primary': 'نظام التصميم',
-    'index.hero.heading.secondary': 'مختلف تمامًا',
-    'index.hero.message': 'منظومة تصميم مفتوحة المصدر بناها المجتمع للجميع',
-    'index.hero.subtext': 'لأن التصميم الرائع يجب أن يكون مجانيًا، متاحًا، وملكك أنت.',
+    'index.hero.heading.secondary': 'المبني للعربية.',
+    'index.hero.message': 'مكوّنات ويب بلا تبعيات — دعم أصيل للغة العربية والنص من اليمين إلى اليسار وخط النستعليق الأردي، جاهزة للإنتاج منذ اليوم الأول.',
+    'index.hero.subtext': 'مفتوح المصدر. ترخيص MIT. ملكك تمامًا — طوّره، وسّعه، وأطلقه.',
     'index.hero.cta.primary': 'استكشف المكوّنات',
     'index.hero.cta.secondary': 'عرض على GitHub',
+    'index.hero.cta.demo': 'شاهد العرض',
     'index.stats.tokens': 'رموز التصميم',
     'index.stats.components': 'المكوّنات',
     'index.stats.dependencies': 'بدون تبعيات',
@@ -261,11 +263,12 @@ const DEFAULT_TRANSLATIONS = {
     'nav.lightMode': 'لائٹ موڈ',
     'index.hero.name': '<strong>Rukn</strong><span aria-hidden="true">•</span><span class="arabic-text">رُكن</span><span aria-hidden="true">•</span><span class="urdu-text">رکن</span>',
     'index.hero.heading.primary': 'ڈیزائن سسٹم',
-    'index.hero.heading.secondary': 'منفرد انداز',
-    'index.hero.message': 'کمیونٹی کی تیار کردہ، سب کے لیے اوپن سورس ڈیزائن سسٹم',
-    'index.hero.subtext': 'کیونکہ بہترین ڈیزائن مفت، قابلِ رسائی اور آپ کی ملکیت ہونا چاہیے۔',
+    'index.hero.heading.secondary': 'عربی کے لیے تیار۔',
+    'index.hero.message': 'بغیر کسی انحصار کے ویب کمپوننٹس — مقامی RTL، عربی خطاطی، اور اردو نستعلیق کے ساتھ، پہلے دن سے پروڈکشن کے لیے تیار۔',
+    'index.hero.subtext': 'اوپن سورس۔ MIT لائسنس۔ مکمل طور پر آپ کی ملکیت — بڑھائیں، پھیلائیں، اور شپ کریں۔',
     'index.hero.cta.primary': 'اجزاء دیکھیں',
     'index.hero.cta.secondary': 'GitHub پر دیکھیں',
+    'index.hero.cta.demo': 'ڈیمو دیکھیں',
     'index.stats.tokens': 'ڈیزائن ٹوکنز',
     'index.stats.components': 'اجزاء',
     'index.stats.dependencies': 'انحصارات',
@@ -636,7 +639,6 @@ class RuknNavbar extends HTMLElement {
   _initScrollBehavior() {
     const navbar = this.querySelector(`#navbar-${this._uid}`);
     if (!navbar) {
-      console.warn('Rukn Navbar: Could not find navbar element');
       return;
     }
     
@@ -672,7 +674,6 @@ class RuknNavbar extends HTMLElement {
       window.removeEventListener('scroll', onScroll);
     };
     
-    console.log('✅ Rukn Navbar: Sticky scroll behavior initialized');
   }
   
   _initLanguageSwitch() {
@@ -740,8 +741,8 @@ class RuknNavbar extends HTMLElement {
       if (persist) {
         try {
           window.localStorage.setItem(RUKN_LANGUAGE_STORAGE_KEY, normalized);
-        } catch (error) {
-          console.warn('Rukn Navbar: Unable to persist language preference', error);
+        } catch {
+          // localStorage unavailable — preference not persisted
         }
       }
 
@@ -816,14 +817,12 @@ class RuknNavbar extends HTMLElement {
         const currentLang = document.documentElement.lang;
         initialLanguage = sanitizeLanguage(currentLang);
       }
-    } catch (error) {
-      console.warn('Rukn Navbar: Unable to read stored language preference', error);
+    } catch {
+      // localStorage unavailable — fall back to document language
     }
 
     applyLanguage(initialLanguage, false);
     this._setDropdownSelection(initialLanguage);
-
-    console.log('✅ Rukn Navbar: Language switcher initialized');
   }
 
   _applyTranslations(language) {
@@ -989,8 +988,8 @@ class RuknNavbar extends HTMLElement {
       if (stored !== null) {
         return stored === 'true';
       }
-    } catch (e) {
-      console.warn('Rukn Navbar: Unable to read dark mode preference from localStorage', e);
+    } catch {
+      // localStorage unavailable — fall back to CSS class state
     }
     
     // Fallback to current HTML class
@@ -1007,8 +1006,8 @@ class RuknNavbar extends HTMLElement {
     if (persist) {
       try {
         localStorage.setItem(RUKN_DARK_MODE_STORAGE_KEY, isDark.toString());
-      } catch (e) {
-        console.warn('Rukn Navbar: Unable to persist dark mode preference', e);
+      } catch {
+        // localStorage unavailable — preference not persisted
       }
     }
     

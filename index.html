@@ -75,7 +75,7 @@
       opacity: 0.5;
     }
 
-    /* Ambient glow — single, subtle */
+    /* Dark mode — ambient glow */
     body::before {
       content: '';
       position: fixed;
@@ -89,8 +89,18 @@
       z-index: 0;
       filter: blur(80px);
     }
+
+    /* Light mode — rich mesh background so glass has something to refract */
+    html:not(.dark) body {
+      background:
+        radial-gradient(ellipse 80% 50% at 15% 20%,  hsl(var(--primary) / 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 85% 10%,  hsl(260 80% 65% / 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 50% 90%,  hsl(200 80% 60% / 0.09) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 35% at 80% 60%,  hsl(var(--primary) / 0.07) 0%, transparent 50%),
+        hsl(var(--background));
+    }
     html:not(.dark) body::before {
-      background: radial-gradient(ellipse, hsl(var(--primary) / 0.04) 0%, transparent 70%);
+      background: none;
     }
 
     /* =========================================================
@@ -562,31 +572,27 @@
       <div class="hero-text reveal">
         <div class="hero-name">
           <strong>Rukn</strong>
-          <span aria-hidden="true" style="opacity:0.3;">|</span>
-          <span class="arabic-text">رُكن</span>
+          <span aria-hidden="true" style="opacity:0.25; margin: 0 4px;">|</span>
+          <span class="arabic-text" lang="ar">رُكن</span>
+          <span aria-hidden="true" style="opacity:0.25; margin: 0 4px;">|</span>
+          <span class="urdu-text" lang="ur" style="font-family: var(--font-urdu, 'Noto Nastaliq Urdu', serif);">رکن</span>
         </div>
         <h1 class="heading-display">
-          The design system that<br>
-          <span class="text-accent">speaks Arabic.</span>
+          <span data-i18n="index.hero.heading.primary">The design system</span><br>
+          <span class="text-accent" data-i18n="index.hero.heading.secondary">built for Arabic.</span>
         </h1>
-        <p class="hero-desc">
-          Built for Arabic, Urdu, and multilingual applications from day one. RTL layouts, Arabic and Nastaliq typography tokens, and language-aware Web Components — no patching required. Zero dependencies. MIT licensed.
+        <p class="hero-desc" data-i18n="index.hero.message">
+          Zero-dependency Web Components with built-in RTL, Arabic typography, and Urdu Nastaliq support. Framework-agnostic. MIT licensed. Works everywhere.
         </p>
         <div class="hero-actions">
           <a href="components.html">
-            <button class="btn-primary btn-lg">Get Started</button>
+            <button class="btn-primary btn-lg" data-i18n="index.hero.cta.primary">Get Started</button>
           </a>
           <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener">
-            <button class="btn-ghost btn-lg">
-              <i data-lucide="github" style="margin-right:6px;"></i>
-              GitHub
-            </button>
+            <button class="btn-ghost btn-lg" data-i18n="index.hero.cta.secondary">GitHub</button>
           </a>
-          <a href="demo/maktaba.html">
-            <button class="btn-outline btn-lg">
-              <i data-lucide="store" style="margin-right:6px;"></i>
-              Maktaba Demo
-            </button>
+          <a href="https://ruknds.netlify.app/" target="_blank" rel="noopener">
+            <button class="btn-outline btn-lg" data-i18n="index.hero.cta.demo">Maktaba Demo</button>
           </a>
         </div>
       </div>
@@ -783,35 +789,53 @@
     <div class="page-container">
       <div class="code-section">
         <div class="reveal">
-          <p class="label-caps" style="margin-bottom:var(--r-space-3);">Get started</p>
-          <h2 class="heading-section" style="margin-bottom:var(--r-space-4);">Two files.<br>Zero config.</h2>
-          <p style="color:hsl(var(--foreground)/0.5); font-size:1rem; line-height:1.7; max-width:400px; margin-bottom:var(--r-space-6);">
-            Copy two CSS files into your project, link them in your HTML, and you have a complete design system. No npm, no build tools, no config files.
+          <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.install.label">Get started</p>
+          <h2 class="heading-section" style="margin-bottom:var(--r-space-4);">Two lines.<br>Plug and play.</h2>
+          <p style="color:hsl(var(--foreground)/0.5); font-size:1rem; line-height:1.7; max-width:400px; margin-bottom:var(--r-space-4);">
+            Drop two tags into your <code style="font-size:0.85em; color:hsl(var(--primary));">&lt;head&gt;</code> and every component, token, and Web Component works instantly. No bundler. No config. No npm required.
           </p>
+          <div style="display:flex; gap:var(--r-space-2); flex-wrap:wrap; margin-bottom:var(--r-space-6);">
+            <div style="display:flex; align-items:center; gap:6px; font-size:0.8rem; color:hsl(var(--foreground)/0.5);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              156 KB CSS
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; font-size:0.8rem; color:hsl(var(--foreground)/0.5);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              77 KB JS
+            </div>
+            <div style="display:flex; align-items:center; gap:6px; font-size:0.8rem; color:hsl(var(--foreground)/0.5);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Zero dependencies
+            </div>
+          </div>
           <div style="display:flex; gap:var(--r-space-3); flex-wrap:wrap;">
-            <a href="INTEGRATION_GUIDE.md">
-              <button class="btn-primary">Integration Guide</button>
+            <a href="components.html">
+              <button class="btn-primary">Explore Components</button>
             </a>
             <a href="foundation.html">
-              <button class="btn-ghost">Browse Tokens</button>
+              <button class="btn-ghost">Design Tokens</button>
             </a>
           </div>
         </div>
-        <div class="code-block reveal reveal-delay-2">
-          <div class="code-block-header">
-            <span class="code-dot"></span>
-            <span class="code-dot"></span>
-            <span class="code-dot"></span>
-          </div>
-<span class="line-comment"># Option 1: Copy files</span>
-<span class="line-tag">cp</span> styles/*.css your-project/
-
-<span class="line-comment"># Option 2: npm</span>
-<span class="line-tag">npm</span> install @ruknds/core
-
-<span class="line-comment"># Option 3: CDN</span>
+        <div style="display:flex; flex-direction:column; gap:var(--r-space-3);">
+          <!-- CDN -->
+          <div class="code-block reveal reveal-delay-1" style="padding:var(--r-space-4);">
+            <div style="font-size:0.7rem; color:hsl(var(--foreground)/0.35); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:var(--r-space-3);">CDN — drop into &lt;head&gt;</div>
 <span class="line-tag">&lt;link</span> <span class="line-attr">rel</span>=<span class="line-str">"stylesheet"</span>
-  <span class="line-attr">href</span>=<span class="line-str">"unpkg.com/@ruknds/core/styles/design-system.css"</span><span class="line-tag">&gt;</span>
+  <span class="line-attr">href</span>=<span class="line-str">"https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.css"</span><span class="line-tag">&gt;</span>
+
+<span class="line-tag">&lt;script</span> <span class="line-attr">src</span>=<span class="line-str">"https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.js"</span>
+  <span class="line-attr">defer</span><span class="line-tag">&gt;&lt;/script&gt;</span>
+          </div>
+          <!-- npm -->
+          <div class="code-block reveal reveal-delay-2" style="padding:var(--r-space-4);">
+            <div style="font-size:0.7rem; color:hsl(var(--foreground)/0.35); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:var(--r-space-3);">npm</div>
+<span class="line-tag">npm</span> install <span class="line-str">@ruknds/core</span>
+
+<span class="line-comment">// In your JS</span>
+<span class="line-keyword">import</span> <span class="line-str">'@ruknds/core/styles/design-system.css'</span><span class="line-comment">;</span>
+<span class="line-keyword">import</span> <span class="line-str">'@ruknds/core/navbar'</span><span class="line-comment">;</span>
+          </div>
         </div>
       </div>
     </div>
