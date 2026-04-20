@@ -10,8 +10,9 @@
     "src"
   ],
   "scripts": {
-    "build": "echo 'Build step — run your bundler here'",
-    "prepublishOnly": "npm run build"
+    "build": "rollup -c rollup.config.mjs",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run build"
   },
   "keywords": [
     "rukn",
@@ -29,6 +30,15 @@
   },
   "dependencies": {
     "@ruknds/core": "^2.2.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
+    "rollup": "^4.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "tslib": "^2.6.0",
+    "typescript": "^5.0.0",
+    "vue": "^3.4.0"
   },
   "license": "MIT",
   "repository": {
