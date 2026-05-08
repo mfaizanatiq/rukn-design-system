@@ -30,6 +30,7 @@
 import React, {
   useRef,
   useEffect,
+  useImperativeHandle,
   forwardRef,
   type HTMLAttributes,
   type ReactNode,
@@ -40,7 +41,7 @@ import React, {
 // Helper: create a wrapper around a Web Component
 // ============================================
 
-type WebComponentProps<T extends Record<string, unknown> = {}> = T &
+type WebComponentProps<T extends object = {}> = T &
   HTMLAttributes<HTMLElement> & {
     children?: ReactNode;
   };
@@ -49,17 +50,17 @@ type WebComponentProps<T extends Record<string, unknown> = {}> = T &
  * Creates a React component that wraps a custom element.
  * Maps React props to DOM attributes and handles event forwarding.
  */
-function createWebComponentWrapper<P extends Record<string, unknown>>(
+function createWebComponentWrapper<P extends object>(
   tagName: string,
   propToAttrMap: Record<string, string> = {},
   booleanAttrs: string[] = []
 ) {
-  const Wrapper = forwardRef(function WC(
-    props: WebComponentProps<P>,
+  const Wrapper = forwardRef<HTMLElement, WebComponentProps<P>>(function WC(
+    props,
     ref: Ref<HTMLElement>
   ) {
     const innerRef = useRef<HTMLElement>(null);
-    const resolvedRef = (ref as React.RefObject<HTMLElement>) || innerRef;
+    useImperativeHandle(ref, () => innerRef.current as HTMLElement);
 
     // Separate known WC props from native HTML props
     const { children, ...rest } = props;
@@ -80,7 +81,7 @@ function createWebComponentWrapper<P extends Record<string, unknown>>(
     }
 
     useEffect(() => {
-      const el = resolvedRef.current;
+      const el = innerRef.current;
       if (!el) return;
 
       // Set mapped attributes
@@ -105,7 +106,7 @@ function createWebComponentWrapper<P extends Record<string, unknown>>(
 
     return React.createElement(
       tagName,
-      { ref: resolvedRef, ...htmlProps },
+      { ref: innerRef, ...htmlProps },
       children
     );
   });

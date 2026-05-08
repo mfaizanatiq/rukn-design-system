@@ -356,5 +356,13 @@ class RuknSidebar extends HTMLElement {
   }
 }
 
-customElements.define('rukn-sidebar', RuknSidebar);
+if (!customElements.get('rukn-sidebar')) {
+  customElements.define('rukn-sidebar', RuknSidebar);
+}
 
+if (typeof window !== 'undefined') {
+  window.ruknComponents = {
+    ...(window.ruknComponents || {}),
+    RuknSidebar
+  };
+}

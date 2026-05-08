@@ -64,15 +64,15 @@ npm install @ruknds/core
 import '@ruknds/core/components/rukn-ui.js';
 import '@ruknds/core/styles/design-system.css';
 
-// Or import individual components
+// Compatibility entrypoints are also available
 import '@ruknds/core/components/rukn-button.js';
 import '@ruknds/core/components/rukn-card.js';
 ```
 
-### Option 3: CDN (Unpkg)
+### Option 3: CDN / direct script
 ```html
-<link rel="stylesheet" href="https://unpkg.com/@ruknds/core@2.0.0/styles/design-system.css">
-<script src="https://unpkg.com/@ruknds/core@2.0.0/components/rukn-ui.js" type="module"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.js" defer></script>
 ```
 
 ## 📚 Available Components
@@ -543,7 +543,6 @@ MIT License - Free for commercial and personal use.
 **Built with ❤️ by the Rukn DS community**
 
 *The fastest, lightest, most framework-agnostic component library ever created.*
-
 
 
 

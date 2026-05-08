@@ -37,7 +37,9 @@ function minifyCSS(css) {
 function minifyJS(js) {
   return js
     .replace(/\/\*[\s\S]*?\*\//g, '')    // strip block comments
-    .replace(/\/\/[^\n]*/g, '')           // strip line comments
+    // Keep line comments. Removing `//...` with regex can corrupt strings
+    // containing URLs such as "https://...". This deliberately favors safety
+    // over a few extra bytes until a real parser-based minifier is added.
     .replace(/[ \t]+/g, ' ')             // collapse whitespace
     .replace(/\n\s*\n/g, '\n')           // collapse blank lines
     .trim();
@@ -90,13 +92,14 @@ ${rawJS}
   if (typeof window !== 'undefined') {
     window.RuknDS = {
       version: '2.2.0',
-      setColor: typeof ruknSetPrimaryColor !== 'undefined' ? ruknSetPrimaryColor : undefined,
+      setColor: global.ruknSetPrimaryColor,
+      getColor: global.ruknGetPrimaryColor,
     };
   }
 })(typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : this);
 `;
 
-write('rukn.js',     jsBanner + rawJS);
+write('rukn.js',     iife);
 write('rukn.min.js', minifyJS(iife));
 
 // ── Snippet file ─────────────────────────────────────────────────────────────

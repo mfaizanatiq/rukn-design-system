@@ -87,5 +87,13 @@ class RuknFooter extends HTMLElement {
   }
 }
 
-customElements.define('rukn-footer', RuknFooter);
+if (!customElements.get('rukn-footer')) {
+  customElements.define('rukn-footer', RuknFooter);
+}
 
+if (typeof window !== 'undefined') {
+  window.ruknComponents = {
+    ...(window.ruknComponents || {}),
+    RuknFooter
+  };
+}

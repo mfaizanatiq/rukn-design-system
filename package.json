@@ -3,7 +3,10 @@
   "version": "2.2.0",
   "description": "The first modern design system built for Arabic, Urdu, and multilingual applications. RTL-first CSS tokens, Web Components with built-in i18n (ar/ur/en), glass morphism, zero dependencies.",
   "main": "components/rukn-ui.js",
-  "style": "styles/design-system.css",
+  "types": "./types.d.ts",
+  "style": "dist/rukn.min.css",
+  "unpkg": "dist/rukn.min.js",
+  "jsdelivr": "dist/rukn.min.js",
   "files": [
     "components/",
     "styles/",
@@ -56,6 +59,18 @@
   },
   "exports": {
     ".": "./components/rukn-ui.js",
+    "./css": "./styles/design-system.css",
+    "./variables": "./styles/design-system-variables.css",
+    "./helpers": "./scripts/modal-drawer-helpers.js",
+    "./button": "./components/rukn-button.js",
+    "./badge": "./components/rukn-badge.js",
+    "./card": "./components/rukn-card.js",
+    "./alert": "./components/rukn-alert.js",
+    "./spinner": "./components/rukn-spinner.js",
+    "./progress": "./components/rukn-progress.js",
+    "./modal": "./components/rukn-modal.js",
+    "./input": "./components/rukn-input.js",
+    "./icon": "./components/rukn-icon.js",
     "./components/*": "./components/*",
     "./styles/*": "./styles/*",
     "./styles/design-system.css": "./styles/design-system.css",
@@ -68,6 +83,13 @@
     "./dist/rukn.js": "./dist/rukn.js",
     "./dist/rukn.min.js": "./dist/rukn.min.js"
   },
+  "sideEffects": [
+    "*.css",
+    "styles/*.css",
+    "components/*.js",
+    "scripts/*.js",
+    "dist/*.js"
+  ],
   "type": "module",
   "engines": {
     "node": ">=14.0.0"

@@ -17,12 +17,28 @@ Every major design system assumes left-to-right English. Arabic and Urdu develop
 - **Urdu Nastaliq support** — Noto Nastaliq Urdu with dedicated line-height tokens (`--r-line-height-urdu-base: 1.75`) because Nastaliq script demands more vertical space.
 - **Language-aware Web Components** — The navbar, alerts, and buttons respond to language changes with built-in `ar`/`ur`/`en` translations.
 - **Glass morphism aesthetic** — Frosted glass effects with iOS-inspired motion ("Rukn Motion").
-- **Zero dependencies** — Pure CSS + optional vanilla JS Web Components. ~30KB gzipped total.
+- **Zero dependencies** — Pure CSS + optional vanilla JS Web Components. ~40KB gzip for the full CDN bundle.
 - **150+ design tokens** — W3C-compliant `--r-` prefix. Colors, spacing, typography, shadows, motion.
 - **Dark & Light themes** — Single class toggle. Tokens adapt automatically.
 - **Accessible** — WCAG 2.1 AA, `prefers-reduced-motion` support, ARIA labels in all components.
 
 ## Quick Start
+
+### CDN / copy-paste install
+
+Drop two lines into your `<head>` and start using Rukn immediately:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.js" defer></script>
+```
+
+Self-hosting works the same way after copying `dist/` into your project:
+
+```html
+<link rel="stylesheet" href="./dist/rukn.min.css">
+<script src="./dist/rukn.min.js" defer></script>
+```
 
 ### For Arabic / RTL applications
 
@@ -84,13 +100,14 @@ npm install @ruknds/core
 // Import in your bundler
 import '@ruknds/core/styles/design-system-variables.css';
 import '@ruknds/core/styles/design-system.css';
+import '@ruknds/core/navbar';
 ```
 
-### Or copy the files
+### Or copy source files
 
 ```bash
 git clone https://github.com/mfaizanatiq/RuknDesignSystem.git
-# Copy the styles/ folder to your project — that's it
+# Copy styles/ and optional components/ into your project.
 ```
 
 ## Components

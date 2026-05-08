@@ -1046,5 +1046,13 @@ class RuknNavbar extends HTMLElement {
 }
 
 // Register custom element (native browser API)
-customElements.define('rukn-navbar', RuknNavbar);
+if (!customElements.get('rukn-navbar')) {
+  customElements.define('rukn-navbar', RuknNavbar);
+}
 
+if (typeof window !== 'undefined') {
+  window.ruknComponents = {
+    ...(window.ruknComponents || {}),
+    RuknNavbar
+  };
+}

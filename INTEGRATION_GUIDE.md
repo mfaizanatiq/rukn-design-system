@@ -6,7 +6,18 @@
 
 ## ⚡ Quick Start (30 Seconds)
 
-### Step 1: Copy Files
+### Option 1: CDN
+
+Use the full zero-dependency bundle directly in any HTML page:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.js" defer></script>
+```
+
+The full CDN payload is about 40KB gzip, with no framework or runtime dependency.
+
+### Option 2: Copy Source Files
 Download and copy these folders to your project:
 ```
 your-project/
@@ -485,8 +496,8 @@ Rukn includes built-in accessibility features:
 | 🪟 Glass Morphism | ✅ | Included in CSS |
 | 📱 Responsive Layout | ✅ | Included in CSS |
 | 🎯 UI Components | ✅ | Included in CSS |
-| 🧩 Web Components | Optional | +3KB |
-| ⚡ Total Bundle | CSS + JS | ~30KB gzipped |
+| 🧩 Web Components | Optional | Included in CDN bundle |
+| ⚡ Full CDN Bundle | CSS + JS | ~40KB gzip / ~34KB brotli |
 
 ---
 
@@ -523,4 +534,3 @@ Need inspiration? Check out [components.html](./components.html) for dozens of e
 [GitHub](https://github.com/mfaizanatiq/RuknDesignSystem) • [Documentation](./README.md) • [Live Demo](https://rukn.design)
 
 </div>
-

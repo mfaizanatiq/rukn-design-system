@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: '20'
       - run: npm ci
+      - run: npm run build
       - run: npm test
 
   validate-package:
@@ -24,4 +25,23 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - run: npm ci
+      - run: npm run build
       - run: npm pack --dry-run
+
+  wrappers:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        wrapper: [react, vue]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+        working-directory: wrappers/${{ matrix.wrapper }}
+      - run: npm run typecheck
+        working-directory: wrappers/${{ matrix.wrapper }}
+      - run: npm run build
+        working-directory: wrappers/${{ matrix.wrapper }}

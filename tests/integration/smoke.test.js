@@ -24,32 +24,28 @@ beforeAll(() => {
 // ---------------------------------------------------------------------------
 
 describe('Smoke test — index.html CSS links', () => {
-  test('links design-system-variables.css', () => {
-    expect(indexHtml).toMatch(/href=["'][^"']*design-system-variables\.css["']/);
-  });
-
-  test('links design-system.css', () => {
-    expect(indexHtml).toMatch(/href=["'][^"']*design-system\.css["']/);
+  test('dogfoods the built CSS bundle', () => {
+    expect(indexHtml).toMatch(/href=["'][^"']*dist\/rukn\.min\.css["']/);
   });
 });
 
 describe('Smoke test — components.html CSS links', () => {
-  test('links design-system-variables.css', () => {
-    expect(componentsHtml).toMatch(/href=["'][^"']*design-system-variables\.css["']/);
-  });
-
-  test('links design-system.css', () => {
-    expect(componentsHtml).toMatch(/href=["'][^"']*design-system\.css["']/);
+  test('dogfoods the built CSS bundle', () => {
+    expect(componentsHtml).toMatch(/href=["'][^"']*dist\/rukn\.min\.css["']/);
   });
 });
 
 describe('Smoke test — foundation.html CSS links', () => {
-  test('links design-system-variables.css', () => {
-    expect(foundationHtml).toMatch(/href=["'][^"']*design-system-variables\.css["']/);
+  test('dogfoods the built CSS bundle', () => {
+    expect(foundationHtml).toMatch(/href=["'][^"']*dist\/rukn\.min\.css["']/);
   });
+});
 
-  test('links design-system.css', () => {
-    expect(foundationHtml).toMatch(/href=["'][^"']*design-system\.css["']/);
+describe('Smoke test — docs site JavaScript', () => {
+  test('all primary pages dogfood the built JS bundle', () => {
+    [indexHtml, componentsHtml, foundationHtml].forEach((html) => {
+      expect(html).toMatch(/src=["'][^"']*dist\/rukn\.min\.js["']/);
+    });
   });
 });
 

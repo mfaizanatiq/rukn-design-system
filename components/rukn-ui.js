@@ -274,7 +274,9 @@ class RuknButton extends HTMLElement {
   }
 }
 
-customElements.define('rukn-button', RuknButton);
+if (!customElements.get('rukn-button')) {
+  customElements.define('rukn-button', RuknButton);
+}
 
 /* ========================================
    BADGE COMPONENT
@@ -306,7 +308,9 @@ class RuknBadge extends HTMLElement {
   }
 }
 
-customElements.define('rukn-badge', RuknBadge);
+if (!customElements.get('rukn-badge')) {
+  customElements.define('rukn-badge', RuknBadge);
+}
 
 /* ========================================
    CARD COMPONENT
@@ -327,7 +331,9 @@ class RuknCard extends HTMLElement {
   }
 }
 
-customElements.define('rukn-card', RuknCard);
+if (!customElements.get('rukn-card')) {
+  customElements.define('rukn-card', RuknCard);
+}
 
 /* ========================================
    ALERT COMPONENT
@@ -404,7 +410,9 @@ class RuknAlert extends HTMLElement {
   }
 }
 
-customElements.define('rukn-alert', RuknAlert);
+if (!customElements.get('rukn-alert')) {
+  customElements.define('rukn-alert', RuknAlert);
+}
 
 /* ========================================
    SPINNER COMPONENT
@@ -437,7 +445,9 @@ class RuknSpinner extends HTMLElement {
   }
 }
 
-customElements.define('rukn-spinner', RuknSpinner);
+if (!customElements.get('rukn-spinner')) {
+  customElements.define('rukn-spinner', RuknSpinner);
+}
 
 /* ========================================
    PROGRESS COMPONENT
@@ -480,7 +490,9 @@ class RuknProgress extends HTMLElement {
   }
 }
 
-customElements.define('rukn-progress', RuknProgress);
+if (!customElements.get('rukn-progress')) {
+  customElements.define('rukn-progress', RuknProgress);
+}
 
 /* ========================================
    MODAL COMPONENT
@@ -561,7 +573,9 @@ class RuknModal extends HTMLElement {
   }
 }
 
-customElements.define('rukn-modal', RuknModal);
+if (!customElements.get('rukn-modal')) {
+  customElements.define('rukn-modal', RuknModal);
+}
 
 /* ========================================
    INPUT COMPONENT
@@ -607,7 +621,9 @@ class RuknInput extends HTMLElement {
   }
 }
 
-customElements.define('rukn-input', RuknInput);
+if (!customElements.get('rukn-input')) {
+  customElements.define('rukn-input', RuknInput);
+}
 
 /* ========================================
    ICON PLACEHOLDER COMPONENT
@@ -648,7 +664,24 @@ class RuknIcon extends HTMLElement {
   }
 }
 
-customElements.define('rukn-icon', RuknIcon);
+if (!customElements.get('rukn-icon')) {
+  customElements.define('rukn-icon', RuknIcon);
+}
+
+if (typeof window !== 'undefined') {
+  window.ruknComponents = {
+    ...(window.ruknComponents || {}),
+    RuknButton,
+    RuknBadge,
+    RuknCard,
+    RuknAlert,
+    RuknSpinner,
+    RuknProgress,
+    RuknModal,
+    RuknInput,
+    RuknIcon
+  };
+}
 
 // Export for convenience (if used as module)
 export {
@@ -662,6 +695,5 @@ export {
   RuknInput,
   RuknIcon
 };
-
 
 

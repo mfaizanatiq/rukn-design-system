@@ -180,11 +180,13 @@ function initModalsAndDrawers() {
   });
 }
 
-// Auto-initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initModalsAndDrawers);
-} else {
-  initModalsAndDrawers();
+// Auto-initialize when DOM is ready in browsers. Keep imports SSR-safe.
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initModalsAndDrawers);
+  } else {
+    initModalsAndDrawers();
+  }
 }
 
 // Export for module systems (if using ES modules)
@@ -198,4 +200,10 @@ if (typeof module !== 'undefined' && module.exports) {
   };
 }
 
-
+export {
+  openModal,
+  closeModal,
+  openDrawer,
+  closeDrawer,
+  initModalsAndDrawers
+};

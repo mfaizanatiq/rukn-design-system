@@ -35,13 +35,69 @@ declare module '@ruknds/core/css' {
 
 declare module '@ruknds/core/helpers' {
   /** Open a modal by its ID */
-  export function openModal(modalId: string): void;
+  export function openModal(modalId: string, overlayId?: string | null): void;
   /** Close a modal by its ID */
-  export function closeModal(modalId: string): void;
+  export function closeModal(modalId: string, overlayId?: string | null): void;
   /** Open a drawer by its ID */
-  export function openDrawer(drawerId: string): void;
+  export function openDrawer(drawerId: string, overlayId?: string | null): void;
   /** Close a drawer by its ID */
-  export function closeDrawer(drawerId: string): void;
+  export function closeDrawer(drawerId: string, overlayId?: string | null): void;
+  /** Bind overlay, close-button, and Escape-key behavior */
+  export function initModalsAndDrawers(): void;
+}
+
+declare module '@ruknds/core/button' {
+  const RuknButton: CustomElementConstructor;
+  export { RuknButton };
+  export default RuknButton;
+}
+
+declare module '@ruknds/core/badge' {
+  const RuknBadge: CustomElementConstructor;
+  export { RuknBadge };
+  export default RuknBadge;
+}
+
+declare module '@ruknds/core/card' {
+  const RuknCard: CustomElementConstructor;
+  export { RuknCard };
+  export default RuknCard;
+}
+
+declare module '@ruknds/core/alert' {
+  const RuknAlert: CustomElementConstructor;
+  export { RuknAlert };
+  export default RuknAlert;
+}
+
+declare module '@ruknds/core/spinner' {
+  const RuknSpinner: CustomElementConstructor;
+  export { RuknSpinner };
+  export default RuknSpinner;
+}
+
+declare module '@ruknds/core/progress' {
+  const RuknProgress: CustomElementConstructor;
+  export { RuknProgress };
+  export default RuknProgress;
+}
+
+declare module '@ruknds/core/modal' {
+  const RuknModal: CustomElementConstructor;
+  export { RuknModal };
+  export default RuknModal;
+}
+
+declare module '@ruknds/core/input' {
+  const RuknInput: CustomElementConstructor;
+  export { RuknInput };
+  export default RuknInput;
+}
+
+declare module '@ruknds/core/icon' {
+  const RuknIcon: CustomElementConstructor;
+  export { RuknIcon };
+  export default RuknIcon;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
