@@ -21,6 +21,8 @@ Thumbs.db
 
 # Build outputs
 build/
+storybook/
+storybook-static/
 
 # Keep dist/ in git for jsDelivr CDN bundles
 
@@ -32,3 +34,5 @@ build/
 
 # Local Netlify folder
 .netlify
+
+*storybook.log

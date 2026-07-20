@@ -21,6 +21,7 @@ Rukn (رُكن / رکن) means "pillar" — structured primitives for AI agents 
 
 - [Home](https://ruknds.netlify.app/): Marketing + AI positioning
 - [Components](https://ruknds.netlify.app/components.html): Live gallery
+- [Storybook](https://ruknds.netlify.app/storybook/): Interactive component workshop (theme + locale)
 - [Foundation](https://ruknds.netlify.app/foundation.html): Tokens
 - [Maktaba demo](https://ruknds.netlify.app/demo/maktaba.html): Arabic RTL e-commerce
 

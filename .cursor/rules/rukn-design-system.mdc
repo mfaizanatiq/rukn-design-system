@@ -56,7 +56,7 @@ CDN:
 | Input | `ds-input` or `<rukn-input>` |
 | Badge | `ds-badge ds-badge-success` |
 | App nav | `<rukn-navbar current="home">` |
-| Live gallery | `components.html` |
+| Live gallery | `components.html` or `/storybook/` |
 
 ## Prompt pattern
 

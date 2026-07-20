@@ -13,8 +13,9 @@
 | 5 | [`docs/RTL_GUIDE.md`](./docs/RTL_GUIDE.md) | Arabic/Urdu RTL setup and multilingual rules |
 | 6 | [`types.d.ts`](./types.d.ts) | TypeScript / JSX autocomplete for Web Components |
 | 7 | [`components.html`](./components.html) | Live component gallery (visual reference) |
-| 8 | [`llms.txt`](./llms.txt) | Site index for LLM crawlers |
-| 9 | [`.cursor/rules/rukn-design-system.mdc`](./.cursor/rules/rukn-design-system.mdc) | Cursor always-on project rules |
+| 8 | [`/storybook/`](https://ruknds.netlify.app/storybook/) | Interactive Storybook (theme + locale) |
+| 9 | [`llms.txt`](./llms.txt) | Site index for LLM crawlers |
+| 10 | [`.cursor/rules/rukn-design-system.mdc`](./.cursor/rules/rukn-design-system.mdc) | Cursor always-on project rules |
 
 ## Quick bootstrap
 
@@ -38,7 +39,7 @@ Or source files (preferred for development):
 2. **Compose** UI using Rukn primitives — do not invent custom CSS unless extending tokens.
 3. **Set** `lang` and `dir` on `<html>` for Arabic/Urdu (`lang="ar" dir="rtl"`).
 4. **Use** `class="dark"` on `<html>` (Rukn defaults to dark mode).
-5. **Verify** output against [`components.html`](./components.html) patterns.
+5. **Verify** output against [`components.html`](./components.html) or [Storybook](https://ruknds.netlify.app/storybook/) patterns.
 
 ## Do not
 

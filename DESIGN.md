@@ -16,7 +16,7 @@ Use this to evaluate whether a design system is agent-friendly. **Bold** = Rukn 
 | 2 | **Documented Web Components** — tags, attributes, defaults | ✅ `<rukn-navbar>`, `<rukn-button>`, etc. → [`docs/COMPONENT_API.md`](./docs/COMPONENT_API.md) |
 | 3 | **Semantic design tokens** — consistent `--r-*` prefix | ✅ [`docs/DESIGN_TOKENS.md`](./docs/DESIGN_TOKENS.md), [`styles/design-system-variables.css`](./styles/design-system-variables.css) |
 | 4 | **Copy-paste bootstrap** — no bundler required | ✅ CDN 2-line install in [`README.md`](./README.md) |
-| 5 | **Live component gallery** — ground truth for visuals | ✅ [`components.html`](./components.html) |
+| 5 | **Live component gallery** — ground truth for visuals | ✅ [`components.html`](./components.html) + [Storybook](https://ruknds.netlify.app/storybook/) |
 | 6 | **Zero runtime dependencies** — plain HTML/CSS/JS | ✅ No React/Vue required |
 | 7 | **TypeScript declarations** — JSX / attribute hints | ✅ [`types.d.ts`](./types.d.ts) |
 | 8 | **RTL / multilingual rules documented** | ✅ [`docs/RTL_GUIDE.md`](./docs/RTL_GUIDE.md) |
@@ -245,6 +245,7 @@ Rules:
 |------|------|-------|
 | Marketing home | [`index.html`](./index.html) | Hero, bento, RTL branding |
 | Component gallery | [`components.html`](./components.html) | Every component, searchable |
+| Storybook | [`/storybook/`](https://ruknds.netlify.app/storybook/) | Interactive molds (theme + locale) |
 | Design tokens | [`foundation.html`](./foundation.html) | Colors, type, spacing |
 | Arabic bookstore | [`demo/maktaba.html`](./demo/maktaba.html) | Full RTL e-commerce |
 | Minimal starter | [`starter-template.html`](./starter-template.html) | Blank scaffold |

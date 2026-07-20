@@ -42,6 +42,7 @@ const DEFAULT_TRANSLATIONS = {
     'nav.home': 'Home',
     'nav.foundation': 'Foundation',
     'nav.components': 'Components',
+    'nav.storybook': 'Storybook',
     'nav.pricing': 'Pricing',
     'nav.roadmap': 'Roadmap',
     'nav.about': 'About',
@@ -134,6 +135,7 @@ const DEFAULT_TRANSLATIONS = {
     'index.roadmap.shipped.ai': 'AI-ready docs & primitives',
     'index.roadmap.shipped.catalog': 'components.json + Cursor rules',
     'index.roadmap.shipped.responsive': 'Responsive layouts',
+    'index.roadmap.shipped.storybook': 'Storybook gallery',
     'index.roadmap.progress.npm': 'NPM package',
     'index.roadmap.progress.forms': 'Advanced form components',
     'index.roadmap.progress.figma': 'Figma design kit',
@@ -180,6 +182,7 @@ const DEFAULT_TRANSLATIONS = {
     'footer.nav.home': 'Home',
     'footer.nav.foundation': 'Foundation',
     'footer.nav.components': 'Components',
+    'footer.nav.storybook': 'Storybook',
     'footer.nav.pricing': 'Pricing',
     'footer.nav.roadmap': 'Roadmap',
     'footer.nav.about': 'About',
@@ -240,6 +243,7 @@ const DEFAULT_TRANSLATIONS = {
     'nav.home': 'الرئيسية',
     'nav.foundation': 'الأساس',
     'nav.components': 'المكوّنات',
+    'nav.storybook': 'Storybook',
     'nav.pricing': 'التسعير',
     'nav.roadmap': 'خارطة الطريق',
     'nav.about': 'من نحن',
@@ -332,6 +336,7 @@ const DEFAULT_TRANSLATIONS = {
     'index.roadmap.shipped.ai': 'وثائق وأساسيات جاهزة للذكاء الاصطناعي',
     'index.roadmap.shipped.catalog': 'components.json وقواعد Cursor',
     'index.roadmap.shipped.responsive': 'تخطيطات متجاوبة',
+    'index.roadmap.shipped.storybook': 'معرض Storybook',
     'index.roadmap.progress.npm': 'حزمة NPM',
     'index.roadmap.progress.forms': 'مكوّنات نماذج متقدمة',
     'index.roadmap.progress.figma': 'طقم تصميم Figma',
@@ -378,6 +383,7 @@ const DEFAULT_TRANSLATIONS = {
     'footer.nav.home': 'الرئيسية',
     'footer.nav.foundation': 'الأساس',
     'footer.nav.components': 'المكوّنات',
+    'footer.nav.storybook': 'Storybook',
     'footer.nav.pricing': 'التسعير',
     'footer.nav.roadmap': 'خارطة الطريق',
     'footer.nav.about': 'من نحن',
@@ -445,6 +451,7 @@ const DEFAULT_TRANSLATIONS = {
     'nav.home': 'ہوم',
     'nav.foundation': 'بنیادیں',
     'nav.components': 'اجزاء',
+    'nav.storybook': 'Storybook',
     'nav.pricing': 'قیمتیں',
     'nav.roadmap': 'روڈ میپ',
     'nav.about': 'ہمارے بارے میں',
@@ -537,6 +544,7 @@ const DEFAULT_TRANSLATIONS = {
     'index.roadmap.shipped.ai': 'AI-ready دستاویزات اور پرائمٹیوز',
     'index.roadmap.shipped.catalog': 'components.json + Cursor rules',
     'index.roadmap.shipped.responsive': 'ریسپانسیو لے آؤٹس',
+    'index.roadmap.shipped.storybook': 'Storybook گیلری',
     'index.roadmap.progress.npm': 'NPM پیکیج',
     'index.roadmap.progress.forms': 'جدید فارم اجزاء',
     'index.roadmap.progress.figma': 'Figma ڈیزائن کٹ',
@@ -583,6 +591,7 @@ const DEFAULT_TRANSLATIONS = {
     'footer.nav.home': 'ہوم',
     'footer.nav.foundation': 'بنیادیں',
     'footer.nav.components': 'اجزاء',
+    'footer.nav.storybook': 'Storybook',
     'footer.nav.pricing': 'قیمتیں',
     'footer.nav.roadmap': 'روڈ میپ',
     'footer.nav.about': 'ہمارے بارے میں',
@@ -778,6 +787,7 @@ class RuknNavbar extends HTMLElement {
               <a href="index.html" class="btn-ghost btn-sm ${current === 'home' ? 'active' : ''}" data-i18n="nav.home" ${current === 'home' ? 'aria-current="page"' : ''} title="Home - Rukn Design System">Home</a>
               <a href="foundation.html" class="btn-ghost btn-sm ${current === 'foundation' ? 'active' : ''}" data-i18n="nav.foundation" ${current === 'foundation' ? 'aria-current="page"' : ''} title="Foundation - Design Tokens & System">Foundation</a>
               <a href="components.html" class="btn-ghost btn-sm ${current === 'components' ? 'active' : ''}" data-i18n="nav.components" ${current === 'components' ? 'aria-current="page"' : ''} title="Components - UI Component Library">Components</a>
+              <a href="/storybook/" class="btn-ghost btn-sm ${current === 'storybook' ? 'active' : ''}" data-i18n="nav.storybook" ${current === 'storybook' ? 'aria-current="page"' : ''} title="Storybook - Interactive component gallery">Storybook</a>
               <a href="index.html#pricing" class="btn-ghost btn-sm" data-i18n="nav.pricing" title="Pricing - Free & Open Source">Pricing</a>
               <a href="index.html#roadmap" class="btn-ghost btn-sm" data-i18n="nav.roadmap" title="Roadmap - Future Plans">Roadmap</a>
               <a href="index.html#about" class="btn-ghost btn-sm" data-i18n="nav.about" title="About - Our Mission">About</a>
@@ -841,6 +851,7 @@ class RuknNavbar extends HTMLElement {
           <a href="index.html" class="btn-ghost btn-sm ${current === 'home' ? 'active' : ''}" role="menuitem" ${current === 'home' ? 'aria-current="page"' : ''}><i data-lucide="home" aria-hidden="true"></i> <span data-i18n="nav.home">Home</span></a>
           <a href="foundation.html" class="btn-ghost btn-sm ${current === 'foundation' ? 'active' : ''}" role="menuitem" ${current === 'foundation' ? 'aria-current="page"' : ''}><i data-lucide="box" aria-hidden="true"></i> <span data-i18n="nav.foundation">Foundation</span></a>
           <a href="components.html" class="btn-ghost btn-sm ${current === 'components' ? 'active' : ''}" role="menuitem" ${current === 'components' ? 'aria-current="page"' : ''}><i data-lucide="layers" aria-hidden="true"></i> <span data-i18n="nav.components">Components</span></a>
+          <a href="/storybook/" class="btn-ghost btn-sm ${current === 'storybook' ? 'active' : ''}" role="menuitem" ${current === 'storybook' ? 'aria-current="page"' : ''}><i data-lucide="book-open" aria-hidden="true"></i> <span data-i18n="nav.storybook">Storybook</span></a>
           <a href="index.html#pricing" class="btn-ghost btn-sm" role="menuitem"><i data-lucide="dollar-sign" aria-hidden="true"></i> <span data-i18n="nav.pricing">Pricing</span></a>
           <a href="index.html#roadmap" class="btn-ghost btn-sm" role="menuitem"><i data-lucide="map" aria-hidden="true"></i> <span data-i18n="nav.roadmap">Roadmap</span></a>
           <a href="index.html#about" class="btn-ghost btn-sm" role="menuitem"><i data-lucide="info" aria-hidden="true"></i> <span data-i18n="nav.about">About</span></a>
