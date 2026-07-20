@@ -44,8 +44,8 @@
   
   /* Urdu-specific line heights (Nastaliq script requires more vertical space) */
   --r-line-height-urdu-base: 1.75;
-  --r-line-height-urdu-heading: 1.6;
-  --r-line-height-urdu-body: 1.8;
+  --r-line-height-urdu-heading: 1.55;
+  --r-line-height-urdu-body: 1.85;
   
   /* Letter Spacing */
   --r-letter-spacing-tighter: -0.05em;

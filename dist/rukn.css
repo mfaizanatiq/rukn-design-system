@@ -45,8 +45,8 @@
   
   /* Urdu-specific line heights (Nastaliq script requires more vertical space) */
   --r-line-height-urdu-base: 1.75;
-  --r-line-height-urdu-heading: 1.6;
-  --r-line-height-urdu-body: 1.8;
+  --r-line-height-urdu-heading: 1.55;
+  --r-line-height-urdu-body: 1.85;
   
   /* Letter Spacing */
   --r-letter-spacing-tighter: -0.05em;
@@ -835,50 +835,60 @@ html[lang="ar"] .ds-navbar-menu button,
 :lang(ur),
 .urdu-text {
   font-family: var(--font-urdu);
-  direction: rtl;
-  /* Noto Nastaliq Urdu requires more generous line-height due to calligraphic nature */
+  /* Noto Nastaliq Urdu needs room for calligraphic ascenders/descenders */
   line-height: var(--r-line-height-urdu-base, 1.75);
-  /* Better vertical alignment for Nastaliq script */
   vertical-align: baseline;
-  /* Slight letter spacing for better readability in Nastaliq */
-  letter-spacing: 0.01em;
-  /* Ensure proper word spacing */
+  letter-spacing: 0;
   word-spacing: 0.05em;
 }
 
+/* Direction belongs on the root — not every descendant (nested rtl causes glitchy bidi) */
+html[lang="ur"],
+html[lang="ur"] body {
+  direction: rtl;
+  font-family: var(--font-urdu);
+}
+
 .urdu-text.inline {
-  direction: ltr;
   display: inline-block;
-  /* Maintain line-height for inline context */
   line-height: var(--r-line-height-urdu-base, 1.75);
   vertical-align: baseline;
-  /* Reset word-spacing for inline to avoid breaking layout */
   word-spacing: normal;
 }
 
 /* Ensure proper spacing in paragraphs and headings with Urdu */
+html[lang="ur"] p,
 :lang(ur) p,
 p .urdu-text {
   line-height: var(--r-line-height-urdu-body, 1.8);
-  margin-bottom: var(--r-space-4);
 }
 
-/* Adjust line-height for headings with Urdu */
+/* Adjust line-height for headings with Urdu — beat page-level English display styles */
+html[lang="ur"] h1,
+html[lang="ur"] .heading-display,
 :lang(ur) h1,
 h1 .urdu-text {
-  line-height: var(--r-line-height-urdu-heading, 1.6);
+  line-height: var(--r-line-height-urdu-heading, 1.55);
+  letter-spacing: 0;
 }
 
+html[lang="ur"] h2,
+html[lang="ur"] .heading-section,
 :lang(ur) h2,
 h2 .urdu-text {
-  line-height: var(--r-line-height-urdu-heading, 1.65);
+  line-height: 1.5;
+  letter-spacing: 0;
 }
 
+html[lang="ur"] h3,
 :lang(ur) h3,
 h3 .urdu-text {
-  line-height: var(--r-line-height-urdu-heading, 1.7);
+  line-height: 1.55;
 }
 
+html[lang="ur"] h4,
+html[lang="ur"] h5,
+html[lang="ur"] h6,
 :lang(ur) h4,
 :lang(ur) h5,
 :lang(ur) h6,
@@ -897,31 +907,99 @@ body[dir="rtl"] .ds-navbar-container {
 }
 
 /* Enhanced spacing for Urdu language pages */
-body[lang="ur"],
 html[lang="ur"] body {
-  /* Ensure proper line-height for all text in Urdu */
   line-height: var(--r-line-height-urdu-body, 1.8);
 }
 
-body[lang="ur"] p,
 html[lang="ur"] body p {
   line-height: var(--r-line-height-urdu-body, 1.8);
-  margin-bottom: var(--r-space-4);
 }
 
-body[lang="ur"] h1,
 html[lang="ur"] body h1 {
-  line-height: var(--r-line-height-urdu-heading, 1.6);
+  line-height: var(--r-line-height-urdu-heading, 1.55);
 }
 
-body[lang="ur"] h2,
 html[lang="ur"] body h2 {
-  line-height: var(--r-line-height-urdu-heading, 1.65);
+  line-height: 1.5;
 }
 
-body[lang="ur"] h3,
 html[lang="ur"] body h3 {
-  line-height: var(--r-line-height-urdu-heading, 1.7);
+  line-height: 1.55;
+}
+
+/* Nastaliq clips inside English-tuned fixed button heights — open them up */
+html[lang="ur"] .btn-primary,
+html[lang="ur"] .btn-secondary,
+html[lang="ur"] .btn-outline,
+html[lang="ur"] .btn-ghost,
+html[lang="ur"] .btn-tertiary,
+html[lang="ur"] .btn-destructive,
+html[lang="ur"] .btn-link,
+html[lang="ur"] .ds-badge,
+html[lang="ur"] .ds-navbar-menu a,
+html[lang="ur"] .ds-navbar-menu button,
+html[lang="ur"] .ds-dropdown-trigger,
+html[lang="ur"] .ds-dropdown-option {
+  line-height: 1.65;
+  letter-spacing: 0;
+}
+
+html[lang="ur"] .btn-primary,
+html[lang="ur"] .btn-secondary,
+html[lang="ur"] .btn-outline,
+html[lang="ur"] .btn-ghost,
+html[lang="ur"] .btn-tertiary,
+html[lang="ur"] .btn-destructive,
+html[lang="ur"] .btn-link {
+  height: auto;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.15rem;
+  white-space: normal;
+  text-align: center;
+}
+
+html[lang="ur"] .btn-sm {
+  min-height: 2.5rem;
+  padding: 0.55rem 0.9rem;
+}
+
+html[lang="ur"] .btn-lg {
+  min-height: 3.25rem;
+  padding: 0.85rem 1.4rem;
+}
+
+html[lang="ur"] .ds-badge {
+  padding: 0.4rem 0.75rem;
+  white-space: normal;
+}
+
+html[lang="ur"] .ds-card {
+  padding-block: max(var(--r-space-5), 1.25rem);
+}
+
+html[lang="ur"] .ds-navbar {
+  min-height: 4rem;
+  padding-block: var(--r-space-4);
+}
+
+html[lang="ur"] .ds-navbar-menu a,
+html[lang="ur"] .ds-navbar-menu button {
+  padding-block: 0.55rem;
+}
+
+html[lang="ur"] .ds-input,
+html[lang="ur"] .ds-textarea,
+html[lang="ur"] .ds-select {
+  line-height: 1.75;
+  padding-block: 0.75rem;
+  min-height: 2.85rem;
+}
+
+html[lang="ur"] .label-caps,
+html[lang="ur"] .stat-label {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
 }
 
 .ds-language-switch {
