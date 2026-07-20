@@ -4,9 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Rukn Design System — RTL-First Design System for Arabic, Urdu & Multilingual Apps</title>
-  <meta name="description" content="Rukn (رُكن) — The first modern design system built for Arabic, Urdu, and multilingual applications. RTL-first CSS, built-in i18n Web Components, 150+ design tokens, glass morphism. Open source forever.">
-  <meta name="keywords" content="rukn, design system, rtl, arabic, urdu, right-to-left, multilingual, i18n, bidi, nastaliq, arabic-typography, glass morphism, CSS framework, web components, design tokens, open source">
+  <script src="scripts/theme-init.js"></script>
+
+  <title>Rukn Design System — AI-Ready RTL Design System for Arabic, Urdu & Multilingual Apps</title>
+  <meta name="description" content="Rukn (رُكن) — The AI-ready design system for Arabic, Urdu, and multilingual apps. Structured primitives, tokens, and Web Components that agents understand. Describe your UI — build on Rukn. MIT licensed.">
+  <meta name="keywords" content="rukn, design system, ai-ready, ai agents, cursor, claude, rtl, arabic, urdu, web components, design tokens, agent skills, mcp, open source">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
 
@@ -29,7 +31,7 @@
     "name": "Rukn Design System",
     "applicationCategory": "DeveloperApplication",
     "operatingSystem": "Any",
-    "description": "The first modern design system built for Arabic, Urdu, and multilingual applications. RTL-first CSS, built-in i18n Web Components, glass morphism.",
+    "description": "AI-ready design system for Arabic, Urdu, and multilingual applications. Structured primitives, tokens, and Web Components built for AI agents and the developers who ship with them.",
     "url": "https://rukn.design",
     "license": "https://opensource.org/licenses/MIT",
     "author": { "@type": "Person", "name": "M Faizan Atiq", "url": "https://github.com/mfaizanatiq" },
@@ -578,11 +580,11 @@
           <span class="urdu-text" lang="ur" style="font-family: var(--font-urdu, 'Noto Nastaliq Urdu', serif);">رکن</span>
         </div>
         <h1 class="heading-display">
-          <span data-i18n="index.hero.heading.primary">The design system</span><br>
-          <span class="text-accent" data-i18n="index.hero.heading.secondary">built for Arabic.</span>
+          <span data-i18n="index.hero.heading.primary">Talk to AI.</span><br>
+          <span class="text-accent" data-i18n="index.hero.heading.secondary">It builds the rest.</span>
         </h1>
         <p class="hero-desc" data-i18n="index.hero.message">
-          Zero-dependency Web Components with built-in RTL, Arabic typography, and Urdu Nastaliq support. Framework-agnostic. MIT licensed. Works everywhere.
+          Rukn is AI-ready — structured tokens, predictable class names, and Web Components agents actually understand. Describe your screen in plain language. Ship production UI on our primitives. RTL, Arabic, and Urdu included.
         </p>
         <div class="hero-actions">
           <a href="components.html">
@@ -598,36 +600,31 @@
       </div>
 
       <div class="hero-code reveal reveal-delay-2">
-        <span class="hero-code-label">index.html</span>
-        <div><span class="line-comment">&lt;!-- RTL Arabic — just set lang and dir --&gt;</span></div>
-        <div><span class="line-tag">&lt;html</span> <span class="line-attr">lang</span>=<span class="line-str">"ar"</span> <span class="line-attr">dir</span>=<span class="line-str">"rtl"</span> <span class="line-attr">class</span>=<span class="line-str">"dark"</span><span class="line-tag">&gt;</span></div>
+        <span class="hero-code-label">you → agent</span>
+        <div><span class="line-comment"># Describe what you need</span></div>
+        <div><span class="line-str">"Build an Arabic RTL dashboard with Rukn —</span></div>
+        <div><span class="line-str">&nbsp;glass cards, navbar, and a stats row."</span></div>
         <br>
-        <div><span class="line-comment">&lt;!-- Components work in both directions --&gt;</span></div>
+        <div><span class="line-comment"># Agent composes on Rukn primitives</span></div>
+        <div><span class="line-tag">&lt;rukn-navbar</span> <span class="line-attr">current</span>=<span class="line-str">"home"</span><span class="line-tag">&gt;&lt;/rukn-navbar&gt;</span></div>
+        <div><span class="line-tag">&lt;div</span> <span class="line-attr">class</span>=<span class="line-str">"ds-card"</span><span class="line-tag">&gt;</span>بطاقة زجاجية<span class="line-tag">&lt;/div&gt;</span></div>
         <div><span class="line-tag">&lt;button</span> <span class="line-attr">class</span>=<span class="line-str">"btn-primary"</span><span class="line-tag">&gt;</span>ابدأ الآن<span class="line-tag">&lt;/button&gt;</span></div>
-        <br>
-        <div><span class="line-tag">&lt;div</span> <span class="line-attr">class</span>=<span class="line-str">"ds-card"</span><span class="line-tag">&gt;</span></div>
-        <div>&nbsp;&nbsp;بطاقة زجاجية جميلة<br></div>
-        <div><span class="line-tag">&lt;/div&gt;</span></div>
-        <br>
-        <div><span class="line-comment">&lt;!-- Navbar with built-in i18n --&gt;</span></div>
-        <div><span class="line-tag">&lt;rukn-navbar</span> <span class="line-attr">current</span>=<span class="line-str">"home"</span><span class="line-tag">&gt;</span></div>
-        <div><span class="line-tag">&lt;/rukn-navbar&gt;</span></div>
       </div>
     </div>
   </section>
 
   <!-- ====================================
-       FRAMEWORK BAR
+       AI AGENTS BAR
        ==================================== -->
   <section class="page-section" style="padding-top:0; padding-bottom:0;">
     <div class="page-container reveal">
       <div class="framework-bar">
-        <div class="framework-item"><i data-lucide="file-code"></i> HTML</div>
-        <div class="framework-item"><i data-lucide="atom"></i> React</div>
-        <div class="framework-item"><i data-lucide="code"></i> Vue</div>
-        <div class="framework-item"><i data-lucide="code-2"></i> Angular</div>
-        <div class="framework-item"><i data-lucide="zap"></i> Svelte</div>
-        <div class="framework-item"><i data-lucide="globe"></i> Any Framework</div>
+        <div class="framework-item"><i data-lucide="bot"></i> Cursor</div>
+        <div class="framework-item"><i data-lucide="sparkles"></i> Claude</div>
+        <div class="framework-item"><i data-lucide="message-square"></i> Copilot</div>
+        <div class="framework-item"><i data-lucide="wind"></i> Windsurf</div>
+        <div class="framework-item"><i data-lucide="cpu"></i> ChatGPT</div>
+        <div class="framework-item"><i data-lucide="blocks"></i> Any AI Agent</div>
       </div>
     </div>
   </section>
@@ -651,12 +648,61 @@
           <div class="stat-label">Dependencies</div>
         </div>
         <div class="stat">
-          <div class="stat-value">3</div>
-          <div class="stat-label">Languages (ar/ur/en)</div>
+          <div class="stat-value">AI</div>
+          <div class="stat-label">Agent Ready</div>
         </div>
       </div>
     </div>
   </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================================
+       AI-FIRST WORKFLOW
+       ==================================== -->
+  <section id="ai-ready" class="page-section">
+    <div class="page-container">
+      <div class="mb-16 reveal">
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);">AI-Ready</p>
+        <h2 class="heading-section" style="max-width:640px;">The old workflow is over.<br>Agents build on primitives.</h2>
+        <p style="margin-top:var(--r-space-4); font-size:1.05rem; line-height:1.8; color:hsl(var(--foreground)/0.55); max-width:620px;">
+          Designers pushing pixels and developers hand-rolling CSS was the last era. The next one is you describing the product — and AI composing interfaces from a design system it can actually read. Rukn is structured for that: semantic tokens, documented components, zero hidden magic.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-status timeline-status--done">
+            <i data-lucide="message-circle"></i> Step 1
+          </div>
+          <h3 style="font-family:var(--r-font-heading); font-size:1.15rem; margin-bottom:var(--r-space-2);">Describe</h3>
+          <p style="font-size:0.9rem; line-height:1.7; color:hsl(var(--foreground)/0.55);">
+            Tell your agent what you're building — in English, Arabic, or Urdu. A checkout flow, admin panel, landing page. No Figma file required.
+          </p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-1">
+          <div class="timeline-status timeline-status--progress">
+            <i data-lucide="bot"></i> Step 2
+          </div>
+          <h3 style="font-family:var(--r-font-heading); font-size:1.15rem; margin-bottom:var(--r-space-2);">Compose</h3>
+          <p style="font-size:0.9rem; line-height:1.7; color:hsl(var(--foreground)/0.55);">
+            The agent reads Rukn's tokens, class names, and Web Components — then assembles production markup. <code>btn-primary</code>, <code>ds-card</code>, <code>rukn-navbar</code>. Predictable. Copy-pasteable. Correct.
+          </p>
+        </div>
+        <div class="timeline-item reveal reveal-delay-2">
+          <div class="timeline-status timeline-status--planned">
+            <i data-lucide="rocket"></i> Step 3
+          </div>
+          <h3 style="font-family:var(--r-font-heading); font-size:1.15rem; margin-bottom:var(--r-space-2);">Ship</h3>
+          <p style="font-size:0.9rem; line-height:1.7; color:hsl(var(--foreground)/0.55);">
+            You review, refine, and deploy. Build on top of the primitives — extend tokens, wrap components, own the stack. MIT licensed. Zero dependencies.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
 
   <!-- ====================================
        FEATURES — BENTO GRID
@@ -665,19 +711,19 @@
     <div class="page-container">
       <div class="mb-16 reveal">
         <p class="label-caps" style="margin-bottom:var(--r-space-3);">Why Rukn</p>
-        <h2 class="heading-section" style="max-width:560px;">Built on the pillar of language.</h2>
+        <h2 class="heading-section" style="max-width:560px;">Primitives agents understand.<br>Interfaces humans love.</h2>
       </div>
 
       <div class="bento-grid">
         <div class="bento-card bento-card--span-2 reveal">
-          <i data-lucide="droplet" class="bento-icon"></i>
-          <h3 class="bento-title">Glass Morphism</h3>
-          <p class="bento-desc">Frosted glass surfaces, light refraction effects, and translucent depth layers that give your UI a premium, physical feel.</p>
+          <i data-lucide="bot" class="bento-icon"></i>
+          <h3 class="bento-title">AI-Ready Architecture</h3>
+          <p class="bento-desc">Structured docs, semantic tokens, and consistent APIs — built so Cursor, Claude, Copilot, and any agent can read the system and generate correct UI the first time.</p>
         </div>
         <div class="bento-card reveal reveal-delay-1">
-          <i data-lucide="clock" class="bento-icon"></i>
-          <h3 class="bento-title">Rukn Motion</h3>
-          <p class="bento-desc">iOS-inspired easing curves and spring physics for buttery animations.</p>
+          <i data-lucide="droplet" class="bento-icon"></i>
+          <h3 class="bento-title">Glass Morphism</h3>
+          <p class="bento-desc">Frosted glass surfaces and translucent depth — premium UI out of the box, no custom CSS from your agent.</p>
         </div>
         <div class="bento-card reveal reveal-delay-1">
           <i data-lucide="palette" class="bento-icon"></i>
@@ -707,7 +753,7 @@
     <div class="page-container">
       <div class="mb-16 reveal">
         <p class="label-caps" style="margin-bottom:var(--r-space-3);">Components</p>
-        <h2 class="heading-section" style="max-width:560px;">Production-ready.<br>Copy, paste, ship.</h2>
+        <h2 class="heading-section" style="max-width:560px;">Primitives your agent<br>can copy and ship.</h2>
       </div>
 
       <div class="showcase-strip">
@@ -789,10 +835,10 @@
     <div class="page-container">
       <div class="code-section">
         <div class="reveal">
-          <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.install.label">Get started</p>
-          <h2 class="heading-section" style="margin-bottom:var(--r-space-4);">Two lines.<br>Plug and play.</h2>
-          <p style="color:hsl(var(--foreground)/0.5); font-size:1rem; line-height:1.7; max-width:400px; margin-bottom:var(--r-space-4);">
-            Drop two tags into your <code style="font-size:0.85em; color:hsl(var(--primary));">&lt;head&gt;</code> and every component, token, and Web Component works instantly. No bundler. No config. No npm required.
+          <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.install.label">For agents &amp; humans</p>
+          <h2 class="heading-section" style="margin-bottom:var(--r-space-4);">Point your AI here.<br>Build on Rukn.</h2>
+          <p style="color:hsl(var(--foreground)/0.5); font-size:1rem; line-height:1.7; max-width:420px; margin-bottom:var(--r-space-4);">
+            Drop two tags into your <code style="font-size:0.85em; color:hsl(var(--primary));">&lt;head&gt;</code>, point your agent at this repo, and describe what you need. Tokens, components, and docs are structured for machine-readable composition — and human review.
           </p>
           <div style="display:flex; gap:var(--r-space-2); flex-wrap:wrap; margin-bottom:var(--r-space-6);">
             <div style="display:flex; align-items:center; gap:6px; font-size:0.8rem; color:hsl(var(--foreground)/0.5);">
@@ -815,11 +861,22 @@
             <a href="foundation.html">
               <button class="btn-ghost">Design Tokens</button>
             </a>
+            <a href="DESIGN.md">
+              <button class="btn-outline">Agent Guide (DESIGN.md)</button>
+            </a>
           </div>
         </div>
         <div style="display:flex; flex-direction:column; gap:var(--r-space-3);">
-          <!-- CDN -->
+          <!-- AI prompt -->
           <div class="code-block reveal reveal-delay-1" style="padding:var(--r-space-4);">
+            <div style="font-size:0.7rem; color:hsl(var(--foreground)/0.35); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:var(--r-space-3);">Prompt your agent</div>
+<span class="line-comment"># In Cursor, Claude Code, Copilot, or any agent</span>
+<span class="line-str">"Use Rukn Design System (@ruknds/core).</span>
+<span class="line-str">Build a dark RTL Arabic settings page with</span>
+<span class="line-str">rukn-navbar, ds-card, and btn-primary."</span>
+          </div>
+          <!-- CDN -->
+          <div class="code-block reveal reveal-delay-2" style="padding:var(--r-space-4);">
             <div style="font-size:0.7rem; color:hsl(var(--foreground)/0.35); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:var(--r-space-3);">CDN — drop into &lt;head&gt;</div>
 <span class="line-tag">&lt;link</span> <span class="line-attr">rel</span>=<span class="line-str">"stylesheet"</span>
   <span class="line-attr">href</span>=<span class="line-str">"https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.css"</span><span class="line-tag">&gt;</span>
@@ -828,7 +885,7 @@
   <span class="line-attr">defer</span><span class="line-tag">&gt;&lt;/script&gt;</span>
           </div>
           <!-- npm -->
-          <div class="code-block reveal reveal-delay-2" style="padding:var(--r-space-4);">
+          <div class="code-block reveal reveal-delay-3" style="padding:var(--r-space-4);">
             <div style="font-size:0.7rem; color:hsl(var(--foreground)/0.35); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:var(--r-space-3);">npm</div>
 <span class="line-tag">npm</span> install <span class="line-str">@ruknds/core</span>
 
@@ -888,6 +945,8 @@
             <li><i data-lucide="check" style="color:hsl(var(--success));"></i> 150+ design tokens</li>
             <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Web Components library</li>
             <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Rukn Motion easing</li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> AI-ready docs &amp; primitives</li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> components.json + Cursor rules</li>
             <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Responsive layouts</li>
           </ul>
         </div>
@@ -896,6 +955,7 @@
             <i data-lucide="loader-circle"></i> In Progress
           </div>
           <ul class="timeline-list">
+            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> MCP server for component lookup</li>
             <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> NPM package</li>
             <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> Advanced form components</li>
             <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> Figma design kit</li>
@@ -930,7 +990,7 @@
           Free forever.<br>No strings attached.
         </h2>
         <p style="font-size:1.05rem; line-height:1.8; color:hsl(var(--foreground)/0.5); max-width:600px; margin:0 auto var(--r-space-8);">
-          <strong style="color:hsl(var(--foreground)/0.8);">Rukn</strong> <span class="arabic-text" style="color:hsl(var(--primary));">رُكن</span> means "pillar" in Arabic. We're building the foundation for beautiful, accessible web experiences — MIT licensed, community-driven, and free for commercial use.
+          <strong style="color:hsl(var(--foreground)/0.8);">Rukn</strong> <span class="arabic-text" style="color:hsl(var(--primary));">رُكن</span> means "pillar" in Arabic — the foundation AI agents and developers build on. Structured primitives, MIT licensed, free for commercial use.
         </p>
       </div>
 
@@ -941,9 +1001,9 @@
           <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);">Use commercially. Modify freely. No attribution required.</p>
         </div>
         <div style="padding:var(--r-space-6); border-radius:var(--r-radius-2xl); border:1px solid hsl(var(--foreground)/0.06);">
-          <i data-lucide="users" style="font-size:1.5rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-3); display:block;"></i>
-          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);">Community Driven</h4>
-          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);">Your PRs and ideas shape the roadmap.</p>
+          <i data-lucide="bot" style="font-size:1.5rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-3); display:block;"></i>
+          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);">AI-Ready</h4>
+          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);">Structured primitives agents read. Humans review and ship.</p>
         </div>
         <div style="padding:var(--r-space-6); border-radius:var(--r-radius-2xl); border:1px solid hsl(var(--foreground)/0.06);">
           <i data-lucide="eye-off" style="font-size:1.5rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-3); display:block;"></i>
@@ -981,10 +1041,10 @@
   <section class="cta-block page-section">
     <div class="page-container page-container--narrow reveal">
       <h2 class="heading-display" style="font-size:clamp(2.5rem,6vw,4rem); margin-bottom:var(--r-space-4);">
-        Start building<br>something beautiful.
+        Describe it.<br>Ship it.
       </h2>
       <p style="font-size:1.1rem; color:hsl(var(--foreground)/0.45); max-width:480px; margin:0 auto;">
-        Glass morphism, motion design, and 20+ components. Drop in two files and go.
+        Talk to your AI. Build on Rukn primitives. RTL, glass morphism, and 20+ components — ready when you are.
       </p>
       <div class="cta-actions">
         <a href="components.html">

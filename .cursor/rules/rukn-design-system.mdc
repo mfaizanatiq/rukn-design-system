@@ -1,0 +1,67 @@
+---
+description: Rukn Design System — AI-ready UI composition rules for agents
+alwaysApply: true
+---
+
+# Rukn Design System
+
+Rukn is an AI-ready, RTL-first design system for Arabic, Urdu, and multilingual apps.
+
+## Read first
+
+1. [`AGENTS.md`](../../AGENTS.md)
+2. [`DESIGN.md`](../../DESIGN.md)
+3. [`components.json`](../../components.json) — machine-readable catalog
+4. [`docs/COMPONENT_API.md`](../../docs/COMPONENT_API.md)
+
+## Bootstrap
+
+```html
+<link rel="stylesheet" href="styles/design-system-variables.css">
+<link rel="stylesheet" href="styles/design-system.css">
+<script src="components/rukn-navbar.js" defer></script>
+<script src="components/rukn-ui.js" type="module"></script>
+```
+
+CDN:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.js" defer></script>
+```
+
+## Always
+
+- Compose with Rukn primitives only: `btn-*`, `ds-*`, `rukn-*`
+- Default theme is dark: `<html class="dark">`
+- For Arabic: `lang="ar" dir="rtl"`; for Urdu: `lang="ur" dir="rtl"`
+- Use tokens: `hsl(var(--primary))`, `var(--r-space-4)`, `var(--r-radius-lg)`
+- Prefer `<rukn-navbar>`, `<rukn-footer>`, `<rukn-sidebar>` for chrome
+- Prefer CSS classes (`btn-primary`, `ds-card`) for simple surfaces; Web Components for interactive chrome
+
+## Never
+
+- Do not invent class names outside the Rukn vocabulary
+- Do not add Tailwind, Bootstrap, or MUI unless the user asks
+- Do not hardcode hex colors when a token exists
+- Do not skip RTL setup for Arabic/Urdu content
+- Do not rebuild navbars when `<rukn-navbar>` covers the need
+
+## Component shortcuts
+
+| Need | Use |
+|------|-----|
+| Primary action | `btn-primary` or `<rukn-button variant="primary">` |
+| Card | `ds-card` or `<rukn-card>` |
+| Input | `ds-input` or `<rukn-input>` |
+| Badge | `ds-badge ds-badge-success` |
+| App nav | `<rukn-navbar current="home">` |
+| Live gallery | `components.html` |
+
+## Prompt pattern
+
+```
+Use Rukn (AGENTS.md + DESIGN.md + components.json).
+Build: [screen]. Locale: [en|ar|ur]. Theme: dark.
+Primitives only. Include rukn-navbar for app pages.
+```

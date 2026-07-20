@@ -69,6 +69,32 @@ describe('Smoke test — docs site JavaScript', () => {
   });
 });
 
+describe('Smoke test — agent documentation', () => {
+  test('ships AGENTS.md and DESIGN.md for AI agents', () => {
+    expect(fs.existsSync(path.join(ROOT, 'AGENTS.md'))).toBe(true);
+    expect(fs.existsSync(path.join(ROOT, 'DESIGN.md'))).toBe(true);
+  });
+
+  test('ships components.json, llms.txt, and Cursor rules', () => {
+    expect(fs.existsSync(path.join(ROOT, 'components.json'))).toBe(true);
+    expect(fs.existsSync(path.join(ROOT, 'llms.txt'))).toBe(true);
+    expect(fs.existsSync(path.join(ROOT, '.cursor/rules/rukn-design-system.mdc'))).toBe(true);
+  });
+
+  test('DESIGN.md links to component API and gallery', () => {
+    const design = fs.readFileSync(path.join(ROOT, 'DESIGN.md'), 'utf8');
+    expect(design).toMatch(/COMPONENT_API\.md/);
+    expect(design).toMatch(/components\.html/);
+  });
+
+  test('components.json exposes webComponents and cssClasses', () => {
+    const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'components.json'), 'utf8'));
+    expect(catalog.webComponents.length).toBeGreaterThan(5);
+    expect(catalog.cssClasses.length).toBeGreaterThan(10);
+    expect(catalog.bootstrap.cdn.css).toMatch(/rukn\.min\.css/);
+  });
+});
+
 // ---------------------------------------------------------------------------
 // Version assertion
 // ---------------------------------------------------------------------------

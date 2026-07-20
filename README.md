@@ -1,14 +1,26 @@
 # Rukn Design System
 
-**The first modern design system built for Arabic, Urdu, and multilingual applications.**
+**The AI-ready design system for Arabic, Urdu, and multilingual applications.**
 
-> **Rukn** (رُكن / رکن) means "pillar" in Arabic and Urdu — the structural foundation your multilingual app needs.
+> **Rukn** (رُكن / رکن) means "pillar" in Arabic and Urdu — structured primitives that AI agents and developers build on.
 
 [![Version](https://img.shields.io/badge/version-2.2.0-blue.svg)](https://github.com/mfaizanatiq/RuknDesignSystem)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)]()
 
-Every major design system assumes left-to-right English. Arabic and Urdu developers spend weeks wrestling components into RTL layout, fighting font fallbacks, and patching spacing that was never designed for Nastaliq script. **Rukn starts from the opposite end.**
+The old workflow — designers in Figma, developers hand-coding CSS — is ending. The next era is you describing what you need, and AI composing interfaces from a design system it can actually read. **Rukn is built for that.**
+
+Every major design system assumes left-to-right English. Arabic and Urdu developers spend weeks wrestling components into RTL layout, fighting font fallbacks, and patching spacing that was never designed for Nastaliq script. **Rukn starts from the opposite end — and gives agents a vocabulary they can use correctly.**
+
+## AI-ready by design
+
+**Agents: read [`AGENTS.md`](./AGENTS.md) → [`DESIGN.md`](./DESIGN.md) first.**
+
+- **Structured for agents** — Semantic tokens (`--r-*`), predictable class names (`btn-primary`, `ds-card`), and documented Web Components (`rukn-navbar`) that Cursor, Claude, Copilot, and any agent can read and compose.
+- **Describe → compose → ship** — Tell your agent what you're building. It assembles production markup from Rukn primitives. You review, refine, and deploy.
+- **No hidden magic** — Zero dependencies, copy-paste HTML, MIT licensed. Agents don't need to reverse-engineer a framework — they read the docs and build.
+
+See the full [AI-readiness checklist](./DESIGN.md#ai-readiness-checklist) in `DESIGN.md`.
 
 ## What makes Rukn different
 

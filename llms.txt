@@ -1,0 +1,50 @@
+# Rukn Design System
+
+> AI-ready, RTL-first design system for Arabic, Urdu, and multilingual web apps.
+
+Rukn (رُكن / رکن) means "pillar" — structured primitives for AI agents and developers.
+
+## Start here for agents
+
+- [AGENTS.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/AGENTS.md): Agent entry point
+- [DESIGN.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/DESIGN.md): Full agent guide, checklist, examples
+- [components.json](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/components.json): Machine-readable component catalog
+
+## Docs
+
+- [COMPONENT_API.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/docs/COMPONENT_API.md): CSS classes + Web Component attributes
+- [DESIGN_TOKENS.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/docs/DESIGN_TOKENS.md): Token reference
+- [RTL_GUIDE.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/docs/RTL_GUIDE.md): Arabic / Urdu setup
+- [types.d.ts](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/types.d.ts): TypeScript declarations
+
+## Live
+
+- [Home](https://ruknds.netlify.app/): Marketing + AI positioning
+- [Components](https://ruknds.netlify.app/components.html): Live gallery
+- [Foundation](https://ruknds.netlify.app/foundation.html): Tokens
+- [Maktaba demo](https://ruknds.netlify.app/demo/maktaba.html): Arabic RTL e-commerce
+
+## Install
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.js" defer></script>
+```
+
+```bash
+npm install @ruknds/core
+```
+
+## Rules for agents
+
+1. Use only Rukn primitives (`btn-*`, `ds-*`, `rukn-*`)
+2. Default to `class="dark"` on `<html>`
+3. Set `lang` and `dir` for Arabic (`ar`/`rtl`) and Urdu (`ur`/`rtl`)
+4. Use semantic tokens — never invent hex colors
+5. Prefer `<rukn-navbar>` for app chrome
+
+## Optional
+
+- [INTEGRATION_GUIDE.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/INTEGRATION_GUIDE.md)
+- [README.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/README.md)
+- [CHANGELOG.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/CHANGELOG.md)

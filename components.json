@@ -1,0 +1,382 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "@ruknds/core",
+  "version": "2.2.0",
+  "description": "AI-ready RTL-first design system for Arabic, Urdu, and multilingual apps",
+  "homepage": "https://ruknds.netlify.app",
+  "repository": "https://github.com/mfaizanatiq/RuknDesignSystem",
+  "license": "MIT",
+  "docs": {
+    "agents": "AGENTS.md",
+    "design": "DESIGN.md",
+    "api": "docs/COMPONENT_API.md",
+    "tokens": "docs/DESIGN_TOKENS.md",
+    "rtl": "docs/RTL_GUIDE.md",
+    "gallery": "components.html",
+    "foundation": "foundation.html",
+    "demo": "demo/maktaba.html"
+  },
+  "bootstrap": {
+    "cdn": {
+      "css": "https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.css",
+      "js": "https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.js"
+    },
+    "source": {
+      "css": [
+        "styles/design-system-variables.css",
+        "styles/design-system.css"
+      ],
+      "js": [
+        "components/rukn-navbar.js",
+        "components/rukn-footer.js",
+        "components/rukn-sidebar.js",
+        "components/rukn-ui.js"
+      ]
+    },
+    "htmlDefaults": {
+      "class": "dark",
+      "lang": "en",
+      "rtl": {
+        "ar": { "lang": "ar", "dir": "rtl" },
+        "ur": { "lang": "ur", "dir": "rtl" }
+      }
+    }
+  },
+  "rules": {
+    "always": [
+      "Use Rukn class names and Web Components from this catalog",
+      "Set lang and dir on html for the target locale",
+      "Use class=dark unless light mode is requested",
+      "Use semantic tokens hsl(var(--primary)) / var(--r-space-*)",
+      "Prefer rukn-navbar for app chrome"
+    ],
+    "never": [
+      "Do not invent btn-*, ds-*, or rukn-* names not listed here",
+      "Do not add Tailwind, Bootstrap, or MUI unless asked",
+      "Do not hardcode hex colors when a token exists",
+      "Do not skip dir=rtl for Arabic or Urdu"
+    ]
+  },
+  "cssClasses": [
+    {
+      "name": "btn-primary",
+      "category": "button",
+      "description": "Primary action button",
+      "example": "<button class=\"btn-primary\">Save</button>",
+      "gallery": "components.html#buttons"
+    },
+    {
+      "name": "btn-secondary",
+      "category": "button",
+      "description": "Secondary action button",
+      "example": "<button class=\"btn-secondary\">Cancel</button>",
+      "gallery": "components.html#buttons"
+    },
+    {
+      "name": "btn-outline",
+      "category": "button",
+      "description": "Outlined button",
+      "example": "<button class=\"btn-outline\">Outline</button>",
+      "gallery": "components.html#buttons"
+    },
+    {
+      "name": "btn-ghost",
+      "category": "button",
+      "description": "Ghost / transparent button",
+      "example": "<button class=\"btn-ghost\">Ghost</button>",
+      "gallery": "components.html#buttons"
+    },
+    {
+      "name": "btn-destructive",
+      "category": "button",
+      "description": "Destructive / danger button",
+      "example": "<button class=\"btn-destructive\">Delete</button>",
+      "gallery": "components.html#buttons"
+    },
+    {
+      "name": "btn-sm",
+      "category": "button",
+      "description": "Small size modifier (combine with btn-*)",
+      "example": "<button class=\"btn-primary btn-sm\">Small</button>",
+      "gallery": "components.html#buttons"
+    },
+    {
+      "name": "btn-lg",
+      "category": "button",
+      "description": "Large size modifier (combine with btn-*)",
+      "example": "<button class=\"btn-primary btn-lg\">Large</button>",
+      "gallery": "components.html#buttons"
+    },
+    {
+      "name": "ds-input",
+      "category": "form",
+      "description": "Text input field",
+      "example": "<input type=\"text\" class=\"ds-input\" placeholder=\"Email\">",
+      "gallery": "components.html#inputs"
+    },
+    {
+      "name": "ds-textarea",
+      "category": "form",
+      "description": "Multi-line text input",
+      "example": "<textarea class=\"ds-textarea\"></textarea>",
+      "gallery": "components.html#inputs"
+    },
+    {
+      "name": "ds-select",
+      "category": "form",
+      "description": "Select dropdown",
+      "example": "<select class=\"ds-select\"><option>One</option></select>",
+      "gallery": "components.html#inputs"
+    },
+    {
+      "name": "ds-checkbox",
+      "category": "form",
+      "description": "Checkbox (wrap with ds-checkbox-wrapper)",
+      "example": "<label class=\"ds-checkbox-wrapper\"><input type=\"checkbox\" class=\"ds-checkbox\"> Label</label>",
+      "gallery": "components.html#inputs"
+    },
+    {
+      "name": "ds-switch",
+      "category": "form",
+      "description": "Toggle switch (wrap with ds-switch-wrapper)",
+      "example": "<label class=\"ds-switch-wrapper\"><input type=\"checkbox\" class=\"ds-switch\"></label>",
+      "gallery": "components.html#inputs"
+    },
+    {
+      "name": "ds-card",
+      "category": "surface",
+      "description": "Card surface with glass morphism",
+      "example": "<div class=\"ds-card\" style=\"padding: var(--r-space-5);\">Content</div>",
+      "gallery": "components.html#cards"
+    },
+    {
+      "name": "ds-glass",
+      "category": "surface",
+      "description": "Glass morphism effect on any element",
+      "example": "<div class=\"ds-glass\">Frosted</div>",
+      "gallery": "components.html#cards"
+    },
+    {
+      "name": "ds-badge",
+      "category": "badge",
+      "description": "Base badge (combine with ds-badge-*)",
+      "example": "<span class=\"ds-badge ds-badge-primary\">New</span>",
+      "gallery": "components.html#cards"
+    },
+    {
+      "name": "ds-badge-primary",
+      "category": "badge",
+      "description": "Primary colored badge"
+    },
+    {
+      "name": "ds-badge-success",
+      "category": "badge",
+      "description": "Success / green badge"
+    },
+    {
+      "name": "ds-badge-warning",
+      "category": "badge",
+      "description": "Warning / yellow badge"
+    },
+    {
+      "name": "ds-badge-destructive",
+      "category": "badge",
+      "description": "Destructive / red badge"
+    },
+    {
+      "name": "ds-badge-neutral",
+      "category": "badge",
+      "description": "Neutral / gray badge"
+    },
+    {
+      "name": "ds-alert",
+      "category": "feedback",
+      "description": "Alert container"
+    },
+    {
+      "name": "ds-spinner",
+      "category": "feedback",
+      "description": "Loading spinner"
+    },
+    {
+      "name": "ds-progress",
+      "category": "feedback",
+      "description": "Progress bar"
+    },
+    {
+      "name": "ds-container",
+      "category": "layout",
+      "description": "Max-width content container"
+    },
+    {
+      "name": "ds-grid",
+      "category": "layout",
+      "description": "CSS grid container"
+    },
+    {
+      "name": "ds-flex",
+      "category": "layout",
+      "description": "Flexbox container"
+    },
+    {
+      "name": "ds-table",
+      "category": "data",
+      "description": "Table styling"
+    },
+    {
+      "name": "ds-navbar",
+      "category": "navigation",
+      "description": "CSS navbar (prefer <rukn-navbar> Web Component)"
+    }
+  ],
+  "webComponents": [
+    {
+      "tag": "rukn-navbar",
+      "source": "components/rukn-navbar.js",
+      "register": "components/rukn-navbar.js",
+      "description": "Navbar with dark mode, language switcher, and mobile menu",
+      "attributes": [
+        { "name": "current", "type": "enum", "values": ["home", "foundation", "components"], "description": "Active page" },
+        { "name": "search", "type": "boolean", "default": false, "description": "Show search" },
+        { "name": "logo-src", "type": "string", "description": "Custom logo URL" },
+        { "name": "brand-text", "type": "string", "default": "Rukn", "description": "Brand text" },
+        { "name": "brand-href", "type": "string", "default": "index.html", "description": "Brand link" },
+        { "name": "show-brand-text", "type": "boolean", "description": "Show brand text beside logo" },
+        { "name": "logo-only", "type": "boolean", "description": "Logo-only mode" },
+        { "name": "text-only", "type": "boolean", "description": "Text-only mode" }
+      ],
+      "events": ["rukn:languagechange", "rukn:themechange"],
+      "example": "<rukn-navbar current=\"home\"></rukn-navbar>"
+    },
+    {
+      "tag": "rukn-footer",
+      "source": "components/rukn-footer.js",
+      "register": "components/rukn-footer.js",
+      "description": "Site footer with nav links and license",
+      "attributes": [],
+      "example": "<rukn-footer></rukn-footer>"
+    },
+    {
+      "tag": "rukn-sidebar",
+      "source": "components/rukn-sidebar.js",
+      "register": "components/rukn-sidebar.js",
+      "description": "Docs sidebar for foundation or components pages",
+      "attributes": [
+        { "name": "type", "type": "enum", "values": ["foundation", "components"], "description": "Sidebar content variant" }
+      ],
+      "example": "<rukn-sidebar type=\"components\"></rukn-sidebar>"
+    },
+    {
+      "tag": "rukn-button",
+      "source": "components/rukn-button.js",
+      "register": "components/rukn-ui.js",
+      "description": "Button Web Component",
+      "attributes": [
+        { "name": "variant", "type": "enum", "values": ["primary", "secondary", "outline", "ghost", "destructive"], "default": "primary" },
+        { "name": "size", "type": "enum", "values": ["sm", "md", "lg"], "default": "md" },
+        { "name": "disabled", "type": "boolean", "default": false },
+        { "name": "loading", "type": "boolean", "default": false },
+        { "name": "icon", "type": "string", "description": "Lucide icon name" }
+      ],
+      "example": "<rukn-button variant=\"primary\">Click</rukn-button>"
+    },
+    {
+      "tag": "rukn-badge",
+      "source": "components/rukn-badge.js",
+      "register": "components/rukn-ui.js",
+      "description": "Status badge",
+      "attributes": [
+        { "name": "variant", "type": "enum", "values": ["primary", "success", "warning", "destructive", "neutral"], "default": "primary" }
+      ],
+      "example": "<rukn-badge variant=\"success\">Done</rukn-badge>"
+    },
+    {
+      "tag": "rukn-card",
+      "source": "components/rukn-card.js",
+      "register": "components/rukn-ui.js",
+      "description": "Card surface",
+      "attributes": [
+        { "name": "glass", "type": "boolean", "default": false, "description": "Glass morphism variant" }
+      ],
+      "example": "<rukn-card glass><h3>Title</h3><p>Body</p></rukn-card>"
+    },
+    {
+      "tag": "rukn-alert",
+      "source": "components/rukn-alert.js",
+      "register": "components/rukn-ui.js",
+      "description": "Alert banner",
+      "attributes": [
+        { "name": "variant", "type": "enum", "values": ["info", "success", "warning", "destructive"], "default": "info" },
+        { "name": "title", "type": "string" },
+        { "name": "dismissible", "type": "boolean", "default": false }
+      ],
+      "example": "<rukn-alert variant=\"info\" title=\"Note\">Message</rukn-alert>"
+    },
+    {
+      "tag": "rukn-input",
+      "source": "components/rukn-input.js",
+      "register": "components/rukn-ui.js",
+      "description": "Styled text input",
+      "attributes": [],
+      "example": "<rukn-input type=\"email\" placeholder=\"Email\"></rukn-input>"
+    },
+    {
+      "tag": "rukn-modal",
+      "source": "components/rukn-modal.js",
+      "register": "components/rukn-ui.js",
+      "description": "Modal dialog",
+      "attributes": [
+        { "name": "modal-id", "type": "string", "description": "Unique modal id" },
+        { "name": "title", "type": "string" }
+      ],
+      "example": "<rukn-modal modal-id=\"settings\" title=\"Settings\">...</rukn-modal>"
+    },
+    {
+      "tag": "rukn-spinner",
+      "source": "components/rukn-spinner.js",
+      "register": "components/rukn-ui.js",
+      "description": "Loading spinner",
+      "attributes": [
+        { "name": "size", "type": "enum", "values": ["sm", "md", "lg"], "default": "md" }
+      ],
+      "example": "<rukn-spinner size=\"md\"></rukn-spinner>"
+    },
+    {
+      "tag": "rukn-progress",
+      "source": "components/rukn-progress.js",
+      "register": "components/rukn-ui.js",
+      "description": "Progress bar",
+      "attributes": [
+        { "name": "value", "type": "number", "default": 0, "description": "0-100" },
+        { "name": "indeterminate", "type": "boolean", "default": false }
+      ],
+      "example": "<rukn-progress value=\"60\"></rukn-progress>"
+    },
+    {
+      "tag": "rukn-icon",
+      "source": "components/rukn-icon.js",
+      "register": "components/rukn-ui.js",
+      "description": "Lucide icon wrapper",
+      "attributes": [],
+      "example": "<rukn-icon name=\"check\"></rukn-icon>"
+    }
+  ],
+  "tokens": {
+    "prefix": "--r-",
+    "semanticColors": [
+      "--background",
+      "--foreground",
+      "--primary",
+      "--secondary",
+      "--muted",
+      "--border",
+      "--success",
+      "--warning",
+      "--destructive"
+    ],
+    "usage": "color: hsl(var(--foreground)); background: hsl(var(--primary) / 0.1); padding: var(--r-space-4);",
+    "file": "styles/design-system-variables.css",
+    "docs": "docs/DESIGN_TOKENS.md"
+  },
+  "promptTemplate": "Use Rukn Design System (read AGENTS.md, DESIGN.md, and components.json).\n\nBuild: [describe screen]\nLocale: [en | ar | ur]\nDirection: [ltr | rtl]\nTheme: dark\n\nRules:\n- Use btn-*, ds-*, rukn-* primitives only\n- Include rukn-navbar for app pages\n- Set lang and dir on <html>\n- No extra CSS frameworks"
+}

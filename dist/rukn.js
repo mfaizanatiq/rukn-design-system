@@ -845,11 +845,11 @@ const DEFAULT_TRANSLATIONS = {
     'nav.darkMode': 'Dark Mode',
     'nav.lightMode': 'Light Mode',
     'index.hero.name': '<strong>Rukn</strong><span aria-hidden="true">•</span><span class="arabic-text">رُكن</span><span aria-hidden="true">•</span><span class="urdu-text">رکن</span>',
-    'index.hero.heading.primary': 'The design system',
-    'index.hero.heading.secondary': 'built for Arabic.',
-    'index.hero.message': 'Zero-dependency Web Components with native RTL, Arabic typography, and Urdu Nastaliq — production-ready on day one.',
-    'index.hero.subtext': 'Open source. MIT licensed. Yours to own, extend, and ship.',
-    'index.hero.cta.primary': 'Explore Components',
+    'index.hero.heading.primary': 'Talk to AI.',
+    'index.hero.heading.secondary': 'It builds the rest.',
+    'index.hero.message': 'Rukn is AI-ready — structured tokens, predictable class names, and Web Components agents understand. Describe your screen. Ship production UI on our primitives. RTL, Arabic, and Urdu included.',
+    'index.hero.subtext': 'Open source. MIT licensed. Built for agents and the developers who ship with them.',
+    'index.hero.cta.primary': 'Explore Primitives',
     'index.hero.cta.secondary': 'View on GitHub',
     'index.hero.cta.demo': 'See Demo',
     'index.stats.tokens': 'Design Tokens',
@@ -948,11 +948,11 @@ const DEFAULT_TRANSLATIONS = {
     'nav.darkMode': 'الوضع الداكن',
     'nav.lightMode': 'الوضع الفاتح',
     'index.hero.name': '<strong>ركن</strong><span aria-hidden="true">•</span><span class="arabic-text">رُكن</span><span aria-hidden="true">•</span><span class="urdu-text">رکن</span>',
-    'index.hero.heading.primary': 'نظام التصميم',
-    'index.hero.heading.secondary': 'المبني للعربية.',
-    'index.hero.message': 'مكوّنات ويب بلا تبعيات — دعم أصيل للغة العربية والنص من اليمين إلى اليسار وخط النستعليق الأردي، جاهزة للإنتاج منذ اليوم الأول.',
-    'index.hero.subtext': 'مفتوح المصدر. ترخيص MIT. ملكك تمامًا — طوّره، وسّعه، وأطلقه.',
-    'index.hero.cta.primary': 'استكشف المكوّنات',
+    'index.hero.heading.primary': 'تحدّث مع الذكاء الاصطناعي.',
+    'index.hero.heading.secondary': 'وهو يبني الباقي.',
+    'index.hero.message': 'رُكن جاهز للذكاء الاصطناعي — رموز منظمة، أسماء فئات متوقعة، ومكوّنات ويب يفهمها الوكلاء. صِف شاشتك. أطلق واجهة إنتاجية على أساسياتنا. دعم RTL والعربية والأردية مدمج.',
+    'index.hero.subtext': 'مفتوح المصدر. ترخيص MIT. مبني للوكلاء والمطورين الذين يطلقون معهم.',
+    'index.hero.cta.primary': 'استكشف الأساسيات',
     'index.hero.cta.secondary': 'عرض على GitHub',
     'index.hero.cta.demo': 'شاهد العرض',
     'index.stats.tokens': 'رموز التصميم',
@@ -1058,11 +1058,11 @@ const DEFAULT_TRANSLATIONS = {
     'nav.darkMode': 'ڈارک موڈ',
     'nav.lightMode': 'لائٹ موڈ',
     'index.hero.name': '<strong>Rukn</strong><span aria-hidden="true">•</span><span class="arabic-text">رُكن</span><span aria-hidden="true">•</span><span class="urdu-text">رکن</span>',
-    'index.hero.heading.primary': 'ڈیزائن سسٹم',
-    'index.hero.heading.secondary': 'عربی کے لیے تیار۔',
-    'index.hero.message': 'بغیر کسی انحصار کے ویب کمپوننٹس — مقامی RTL، عربی خطاطی، اور اردو نستعلیق کے ساتھ، پہلے دن سے پروڈکشن کے لیے تیار۔',
-    'index.hero.subtext': 'اوپن سورس۔ MIT لائسنس۔ مکمل طور پر آپ کی ملکیت — بڑھائیں، پھیلائیں، اور شپ کریں۔',
-    'index.hero.cta.primary': 'اجزاء دیکھیں',
+    'index.hero.heading.primary': 'AI سے بات کریں۔',
+    'index.hero.heading.secondary': 'باقی وہ بنا دے گا۔',
+    'index.hero.message': 'رکن AI-ready ہے — منظم ٹوکنز، متوقع کلاس نام، اور ویب کمپوننٹس جو ایجنٹس سمجھتے ہیں۔ اپنی سکرین بیان کریں۔ ہمارے پرائمٹیوز پر پروڈکشن UI شپ کریں۔ RTL، عربی، اور اردو شامل ہیں۔',
+    'index.hero.subtext': 'اوپن سورس۔ MIT لائسنس۔ ایجنٹس اور ان ڈویلپرز کے لیے بنایا گیا جو ان کے ساتھ شپ کرتے ہیں۔',
+    'index.hero.cta.primary': 'پرائمٹیوز دیکھیں',
     'index.hero.cta.secondary': 'GitHub پر دیکھیں',
     'index.hero.cta.demo': 'ڈیمو دیکھیں',
     'index.stats.tokens': 'ڈیزائن ٹوکنز',
@@ -1778,18 +1778,16 @@ class RuknNavbar extends HTMLElement {
   }
   
   _getDarkModeState() {
-    // Check localStorage first
     try {
       const stored = localStorage.getItem(RUKN_DARK_MODE_STORAGE_KEY);
       if (stored !== null) {
         return stored === 'true';
       }
     } catch {
-      // localStorage unavailable — fall back to CSS class state
+      // localStorage unavailable — fall back to dark default
     }
-    
-    // Fallback to current HTML class
-    return document.documentElement.classList.contains('dark');
+
+    return true;
   }
   
   _setDarkMode(isDark, persist = true) {

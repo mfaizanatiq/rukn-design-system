@@ -13,6 +13,10 @@
     "dist/",
     "scripts/",
     "types.d.ts",
+    "AGENTS.md",
+    "DESIGN.md",
+    "components.json",
+    "llms.txt",
     "README.md",
     "LICENSE",
     "CHANGELOG.md"
