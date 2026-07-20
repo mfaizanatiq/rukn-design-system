@@ -3,7 +3,7 @@ const http = require('http');
 const fs   = require('fs');
 const path = require('path');
 
-const ROOT = '/Users/designersmantra/Documents/Projects/rukn-design-system';
+const ROOT = path.join(__dirname, '..');
 const PORT = 4000;
 
 const MIME = {
