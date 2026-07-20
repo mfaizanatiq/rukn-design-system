@@ -588,13 +588,13 @@
         </p>
         <div class="hero-actions">
           <a href="components.html">
-            <button class="btn-primary btn-lg" data-i18n="index.hero.cta.primary">Get Started</button>
+            <button class="btn-primary btn-lg" data-i18n="index.hero.cta.primary">Explore Primitives</button>
           </a>
           <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener">
-            <button class="btn-ghost btn-lg" data-i18n="index.hero.cta.secondary">GitHub</button>
+            <button class="btn-ghost btn-lg" data-i18n="index.hero.cta.secondary">View on GitHub</button>
           </a>
           <a href="demo/maktaba.html">
-            <button class="btn-outline btn-lg" data-i18n="index.hero.cta.demo">Maktaba Demo</button>
+            <button class="btn-outline btn-lg" data-i18n="index.hero.cta.demo">See Demo</button>
           </a>
         </div>
       </div>
@@ -637,19 +637,19 @@
       <div class="stats-row">
         <div class="stat">
           <div class="stat-value">150+</div>
-          <div class="stat-label">Design Tokens</div>
+          <div class="stat-label" data-i18n="index.stats.tokens">Design Tokens</div>
         </div>
         <div class="stat">
           <div class="stat-value">20+</div>
-          <div class="stat-label">Components</div>
+          <div class="stat-label" data-i18n="index.stats.components">Components</div>
         </div>
         <div class="stat">
           <div class="stat-value">0</div>
-          <div class="stat-label">Dependencies</div>
+          <div class="stat-label" data-i18n="index.stats.dependencies">Dependencies</div>
         </div>
         <div class="stat">
           <div class="stat-value">AI</div>
-          <div class="stat-label">Agent Ready</div>
+          <div class="stat-label" data-i18n="index.stats.agents">Agent Ready</div>
         </div>
       </div>
     </div>
@@ -663,9 +663,9 @@
   <section id="ai-ready" class="page-section">
     <div class="page-container">
       <div class="mb-16 reveal">
-        <p class="label-caps" style="margin-bottom:var(--r-space-3);">AI-Ready</p>
-        <h2 class="heading-section" style="max-width:640px;">The old workflow is over.<br>Agents build on primitives.</h2>
-        <p style="margin-top:var(--r-space-4); font-size:1.05rem; line-height:1.8; color:hsl(var(--foreground)/0.55); max-width:620px;">
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.ai.label">AI-Ready</p>
+        <h2 class="heading-section" style="max-width:640px;" data-i18n-html="index.ai.heading">The old workflow is over.<br>Agents build on primitives.</h2>
+        <p style="margin-top:var(--r-space-4); font-size:1.05rem; line-height:1.8; color:hsl(var(--foreground)/0.55); max-width:620px;" data-i18n="index.ai.body">
           Designers pushing pixels and developers hand-rolling CSS was the last era. The next one is you describing the product — and AI composing interfaces from a design system it can actually read. Rukn is structured for that: semantic tokens, documented components, zero hidden magic.
         </p>
       </div>
@@ -673,28 +673,28 @@
       <div class="timeline">
         <div class="timeline-item reveal">
           <div class="timeline-status timeline-status--done">
-            <i data-lucide="message-circle"></i> Step 1
+            <i data-lucide="message-circle"></i> <span data-i18n="index.ai.step1.status">Step 1</span>
           </div>
-          <h3 style="font-family:var(--r-font-heading); font-size:1.15rem; margin-bottom:var(--r-space-2);">Describe</h3>
-          <p style="font-size:0.9rem; line-height:1.7; color:hsl(var(--foreground)/0.55);">
+          <h3 style="font-family:var(--r-font-heading); font-size:1.15rem; margin-bottom:var(--r-space-2);" data-i18n="index.ai.step1.title">Describe</h3>
+          <p style="font-size:0.9rem; line-height:1.7; color:hsl(var(--foreground)/0.55);" data-i18n="index.ai.step1.body">
             Tell your agent what you're building — in English, Arabic, or Urdu. A checkout flow, admin panel, landing page. No Figma file required.
           </p>
         </div>
         <div class="timeline-item reveal reveal-delay-1">
           <div class="timeline-status timeline-status--progress">
-            <i data-lucide="bot"></i> Step 2
+            <i data-lucide="bot"></i> <span data-i18n="index.ai.step2.status">Step 2</span>
           </div>
-          <h3 style="font-family:var(--r-font-heading); font-size:1.15rem; margin-bottom:var(--r-space-2);">Compose</h3>
-          <p style="font-size:0.9rem; line-height:1.7; color:hsl(var(--foreground)/0.55);">
+          <h3 style="font-family:var(--r-font-heading); font-size:1.15rem; margin-bottom:var(--r-space-2);" data-i18n="index.ai.step2.title">Compose</h3>
+          <p style="font-size:0.9rem; line-height:1.7; color:hsl(var(--foreground)/0.55);" data-i18n-html="index.ai.step2.body">
             The agent reads Rukn's tokens, class names, and Web Components — then assembles production markup. <code>btn-primary</code>, <code>ds-card</code>, <code>rukn-navbar</code>. Predictable. Copy-pasteable. Correct.
           </p>
         </div>
         <div class="timeline-item reveal reveal-delay-2">
           <div class="timeline-status timeline-status--planned">
-            <i data-lucide="rocket"></i> Step 3
+            <i data-lucide="rocket"></i> <span data-i18n="index.ai.step3.status">Step 3</span>
           </div>
-          <h3 style="font-family:var(--r-font-heading); font-size:1.15rem; margin-bottom:var(--r-space-2);">Ship</h3>
-          <p style="font-size:0.9rem; line-height:1.7; color:hsl(var(--foreground)/0.55);">
+          <h3 style="font-family:var(--r-font-heading); font-size:1.15rem; margin-bottom:var(--r-space-2);" data-i18n="index.ai.step3.title">Ship</h3>
+          <p style="font-size:0.9rem; line-height:1.7; color:hsl(var(--foreground)/0.55);" data-i18n="index.ai.step3.body">
             You review, refine, and deploy. Build on top of the primitives — extend tokens, wrap components, own the stack. MIT licensed. Zero dependencies.
           </p>
         </div>
@@ -710,35 +710,35 @@
   <section class="page-section">
     <div class="page-container">
       <div class="mb-16 reveal">
-        <p class="label-caps" style="margin-bottom:var(--r-space-3);">Why Rukn</p>
-        <h2 class="heading-section" style="max-width:560px;">Primitives agents understand.<br>Interfaces humans love.</h2>
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.why.label">Why Rukn</p>
+        <h2 class="heading-section" style="max-width:560px;" data-i18n-html="index.why.heading">Primitives agents understand.<br>Interfaces humans love.</h2>
       </div>
 
       <div class="bento-grid">
         <div class="bento-card bento-card--span-2 reveal">
           <i data-lucide="bot" class="bento-icon"></i>
-          <h3 class="bento-title">AI-Ready Architecture</h3>
-          <p class="bento-desc">Structured docs, semantic tokens, and consistent APIs — built so Cursor, Claude, Copilot, and any agent can read the system and generate correct UI the first time.</p>
+          <h3 class="bento-title" data-i18n="index.why.ai.title">AI-Ready Architecture</h3>
+          <p class="bento-desc" data-i18n="index.why.ai.body">Structured docs, semantic tokens, and consistent APIs — built so Cursor, Claude, Copilot, and any agent can read the system and generate correct UI the first time.</p>
         </div>
         <div class="bento-card reveal reveal-delay-1">
           <i data-lucide="droplet" class="bento-icon"></i>
-          <h3 class="bento-title">Glass Morphism</h3>
-          <p class="bento-desc">Frosted glass surfaces and translucent depth — premium UI out of the box, no custom CSS from your agent.</p>
+          <h3 class="bento-title" data-i18n="index.why.glass.title">Glass Morphism</h3>
+          <p class="bento-desc" data-i18n="index.why.glass.body">Frosted glass surfaces and translucent depth — premium UI out of the box, no custom CSS from your agent.</p>
         </div>
         <div class="bento-card reveal reveal-delay-1">
           <i data-lucide="palette" class="bento-icon"></i>
-          <h3 class="bento-title">150+ Tokens</h3>
-          <p class="bento-desc">W3C-compliant design tokens covering color, spacing, typography, shadows, and motion.</p>
+          <h3 class="bento-title" data-i18n="index.why.tokens.title">150+ Tokens</h3>
+          <p class="bento-desc" data-i18n="index.why.tokens.body">W3C-compliant design tokens covering color, spacing, typography, shadows, and motion.</p>
         </div>
         <div class="bento-card reveal reveal-delay-2">
           <i data-lucide="languages" class="bento-icon"></i>
-          <h3 class="bento-title">RTL First</h3>
-          <p class="bento-desc">Arabic and Urdu layouts that just work. <code>dir="rtl"</code> flips everything — no patches needed.</p>
+          <h3 class="bento-title" data-i18n="index.why.rtl.title">RTL First</h3>
+          <p class="bento-desc" data-i18n-html="index.why.rtl.body">Arabic and Urdu layouts that just work. <code>dir="rtl"</code> flips everything — no patches needed.</p>
         </div>
         <div class="bento-card reveal reveal-delay-3">
           <i data-lucide="moon" class="bento-icon"></i>
-          <h3 class="bento-title">Dark & Light</h3>
-          <p class="bento-desc">Toggle themes with a single class. Tokens adapt automatically.</p>
+          <h3 class="bento-title" data-i18n="index.why.theme.title">Dark & Light</h3>
+          <p class="bento-desc" data-i18n="index.why.theme.body">Toggle themes with a single class. Tokens adapt automatically.</p>
         </div>
       </div>
     </div>
@@ -752,43 +752,43 @@
   <section class="page-section">
     <div class="page-container">
       <div class="mb-16 reveal">
-        <p class="label-caps" style="margin-bottom:var(--r-space-3);">Components</p>
-        <h2 class="heading-section" style="max-width:560px;">Primitives your agent<br>can copy and ship.</h2>
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.components.label">Components</p>
+        <h2 class="heading-section" style="max-width:560px;" data-i18n-html="index.components.heading">Primitives your agent<br>can copy and ship.</h2>
       </div>
 
       <div class="showcase-strip">
         <!-- Buttons -->
         <div class="showcase-row reveal">
           <div class="showcase-info">
-            <h3>Buttons</h3>
-            <p>Seven variants, three sizes, loading states, and icon support. Accessible focus rings included.</p>
-            <a href="components.html#buttons" style="color:hsl(var(--primary)); font-size:0.9rem; font-weight:var(--r-font-weight-medium);">View docs <i data-lucide="arrow-right" style="font-size:0.8rem;"></i></a>
+            <h3 data-i18n="index.components.buttons.title">Buttons</h3>
+            <p data-i18n="index.components.buttons.body">Seven variants, three sizes, loading states, and icon support. Accessible focus rings included.</p>
+            <a href="components.html#buttons" style="color:hsl(var(--primary)); font-size:0.9rem; font-weight:var(--r-font-weight-medium);"><span data-i18n="index.components.viewDocs">View docs</span> <i data-lucide="arrow-right" style="font-size:0.8rem;"></i></a>
           </div>
           <div class="showcase-demo">
-            <button class="btn-primary">Primary</button>
-            <button class="btn-secondary">Secondary</button>
-            <button class="btn-outline">Outline</button>
-            <button class="btn-ghost">Ghost</button>
-            <button class="btn-destructive btn-sm">Delete</button>
+            <button class="btn-primary" data-i18n="index.demo.primary">Primary</button>
+            <button class="btn-secondary" data-i18n="index.demo.secondary">Secondary</button>
+            <button class="btn-outline" data-i18n="index.demo.outline">Outline</button>
+            <button class="btn-ghost" data-i18n="index.demo.ghost">Ghost</button>
+            <button class="btn-destructive btn-sm" data-i18n="index.demo.delete">Delete</button>
           </div>
         </div>
 
         <!-- Form Controls -->
         <div class="showcase-row showcase-row--reverse reveal">
           <div class="showcase-info">
-            <h3>Form Controls</h3>
-            <p>Inputs, checkboxes, radio buttons, toggles, sliders — all with glass morphism styling and spring animations.</p>
-            <a href="components.html#inputs" style="color:hsl(var(--primary)); font-size:0.9rem; font-weight:var(--r-font-weight-medium);">View docs <i data-lucide="arrow-right" style="font-size:0.8rem;"></i></a>
+            <h3 data-i18n="index.components.forms.title">Form Controls</h3>
+            <p data-i18n="index.components.forms.body">Inputs, checkboxes, radio buttons, toggles, sliders — all with glass morphism styling and spring animations.</p>
+            <a href="components.html#inputs" style="color:hsl(var(--primary)); font-size:0.9rem; font-weight:var(--r-font-weight-medium);"><span data-i18n="index.components.viewDocs">View docs</span> <i data-lucide="arrow-right" style="font-size:0.8rem;"></i></a>
           </div>
           <div class="showcase-demo" style="flex-direction:column; gap:var(--r-space-4);">
-            <input type="text" class="ds-input" placeholder="Email address" aria-label="Email" style="max-width:280px; width:100%;">
+            <input type="text" class="ds-input" placeholder="Email address" aria-label="Email" data-i18n-placeholder="index.demo.email" data-i18n-aria-label="index.demo.email" style="max-width:280px; width:100%;">
             <div style="display:flex; gap:var(--r-space-6); align-items:center;">
               <label class="ds-checkbox-wrapper">
                 <input type="checkbox" class="ds-checkbox" checked>
-                <span style="font-size:0.85rem;">Checkbox</span>
+                <span style="font-size:0.85rem;" data-i18n="index.demo.checkbox">Checkbox</span>
               </label>
               <label class="ds-switch-wrapper">
-                <input type="checkbox" class="ds-switch" checked aria-label="Toggle">
+                <input type="checkbox" class="ds-switch" checked aria-label="Toggle" data-i18n-aria-label="index.demo.toggle">
               </label>
             </div>
           </div>
@@ -797,20 +797,20 @@
         <!-- Cards & Badges -->
         <div class="showcase-row reveal">
           <div class="showcase-info">
-            <h3>Cards & Badges</h3>
-            <p>Surface components with hover states, glass variants, and semantic badge colors for status indicators.</p>
-            <a href="components.html#cards" style="color:hsl(var(--primary)); font-size:0.9rem; font-weight:var(--r-font-weight-medium);">View docs <i data-lucide="arrow-right" style="font-size:0.8rem;"></i></a>
+            <h3 data-i18n="index.components.cards.title">Cards & Badges</h3>
+            <p data-i18n="index.components.cards.body">Surface components with hover states, glass variants, and semantic badge colors for status indicators.</p>
+            <a href="components.html#cards" style="color:hsl(var(--primary)); font-size:0.9rem; font-weight:var(--r-font-weight-medium);"><span data-i18n="index.components.viewDocs">View docs</span> <i data-lucide="arrow-right" style="font-size:0.8rem;"></i></a>
           </div>
           <div class="showcase-demo" style="flex-direction:column; gap:var(--r-space-4);">
             <div class="ds-card" style="padding:var(--r-space-5); max-width:260px; width:100%;">
-              <h4 style="margin-bottom:var(--r-space-2); font-size:0.95rem;">Glass Card</h4>
-              <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.5);">Beautiful surface component with subtle depth.</p>
+              <h4 style="margin-bottom:var(--r-space-2); font-size:0.95rem;" data-i18n="index.demo.glassCard.title">Glass Card</h4>
+              <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.5);" data-i18n="index.demo.glassCard.body">Beautiful surface component with subtle depth.</p>
             </div>
             <div style="display:flex; gap:var(--r-space-2); flex-wrap:wrap;">
-              <span class="ds-badge ds-badge-primary">Primary</span>
-              <span class="ds-badge ds-badge-success">Success</span>
-              <span class="ds-badge ds-badge-warning">Warning</span>
-              <span class="ds-badge ds-badge-neutral">Neutral</span>
+              <span class="ds-badge ds-badge-primary" data-i18n="index.demo.primary">Primary</span>
+              <span class="ds-badge ds-badge-success" data-i18n="index.demo.success">Success</span>
+              <span class="ds-badge ds-badge-warning" data-i18n="index.demo.warning">Warning</span>
+              <span class="ds-badge ds-badge-neutral" data-i18n="index.demo.neutral">Neutral</span>
             </div>
           </div>
         </div>
@@ -819,7 +819,7 @@
       <div class="text-center reveal" style="margin-top:var(--r-space-12);">
         <a href="components.html">
           <button class="btn-outline btn-lg">
-            View All Components <i data-lucide="arrow-right" style="margin-left:8px;"></i>
+            <span data-i18n="index.components.viewAll">View All Components</span> <i data-lucide="arrow-right" style="margin-left:8px;"></i>
           </button>
         </a>
       </div>
@@ -836,33 +836,33 @@
       <div class="code-section">
         <div class="reveal">
           <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.install.label">For agents &amp; humans</p>
-          <h2 class="heading-section" style="margin-bottom:var(--r-space-4);">Point your AI here.<br>Build on Rukn.</h2>
-          <p style="color:hsl(var(--foreground)/0.5); font-size:1rem; line-height:1.7; max-width:420px; margin-bottom:var(--r-space-4);">
+          <h2 class="heading-section" style="margin-bottom:var(--r-space-4);" data-i18n-html="index.install.heading">Point your AI here.<br>Build on Rukn.</h2>
+          <p style="color:hsl(var(--foreground)/0.5); font-size:1rem; line-height:1.7; max-width:420px; margin-bottom:var(--r-space-4);" data-i18n-html="index.install.body">
             Drop two tags into your <code style="font-size:0.85em; color:hsl(var(--primary));">&lt;head&gt;</code>, point your agent at this repo, and describe what you need. Tokens, components, and docs are structured for machine-readable composition — and human review.
           </p>
           <div style="display:flex; gap:var(--r-space-2); flex-wrap:wrap; margin-bottom:var(--r-space-6);">
             <div style="display:flex; align-items:center; gap:6px; font-size:0.8rem; color:hsl(var(--foreground)/0.5);">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              156 KB CSS
+              <span data-i18n="index.install.cssSize">156 KB CSS</span>
             </div>
             <div style="display:flex; align-items:center; gap:6px; font-size:0.8rem; color:hsl(var(--foreground)/0.5);">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              82 KB JS
+              <span data-i18n="index.install.jsSize">82 KB JS</span>
             </div>
             <div style="display:flex; align-items:center; gap:6px; font-size:0.8rem; color:hsl(var(--foreground)/0.5);">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Zero dependencies
+              <span data-i18n="index.install.zeroDeps">Zero dependencies</span>
             </div>
           </div>
           <div style="display:flex; gap:var(--r-space-3); flex-wrap:wrap;">
             <a href="components.html">
-              <button class="btn-primary">Explore Components</button>
+              <button class="btn-primary" data-i18n="index.install.explore">Explore Components</button>
             </a>
             <a href="foundation.html">
-              <button class="btn-ghost">Design Tokens</button>
+              <button class="btn-ghost" data-i18n="index.install.tokens">Design Tokens</button>
             </a>
             <a href="DESIGN.md">
-              <button class="btn-outline">Agent Guide (DESIGN.md)</button>
+              <button class="btn-outline" data-i18n="index.install.agentGuide">Agent Guide (DESIGN.md)</button>
             </a>
           </div>
         </div>
@@ -931,46 +931,46 @@
   <section id="roadmap" class="page-section">
     <div class="page-container">
       <div class="mb-16 reveal">
-        <p class="label-caps" style="margin-bottom:var(--r-space-3);">Roadmap</p>
-        <h2 class="heading-section">What's next.</h2>
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.roadmap.label">Roadmap</p>
+        <h2 class="heading-section" data-i18n="index.roadmap.heading">What's next.</h2>
       </div>
 
       <div class="timeline">
         <div class="timeline-item reveal">
           <div class="timeline-status timeline-status--done">
-            <i data-lucide="circle-check"></i> Shipped
+            <i data-lucide="circle-check"></i> <span data-i18n="index.roadmap.shipped">Shipped</span>
           </div>
           <ul class="timeline-list">
-            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Glass morphism system</li>
-            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> 150+ design tokens</li>
-            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Web Components library</li>
-            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Rukn Motion easing</li>
-            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> AI-ready docs &amp; primitives</li>
-            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> components.json + Cursor rules</li>
-            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> Responsive layouts</li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> <span data-i18n="index.roadmap.shipped.glass">Glass morphism system</span></li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> <span data-i18n="index.roadmap.shipped.tokens">150+ design tokens</span></li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> <span data-i18n="index.roadmap.shipped.webcomponents">Web Components library</span></li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> <span data-i18n="index.roadmap.shipped.motion">Rukn Motion easing</span></li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> <span data-i18n="index.roadmap.shipped.ai">AI-ready docs &amp; primitives</span></li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> <span data-i18n="index.roadmap.shipped.catalog">components.json + Cursor rules</span></li>
+            <li><i data-lucide="check" style="color:hsl(var(--success));"></i> <span data-i18n="index.roadmap.shipped.responsive">Responsive layouts</span></li>
           </ul>
         </div>
         <div class="timeline-item reveal reveal-delay-1">
           <div class="timeline-status timeline-status--progress">
-            <i data-lucide="loader-circle"></i> In Progress
+            <i data-lucide="loader-circle"></i> <span data-i18n="index.roadmap.progress">In Progress</span>
           </div>
           <ul class="timeline-list">
-            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> NPM package</li>
-            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> Advanced form components</li>
-            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> Figma design kit</li>
-            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> VS Code extension</li>
+            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> <span data-i18n="index.roadmap.progress.npm">NPM package</span></li>
+            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> <span data-i18n="index.roadmap.progress.forms">Advanced form components</span></li>
+            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> <span data-i18n="index.roadmap.progress.figma">Figma design kit</span></li>
+            <li><i data-lucide="circle" style="color:hsl(var(--primary));"></i> <span data-i18n="index.roadmap.progress.vscode">VS Code extension</span></li>
           </ul>
         </div>
         <div class="timeline-item reveal reveal-delay-2">
           <div class="timeline-status timeline-status--planned">
-            <i data-lucide="lightbulb"></i> Planned
+            <i data-lucide="lightbulb"></i> <span data-i18n="index.roadmap.planned">Planned</span>
           </div>
           <ul class="timeline-list">
-            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> MCP server for component lookup</li>
-            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> Tailwind CSS plugin</li>
-            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> CLI scaffolding tool</li>
-            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> Data visualization</li>
-            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> Community themes</li>
+            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> <span data-i18n="index.roadmap.planned.mcp">MCP server for component lookup</span></li>
+            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> <span data-i18n="index.roadmap.planned.tailwind">Tailwind CSS plugin</span></li>
+            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> <span data-i18n="index.roadmap.planned.cli">CLI scaffolding tool</span></li>
+            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> <span data-i18n="index.roadmap.planned.viz">Data visualization</span></li>
+            <li><i data-lucide="circle" style="color:hsl(var(--foreground)/0.2);"></i> <span data-i18n="index.roadmap.planned.themes">Community themes</span></li>
           </ul>
         </div>
       </div>
@@ -985,11 +985,11 @@
   <section id="about" class="page-section">
     <div class="page-container page-container--narrow text-center">
       <div class="reveal">
-        <p class="label-caps" style="margin-bottom:var(--r-space-3);">Open Source</p>
-        <h2 class="heading-section" style="margin-bottom:var(--r-space-4);">
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.about.label">Open Source</p>
+        <h2 class="heading-section" style="margin-bottom:var(--r-space-4);" data-i18n-html="index.about.heading">
           Free forever.<br>No strings attached.
         </h2>
-        <p style="font-size:1.05rem; line-height:1.8; color:hsl(var(--foreground)/0.5); max-width:600px; margin:0 auto var(--r-space-8);">
+        <p style="font-size:1.05rem; line-height:1.8; color:hsl(var(--foreground)/0.5); max-width:600px; margin:0 auto var(--r-space-8);" data-i18n-html="index.about.body">
           <strong style="color:hsl(var(--foreground)/0.8);">Rukn</strong> <span class="arabic-text" style="color:hsl(var(--primary));">رُكن</span> means "pillar" in Arabic — the foundation AI agents and developers build on. Structured primitives, MIT licensed, free for commercial use.
         </p>
       </div>
@@ -997,18 +997,18 @@
       <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:var(--r-space-4); margin-bottom:var(--r-space-10);" class="reveal reveal-delay-1">
         <div style="padding:var(--r-space-6); border-radius:var(--r-radius-2xl); border:1px solid hsl(var(--foreground)/0.06);">
           <i data-lucide="code" style="font-size:1.5rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-3); display:block;"></i>
-          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);">MIT Licensed</h4>
-          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);">Use commercially. Modify freely. No attribution required.</p>
+          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);" data-i18n="index.about.mit.title">MIT Licensed</h4>
+          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);" data-i18n="index.about.mit.body">Use commercially. Modify freely. No attribution required.</p>
         </div>
         <div style="padding:var(--r-space-6); border-radius:var(--r-radius-2xl); border:1px solid hsl(var(--foreground)/0.06);">
           <i data-lucide="bot" style="font-size:1.5rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-3); display:block;"></i>
-          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);">AI-Ready</h4>
-          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);">Structured primitives agents read. Humans review and ship.</p>
+          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);" data-i18n="index.about.ai.title">AI-Ready</h4>
+          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);" data-i18n="index.about.ai.body">Structured primitives agents read. Humans review and ship.</p>
         </div>
         <div style="padding:var(--r-space-6); border-radius:var(--r-radius-2xl); border:1px solid hsl(var(--foreground)/0.06);">
           <i data-lucide="eye-off" style="font-size:1.5rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-3); display:block;"></i>
-          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);">No Tracking</h4>
-          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);">No analytics, no telemetry, no paywalls. Ever.</p>
+          <h4 style="font-size:0.95rem; margin-bottom:var(--r-space-1);" data-i18n="index.about.privacy.title">No Tracking</h4>
+          <p style="font-size:0.8rem; color:hsl(var(--foreground)/0.4);" data-i18n="index.about.privacy.body">No analytics, no telemetry, no paywalls. Ever.</p>
         </div>
       </div>
 
@@ -1016,19 +1016,19 @@
         <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener">
           <button class="btn-primary">
             <i data-lucide="github" style="margin-right:6px;"></i>
-            Star on GitHub
+            <span data-i18n="index.about.star">Star on GitHub</span>
           </button>
         </a>
         <a href="https://github.com/mfaizanatiq/RuknDesignSystem/discussions" target="_blank" rel="noopener">
           <button class="btn-ghost">
             <i data-lucide="message-circle" style="margin-right:6px;"></i>
-            Discussions
+            <span data-i18n="index.about.discussions">Discussions</span>
           </button>
         </a>
         <a href="https://www.linkedin.com/in/mfaizanatiq/" target="_blank" rel="noopener">
           <button class="btn-ghost">
             <i data-lucide="linkedin" style="margin-right:6px;"></i>
-            Connect
+            <span data-i18n="index.about.connect">Connect</span>
           </button>
         </a>
       </div>
@@ -1040,29 +1040,29 @@
        ==================================== -->
   <section class="cta-block page-section">
     <div class="page-container page-container--narrow reveal">
-      <h2 class="heading-display" style="font-size:clamp(2.5rem,6vw,4rem); margin-bottom:var(--r-space-4);">
+      <h2 class="heading-display" style="font-size:clamp(2.5rem,6vw,4rem); margin-bottom:var(--r-space-4);" data-i18n-html="index.cta.heading">
         Describe it.<br>Ship it.
       </h2>
-      <p style="font-size:1.1rem; color:hsl(var(--foreground)/0.45); max-width:480px; margin:0 auto;">
+      <p style="font-size:1.1rem; color:hsl(var(--foreground)/0.45); max-width:480px; margin:0 auto;" data-i18n="index.cta.body">
         Talk to your AI. Build on Rukn primitives. RTL, glass morphism, and 20+ components — ready when you are.
       </p>
       <div class="cta-actions">
         <a href="components.html">
           <button class="btn-primary btn-lg">
             <i data-lucide="rocket" style="margin-right:8px;"></i>
-            Explore Components
+            <span data-i18n="index.cta.explore">Explore Components</span>
           </button>
         </a>
         <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener">
           <button class="btn-outline btn-lg">
             <i data-lucide="github" style="margin-right:8px;"></i>
-            View on GitHub
+            <span data-i18n="index.cta.github">View on GitHub</span>
           </button>
         </a>
       </div>
       <p class="cta-meta">
         <i data-lucide="heart" style="color:hsl(var(--primary));"></i>
-        MIT Licensed &middot; Zero Dependencies &middot; Open Source Forever
+        <span data-i18n="index.cta.meta">MIT Licensed · Zero Dependencies · Open Source Forever</span>
       </p>
     </div>
   </section>
