@@ -1,6 +1,5 @@
 /*
- * Canvas chrome — match ruknds.netlify.app dark surface + tokens.
- * Storybook's default Nunito / white canvas is overridden here.
+ * Canvas chrome — match components.html / ruknds.netlify.app
  */
 
 html {
@@ -17,13 +16,13 @@ body,
   background: hsl(var(--background)) !important;
   color: hsl(var(--foreground)) !important;
   font-family: var(--r-font-heading), var(--r-font-body) !important;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
   padding: 0 !important;
 }
 
-/* Kill Storybook's default checkerboard / light preview */
 .sb-show-main.sb-main-padded,
 .sb-show-main.sb-main-fullscreen {
   background: hsl(var(--background)) !important;
@@ -35,7 +34,18 @@ body {
   padding: var(--r-space-6, 1.5rem);
   color: hsl(var(--foreground));
   font-family: var(--r-font-heading);
-  -webkit-font-smoothing: antialiased;
+}
+
+/* Web Component hosts must not create extra boxes — same look as CSS primitives */
+rukn-button,
+rukn-badge,
+rukn-alert,
+rukn-spinner,
+rukn-progress,
+rukn-input,
+rukn-icon,
+rukn-card {
+  display: contents;
 }
 
 html[lang='ar'] .rukn-story,
@@ -49,16 +59,11 @@ html[lang='ur'] .rukn-story :where(p, span, button, label, h1, h2, h3, h4, a, li
   line-height: 1.9;
 }
 
-/* Docs pages */
 .sbdocs-wrapper,
 .sbdocs.sbdocs-wrapper {
   background: hsl(var(--background)) !important;
   font-family: var(--r-font-heading) !important;
   color: hsl(var(--foreground)) !important;
-}
-
-.sbdocs-content {
-  max-width: 720px !important;
 }
 
 .sbdocs-title,
@@ -70,8 +75,7 @@ html[lang='ur'] .rukn-story :where(p, span, button, label, h1, h2, h3, h4, a, li
 }
 
 .sbdocs p,
-.sbdocs li,
-.sbdocs code {
+.sbdocs li {
   color: hsl(var(--foreground) / 0.85) !important;
 }
 
@@ -82,7 +86,6 @@ html[lang='ur'] .rukn-story :where(p, span, button, label, h1, h2, h3, h4, a, li
   border-radius: var(--r-radius-lg, 12px) !important;
 }
 
-/* Controls / addon panel peek through iframe edges */
 .sb-preparing-story,
 .sb-preparing-docs {
   background: hsl(var(--background)) !important;

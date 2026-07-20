@@ -196,4 +196,4 @@
 );border:1px solid hsl(var(--border));font-size:0.75rem;font-weight:var(--r-font-weight-medium)}.ds-command-menu-empty{padding:var(--r-space-8);text-align:center;color:hsl(var(--muted-foreground))}html:not(.dark) .ds-command-menu{background:linear-gradient(135deg,rgba(255,255,255,0.98) 0%,rgba(255,255,255,0.95) 100%
 );border-color:rgba(0,0,0,0.08);box-shadow:0 20px 35px rgba(0,0,0,0.15),0 8px 14px rgba(0,0,0,0.1)}html:not(.dark) .ds-command-menu-backdrop{background:rgba(0,0,0,0.3)}html:not(.dark) .ds-command-menu-item:hover,html:not(.dark) .ds-command-menu-item.selected{background:linear-gradient(135deg,rgba(0,0,0,0.04) 0%,rgba(0,0,0,0.02) 100%
 )}html:not(.dark) .ds-command-menu-item-shortcut kbd{background:linear-gradient(135deg,rgba(0,0,0,0.03) 0%,rgba(0,0,0,0.02) 100%
-);border-color:rgba(0,0,0,0.08)}
+);border-color:rgba(0,0,0,0.08)}rukn-button,rukn-badge,rukn-alert,rukn-spinner,rukn-progress,rukn-input,rukn-icon,rukn-card{display:contents}

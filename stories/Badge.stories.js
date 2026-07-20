@@ -2,50 +2,29 @@ import { el, row } from './_helpers.js';
 
 /** @type {import('@storybook/web-components').Meta} */
 const meta = {
-  title: 'Components/Badge',
-  component: 'rukn-badge',
+  title: 'Gallery/Badge',
   tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['primary', 'success', 'warning', 'destructive', 'neutral'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Same markup as components.html#badge.',
+      },
     },
-    label: { control: 'text' },
   },
-  args: {
-    variant: 'primary',
-    label: 'New',
-  },
-  render: ({ variant, label }) => el('rukn-badge', { variant }, [label]),
 };
 
 export default meta;
 
-export const Primary = {};
-
-export const Success = {
-  args: { variant: 'success', label: 'Shipped' },
-};
-
-export const Warning = {
-  args: { variant: 'warning', label: 'Review' },
-};
-
-export const Destructive = {
-  args: { variant: 'destructive', label: 'Breaking' },
-};
-
-export const Neutral = {
-  args: { variant: 'neutral', label: 'Draft' },
-};
-
-export const All = {
+export const Variants = {
   render: () =>
-    row({ gap: '0.5rem' }, [
-      el('rukn-badge', { variant: 'primary' }, ['Primary']),
-      el('rukn-badge', { variant: 'success' }, ['Success']),
-      el('rukn-badge', { variant: 'warning' }, ['Warning']),
-      el('rukn-badge', { variant: 'destructive' }, ['Destructive']),
-      el('rukn-badge', { variant: 'neutral' }, ['Neutral']),
-    ]),
+    row(
+      { gap: 'var(--space-2)', 'flex-wrap': 'wrap' },
+      [
+        el('span', { class: 'ds-badge ds-badge-neutral' }, ['Neutral']),
+        el('span', { class: 'ds-badge ds-badge-primary' }, ['Primary']),
+        el('span', { class: 'ds-badge ds-badge-success' }, ['Success']),
+        el('span', { class: 'ds-badge ds-badge-warning' }, ['Warning']),
+        el('span', { class: 'ds-badge ds-badge-destructive' }, ['Destructive']),
+      ]
+    ),
 };

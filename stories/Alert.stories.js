@@ -1,68 +1,39 @@
-import { el } from './_helpers.js';
+import { el, stack } from './_helpers.js';
 
 /** @type {import('@storybook/web-components').Meta} */
 const meta = {
-  title: 'Components/Alert',
-  component: 'rukn-alert',
+  title: 'Gallery/Alert',
   tags: ['autodocs'],
-  argTypes: {
-    variant: {
-      control: 'select',
-      options: ['info', 'success', 'warning', 'destructive'],
+  parameters: {
+    docs: {
+      description: {
+        component: 'Same markup as components.html alerts (ds-alert).',
+      },
     },
-    title: { control: 'text' },
-    message: { control: 'text' },
-    dismissible: { control: 'boolean' },
   },
-  args: {
-    variant: 'info',
-    title: 'Heads up',
-    message: 'Rukn alerts map to ds-alert tokens for consistent feedback.',
-    dismissible: false,
-  },
-  render: ({ variant, title, message, dismissible }) =>
-    el(
-      'div',
-      { style: 'min-width:min(100%, 24rem)' },
-      [
-        el(
-          'rukn-alert',
-          {
-            variant,
-            title,
-            dismissible: dismissible || undefined,
-          },
-          [message]
-        ),
-      ]
-    ),
 };
 
 export default meta;
 
-export const Info = {};
+function alertBlock(variant, icon, title, description) {
+  return el('div', { class: `ds-alert ds-alert-${variant}` }, [
+    el('div', { class: 'ds-alert-icon' }, [icon]),
+    el('div', { class: 'ds-alert-content' }, [
+      el('div', { class: 'ds-alert-title' }, [title]),
+      el('div', { class: 'ds-alert-description' }, [description]),
+    ]),
+  ]);
+}
 
-export const Success = {
-  args: {
-    variant: 'success',
-    title: 'Saved',
-    message: 'Your changes are live.',
-  },
-};
-
-export const Warning = {
-  args: {
-    variant: 'warning',
-    title: 'Check direction',
-    message: 'Set lang and dir for Arabic and Urdu pages.',
-  },
-};
-
-export const Destructive = {
-  args: {
-    variant: 'destructive',
-    title: 'Action failed',
-    message: 'Could not publish. Try again.',
-    dismissible: true,
-  },
+export const Variants = {
+  render: () =>
+    stack(
+      { gap: 'var(--space-3)', 'min-width': 'min(100%, 24rem)' },
+      [
+        alertBlock('info', 'ℹ', 'Information', 'This is an informational message'),
+        alertBlock('success', '✓', 'Success', 'Your changes have been saved'),
+        alertBlock('warning', '⚠', 'Warning', 'Please review before continuing'),
+        alertBlock('error', '✕', 'Error', 'Unable to save changes'),
+      ]
+    ),
 };

@@ -4,21 +4,23 @@ import { Meta } from '@storybook/blocks';
 
 # Rukn Design System
 
-AI-ready, RTL-first primitives for Arabic, Urdu, and multilingual apps.
+Storybook mirrors the **same CSS primitives** as [components.html](/components.html) on the live site.
 
-Use the **Theme** and **Locale** toolbar controls to preview dark/light and `en` / `ar` / `ur`.
+## Use these first (Gallery)
 
-## Bootstrap
+| Story | Site equivalent |
+|-------|-----------------|
+| Gallery/Button | `btn-primary`, `btn-secondary`, … |
+| Gallery/Input | `ds-input`, `ds-textarea`, `ds-select` |
+| Gallery/Card | `ds-card`, `ds-glass` |
+| Gallery/Badge | `ds-badge ds-badge-*` |
+| Gallery/Alert | `ds-alert ds-alert-*` |
 
-```html
-<link rel="stylesheet" href="styles/design-system-variables.css">
-<link rel="stylesheet" href="styles/design-system.css">
-<script src="components/rukn-ui.js" type="module"></script>
-```
+## Web Components
 
-## Docs
+`<rukn-button>`, `<rukn-card>`, etc. are thin wrappers around those classes. Prefer the Gallery stories for visual QA against the website.
 
-- [Live gallery](/components.html)
-- [DESIGN.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/DESIGN.md)
-- [components.json](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/components.json)
-- [AGENTS.md](https://github.com/mfaizanatiq/RuknDesignSystem/blob/master/AGENTS.md)
+## Toolbar
+
+- **Theme** — dark (default) / light
+- **Locale** — en / ar / ur

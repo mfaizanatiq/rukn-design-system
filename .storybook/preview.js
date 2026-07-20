@@ -1,3 +1,5 @@
+import '../styles/design-system-variables.css';
+import '../styles/design-system.css';
 import '../components/rukn-ui.js';
 import './preview.css';
 
@@ -40,7 +42,7 @@ const preview = {
     },
     options: {
       storySort: {
-        order: ['Introduction', 'Primitives', 'Components', '*'],
+        order: ['Introduction', 'Gallery', 'Web Components', 'Primitives', '*'],
       },
     },
   },
@@ -84,9 +86,6 @@ const preview = {
       }
 
       const result = story();
-
-      // Always return a fresh DOM node. Avoid Lit wrappers — Rukn components
-      // rewrite light-DOM innerHTML and would orphan Lit markers on re-render.
       const wrap = document.createElement('div');
       wrap.className = 'rukn-story';
       wrap.dataset.theme = theme;

@@ -6,10 +6,9 @@ const config = {
     name: '@storybook/web-components-vite',
     options: {},
   },
-  // Serve Rukn CSS as plain stylesheets (not under /styles, which collides with
-  // Vite module imports and breaks preview.js in the browser).
-  staticDirs: [{ from: '../styles', to: '/rukn-styles' }],
   async viteFinal(config, { configType }) {
+    // CSS is imported via Vite in preview.js — do not mount /styles as staticDirs
+    // (that shadows Vite CSS transforms and breaks the preview).
     if (configType === 'PRODUCTION') {
       config.base = '/storybook/';
     }

@@ -8198,3 +8198,19 @@ html:not(.dark) .ds-command-menu-item-shortcut kbd {
   border-color: rgba(0, 0, 0, 0.08);
 }
 
+/* ========================================
+   WEB COMPONENT HOSTS
+   Thin wrappers over CSS primitives — don't add an extra layout box
+   so <rukn-button> looks identical to <button class="btn-primary">
+   ======================================== */
+rukn-button,
+rukn-badge,
+rukn-alert,
+rukn-spinner,
+rukn-progress,
+rukn-input,
+rukn-icon,
+rukn-card {
+  display: contents;
+}
+

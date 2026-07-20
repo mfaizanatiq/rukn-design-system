@@ -1,53 +1,51 @@
-import { el, stack } from './_helpers.js';
+import { el } from './_helpers.js';
 
 /** @type {import('@storybook/web-components').Meta} */
 const meta = {
-  title: 'Components/Card',
-  component: 'rukn-card',
+  title: 'Gallery/Card',
   tags: ['autodocs'],
-  argTypes: {
-    glass: { control: 'boolean' },
-    title: { control: 'text' },
-    body: { control: 'text' },
-  },
-  args: {
-    glass: false,
-    title: 'Library card',
-    body: 'Compose surfaces with ds-card or rukn-card. Prefer tokens over custom chrome.',
-  },
-  render: ({ glass, title, body }) => {
-    const heading = el('h3', { class: 'heading-card', style: 'margin:0 0 var(--r-space-2)' }, [title]);
-    const copy = el('p', { style: 'margin:0;color:hsl(var(--foreground) / 0.75);line-height:1.6' }, [body]);
-    return el(
-      'rukn-card',
-      {
-        glass: glass || undefined,
-        style: 'display:block;max-width:22rem',
+  parameters: {
+    docs: {
+      description: {
+        component: 'Same markup as components.html#card.',
       },
-      [heading, copy]
-    );
+    },
   },
 };
 
 export default meta;
 
-export const Default = {};
-
-export const Glass = {
-  args: { glass: true, title: 'Glass surface' },
+export const Default = {
+  render: () =>
+    el(
+      'div',
+      { class: 'ds-card', style: 'max-width:400px' },
+      [
+        el('h4', {}, ['Card Title']),
+        el(
+          'p',
+          { style: 'color:hsl(var(--foreground) / 0.7);margin:var(--space-2) 0' },
+          [
+            'This is a card component with content inside. Perfect for grouping related information.',
+          ]
+        ),
+        el('button', { class: 'btn-primary btn-sm' }, ['Action']),
+      ]
+    ),
 };
 
-export const CssPrimitives = {
-  name: 'CSS primitives',
+export const Glass = {
   render: () =>
-    stack({ 'max-width': '22rem', gap: '1rem' }, [
-      el('div', { class: 'ds-card' }, [
-        el('h3', { class: 'heading-card', style: 'margin:0 0 var(--r-space-2)' }, ['ds-card']),
-        el('p', { style: 'margin:0;color:hsl(var(--foreground) / 0.75)' }, ['Solid card surface.']),
-      ]),
-      el('div', { class: 'ds-glass' }, [
-        el('h3', { class: 'heading-card', style: 'margin:0 0 var(--r-space-2)' }, ['ds-glass']),
-        el('p', { style: 'margin:0;color:hsl(var(--foreground) / 0.75)' }, ['Glass morphism surface.']),
-      ]),
-    ]),
+    el(
+      'div',
+      { class: 'ds-glass', style: 'max-width:400px;padding:var(--r-space-6)' },
+      [
+        el('h4', {}, ['Glass surface']),
+        el(
+          'p',
+          { style: 'color:hsl(var(--foreground) / 0.7);margin:var(--space-2) 0' },
+          ['Glass morphism using ds-glass.']
+        ),
+      ]
+    ),
 };
