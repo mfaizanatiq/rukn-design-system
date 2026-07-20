@@ -1,10 +1,30 @@
 import { html } from 'lit';
 
-import '../styles/design-system-variables.css';
-import '../styles/design-system.css';
 import '../components/rukn-ui.js';
-
 import './preview.css';
+
+/** Apply dark before first paint inside the canvas iframe */
+function applyRuknChrome(theme, locale) {
+  const dir = locale === 'en' ? 'ltr' : 'rtl';
+  const root = document.documentElement;
+  const body = document.body;
+
+  if (theme === 'light') {
+    root.classList.remove('dark');
+    root.classList.add('light');
+  } else {
+    root.classList.add('dark');
+    root.classList.remove('light');
+  }
+
+  root.lang = locale;
+  root.dir = dir;
+  if (body) {
+    body.lang = locale;
+    body.dir = dir;
+    body.classList.toggle('dark', theme === 'dark');
+  }
+}
 
 /** @type { import('@storybook/web-components').Preview } */
 const preview = {
@@ -59,18 +79,16 @@ const preview = {
     (story, context) => {
       const theme = context.globals.theme || 'dark';
       const locale = context.globals.locale || 'en';
-      const dir = locale === 'en' ? 'ltr' : 'rtl';
 
       if (typeof document !== 'undefined') {
-        const root = document.documentElement;
-        root.classList.toggle('dark', theme === 'dark');
-        root.classList.toggle('light', theme === 'light');
-        root.lang = locale;
-        root.dir = dir;
-        document.body?.classList.toggle('dark', theme === 'dark');
+        applyRuknChrome(theme, locale);
       }
 
-      return html`<div class="rukn-story" lang=${locale} dir=${dir}>${story()}</div>`;
+      return html`
+        <div class="rukn-story" data-theme=${theme} lang=${locale} dir=${locale === 'en' ? 'ltr' : 'rtl'}>
+          ${story()}
+        </div>
+      `;
     },
   ],
 };

@@ -1,35 +1,64 @@
-/* Story canvas — match Rukn site atmosphere */
+/*
+ * Canvas chrome — match ruknds.netlify.app dark surface + tokens.
+ * Storybook's default Nunito / white canvas is overridden here.
+ */
+
+html {
+  background-color: hsl(var(--background)) !important;
+}
+
 html,
-body {
+body,
+#storybook-root,
+.sb-show-main,
+.sb-main-padded {
   margin: 0;
   min-height: 100%;
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
-  font-family: var(--r-font-body);
+  background: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+  font-family: var(--r-font-heading), var(--r-font-body) !important;
+}
+
+body {
+  padding: 0 !important;
+}
+
+/* Kill Storybook's default checkerboard / light preview */
+.sb-show-main.sb-main-padded,
+.sb-show-main.sb-main-fullscreen {
+  background: hsl(var(--background)) !important;
 }
 
 .rukn-story {
+  box-sizing: border-box;
   min-width: min(100%, 28rem);
   padding: var(--r-space-6, 1.5rem);
-  font-family: var(--r-font-body);
   color: hsl(var(--foreground));
+  font-family: var(--r-font-heading);
+  -webkit-font-smoothing: antialiased;
 }
 
 html[lang='ar'] .rukn-story,
-html[lang='ar'] .rukn-story * {
+html[lang='ar'] .rukn-story :where(p, span, button, label, h1, h2, h3, h4, a, li) {
   font-family: var(--r-font-arabic);
 }
 
 html[lang='ur'] .rukn-story,
-html[lang='ur'] .rukn-story * {
+html[lang='ur'] .rukn-story :where(p, span, button, label, h1, h2, h3, h4, a, li) {
   font-family: var(--r-font-urdu);
   line-height: 1.9;
 }
 
 /* Docs pages */
-.sbdocs-wrapper {
+.sbdocs-wrapper,
+.sbdocs.sbdocs-wrapper {
   background: hsl(var(--background)) !important;
-  font-family: var(--r-font-body) !important;
+  font-family: var(--r-font-heading) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+.sbdocs-content {
+  max-width: 720px !important;
 }
 
 .sbdocs-title,
@@ -41,10 +70,20 @@ html[lang='ur'] .rukn-story * {
 }
 
 .sbdocs p,
-.sbdocs li {
+.sbdocs li,
+.sbdocs code {
   color: hsl(var(--foreground) / 0.85) !important;
 }
 
-.docs-story {
+.docs-story,
+.sbdocs .docs-story {
+  background: hsl(var(--background)) !important;
+  border: 1px solid hsl(var(--border)) !important;
+  border-radius: var(--r-radius-lg, 12px) !important;
+}
+
+/* Controls / addon panel peek through iframe edges */
+.sb-preparing-story,
+.sb-preparing-docs {
   background: hsl(var(--background)) !important;
 }

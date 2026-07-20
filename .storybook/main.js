@@ -6,9 +6,10 @@ const config = {
     name: '@storybook/web-components-vite',
     options: {},
   },
-  staticDirs: [{ from: '../styles', to: '/styles' }],
+  // Serve Rukn CSS as plain stylesheets (not under /styles, which collides with
+  // Vite module imports and breaks preview.js in the browser).
+  staticDirs: [{ from: '../styles', to: '/rukn-styles' }],
   async viteFinal(config, { configType }) {
-    // Serve under /storybook/ on Netlify; root path for local `storybook dev`
     if (configType === 'PRODUCTION') {
       config.base = '/storybook/';
     }

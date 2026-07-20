@@ -1,6 +1,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Same tokens + component CSS as ruknds.netlify.app -->
+<link rel="stylesheet" href="./rukn-styles/design-system-variables.css">
+<link rel="stylesheet" href="./rukn-styles/design-system.css">
 <script>
-  document.documentElement.classList.add('dark');
+  (function () {
+    try {
+      var stored = localStorage.getItem('rukn-dark-mode');
+      if (stored === 'false') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('dark');
+    }
+  })();
 </script>
