@@ -1,15 +1,6 @@
-import { html } from 'lit';
+import { el, row } from './_helpers.js';
 
-/**
- * @typedef {Object} ButtonArgs
- * @property {'primary'|'secondary'|'outline'|'ghost'|'destructive'} variant
- * @property {'sm'|'md'|'lg'} size
- * @property {string} label
- * @property {boolean} disabled
- * @property {boolean} loading
- */
-
-/** @type {import('@storybook/web-components').Meta<ButtonArgs>} */
+/** @type {import('@storybook/web-components').Meta} */
 const meta = {
   title: 'Components/Button',
   component: 'rukn-button',
@@ -34,67 +25,60 @@ const meta = {
     disabled: false,
     loading: false,
   },
-  render: ({ variant, size, label, disabled, loading }) => html`
-    <rukn-button
-      variant=${variant}
-      size=${size}
-      ?disabled=${disabled}
-      ?loading=${loading}
-    >${label}</rukn-button>
-  `,
+  render: ({ variant, size, label, disabled, loading }) =>
+    el(
+      'rukn-button',
+      {
+        variant,
+        size,
+        disabled: disabled || undefined,
+        loading: loading || undefined,
+      },
+      [label]
+    ),
 };
 
 export default meta;
 
-/** @type {import('@storybook/web-components').StoryObj<ButtonArgs>} */
 export const Primary = {};
 
-/** @type {import('@storybook/web-components').StoryObj<ButtonArgs>} */
 export const Secondary = {
   args: { variant: 'secondary', label: 'Secondary' },
 };
 
-/** @type {import('@storybook/web-components').StoryObj<ButtonArgs>} */
 export const Outline = {
   args: { variant: 'outline', label: 'Outline' },
 };
 
-/** @type {import('@storybook/web-components').StoryObj<ButtonArgs>} */
 export const Ghost = {
   args: { variant: 'ghost', label: 'Ghost' },
 };
 
-/** @type {import('@storybook/web-components').StoryObj<ButtonArgs>} */
 export const Destructive = {
   args: { variant: 'destructive', label: 'Delete' },
 };
 
-/** @type {import('@storybook/web-components').StoryObj<ButtonArgs>} */
 export const Loading = {
   args: { loading: true, label: 'Saving' },
 };
 
-/** @type {import('@storybook/web-components').StoryObj<ButtonArgs>} */
 export const Sizes = {
-  render: () => html`
-    <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
-      <rukn-button variant="primary" size="sm">Small</rukn-button>
-      <rukn-button variant="primary" size="md">Medium</rukn-button>
-      <rukn-button variant="primary" size="lg">Large</rukn-button>
-    </div>
-  `,
+  render: () =>
+    row({}, [
+      el('rukn-button', { variant: 'primary', size: 'sm' }, ['Small']),
+      el('rukn-button', { variant: 'primary', size: 'md' }, ['Medium']),
+      el('rukn-button', { variant: 'primary', size: 'lg' }, ['Large']),
+    ]),
 };
 
-/** CSS-class primitives (no Web Component) */
 export const CssPrimitives = {
   name: 'CSS primitives',
-  render: () => html`
-    <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
-      <button class="btn-primary">btn-primary</button>
-      <button class="btn-secondary">btn-secondary</button>
-      <button class="btn-outline">btn-outline</button>
-      <button class="btn-ghost">btn-ghost</button>
-      <button class="btn-destructive">btn-destructive</button>
-    </div>
-  `,
+  render: () =>
+    row({}, [
+      el('button', { class: 'btn-primary' }, ['btn-primary']),
+      el('button', { class: 'btn-secondary' }, ['btn-secondary']),
+      el('button', { class: 'btn-outline' }, ['btn-outline']),
+      el('button', { class: 'btn-ghost' }, ['btn-ghost']),
+      el('button', { class: 'btn-destructive' }, ['btn-destructive']),
+    ]),
 };

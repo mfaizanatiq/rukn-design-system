@@ -1,4 +1,4 @@
-import { html } from 'lit';
+import { el, row } from './_helpers.js';
 
 /** @type {import('@storybook/web-components').Meta} */
 const meta = {
@@ -16,9 +16,7 @@ const meta = {
     variant: 'primary',
     label: 'New',
   },
-  render: ({ variant, label }) => html`
-    <rukn-badge variant=${variant}>${label}</rukn-badge>
-  `,
+  render: ({ variant, label }) => el('rukn-badge', { variant }, [label]),
 };
 
 export default meta;
@@ -42,13 +40,12 @@ export const Neutral = {
 };
 
 export const All = {
-  render: () => html`
-    <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-      <rukn-badge variant="primary">Primary</rukn-badge>
-      <rukn-badge variant="success">Success</rukn-badge>
-      <rukn-badge variant="warning">Warning</rukn-badge>
-      <rukn-badge variant="destructive">Destructive</rukn-badge>
-      <rukn-badge variant="neutral">Neutral</rukn-badge>
-    </div>
-  `,
+  render: () =>
+    row({ gap: '0.5rem' }, [
+      el('rukn-badge', { variant: 'primary' }, ['Primary']),
+      el('rukn-badge', { variant: 'success' }, ['Success']),
+      el('rukn-badge', { variant: 'warning' }, ['Warning']),
+      el('rukn-badge', { variant: 'destructive' }, ['Destructive']),
+      el('rukn-badge', { variant: 'neutral' }, ['Neutral']),
+    ]),
 };

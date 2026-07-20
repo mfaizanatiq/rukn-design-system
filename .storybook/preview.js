@@ -1,5 +1,3 @@
-import { html } from 'lit';
-
 import '../components/rukn-ui.js';
 import './preview.css';
 
@@ -79,16 +77,28 @@ const preview = {
     (story, context) => {
       const theme = context.globals.theme || 'dark';
       const locale = context.globals.locale || 'en';
+      const dir = locale === 'en' ? 'ltr' : 'rtl';
 
       if (typeof document !== 'undefined') {
         applyRuknChrome(theme, locale);
       }
 
-      return html`
-        <div class="rukn-story" data-theme=${theme} lang=${locale} dir=${locale === 'en' ? 'ltr' : 'rtl'}>
-          ${story()}
-        </div>
-      `;
+      const result = story();
+
+      // Always return a fresh DOM node. Avoid Lit wrappers — Rukn components
+      // rewrite light-DOM innerHTML and would orphan Lit markers on re-render.
+      const wrap = document.createElement('div');
+      wrap.className = 'rukn-story';
+      wrap.dataset.theme = theme;
+      wrap.lang = locale;
+      wrap.dir = dir;
+
+      if (result instanceof Node) {
+        wrap.appendChild(result);
+        return wrap;
+      }
+
+      return result;
     },
   ],
 };

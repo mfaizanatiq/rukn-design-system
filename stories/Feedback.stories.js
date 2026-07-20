@@ -1,4 +1,4 @@
-import { html } from 'lit';
+import { el, row, stack } from './_helpers.js';
 
 /** @type {import('@storybook/web-components').Meta} */
 const meta = {
@@ -9,21 +9,19 @@ const meta = {
 export default meta;
 
 export const Spinner = {
-  render: () => html`
-    <div style="display:flex; gap:1.25rem; align-items:center;">
-      <rukn-spinner size="sm"></rukn-spinner>
-      <rukn-spinner size="md"></rukn-spinner>
-      <rukn-spinner size="lg"></rukn-spinner>
-    </div>
-  `,
+  render: () =>
+    row({ gap: '1.25rem' }, [
+      el('rukn-spinner', { size: 'sm' }),
+      el('rukn-spinner', { size: 'md' }),
+      el('rukn-spinner', { size: 'lg' }),
+    ]),
 };
 
 export const Progress = {
-  render: () => html`
-    <div style="display:grid; gap:1rem; min-width:16rem;">
-      <rukn-progress value="35"></rukn-progress>
-      <rukn-progress value="70" variant="success"></rukn-progress>
-      <rukn-progress indeterminate></rukn-progress>
-    </div>
-  `,
+  render: () =>
+    stack({ 'min-width': '16rem', gap: '1rem' }, [
+      el('rukn-progress', { value: '35' }),
+      el('rukn-progress', { value: '70', variant: 'success' }),
+      el('rukn-progress', { indeterminate: true }),
+    ]),
 };

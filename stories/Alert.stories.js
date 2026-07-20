@@ -1,4 +1,4 @@
-import { html } from 'lit';
+import { el } from './_helpers.js';
 
 /** @type {import('@storybook/web-components').Meta} */
 const meta = {
@@ -20,15 +20,22 @@ const meta = {
     message: 'Rukn alerts map to ds-alert tokens for consistent feedback.',
     dismissible: false,
   },
-  render: ({ variant, title, message, dismissible }) => html`
-    <div style="min-width:min(100%, 24rem);">
-      <rukn-alert
-        variant=${variant}
-        title=${title}
-        ?dismissible=${dismissible}
-      >${message}</rukn-alert>
-    </div>
-  `,
+  render: ({ variant, title, message, dismissible }) =>
+    el(
+      'div',
+      { style: 'min-width:min(100%, 24rem)' },
+      [
+        el(
+          'rukn-alert',
+          {
+            variant,
+            title,
+            dismissible: dismissible || undefined,
+          },
+          [message]
+        ),
+      ]
+    ),
 };
 
 export default meta;

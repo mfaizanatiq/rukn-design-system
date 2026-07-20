@@ -1,4 +1,4 @@
-import { html } from 'lit';
+import { el, stack } from './_helpers.js';
 
 /** @type {import('@storybook/web-components').Meta} */
 const meta = {
@@ -20,18 +20,17 @@ const meta = {
     value: '',
     disabled: false,
   },
-  render: ({ type, placeholder, value, disabled }) => html`
-    <div style="display:grid; gap:0.5rem; min-width:16rem;">
-      <label class="ds-label" for="story-input">Label</label>
-      <rukn-input
-        id="story-input"
-        type=${type}
-        placeholder=${placeholder}
-        value=${value}
-        ?disabled=${disabled}
-      ></rukn-input>
-    </div>
-  `,
+  render: ({ type, placeholder, value, disabled }) =>
+    stack({ 'min-width': '16rem', gap: '0.5rem' }, [
+      el('label', { class: 'ds-label', for: 'story-input' }, ['Label']),
+      el('rukn-input', {
+        id: 'story-input',
+        type,
+        placeholder,
+        value: value || undefined,
+        disabled: disabled || undefined,
+      }),
+    ]),
 };
 
 export default meta;
@@ -48,10 +47,9 @@ export const Disabled = {
 
 export const CssPrimitive = {
   name: 'CSS primitive',
-  render: () => html`
-    <div style="display:grid; gap:0.5rem; min-width:16rem;">
-      <label class="ds-label">Email</label>
-      <input class="ds-input" type="email" placeholder="you@example.com" />
-    </div>
-  `,
+  render: () =>
+    stack({ 'min-width': '16rem', gap: '0.5rem' }, [
+      el('label', { class: 'ds-label' }, ['Email']),
+      el('input', { class: 'ds-input', type: 'email', placeholder: 'you@example.com' }),
+    ]),
 };
