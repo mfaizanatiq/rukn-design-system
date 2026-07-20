@@ -24,27 +24,47 @@ beforeAll(() => {
 // ---------------------------------------------------------------------------
 
 describe('Smoke test — index.html CSS links', () => {
-  test('dogfoods the built CSS bundle', () => {
-    expect(indexHtml).toMatch(/href=["'][^"']*dist\/rukn\.min\.css["']/);
+  test('links design-system-variables.css', () => {
+    expect(indexHtml).toMatch(/href=["'][^"']*design-system-variables\.css["']/);
+  });
+
+  test('links design-system.css', () => {
+    expect(indexHtml).toMatch(/href=["'][^"']*design-system\.css["']/);
   });
 });
 
 describe('Smoke test — components.html CSS links', () => {
-  test('dogfoods the built CSS bundle', () => {
-    expect(componentsHtml).toMatch(/href=["'][^"']*dist\/rukn\.min\.css["']/);
+  test('links design-system-variables.css', () => {
+    expect(componentsHtml).toMatch(/href=["'][^"']*design-system-variables\.css["']/);
+  });
+
+  test('links design-system.css', () => {
+    expect(componentsHtml).toMatch(/href=["'][^"']*design-system\.css["']/);
   });
 });
 
 describe('Smoke test — foundation.html CSS links', () => {
-  test('dogfoods the built CSS bundle', () => {
-    expect(foundationHtml).toMatch(/href=["'][^"']*dist\/rukn\.min\.css["']/);
+  test('links design-system-variables.css', () => {
+    expect(foundationHtml).toMatch(/href=["'][^"']*design-system-variables\.css["']/);
+  });
+
+  test('links design-system.css', () => {
+    expect(foundationHtml).toMatch(/href=["'][^"']*design-system\.css["']/);
   });
 });
 
 describe('Smoke test — docs site JavaScript', () => {
-  test('all primary pages dogfood the built JS bundle', () => {
-    [indexHtml, componentsHtml, foundationHtml].forEach((html) => {
-      expect(html).toMatch(/src=["'][^"']*dist\/rukn\.min\.js["']/);
+  test('index.html loads navbar, footer, and ui components', () => {
+    expect(indexHtml).toMatch(/src=["'][^"']*components\/rukn-navbar\.js["']/);
+    expect(indexHtml).toMatch(/src=["'][^"']*components\/rukn-footer\.js["']/);
+    expect(indexHtml).toMatch(/src=["'][^"']*components\/rukn-ui\.js["']/);
+  });
+
+  test('components and foundation pages load layout components', () => {
+    [componentsHtml, foundationHtml].forEach((html) => {
+      expect(html).toMatch(/src=["'][^"']*components\/rukn-navbar\.js["']/);
+      expect(html).toMatch(/src=["'][^"']*components\/rukn-sidebar\.js["']/);
+      expect(html).toMatch(/src=["'][^"']*components\/rukn-ui\.js["']/);
     });
   });
 });
@@ -65,7 +85,6 @@ describe('Smoke test — index.html version', () => {
 
 describe('Smoke test — index.html RTL content', () => {
   test('contains RTL-related meta content (rtl or arabic or urdu)', () => {
-    // The page must declare RTL/multilingual relevance in its meta tags
     const metaSection = indexHtml.slice(0, indexHtml.indexOf('</head>') + 7);
     expect(metaSection).toMatch(/rtl|arabic|urdu/i);
   });
