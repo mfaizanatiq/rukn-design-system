@@ -104,8 +104,8 @@ write('rukn.min.js', minifyJS(iife));
 
 // ── Snippet file ─────────────────────────────────────────────────────────────
 const snippet = `<!-- Rukn Design System v2.2.0 — drop this into <head> -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.css">
-<script src="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.js" defer></script>
 
 <!-- Self-hosted (copy dist/ to your project) -->
 <link rel="stylesheet" href="./dist/rukn.min.css">

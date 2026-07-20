@@ -29,8 +29,8 @@ Every major design system assumes left-to-right English. Arabic and Urdu develop
 Drop two lines into your `<head>` and start using Rukn immediately:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.css">
-<script src="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.js" defer></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.js" defer></script>
 ```
 
 Self-hosting works the same way after copying `dist/` into your project:

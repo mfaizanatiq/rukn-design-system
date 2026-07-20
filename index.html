@@ -587,7 +587,7 @@
           <a href="https://github.com/mfaizanatiq/RuknDesignSystem" target="_blank" rel="noopener">
             <button class="btn-ghost btn-lg" data-i18n="index.hero.cta.secondary">GitHub</button>
           </a>
-          <a href="https://ruknds.netlify.app/" target="_blank" rel="noopener">
+          <a href="demo/maktaba.html">
             <button class="btn-outline btn-lg" data-i18n="index.hero.cta.demo">Maktaba Demo</button>
           </a>
         </div>
@@ -818,9 +818,9 @@
           <div class="code-block reveal reveal-delay-1" style="padding:var(--r-space-4);">
             <div style="font-size:0.7rem; color:hsl(var(--foreground)/0.35); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:var(--r-space-3);">CDN — drop into &lt;head&gt;</div>
 <span class="line-tag">&lt;link</span> <span class="line-attr">rel</span>=<span class="line-str">"stylesheet"</span>
-  <span class="line-attr">href</span>=<span class="line-str">"https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.css"</span><span class="line-tag">&gt;</span>
+  <span class="line-attr">href</span>=<span class="line-str">"https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.css"</span><span class="line-tag">&gt;</span>
 
-<span class="line-tag">&lt;script</span> <span class="line-attr">src</span>=<span class="line-str">"https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@main/dist/rukn.min.js"</span>
+<span class="line-tag">&lt;script</span> <span class="line-attr">src</span>=<span class="line-str">"https://cdn.jsdelivr.net/gh/mfaizanatiq/RuknDesignSystem@master/dist/rukn.min.js"</span>
   <span class="line-attr">defer</span><span class="line-tag">&gt;&lt;/script&gt;</span>
           </div>
           <!-- npm -->
@@ -833,6 +833,31 @@
 <span class="line-keyword">import</span> <span class="line-str">'@ruknds/core/navbar'</span><span class="line-comment">;</span>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider">
+
+  <!-- ====================================
+       PRICING
+       ==================================== -->
+  <section id="pricing" class="page-section">
+    <div class="page-container page-container--narrow text-center">
+      <div class="reveal">
+        <p class="label-caps" style="margin-bottom:var(--r-space-3);" data-i18n="index.section.pricing.title">Pricing</p>
+        <h2 class="heading-section" style="margin-bottom:var(--r-space-3);">
+          <span data-i18n="index.section.pricing.plan">Free</span>
+        </h2>
+        <p style="font-size:1.05rem; color:hsl(var(--primary)); margin-bottom:var(--r-space-4);" data-i18n="index.section.pricing.subtitle">
+          Open source forever
+        </p>
+        <p style="font-size:1rem; line-height:1.8; color:hsl(var(--foreground)/0.5); max-width:560px; margin:0 auto var(--r-space-8);" data-i18n="index.section.pricing.body">
+          Building the world's most modern, open-source design system. MIT licensed, free forever.
+        </p>
+        <a href="components.html">
+          <button class="btn-primary btn-lg" data-i18n="index.section.pricing.cta.primary">Start Building</button>
+        </a>
       </div>
     </div>
   </section>
@@ -995,30 +1020,6 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
     revealElements.forEach((el) => observer.observe(el));
-
-    // Navbar scroll effect
-    const navbar = document.querySelector('.ds-navbar');
-    if (navbar) {
-      window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.pageYOffset > 50);
-      }, { passive: true });
-    }
-
-    // Mobile navigation
-    const navToggle = document.getElementById('navToggle');
-    const navDropdown = document.getElementById('navDropdown');
-    if (navToggle && navDropdown) {
-      navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('open');
-        navDropdown.classList.toggle('open');
-      });
-      navDropdown.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          navToggle.classList.remove('open');
-          navDropdown.classList.remove('open');
-        });
-      });
-    }
   </script>
 
   <script>

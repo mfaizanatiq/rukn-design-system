@@ -1,9 +1,6 @@
 [build]
-  # Publish directory - root directory (files are in root)
   publish = "."
-  
-  # No build command needed for static site
-  command = ""
+  command = "npm run build"
 
 # Redirect rules for clean URLs and SPA routing
 [[redirects]]

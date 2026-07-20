@@ -1,8 +1,5 @@
 # Dependencies
 node_modules/
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
 
 # Logs
 *.log
@@ -23,8 +20,9 @@ Thumbs.db
 *~
 
 # Build outputs
-dist/
 build/
+
+# Keep dist/ in git for jsDelivr CDN bundles
 
 # Environment
 .env
